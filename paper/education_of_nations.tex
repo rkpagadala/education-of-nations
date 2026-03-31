@@ -1,0 +1,2207 @@
+\documentclass[12pt,letterpaper]{article}
+
+% ── Geometry ──────────────────────────────────────────────────────────
+\usepackage[margin=1in,headheight=14pt]{geometry}
+
+% ── Fonts (XeLaTeX) ──────────────────────────────────────────────────
+\usepackage{fontspec}
+\setmainfont{DejaVu Serif}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+
+% ── Spacing ──────────────────────────────────────────────────────────
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+
+% ── Math ─────────────────────────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{unicode-math}
+
+% ── Tables ───────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{calc}
+
+% ── Figures ──────────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[section]{placeins}
+
+% ── Captions ─────────────────────────────────────────────────────────
+\usepackage[font=small,labelfont=bf]{caption}
+
+% ── Headers ──────────────────────────────────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\itshape Pagadala}
+\fancyhead[R]{\small\itshape Education of Nations}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ── Colors and hyperlinks ─────────────────────────────────────────────
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black,
+  pdftitle={Education of Nations},
+  pdfauthor={Krishna Pagadala}]{hyperref}
+
+% ── TikZ (mechanism diagram) ─────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, calc, decorations.markings}
+
+% ── Code / script references ─────────────────────────────────────────
+
+% ── Prevent overfull lines ───────────────────────────────────────────
+\tolerance=1000
+\emergencystretch=3em
+
+% ── CSQuotes for proper quoting ──────────────────────────────────────
+\usepackage{csquotes}
+
+% ── Section formatting ───────────────────────────────────────────────
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{0.5em}{}
+
+% ══════════════════════════════════════════════════════════════════════
+% DOCUMENT
+% ══════════════════════════════════════════════════════════════════════
+
+\begin{document}
+
+% ── Title ─────────────────────────────────────────────────────────────
+\begin{titlepage}
+\begin{center}
+\vspace*{2cm}
+{\LARGE\bfseries Education of Nations\par}
+\vspace{1.5cm}
+{\large Krishna Pagadala\par}
+\vspace{0.5cm}
+{\normalsize\itshape April 2026\par}
+\vspace{1cm}
+{\small\itshape In memory of Richard A.\ Easterlin (1926--2024), who asked the right question.\par}
+\vspace{0.5cm}
+{\small\itshape In memory of Jane Goodall (1934--2025), who saw what the juvenile dependency period does.\par}
+\vspace{0.5cm}
+{\small\itshape In memory of Mahbub ul Haq (1934--1998), who knew that people are the real wealth of a nation --- and left one step for the rest of us.\par}
+\vspace{1cm}
+\end{center}
+
+\begin{abstract}
+\noindent Education is the necessary and sufficient cause of human
+development. No country has
+developed without it. No country with sustained educational expansion
+has failed to develop. The mechanism is biological: humans have the
+longest juvenile dependency of any species --- nearly two decades of a
+plastic brain embedded with a dedicated teacher. Extended juvenile
+dependency is the protocol; education is the most powerful payload ever
+delivered through it. Educated parents transmit knowledge, norms, and
+health behaviours to their children, who exercise these as household
+decisions \textasciitilde25 years later --- the time-to-agency interval
+set by juvenile dependency itself. A great-grandparent's school
+completion predicts their great-grandchild's life expectancy three
+generations later; income's predictive power collapses within one.
+Income, once education's contribution is removed, predicts nothing.
+Provision without educated populations produces no durable outcomes.
+Institutions are built by educated populations, not the reverse. By 2022, 154
+countries have crossed both development thresholds (TFR below 3.65, life
+expectancy above 69.8 --- the 1960 United States values) --- every one
+through education. The evidence is a 185-country panel (1950--2015)
+tested across three generational depths, with natural experiments that
+no other development input survives.
+
+\vspace{0.5em}
+\noindent\textbf{Keywords:} fundamental cause; parental transmission;
+residualization; natural experiments; categorical literacy;
+extended juvenile dependency; development threshold
+\end{abstract}
+
+\thispagestyle{empty}
+\end{titlepage}
+
+\setcounter{page}{2}
+
+\newpage
+
+\section{Introduction}\label{introduction}
+
+Education is fundamental to human well-being. Not important ---
+fundamental. The distinction matters. Important means high on a list.
+Fundamental means the list does not exist without it.
+
+Education is the necessary and sufficient cause of human development.
+No country has developed without it. Educated people are
+developed --- they live longer, have fewer children, make better health
+decisions, and transmit these gains to their children without requiring
+income or provision as intermediaries. The mechanism is Parental
+Transmission (PT): an educated parent transmits knowledge, norms, health
+behaviours, and the decision to educate the next child. PT carries the
+gains forward automatically. Population-level development requires the
+state to extend this to the whole population --- not to make education
+work, but to make uneducated people educated. The state provides reach;
+the household provides the mechanism.
+
+The evidence is a 185-country panel (WCDE v3, 1950--2015) tested across
+three generational depths (\textasciitilde25, \textasciitilde50,
+\textasciitilde75 years), with natural experiments that no other
+development input survives.
+
+Why has this been missed? Every framework in development economics ---
+income-first, institutions-first, provision-first, governance-first ---
+was built by people standing on educational foundations they could not
+see. Adam Smith observed the pin factory and built a theory of wealth
+from the division of labour. He never asked where the educated workforce
+came from. Smith was born twenty-seven years after Scotland's Education
+Act of 1696 codified John Knox's programme of universal parish schooling
+into statute. The workforce he observed was the product of 150 years of
+deliberate educational investment. He took educated labour as given ---
+the same structural blindness that makes education invisible to educated
+populations today (Section~\ref{why-education-is-invisible}). Knox broke
+the knowledge monopoly for religious reasons, two centuries before the
+steam engine. When fossil fuels arrived, they encountered a population
+already educated enough to deploy the new energy productively. Japan,
+with negligible fossil fuels, industrialised within a generation of the
+Meiji education reforms; Nigeria, sitting on one of the world's largest
+oil reserves, did not. Every major development framework has made the
+same structural move: mistaking the products of education for its causes.
+The policy consequence is dispersion: resources spread across
+interventions, with education funded as one line item rather than
+recognised as the mechanism that makes the others work.
+
+Others have seen parts of this, from two directions. In development
+economics, Haq \& Sen created the Human Development Index (1990),
+breaking the identification of development with income. Sen's
+capabilities framework showed that what matters is what people can do
+and be, not what they earn --- and he saw the right anomaly: Kerala,
+Sri Lanka, China, with welfare outcomes far above what their incomes
+predicted. Easterlin (1981) identified mass schooling as the binding
+constraint. Lutz \& Kebede (2018) showed the Preston Curve is tighter
+when education replaces income on the x-axis: what looked like ``wealth
+buys health'' was education proxying through income all along.
+
+In evolutionary biology, Konner (2010) documented the longest juvenile
+dependency period in any species --- roughly 18 years of dedicated
+learning embedded with a dedicated teacher. Boyd \& Richerson (1985)
+formalised cultural transmission through parent-to-child channels as the
+mechanism by which human populations accumulate knowledge across
+generations. Hawkes et al.\ (1998) showed that human post-reproductive
+lifespans --- unique among primates --- evolved to support grandchild
+survival, making longevity and fertility two expressions of the same
+biological architecture.
+
+These traditions --- one asking what development is, the other asking
+what humans are --- converge in this paper's central claim: that
+education is the cause, income and provision are downstream, and the
+mechanism operates through the biological channel of parental
+transmission across generations. This paper states it and tests it.
+
+Section~\ref{what-humans-are} develops the mechanism. Section~\ref{defining-development} defines development.
+Section~\ref{the-evidence} presents the evidence. Section~\ref{the-cases} traces the mechanism through
+the canonical cases. Section~\ref{the-decision} addresses the policy decision.
+
+\section{What Humans Are}\label{what-humans-are}
+
+\subsection{The Generational Transmission Mechanism}\label{the-generational-transmission-mechanism}
+
+Educated parents pass what they know to their children, who pass it to theirs. This is the mechanism.
+
+\textbf{PT (Parental Transmission)} is cultural
+transmission from parent to child. The channel is biological, but what
+travels through it is cultural. The paper measures PT through education
+completion; what parents actually
+transmit is broader --- norms, aspirations, health behaviours, the
+decision to send the next child to school. PT is the base unit, and it
+runs on self-interest: parents invest in their own children without
+requiring ideology, altruism, or institutional commitment to sustain the
+behaviour. It
+transmits across generations: the grandchild's attainment reflects the
+grandparent's through two sequential cycles (\textasciitilde50 years),
+the great-grandchild's through three (\textasciitilde75 years).
+PT explains persistence --- why educational gains never depreciate. But
+persistence alone does not produce development outcomes. What matters is
+what education creates in the individual: \emph{categorical literacy}
+--- the reorganisation of the brain that literacy and numeracy physically
+produce (Dehaene et al.~2010; Section~\ref{completion-as-the-operative-variable}),
+giving the capacity for planning, health-oriented decision-making, and
+information processing that does not develop without schooling.
+This capacity is exercised
+through household decisions: fertility, health, investment, and
+children's schooling. The \textasciitilde25-year
+lag between educational investment and development outcomes is the
+interval for educated children to become adults exercising these
+decisions. Taiwan's development crossing arrived \textasciitilde20 years
+after educational expansion began: one generation. Kerala's
+arrived at \textasciitilde65 years: three generations of slow
+accumulation before enough of the population was educated for household
+decisions to produce population-level development outcomes. A woman
+completing lower secondary at age 15--18 has children reaching school
+age 20--30 years later.
+Educational expansion has two parts. PT provides durability: it
+transmits what parents already have. State investment provides reach: it
+brings first-generation learners into the system and lifts the level
+beyond what parents alone would transmit. Where the state invests, both
+channels operate together --- parents transmit what they have while the
+state reaches children whose parents have nothing (Section~\ref{education-vs-gdp-as-predictors-of-attainment}). Where
+the state does not invest, PT alone preserves what the parent already
+has --- nearly perfectly, but nothing more.
+
+PT is the mechanism in every case; what varies is the state's
+relationship to it. \textbf{No priority}: the state does not invest. Pre-industrial, this
+produced stasis; post-industrial, educated minorities with surplus and
+widened identity (Section~\ref{from-action-to-talk-how-education-reaches-beyond-the-household}) slowly expanded access through religious
+and community channels, but never singular commitment (Section~\ref{the-decision}).
+\textbf{Competing priority}: the state builds schools, but education
+competes with health, nutrition, security, and governance.
+\textbf{Singular priority}: the state makes education the unconditional
+focus and builds ahead of need. The cases (Section~\ref{the-cases}) develop all three
+regimes.
+
+PT's durability reflects a
+biological channel. Humans have plastic brains, but plasticity alone
+explains nothing: a plastic brain in isolation learns nothing useful.
+What delivers knowledge to the plastic brain is the human juvenile
+dependency period --- roughly 18 years, compared to 8 for chimpanzees,
+the longest in any species (Konner 2010). A dedicated learner embedded
+with a dedicated teacher for nearly two decades: long enough for
+cumulative cultural knowledge to be absorbed deeply enough to become the
+learner's own baseline. The learner then becomes the teacher.
+Plasticity is the hardware; the extended dependency is the protocol; the
+parent is the carrier (Boyd \& Richerson 1985).
+
+This architecture explains three properties. Non-depreciation: 18 years
+of sustained transmission consolidates knowledge so deeply that it
+persists for life. Formal education is the most powerful payload ever
+delivered through this channel. Amplification: when the state builds
+schools, it loads additional knowledge onto the same channel --- the
+$\beta_g > 1$ result, where $\beta_g$ is the ratio of the child
+generation's education gain to the parental baseline
+(Section~\ref{education-vs-gdp-as-predictors-of-attainment}). Catastrophic reset: because the
+knowledge lives in the teacher, not the institution, destroying the
+educated population leaves the next generation's plastic brains with
+nothing to absorb. Cambodia (Section~\ref{the-cases}) is this test: schools rebuilt
+within a decade, progress stalled for a generation. Knox did not invent
+parental transmission; he institutionalised it, channelling formal
+schooling through a mechanism as old as the species.
+
+The human baseline --- the state before formal education reaches a
+population --- is high fertility, high child mortality, low life
+expectancy, hunger, and disease. This is not a description of poverty.
+It is a description of the species in the absence of the one
+intervention that changes all of them simultaneously. Hunger and
+insecurity are part of the baseline, not preconditions that must be
+resolved before education can begin. Every successful educational
+expansion in the historical record was made through poor nutrition and
+insecurity, not after resolving them (Section~\ref{the-cases}).
+
+The pathway runs: education restructures cognition; restructured
+cognition restructures intent (family size becomes a choice, child
+survival becomes an expectation); the fertility transition follows;
+fewer children releases resources per child; those resources amplify the
+next generation's education through PT; the cycle repeats. Each pass
+raises the baseline.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  box/.style={rectangle, rounded corners=3pt, draw=black!70, fill=black!3,
+              line width=0.7pt, minimum width=2.2cm, minimum height=0.95cm,
+              font=\small\bfseries, align=center},
+  elabel/.style={font=\small\itshape, text=black!70},
+  >=Stealth,
+  every path/.style={line width=0.7pt, draw=black!60}
+]
+
+% ── Loop nodes (hexagonal layout, shifted left for radii room) ──
+\begin{scope}[xshift=-2.0cm]
+\node[box] (edu)  at (90:3.6)   {Education};
+\node[box] (cat)  at (30:3.6)   {Categorical\\literacy};
+\node[box] (hh)   at (-30:3.6)  {Household\\decisions};
+\node[box] (fert) at (-90:3.6)  {Fertility\\transition};
+\node[box] (res)  at (-150:3.6) {Resource\\release};
+\node[box] (pt)   at (150:3.6)  {PT\\amplification};
+
+% ── Loop arrows (clockwise, slight bend) ──
+\draw[-{Stealth[length=5pt]}] (edu)  to[bend right=12] node[elabel, above right=-1pt] {cognition}    (cat);
+\draw[-{Stealth[length=5pt]}] (cat)  to[bend right=12] node[elabel, right=1pt]        {intent}       (hh);
+\draw[-{Stealth[length=5pt]}] (hh)   to[bend right=12] node[elabel, below right=-1pt] {fewer births} (fert);
+\draw[-{Stealth[length=5pt]}] (fert) to[bend right=12] node[elabel, below left=-1pt]  {freed resources}  (res);
+\draw[-{Stealth[length=5pt]}] (res)  to[bend right=12] node[elabel, left=1pt]         {\footnotesize invested per child} (pt);
+\draw[-{Stealth[length=5pt]}] (pt)   to[bend right=12] node[elabel, above left=-1pt]  {\textasciitilde 25 years}         (edu);
+
+% ── Centre annotation ──
+\node[font=\small\itshape, text=black!50, align=center] at (0,0) {Each pass\\raises the\\baseline};
+\end{scope}
+
+% ── Four radii from Household decisions ──
+% Tips vertically aligned at x=4.8, labels next to Durable/Fragile axis
+\coordinate (origin) at ($(hh.east)+(0.05,0)$);
+
+\draw[-{Stealth[length=5pt]}, line width=1.2pt, black!55]
+  (origin) -- (5.2, 3.0);
+\draw[-{Stealth[length=5pt]}, line width=1.2pt, black!55]
+  (origin) -- (5.2, 0.6);
+\draw[-{Stealth[length=5pt]}, line width=1.2pt, black!55]
+  (origin) -- (5.2, -1.8);
+\draw[-{Stealth[length=5pt]}, line width=1.2pt, black!55]
+  (origin) -- (5.2, -3.6);
+
+% ── Durable/Fragile vertical axis with labels alongside ──
+\draw[-{Stealth[length=4pt]}, black!35, line width=0.5pt] (5.5, 3.6) -- (5.5, -4.1);
+\node[font=\footnotesize\itshape, text=black!40, anchor=south] at (5.5, 3.6) {Durable};
+\node[font=\footnotesize\itshape, text=black!40, anchor=north] at (5.5, -4.1) {Fragile};
+
+\node[anchor=west, font=\small\bfseries, text=black] at (5.7, 3.0) {Household};
+\node[anchor=north west, font=\footnotesize\itshape, text=black!55] at (5.7, 2.85) {Self-interest};
+
+\node[anchor=west, font=\small\bfseries, text=black] at (5.7, 0.6) {Kin \& identity};
+\node[anchor=north west, font=\footnotesize\itshape, text=black!55] at (5.7, 0.45) {Self-interest};
+
+\node[anchor=west, font=\small\bfseries, text=black] at (5.7, -1.8) {Beyond identity};
+\node[anchor=north west, font=\footnotesize\itshape, text=black!55] at (5.7, -1.95) {Talk};
+
+\node[anchor=west, font=\small\bfseries, text=black] at (5.7, -3.6) {Global};
+\node[anchor=north west, font=\footnotesize\itshape, text=black!55] at (5.7, -3.75) {Talk};
+
+\end{tikzpicture}
+\caption{The generational transmission loop and four radii of educational effect. The loop traces the causal pathway from education through household decisions back to the next generation's education (\textasciitilde 25 years). The four radii show how education's effects extend beyond the household with decreasing durability: self-interest compounds; talk requires continuous external commitment.}
+\label{fig:mechanism}
+\end{figure}
+
+\subsection{From Action to Talk: How Education Reaches Beyond the Household}\label{from-action-to-talk-how-education-reaches-beyond-the-household}
+
+Education's effects start in the household but do not stay there.
+
+The PT mechanism operates through action --- the household decisions of
+educated adults. But education's effects extend beyond the household,
+and the nature of that extension changes as the radius widens. Two
+things widen it simultaneously: education expands the boundary of who
+counts as ``my people'' --- coalitional psychology (Tooby \& Cosmides
+2010) allows flexible group boundaries that education stretches from kin
+to nation --- and it releases surplus, as educated parents have fewer
+children and nearly all survive, freeing time, money, and attention.
+The arc widens (who you invest in) and the constraint loosens (what you
+can invest).
+
+The result is four radii of effect, each weaker than the last:
+
+\begin{enumerate}
+\item \textbf{Household.} PT is action: the parent raises the child in
+front of them, and the 18-year biological channel guarantees delivery.
+Runs on self-interest.
+
+\item \textbf{Kin and identity.} Investment is still concrete and
+compounding. Runs on self-interest extended by expanded identity.
+
+\item \textbf{Beyond identity.} Education becomes talk --- advocacy,
+policy campaigns, diluted across every good cause simultaneously.
+This is where the competing-priority pathway
+(Section~\ref{the-generational-transmission-mechanism}) originates.
+
+\item \textbf{Global.} External provision --- vaccines, aid, health
+delivery --- funded by the surplus of already-developed populations.
+Talk, diluted further across borders and competing claims.
+\end{enumerate}
+
+The axis that predicts durability is motivational: PT compounds because
+it runs on self-interest. Every non-education intervention requires
+someone to keep serving past the point where self-interest would redirect
+them. Revolutionary commitment, donor altruism, state fiscal discipline:
+all are fragile because all run against the grain of normal human
+motivation. Education runs with it. Non-education intervention buys
+time; educational investment changes trajectory.
+
+\subsection{Why Education Is Invisible}\label{why-education-is-invisible}
+
+Educated people rank education as important --- one of many important
+things, alongside health, nutrition, governance, and security. They
+cannot categorise it as \emph{fundamental} because that would require
+seeing their own cognition from outside. Uneducated people cannot value
+it at all: the cost is immediate, the return is abstract, delayed by a
+generation, and has no precedent in the household's experience. The
+people who could identify education as fundamental cannot, because they
+are inside it; the people who would benefit most cannot, because they
+are outside it.
+
+This applies to the frameworks through which this paper will be
+evaluated. Development as multivariate, education as one input among
+many --- these are themselves products of the mechanism the paper
+describes. The capacity to rank, compare, and weigh competing inputs is
+itself a product of education. The training that makes ``education is
+sufficient'' sound like overreach assumes a multivariate world. The
+evidence will show that the other variables are either products of
+education or irrelevant once education is present.
+
+The historical exceptions confirm the rule. Within the development
+frame, education competes with health, nutrition, governance, and
+security in a cost-benefit comparison --- and it always loses, because
+its returns are generational while the others' are immediate and
+visible. A child dying of diarrhoea today is an emergency; a child not
+sent to school today is a statistic that matters in 2051. Every
+historical breakthrough bypassed this comparison entirely. Knox acted
+from religious conviction (salvation required literacy), Meiji Japan
+from existential military threat, Korea from Cold War survival, Cuba
+from revolutionary ideology. In each case, the decision was made in a
+framework where education was non-negotiable, not one where it was
+weighed against alternatives. No leader broke through the invisibility
+by seeing education more clearly as a development input; they broke
+through by needing it for a purpose that precluded comparison.
+
+\subsection{Demographic Structure and the Fertility Transition}\label{demographic-structure-and-the-fertility-transition}
+
+Educated women have fewer children. The decline is continuous, steepest at the bottom, and requires no threshold to trigger.
+
+Fertility declines continuously as female secondary
+completion rises. The evolutionary mechanism is a shift in reproductive
+strategy, not an override of the reproductive drive: in high-mortality
+environments, the optimal strategy is quantity --- have many children
+because some will die. Education changes both inputs to this calculus.
+Child survival rises (fewer births needed to achieve the same number of
+surviving children), and the planning horizon extends --- a literate
+parent can see that investing more in fewer children produces better
+outcomes than hedging with numbers. The drive to maximise offspring
+success is unchanged; what changes is the strategy that serves it.
+The steepest
+fertility decline occurs at primary education (Section~\ref{gdp-has-no-independent-effect}),
+where women are barely literate. What primary education gives is capacity over
+preferences that already exist --- the capacity to read a
+contraceptive instruction, understand a health protocol, act on a
+desire not to be pregnant continuously. The
+steepest demographic headwinds are at the lowest completion levels,
+where total fertility rates are typically above 4, population growth is
+rapid, and the gains from each educated cohort are diluted across a
+larger and faster-growing next generation. As completion rises, fertility
+falls, child survival improves, and household resources per child
+increase. PT is a
+household mechanism. States can create conditions for these decisions; they
+cannot make them.
+
+Human biology itself enforces the scale of these decisions. Lactational
+amenorrhea suppresses ovulation during nursing, spacing births at
+roughly two-and-a-half to three-year intervals. A woman who begins
+bearing children at fifteen and has seven will still be pregnant or
+nursing at thirty-five --- twenty years of continuous reproduction.
+Reproduction is only the first claim on her time. The same extended
+juvenile dependency that makes cultural transmission possible means that
+each child requires years of feeding, supervision, and care; the last
+child born at thirty-five will still need daily attention when the
+mother reaches her mid-forties. This is equally true for fathers:
+household structure, economic pressure, and the depth of parental
+investment per child all shift categorically with fertility. High
+fertility is not merely correlated with constrained lives; it is the
+constraint.
+
+Even in populations where life expectancy at birth is low, women who
+survive to childbearing age typically live into their fifties or beyond;
+the average is dragged down by infant and child death, not by adults
+dying at forty. But survival does not mean freedom. The grandmother
+hypothesis in evolutionary biology holds that human females live decades
+past menopause precisely because post-reproductive women raised
+grandchildren's survival odds. The long post-reproductive lifespan is
+itself part of the transmission architecture. Life expectancy and
+fertility are not independent metrics that happen to correlate --- they
+are two readouts of the same biological architecture. The species
+evolved long post-reproductive lives because it evolved extended
+juvenile dependency because it evolved cultural transmission. Together
+they are the biological signature of the human developmental niche.
+
+Fertility decline is not a proxy for women's empowerment --- it is the
+first expression of it. Education gives capacity over preferences that
+already exist: contraceptive availability alone does not produce the
+shift; education does. The shift from the norm of large families to
+conscious choice over family size is a cognitive transition, and it
+occurs at primary education, where the steepest declines are observed.
+The further dimensions of empowerment that the
+literature measures --- labour force participation, household
+bargaining power, political voice, economic independence --- follow
+after fertility falls, as smaller families free time, resources, and
+attention. Education produces the first move; the rest cascades from it.
+
+\subsection{Predictions}\label{predictions}
+
+These predictions follow from the biology, not from the data --- they are stated before any empirical test is run. If the mechanism described above is correct --- if extended juvenile dependency creates a biological channel for cultural transmission, and formal education is the most powerful payload ever delivered through that channel --- then six empirical patterns must hold.
+
+\begin{enumerate}
+\item \textbf{Generational timing.} Effects on development outcomes should appear at \textasciitilde25 years --- the time-to-agency interval set by juvenile dependency --- not at 10 or 15 years.\label{pred:timing}
+
+\item \textbf{Multi-generational persistence.} Education's predictive power should decay slowly across generational depths (50, 75, 100 years), because PT transmits through the biological channel from parent to child to grandchild. Income, which has no equivalent transmission mechanism, should collapse within one generation.\label{pred:persistence}
+
+\item \textbf{Asymmetric disruption.} Destroying the educated population should reset generational progress, because knowledge lives in the carrier, not the institution. Destroying institutions, income, or infrastructure while leaving the educated population intact should not.\label{pred:disruption}
+
+\item \textbf{Income independence.} Because the causal path runs through education (education $\to$ cognitive capacity $\to$ household decisions $\to$ outcomes), income stripped of education's contribution should have no independent predictive power for development outcomes.\label{pred:income}
+
+\item \textbf{Universality.} The pattern should hold across political systems, cultures, geographies, and colonial histories, because extended juvenile dependency is a species-level trait, not an institutional product.\label{pred:universality}
+
+\item \textbf{Amplification at low baselines.} Where the state brings first-generation learners into the system, the next generation's attainment should exceed what parental transmission alone would produce ($\beta_g > 1$). At high baselines, ceiling compression reduces $\beta_g$ toward unity.\label{pred:amplification}
+\end{enumerate}
+
+Section~\ref{the-evidence} tests all six.
+
+
+\section{Defining Development}\label{defining-development}
+
+I define development as people living long lives and women having fewer children. I measure it concretely: a country is developed when it
+has simultaneously achieved a \textbf{total fertility rate (TFR) below
+3.65} and \textbf{life expectancy \textgreater{} 69.8 years} --- the
+1960 United States values (World Bank WDI).
+
+These two measures are chosen because they are intrinsically valuable
+--- not as proxies for something else, but as the things themselves.
+The UN's Human Development Index, created by Haq \& Sen (1990), already
+treats health and education as intrinsically valuable alongside income. This definition takes that
+logic to its conclusion: it retains the two that are ends in themselves
+and drops the one that is not.
+
+Life expectancy is the most fundamental measure of human welfare. Every
+other outcome --- income, freedom, knowledge, dignity --- presupposes
+being alive. A country where people die at 45 has failed on the most
+basic term, regardless of its GDP or institutional quality. Life
+expectancy is not one metric among many; it is the precondition for all
+others.
+
+The number of children a woman bears defines the shape of her entire
+adult life in ways that no other variable does. Seven children means
+twenty years of continuous pregnancy and nursing, followed by a further
+decade of child-rearing before the last child is self-sufficient
+(Section~\ref{demographic-structure-and-the-fertility-transition}).
+The difference between seven children and two is not incremental; it is
+the difference between a life fully absorbed by reproduction and a life
+that permits education, work, civic participation, or rest.
+
+These are also the two most direct population-level expressions of
+whether the cognitive transformation produced by education has occurred.
+Life expectancy tracks whether people have the planning horizon, health
+knowledge, and behavioural capacity to sustain their own survival. TFR
+tracks whether women have moved from biological fate to conscious
+reproductive choice --- precisely the cognitive autonomy that underlies
+every other dimension of human flourishing.
+
+Every competing metric of development is either a component of life
+expectancy and fertility --- child mortality is a component of LE,
+nutrition is a cause of LE variation, sanitation prevents child death
+that shows up in LE --- or a consequence of the cognitive
+transformation that moves them (institutional quality, income,
+democracy). No input can outrank the summary of itself. No consequence
+can outrank its cause. LE and TFR are not the best items on a list of
+development metrics --- they are what the list is measuring.
+
+No country considered developed --- by any definition, under any
+framework --- has life expectancy below 69.8 or TFR above 3.65.
+Even Sen's capabilities --- health, bodily integrity, political
+participation, practical reason --- all presuppose being alive and
+having cognitive autonomy over one's reproductive life. Go through the
+list: political participation requires forming preferences and
+evaluating evidence; bodily health requires understanding what health
+means and acting on it; practical reason requires the planning horizon
+that education produces. Every capability on Sen's list, examined for
+its generative source, has educated cognition as its enabling
+precondition. On his own framework, LE and TFR are not two capabilities
+among many; they are the enabling conditions for the capability to have
+capabilities.
+
+They require neither high income nor a particular type of government to
+achieve. Crossing dates under three threshold specifications shift by
+6--35 years but the ordering holds (Table~\ref{tab:a4}). Countries with
+high expansion rates cross any threshold within 6--7 years. GDP is
+excluded: measuring development through income would assume the answer.
+For readers who include income in their definition: education predicts
+future GDP per capita as strongly as it predicts LE and TFR
+(Table~\ref{tab:2}). The definition chosen here is the conservative one
+--- it strengthens the alternative's position by removing from the
+outcome the one variable where income might have independent standing.
+
+Why the 1960 USA? It is the natural baseline: 1960 marks the start of
+mass decolonization, and the USA was the unambiguous global hegemon. A
+country that crosses both thresholds has surpassed the richest nation on
+earth on the metrics that matter for human welfare. The bar is not low:
+the USA's TFR of 3.65 was its baby boom peak --- it had not yet
+completed its own fertility transition (it crossed in 1972).
+
+The countries that had already crossed both thresholds by 1960 were
+those with the longest prior histories of mass education: Scandinavia,
+the Netherlands, France, Switzerland, the United Kingdom, Australia, and
+New Zealand. Japan --- despite a TFR of 2.0 --- had life expectancy of
+67.7, just below the threshold; it crossed in 1964. By 2022, 154 countries have crossed both thresholds, representing 80\%
+of the world's population. Figure~\ref{fig:1} traces this accumulation over time.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_cumulative_developed.png}
+\caption{Cumulative share of world population crossing both
+development thresholds (TFR \textless{} 3.65, LE \textgreater{} 69.8),
+1960--2022. Slow climb from 13\% (1961) to \textasciitilde20\% (1993);
+vertical jump in 1994 when China crosses; 50\% by 2001; 80\% by
+2017--2022. \emph{(Source: World Bank WDI, WCDE v3. See
+\texttt{scripts/fig\_cumulative\_developed.py})}}
+\label{fig:1}
+\end{figure}
+
+
+\section{The Evidence}\label{the-evidence}
+
+Education predicts every development outcome one generation forward; income, once education's contribution is removed, predicts none of them. These results are not found by searching for a pattern --- they are the six predictions of the biological mechanism (Section~\ref{predictions}), tested against 185 countries over 65 years. All six hold.
+
+The statistical tests below formalise what the cases in Section~\ref{the-cases} demonstrate historically. Readers unfamiliar with panel regression may proceed to the cases; the technical apparatus confirms what the narrative establishes independently.
+
+No single table in this section establishes causation on its own. The
+forward lag eliminates reverse causality. The residualization
+(Table~\ref{tab:3}) shows income stripped of education's contribution
+predicts nothing. The shock test (Table~\ref{tab:shock}) shows that
+every shock preserving the educated population preserves the fertility
+transition; only destroying the educated population breaks both. Each
+test admits an alternative story in isolation. The causal case is that
+no alternative explanation survives all of them simultaneously.
+
+\subsection{Causal Identification}\label{causal-identification-the-bad-control-problem-and-natural-experiments}
+
+Education predicts income one generation forward (Table~\ref{tab:2}). This is the positive finding --- and the source of the identification problem. Because education produces income, GDP sits on the causal path (education → GDP → life expectancy, fertility). Controlling for GDP strips out part of education's effect and biases the result against education (Pearl 2009; Angrist \& Pischke 2009, ch.~3). The standard approach in development economics --- regressing outcomes on income --- is therefore comparing education's product against education, with the advantage given to the product.
+
+The identification rests on three
+structures instead. First, temporal ordering: parental cohort precedes
+child cohort by biological necessity, ruling out reverse causality at
+the individual level. Second, the lag-decay shape (Figure~\ref{fig:3};
+Section~\ref{education-predicts-development-outcomes-25-years-forward}):
+education and income produce structurally different decay profiles that
+autocorrelation cannot explain. Third, and most directly, a set of
+natural experiments that test
+Prediction~\ref{pred:disruption} --- cases where parental education was
+exogenously disrupted or where other development inputs were removed
+while education persisted --- produce outcomes that pure autocorrelation
+cannot predict. The set includes: Cambodia (population destruction →
+generational shadow); Sri Lanka (civil war, PT unbroken, development on
+schedule); Myanmar (73 years of military rule, outcomes tracked
+education); China (barefoot doctors dismantled, LE continued rising);
+Korea vs Philippines (identical colonial base, divergent state
+commitment); and the Asian Financial Crisis (income wiped, education
+untouched). The cases are developed in Section~\ref{the-cases}.
+
+\textbf{The symmetry objection.} If GDP mediates education's effect,
+controlling for GDP biases against education --- but if education
+partially mediates GDP's effect, controlling for education biases against
+GDP. Three empirical results break the symmetry: (i) education's
+predictive advantage over GDP widens to 3.3× among countries still
+building their education systems
+(Section~\ref{education-vs-gdp-as-predictors-of-attainment}), while
+GDP's predictive power is flat across all cutoffs; (ii) education's
+predictive power persists across multiple generations while income's
+collapses within one (Figure~\ref{fig:3};
+Section~\ref{education-predicts-development-outcomes-25-years-forward});
+and (iii) natural experiments that remove income while preserving
+education show development continuing on schedule
+(Section~\ref{the-cases}). Autocorrelation and reverse causality cannot
+produce this pattern.
+
+\subsection{Data}\label{data}
+
+The analysis covers 185 countries from 1950 to 2015, with education measured as the share of 20--24-year-olds who finished lower secondary school.
+
+Education data are from WCDE v3 (Lutz et al.~2021): lower secondary
+completion rates for the 20--24 age cohort, both sexes, which reflects
+completed education rather than enrolment. All education percentages in
+this paper refer to this measure unless otherwise noted. Coverage: 185
+countries, 1950--2015 at five-year intervals.
+The core generational
+panel uses 1975--2015 (1,665 country-years); the residualization
+analysis (Section~\ref{gdp-has-no-independent-effect}) extends to T=1960--1990 with education
+interpolated to annual values for precise threshold identification.
+Long-run analysis uses a 28-country subsample extending back to 1900,
+selected for data availability; the generational coefficient varies
+systematically with baseline education level (Section~\ref{education-vs-gdp-as-predictors-of-attainment}). GDP data:
+World Bank, constant 2017 USD, per capita, log-transformed. Life
+expectancy, TFR, and under-5 mortality: World Bank WDI. Parental
+education: each country's lower secondary completion lagged 25 years
+(T−25).
+
+\subsection{Completion as the Operative Variable}\label{completion-as-the-operative-variable}
+
+This paper measures whether people finished school, not how well they scored on tests. Completion is the right measure for a generational mechanism.
+
+Hanushek \& Woessmann (2008, 2015) measure quality through test scores
+that do not exist before the 1960s. The educational expansions
+that explain Korea, Taiwan, Sri Lanka, and Kerala all precede their
+data. Quality follows quantity: a literate, numerate population is the precondition for any
+test to be administered.
+
+Formal
+education --- even at the lowest quality --- represents a categorical
+discontinuity from oral cultural transmission. The neuroscience is
+unambiguous: literacy physically restructures the brain's visual
+processing pathways (Dehaene et al.~2010), and numeracy recruits
+parietal circuits unavailable to innumerate populations (Gordon 2004;
+Frank et al.~2008). These are not marginal improvements on existing
+capacities --- they are new cognitive technologies --- \emph{categorical literacy} --- that do not develop
+without schooling, regardless of intelligence or environment.
+
+A direct test confirms this. On the 85 countries where both completion
+rates and harmonized test scores exist (Angrist et al.~2021), I run a
+horse race: which measure better predicts life expectancy, TFR, and
+child mortality? With country fixed effects at a 10-year forward lag,
+completion explains 26\% of within-country TFR variation; test scores
+explain 0.5\% ($p = 0.48$). For child mortality the ratio is
+similar: completion $R^2 = 0.48$, test scores $R^2 = 0.03$
+($p = 0.24$). Hanushek \& Woessmann's quality measure predicts GDP
+growth --- their dependent variable. It does not predict ours.
+
+\subsection{Empirical Strategy}\label{empirical-strategy}
+
+Each country is compared only to its own past. The question: does parental education predict what happens to their children one generation later?
+
+Primary specification --- country fixed effects regression:
+
+\[E_{it} = \alpha_i + \beta_1 E_{i,t-25} + \varepsilon_{it}\]
+
+In plain language: a country's education level today is predicted by its own education level 25 years ago (the parents' generation). The $\alpha_i$ term gives each country its own baseline --- so the test is not ``which countries are more educated?'' but ``within the same country, does the previous generation's education predict the next generation's?'' This absorbs everything permanent about a country: institutions, geography, culture, colonial history. What remains is change over time. The 25-year lag is not a researcher choice --- it is the time-to-agency interval derived from the biological mechanism (Prediction~\ref{pred:timing}).
+
+Comparison specifications replace parental education with income, or include both:
+
+\[E_{it} = \alpha_i + \beta_2 \ln Y_{it} + \varepsilon_{it}\]
+
+\[E_{it} = \alpha_i + \beta_1 E_{i,t-25} + \beta_2 \ln Y_{it} + \varepsilon_{it}\]
+
+For development outcomes (life expectancy, fertility, child mortality), I measure outcomes 25 years after the education measurement to eliminate reverse causality --- education at time T predicting life expectancy at time T+25:
+
+\[O_{i,t+25} = \alpha_i + \gamma_1 E_{it} + \gamma_2 O_{it} + \varepsilon_{it}\]
+
+Including the initial outcome level ($O_{it}$) is deliberately conservative: it absorbs the country's prior trajectory, so the test asks whether education predicts improvement beyond whatever trend was already underway.\footnote{The main analysis uses aggregate (both-sexes) lower secondary completion. Female completion produces stronger R² on every outcome tested (Section~\ref{gdp-has-no-independent-effect}); the aggregate is the more conservative specification, and the results reported here are a lower bound.}
+
+\textbf{Residualization strategy.} If education causes income, then part of
+income's apparent predictive power is really education's effect in disguise.
+To test whether income contributes \emph{anything on its own}, I strip out
+the portion of income that education produced and use only the remainder
+to predict development outcomes 25 years forward. This is a standard
+decomposition (Frisch-Waugh-Lovell), applied across three education levels
+(primary, lower secondary, upper secondary), four outcomes (life
+expectancy, TFR, child mortality, child education), and multiple sample
+definitions.\footnote{See \texttt{scripts/edu\_vs\_gdp\_residualized.py},
+\texttt{scripts/edu\_vs\_gdp\_tfr\_residualized.py},
+\texttt{scripts/edu\_vs\_gdp\_child\_edu\_residualized.py}. An entry-cohort
+design supplements the cutoff analysis: for each threshold (10\% to 90\%),
+identify the first year each country crosses it, then include all
+observations from that point forward while education remains below a
+ceiling (50\%--90\%). See \texttt{scripts/edu\_vs\_gdp\_entry\_ceiling.py}.}
+
+\textbf{On year fixed effects.} Adding year FE collapses the parental
+coefficient to $\beta$=0.083 (p=0.07) on the full panel --- a known
+pathology of staggered adoption that Appendix~\ref{appendix-robustness}
+addresses with a Goodman-Bacon decomposition and a Callaway--Sant'Anna
+heterogeneity-robust estimator.
+
+\subsection{Education vs.\ GDP as Predictors of Attainment}\label{education-vs-gdp-as-predictors-of-attainment}
+
+Where it matters most --- countries still building their education systems --- education predicts the next generation's attainment 3× better than income does.
+
+Among countries where the expansion is still active --- parental
+completion below 30\%, where most of the remaining 20\% of humanity sits
+--- education R²=0.70 vs GDP R²=0.21. Education leads by 3.3×. GDP's R²
+barely changes across cutoffs (0.21--0.30); education's jumps from 0.53
+to 0.70. GDP has no S-curve structure --- its R² is flat across all
+cutoffs. Education leads GDP at every cutoff from 10\% to 90\%, with ratios
+ranging from 2.0× to 3.3×.\footnote{See
+\texttt{scripts/education\_vs\_gdp\_by\_cutoff.py}.}
+
+\refstepcounter{table}\label{tab:1}\textbf{Table \thetable.} Country fixed effects regressions: child lower
+secondary completion on parental education and log GDP per capita.
+Countries with parental completion below 30\% (active expansion); 629
+country-years, 105 countries.
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Model & Parental edu β & Log GDP β & R² (within) \\
+\midrule
+\endhead
+(1) FE: child \textasciitilde{} parent & \textbf{1.376***} & --- &
+\textbf{0.699} \\
+(2) FE: child \textasciitilde{} log GDP & --- & 13.659*** & 0.214 \\
+\bottomrule
+\end{longtable}
+
+\emph{*** p\textless0.001. Standard errors account for non-independence
+within countries. GDP is not included alongside education in the same
+regression because income is on the causal path --- controlling for it
+would mask education's effect (Section~\ref{causal-identification-the-bad-control-problem-and-natural-experiments}).
+The proper test strips education's contribution from GDP first
+(Table~\ref{tab:3}). Ceiling countries excluded. Education leads GDP at
+every cutoff from 10\%--90\%
+(\texttt{scripts/education\_vs\_gdp\_by\_cutoff.py}).}
+
+The decisive test is the shape across lags (Figure~\ref{fig:3}; Section~\ref{education-predicts-development-outcomes-25-years-forward}).
+
+\textbf{Each generation gains more than it inherits}
+(Prediction~\ref{pred:amplification}). The generational amplification
+coefficient $\beta_g$ measures how much more educated the children's
+generation is relative to the parents'. If children merely inherited
+their parents' education level, $\beta_g$ would be 1 or less. In fact it
+exceeds 1: at the \textless{}20\% cutoff, $\beta_g$=1.032 (t=5.8);
+at \textless{}10\%, $\beta_g$=1.019 (Table~\ref{tab:a1}). The state adds reach
+on top of what households transmit.
+
+The amplification is strongest where baselines are lowest: among
+countries below 20\% completion, the next generation's gain is 2.86×
+the parents' level (education explains 70\% of the variation); below
+50\%, 1.83× (explains 79\%); below 90\%, 1.24× (explains
+77\%).\footnote{See \texttt{scripts/beta\_by\_ceiling\_cutoff.py}.}
+The all-country panel (1900--2015) produces $\beta_g$=1.04 --- stronger,
+not weaker, than the post-1975 panel.
+
+\textbf{The S-curve within countries.} Within individual countries,
+$\beta_g$ varies systematically with baseline education level (Figure
+2). The United States shows $\beta_g$=1.9 when its baseline was 13\%
+(early 20th century), declining to $\beta_g$=0.08 when its baseline
+reached 92\%. Korea shows $\beta_g$=6.5 at 1\% baseline, declining
+through 3.6, 1.8, and 0.2 as its baseline rose to 59\%. Taiwan follows
+a nearly identical trajectory ($\beta_g$=5.1 at 1.2\%). The Philippines
+(Section~\ref{the-decision}) shows a flatter curve: $\beta_g$=4.4 at 1.5\% declining
+more slowly to 0.4 at 49\%. The S-curve structure is robust across all
+countries with sufficient historical depth. Bangladesh shows
+$\beta_g$≈2 throughout its observed trajectory (1--18\% baseline),
+consistent with a country still in the steep part of the S-curve. India
+follows a similar pattern at $\beta_g$≈1.6 through 28\% baseline.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_beta_vs_baseline.png}
+\caption{Generational $\beta_g$ varies systematically with baseline
+education level. Each point represents a 25-year sliding window (6
+child cohorts) within a single country, plotted against the average
+parental baseline for that window. $\beta_g>1$ at low baselines
+reflects state reach; $\beta_g\to0$ at high baselines reflects ceiling
+compression. \emph{(Source: author's calculation, WCDE v3 long-run
+cohort reconstruction 1875--2015 --- broader coverage than the
+28-country regression panel in Table~\ref{tab:a3}; Philippines historical data
+carries greater uncertainty for pre-1950 colonial-era observations. See
+\texttt{scripts/fig\_beta\_vs\_baseline.py})}}
+\label{fig:2}
+\end{figure}
+
+$\beta_g$ approaching zero at high baselines is ceiling compression, not
+diminishing returns (distinct from Lutz \& Kebede's cross-level finding
+that education's effect on life expectancy shows no diminishing returns
+from primary through tertiary). Non-depreciation
+holds universally --- the Cambodia test (Section~\ref{the-cases}).
+
+\subsection{Education Predicts Development Outcomes 25 Years Forward}\label{education-predicts-development-outcomes-25-years-forward}
+
+Knowing how educated a country's parents were predicts how long their children will live, how many children they will have, and how much they will earn --- one generation later.
+
+\refstepcounter{table}\label{tab:2}\textbf{Table \thetable.} Fixed effects regressions: development outcomes one
+generation forward on education, controlling
+for initial outcomes. Panel A reports education predicting development
+outcomes forward; Panel B reports the symmetric reverse regression (GDP
+predicting education forward) to demonstrate mutual endogeneity.
+
+\emph{Panel A: Education(T) → development outcomes(T+25). n=828 (185
+countries) for GDP row; n=1,295 (185 countries) for LE and TFR rows.}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Outcome (one generation forward)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Education β
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Initial outcome β
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+R² (within)
+\end{minipage} \\
+\midrule
+\endhead
+Log GDP per capita & +0.012*** & +0.173*** & 0.354 \\
+Life expectancy (years) & +0.109*** & +0.301*** & 0.382 \\
+Total fertility rate & −0.032*** & +0.039* & 0.362 \\
+\bottomrule
+\end{longtable}
+
+\vspace{0.5em}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{0.5em}
+
+\noindent The reverse regression tests whether GDP predicts future education
+with comparable strength --- it does not once parental education is
+controlled.
+
+\emph{Panel B: Log GDP(T) → education(T+25) --- reverse regression}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Outcome (one generation forward)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Log GDP β
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Initial edu β
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+R² (within)
+\end{minipage} \\
+\midrule
+\endhead
+Lower secondary completion & +14.85*** & --- & 0.272 \\
+Lower secondary completion & +3.780*** & +0.485*** & 0.500 \\
+\bottomrule
+\end{longtable}
+
+\emph{Country fixed effects. Panel A: n=828 (185 countries) for GDP row;
+n=1,295 (185 countries) for LE and TFR rows (GDP coverage is sparser).
+Panel B: n=828 for GDP-education matched obs.}
+
+Income alone explains 27\% of child education variation across the
+full panel (Panel B row 1). But add the parents' education to the same
+model and income's apparent contribution is largely absorbed --- the
+model's explanatory power jumps from 27\% to 50\%, almost entirely from
+education, not income.
+
+Each 1-percentage-point gain in lower secondary completion predicts, one
+generation forward: 1.2\% higher GDP per capita, 0.109 more years of
+life, and 0.032 fewer children per woman --- all from within-country
+change over time, controlling for each country's starting point.
+
+The education-vs-GDP predictive gap holds for child education at every
+cutoff tested.\footnote{See
+\texttt{scripts/education\_vs\_gdp\_by\_cutoff.py}.}
+
+For life expectancy the gap is even wider: among countries below 30\%
+completion, education explains 31\% of the variation vs 2\% for GDP ---
+a 15× gap. Among countries below 10\%, education explains 63\% while
+GDP explains 1.6\%. Even that small GDP signal vanishes once education's
+contribution is stripped out
+(Section~\ref{gdp-has-no-independent-effect}).
+
+\subsubsection*{Lag-decay shape (Prediction~\ref{pred:persistence})}
+
+A great-grandparent's education still predicts how long their great-grandchild will live; a great-grandparent's income does not.
+
+The test applied to every competing account in this paper is whether it
+survives at generational depth. PT's signature is multi-generational
+durability: education at time $T$ predicts outcomes at $T{+}25$,
+$T{+}50$, $T{+}75$, and $T{+}100$ --- four generations. Any variable
+that collapses within one generation is by that fact downstream rather
+than causal. Income cannot be tested beyond 25 years: pre-literate subsistence
+societies had uniformly low income (\textasciitilde\$400--600 per capita,
+constant 2017 USD), not missing data --- and the uniformity is itself
+evidence, because income variation requires the cognitive capacity that
+education produces. Institutions, quality scores, and provision all fail
+the same test: none survives at the depth that education reaches. This is not a
+separate finding for each alternative --- it is a single methodological
+principle derived from the mechanism itself.
+
+Figure~\ref{fig:3} confirms the predicted asymmetry across lag lengths. Education's
+predictive power for life expectancy decays slowly across three
+generational depths: R²=0.562 at lag 0, R²=0.364
+at lag 25, R²=0.171 at lag 50, R²=0.085 at lag 75. Income's collapses
+within one generation --- already fading by lag 20--25. Backfilling pre-1960 income at \$500
+does not rescue income's predictive power.\footnote{See
+\texttt{scripts/backfill\_income\_lag\_test.py}.}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_a1_lag_decay.png}
+\caption{Education vs.\ income predictive power across lag
+lengths (within-country FE, outcome: life expectancy at birth).
+Within-country $R^2$ for lower secondary completion and log GDP per capita
+plotted against lag lengths from 0 to 100 years. Three generational
+horizons marked (lag 25, 50, 75). Income shown through lag 25 only;
+beyond that, income was uniformly low across pre-literate subsistence
+societies. \emph{(Source: author's calculation, World Bank WDI and WCDE
+v3. See \texttt{scripts/figures/fig\_a1\_lag\_decay.py})}}
+\label{fig:3}
+\end{figure}
+
+What lag 100 means in human terms: in countries that were still
+expanding education, a great-great-grandparent's completion predicts how long
+their great-great-grandchild will live --- four generations later. No other
+development input has a comparable reach.
+
+\subsubsection*{The grandmother channel}
+
+The lag-decay results show that education predicts across multiple
+generations. A sharper test: does the grandmother's education predict
+outcomes \emph{independently}, after controlling for the mother's own
+education?
+
+For fertility in the full panel, the answer is no ---
+grandmother's education adds nothing once the mother's is
+controlled ($\beta_{gm}$=+0.001, $p$=0.80). The mother absorbs the
+grandmother's entire contribution to fertility. But restrict to
+countries where education is still scarce (mother's completion
+below 50\%) and the grandmother effect emerges: $\beta_{gm}$=$-$0.059
+($p$=0.0003), nearly twice the mother's own coefficient
+($\beta_m$=$-$0.033). R² jumps from 0.39 to 0.46. Where education is
+scarce, having an educated grandmother independently reduces fertility
+beyond what the mother's own education predicts.
+
+For life expectancy, the grandmother effect is significant across all
+education levels ($\beta_{gm}$=+0.070, $p$\textless0.0001), adding 3.6
+percentage points of R² beyond the mother alone. Roughly half the
+grandmother's total effect on LE runs through the mother; half is
+direct. For grandchild education, the effect is strongest:
+$\beta_{gm}$=+0.271 ($p$\textless0.0001), R² gain of 5.2 points.
+
+The pattern is what PT predicts operating across two generations
+simultaneously. At low baselines, where each educated person in the
+household adds something the next generation would not otherwise have,
+the grandmother channel carries independent weight --- norms,
+aspirations, health knowledge that the mother may not fully absorb or
+transmit. At high baselines, the mother has internalised everything the
+grandmother could offer about fertility decisions, so the grandmother
+adds nothing. The grandmother effect on fertility is real, but it
+operates precisely where it matters most --- the steepest part of the
+transition.\footnote{See
+\texttt{scripts/robustness/grandmother\_effect.py}.}
+
+\subsection{GDP Has No Independent Effect (Prediction~\ref{pred:income})}\label{gdp-has-no-independent-effect}
+
+Take each country's income and remove the part that education produced. Use only what remains to predict development outcomes. Income predicts nothing.
+
+GDP(T) correlates with
+future outcomes partly because education(T) drives GDP growth.
+The test: remove education's contribution to GDP and see whether the remainder predicts
+anything.
+
+\refstepcounter{table}\label{tab:3}\textbf{Table \thetable.} Residualized GDP analysis: education vs.~raw GDP
+vs.~GDP after removing education's contribution. Entry-cohort design
+(entry ≥ 10\%, ceiling ≤ 90\%), country fixed effects, lower secondary
+completion, T=1960--1990, lag=25 years.
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+Outcome (T+25) & Education R² & Raw income R² & Income R² (edu removed) & p-value \\
+\midrule
+\endhead
+Life expectancy & 0.472 & 0.165 & \textbf{0.003} & 0.56 \\
+Total fertility rate & 0.478 & 0.175 & \textbf{0.000} & 0.98 \\
+Child education & 0.524 & 0.303 & \textbf{0.008} & 0.31 \\
+Under-5 mortality & 0.284 & 0.046 & \textbf{0.023} & 0.11 \\
+\bottomrule
+\end{longtable}
+
+\emph{``Income R² (edu removed)'' is the predictive power of income
+after stripping out education's contribution --- the question is whether
+the leftover income predicts anything on its own. Education explains
+42\% of within-country income variation across all four outcomes;
+the remaining 58\% predicts nothing. Standard errors adjusted for
+country clustering. n=702 (131 countries) for LE and TFR; n=856
+(157 countries) for child education; n=734 (138 countries) for under-5
+mortality. See \texttt{scripts/edu\_vs\_gdp\_residualized.py},
+\texttt{scripts/edu\_vs\_gdp\_tfr\_residualized.py},
+\texttt{scripts/edu\_vs\_gdp\_child\_edu\_residualized.py}.}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_residualization.png}
+\caption{How much does education vs.\ income predict development one
+generation forward? Blue bars: education's predictive power. Red bars:
+income's predictive power \emph{after stripping out what education
+produced}. Income predicts nothing on its own.
+Entry-cohort design (entry $\geq$ 10\%, ceiling $\leq$ 90\%),
+country fixed effects, lower secondary completion, T=1960--1990, lag=25
+years. \emph{(See \texttt{scripts/fig\_residualization.py})}}
+\label{fig:4}
+\end{figure}
+
+After removing education's contribution to
+GDP, income has no independent predictive power for any development
+outcome. Residualized GDP R² never exceeds 0.023; p-values all above 0.1. Education explains 42\% of within-country GDP variation; the
+remaining 58\% predicts nothing.
+
+\textbf{Child mortality and the outer radius.} Child mortality is the
+one outcome where external provision shows a marginal independent
+effect --- but only after 2000, and only at intermediate education levels.
+Before 2000, leftover income predicts almost nothing (explains 0.8\%,
+not statistically significant). After 2000, it explains 3.2\% (statistically significant at p=0.04). Below 20\% completion, the effect
+vanishes in any period. This is not an exception
+to the mechanism --- it is its prediction. Education's effects weaken as
+the radius widens (Section~\ref{from-action-to-talk-how-education-reaches-beyond-the-household}):
+durable at the household, where PT runs on self-interest; fragile beyond
+identity, where it runs on talk. The post-2000 signal is education
+operating at the outer radius --- vaccines developed by educated
+scientists, distributed through education-built supply chains (GAVI, the
+global vaccine alliance, was founded in 2000), funded by the surplus of
+already-developed populations. This is not GDP producing health; it is
+education's product, routed through income, arriving from outside. By 2001, half the world's
+population had already crossed both development thresholds. The signal
+appears only at intermediate education levels and vanishes below 20\%
+completion --- precisely where the household decision-making capacity
+that converts provision into behaviour is absent. The outer-radius channel is fragile by construction
+(Section~\ref{from-action-to-talk-how-education-reaches-beyond-the-household}):
+it runs on donor altruism, not self-interest, and development
+assistance for health is already declining. External
+provision works at the margin where it meets populations already
+partially through the cognitive transition; below 20\% completion it
+produces nothing.\footnote{See \texttt{scripts/u5mr\_by\_edu\_level.py}.}
+
+\subsubsection*{Composition by education level}
+
+Primary education drives fertility decline; deeper education drives life expectancy gains.
+
+The \emph{composition} of the
+effect varies by level. Primary education is
+the strongest predictor of fertility decline (R²=0.65 vs 0.48 for lower
+secondary, 0.32 for upper secondary): the first educated generation ---
+the categorical jump from no schooling to literacy --- is where
+fertility falls hardest, universally, across every country in the
+dataset regardless of culture, religion, or economic structure.
+Life expectancy gains accumulate
+with deeper education: upper secondary (R²=0.48) predicts better than
+primary (R²=0.41). This is the structure that Lutz \& Kebede
+(2018) identified when redrawing the Preston Curve with education on the
+x-axis: the fertility transition is triggered by the first level, while
+the education--health relationship tightens at higher levels.
+
+Residualized GDP R² never exceeds 0.03 for life
+expectancy and is zero for fertility, at every level.
+
+The education--life expectancy relationship shows no diminishing returns ---
+linear from primary through
+tertiary (Lutz \& Kebede 2018). Among 74 countries with lower-secondary
+completion above 85\% in 2010, college completion carries a within-group
+correlation of r=0.45 with life expectancy --- a 5.7-year gradient
+between lowest and highest college-completion quartiles among countries
+that have already solved the lower-secondary problem.\footnote{See
+\texttt{scripts/verify\_college\_le\_gradient.py}.}
+
+\subsubsection*{Robustness and additional tests}
+
+Every robustness test confirms the residualization result (Table~\ref{tab:3}).
+Residualized GDP R² stays below 0.02 across all lag lengths tested
+(Table~\ref{tab:a2}). The confidence intervals do not overlap: education R²
+[0.33, 0.59] vs residualized GDP R² [0.00, 0.04] (500-replication
+bootstrap). An alternative estimation method designed
+specifically to correct for bias in short panels (Anderson-Hsiao
+instrumental variables) produces results within 3--10\% of the main
+estimates.\footnote{See \texttt{scripts/robustness\_tests.py}.} Results are unchanged when time-varying institutional quality scores (Polity5 polity2) are added (Appendix~\ref{the-institutional-challenge}). Female
+education produces stronger results than the aggregate on every outcome.
+
+The parental income test asks a simple question: does family income
+predict child education independently, or only because richer parents
+tend to be more educated? Parental income alone predicts child education
+moderately ($\beta$=15.4, R²=0.293). But add parental education to the
+same regression and income's coefficient collapses by 72\% to $\beta$=4.3
+(p=0.04), adding almost nothing (R²=0.014) beyond education alone.
+Education's coefficient barely moves ($\beta$=0.475 from 0.553) while
+income's collapses. Income transmits through education, not vice versa.
+
+The Asian Financial Crisis (1997--98) tests Prediction~\ref{pred:disruption}: GDP collapsed across five countries (Indonesia −14.5\%,
+Thailand −8.8\%, Malaysia −9.6\%, Philippines −3.0\%, Korea −6\%).
+Lower secondary completion continued uninterrupted in all five;
+Indonesia gained 5.4pp while losing 14.5\% of GDP. Income was destroyed; the educated population was not; development continued (see
+\texttt{scripts/asian\_financial\_crisis.py}).
+
+Once education is included, initial fertility barely predicts
+subsequent fertility one generation forward (Table~\ref{tab:2}, Panel A, row 3: initial outcome β=0.039).
+Demographic momentum does not drive the transition --- educated women's decisions do.
+
+\subsection{Policy Over-Performers}\label{policy-over-performers}
+
+Some countries are educating children far beyond what their parents' generation would predict. They are uniformly poor.
+
+\refstepcounter{table}\label{tab:4}\textbf{Table \thetable.} Countries delivering education above generational
+baseline, 2015 FE residuals. The residual measures how far a country
+exceeded its own historical trend.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Country & FE residual above baseline & GDP per capita (2015) \\
+\midrule
+\endhead
+Maldives & +34.9 pp & \$9,645 \\
+Cape Verde & +26.3 pp & \$3,415 \\
+Bhutan & +26.1 pp & \$2,954 \\
+Tunisia & +25.5 pp & \$4,015 \\
+Nepal & +17.8 pp & \$876 \\
+Viet Nam & +16.0 pp & \$2,578 \\
+Bangladesh & +15.8 pp & \$1,224 \\
+India & +14.1 pp & \$1,584 \\
+\bottomrule
+\end{longtable}
+
+Nepal at \$876 (2015), Bangladesh at \$1,224, Vietnam at \$2,578. Income is not the prerequisite for educational over-performance.
+
+\subsection{The Shock Test (Prediction~\ref{pred:disruption})}\label{the-shock-test}
+
+Exogenous shocks that kill people depress life expectancy. They do not reverse the fertility transition. The pattern holds across every shock type in the dataset.
+
+\refstepcounter{table}\label{tab:shock}\textbf{Table \thetable.} Exogenous shocks and development outcomes.
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+Shock type & Country & LE effect & TFR effect & Edu effect \\
+\midrule
+\endhead
+Civil war & Sri Lanka & Delayed 12 yr & On schedule & None \\
+State collapse & Russia & $-$5.0 yr, recovered & Unaffected & None \\
+Pandemic (HIV) & South Africa & $-$9.0 yr, recovering & Continued falling & None \\
+Income destruction & AFC (5 countries) & None & None & Continued rising \\
+Population destruction & Cambodia & Stalled & Delayed & \textbf{Reset} \\
+\bottomrule
+\end{longtable}
+
+\emph{LE effect: deviation from pre-shock trajectory. TFR effect:
+deviation from education-predicted path. Sources: World Bank WDI, WCDE
+v3. See \texttt{scripts/verify\_russia\_south\_africa.py} for Russia and
+South Africa; \texttt{scripts/asian\_financial\_crisis.py} for the AFC;
+Sri Lanka and Cambodia in Sections~\ref{sri-lanka}
+and~\ref{cambodia-the-pt-shadow}.}
+
+TFR is a household decision running on PT --- internal to the household,
+unreachable by war, virus, or collapsing state. LE depends partly on
+whether external conditions allow survival. When the two diverge --- TFR
+continuing its education-predicted decline while LE collapses --- the
+divergence identifies the shock as external rather than educational.
+
+\textbf{Russia} (99\% lower secondary completion, 1990). The Soviet
+dissolution crashed life expectancy from 69.5 to 64.5 (1988--1994) ---
+5 years lost in six. TFR, already at 1.89, continued below replacement
+throughout --- 1.20 by 2000, never reversing. The state dissolved; the
+educated population did not. LE returned to its pre-collapse level by
+2009 (68.7) and reached 73.1 by 2019 --- surpassing the Soviet-era peak
+by 3.6 years. Education predicts the recovery trajectory, not immunity
+to state collapse.\footnote{See
+\texttt{scripts/verify\_russia\_south\_africa.py}.}
+
+\textbf{South Africa and the HIV epidemic.} South Africa's 65\% lower
+secondary completion in 1990 is an aggregate masking apartheid
+stratification: near-universal white completion and much lower Black
+completion produced a bimodal distribution invisible in national data.
+The population bearing the brunt of HIV had far lower education than the
+headline figure suggests. HIV crashed LE from 62.9 to 53.9
+(1990--2005) --- the largest peacetime LE reversal in modern history.
+TFR fell from 3.72 to 2.41 over the same period, uninterrupted.
+
+The Southern African epidemic was driven primarily by factors education
+could not have prevented: low traditional circumcision prevalence (8--11\%
+in the HIV belt vs 85--99\% in Muslim West Africa), which three
+randomised trials showed provides a 60\% biological reduction in male
+acquisition risk (Auvert et al.~2005); and circular mining migration
+that created connected sexual networks across the subcontinent. These
+are genuinely exogenous to education.
+
+But education was in the story from the beginning --- on both sides.
+Early in the epidemic, more educated Africans were \emph{more} likely to
+be HIV-positive: greater mobility, more partners, more agency exercised
+without information about a novel pathogen (Fortson 2008). Once
+information existed, the gradient reversed: educated populations changed
+behaviour first. In Botswana, a natural experiment exploiting a 1996
+school reform showed that each additional year of secondary schooling
+\emph{caused} an 8.1-percentage-point reduction in cumulative HIV risk
+(De~Neve et al.~2015). In rural Uganda, educated individuals responded
+more to prevention campaigns, and the education--HIV gradient reversed
+from positive to negative between 1990 and 2000 (De~Walque 2007). Baker
+et al.\ (2017) formalise this as the Population Education Transition
+curve: when a novel health risk enters a population, the educated are
+early adopters (positive gradient); once information exists, the
+educated change behaviour first (gradient reverses). The pattern
+replicates across cigarettes, processed food, and HIV --- education is
+the mechanism in both directions.
+
+The fertility transition confirms the household channel. TFR runs on PT
+--- internal to the household, unreachable by a pathogen that operates
+through sexual networks. LE depends on whether external conditions allow
+survival. Post-ARV, LE recovered to 66.1 by 2019. The TFR--LE divergence during the HIV crisis is itself
+diagnostic: the household mechanism continued; the external shock could
+not reach it.\footnote{See
+\texttt{scripts/verify\_russia\_south\_africa.py}.}
+
+Sri Lanka (Section~\ref{sri-lanka}) and the Asian Financial Crisis
+(Section~\ref{gdp-has-no-independent-effect}) confirm the pattern from
+different angles: civil war delayed LE without breaking the fertility
+trajectory; income destruction left both outcomes untouched.
+
+Cambodia (Section~\ref{cambodia-the-pt-shadow}) is the exception that
+proves the rule: the only shock that breaks the household mechanism is
+the one that destroys the household.
+
+\section{The Cases}\label{the-cases}
+
+Every country that developed did so one generation after sustained education investment --- under every political system, at every income level, on every continent.
+
+\refstepcounter{table}\label{tab:5}\textbf{Table \thetable.} Year of development (TFR \textless{} 3.65 AND life
+expectancy \textgreater{} 69.8) and relationship to prior education
+investment. Thresholds are 1960 United States values (World Bank WDI).
+
+{\footnotesize
+\begin{longtable}[]{@{\hspace{0pt}}l@{\hspace{6pt}}l@{\hspace{6pt}}l@{\hspace{6pt}}l@{\hspace{6pt}}l@{\hspace{6pt}}r@{\hspace{6pt}}l@{\hspace{6pt}}l@{\hspace{0pt}}}
+\toprule
+Country & Dev. & TFR crossed & LE crossed & Onset & Rate & Lag & Gen. \\
+\midrule
+\endhead
+Taiwan & \textbf{\textasciitilde1970} & \textasciitilde1970 & \textasciitilde1970 & 1950s & 2.15 & \textasciitilde20 yr & \textbf{1} \\
+S.\ Korea & \textbf{1987} & 1975 & 1987 & 1953--65 & 2.13 & \textasciitilde25 yr & \textbf{1} \\
+Cuba & \textbf{1974} & 1972 & 1974 & 1961 (40\%) & 2.27 & \textasciitilde13 yr & \textbf{1} \\
+Bangladesh & \textbf{2014} & 1995 & 2014 & 1990s & 1.30 & \textasciitilde24 yr & \textbf{1} \\
+Sri Lanka & \textbf{1993} & 1981 & 1993 & 1940s--50s & 1.20 & \textasciitilde42 yr & \textbf{2} \\
+China & \textbf{1994} & 1975 & 1994 & 1950s+CR & 1.50 & \textasciitilde42 yr & \textbf{2} \\
+Kerala† & \textbf{\textasciitilde1982} & \textasciitilde1973 & \textasciitilde1981 & Early 20thC & 0.87 & \textasciitilde65 yr & \textbf{3} \\
+India & \textbf{---} & TFR 2.0 (2022) & LE 70.6 (2022) & 1950s & 0.87 & --- & --- \\
+Uganda & \textbf{---} & TFR 4.39 & LE 67.7 & None & --- & --- & --- \\
+\bottomrule
+\end{longtable}
+}
+
+\emph{Developed = year both thresholds crossed. Expansion onset = year
+or level at which sustained educational expansion began. Rate = average annual change in lower secondary completion from
+expansion onset to development crossing, in percentage points per year
+(see \texttt{scripts/rate\_predicts\_crossing.py}). Lag = years
+from onset to development crossing. Generations = number of
+\textasciitilde25-year cycles. Cuba's high starting base (40\%) and the
+1961 reconstruction of losses from the post-revolution exodus shortened
+the lag below the typical \textasciitilde25-year generation. † Kerala
+figures estimated from India Sample Registration System and census
+records; all other figures from World Bank WDI direct measurement.}
+
+The earliest modern example is Japan (1872): the Meiji compulsory
+education ordinance, implemented through repurposed temples with
+community teachers, no substantial budget. The sequence was mandate
+before resources --- the state declared compulsory education and built
+the infrastructure afterward. Japan industrialised within a generation
+of these reforms despite negligible domestic fossil fuels, demonstrating
+that the mechanism does not require natural resource endowments.
+
+Korea is the calibration case: 2.13 pp/yr, the fastest sustained
+expansion in the WCDE dataset. All other rows in Table~\ref{tab:5} are
+independent tests. The expansion rate determines generations to crossing
+(Section~\ref{the-generational-transmission-mechanism}): benchmark pace compresses it to one generation; India's
+0.87 pp/yr spreads it across three.
+
+Three parameters predict crossing time: starting base, expansion rate
+relative to the Korea benchmark, and structural disruption. Disruption
+delays LE crossing --- Sri Lanka's 12-year TFR-to-LE gap (1981→1993)
+maps onto the civil war; China's 19-year gap (1975→1994) reflects
+Deng's dismantling of the barefoot doctor network. Korea, Taiwan, Cuba,
+and Bangladesh had no comparable disruption. The predicted depths match:
+Korea-pace cases in 20--34 years; half-Korea-pace in 42--45 years;
+third-Korea-pace in 60--70 years. The crossing dates are the test, not
+the inputs.
+
+\subsection{Taiwan and Korea}\label{taiwan-and-korea}
+
+Taiwan and Korea crossed earliest --- both at benchmark pace,
+both state-driven from colonial bases built by Japan (25\% and 18\%
+completion by 1950). Korea expanded at 2.13 pp/yr, the fastest sustained
+rate in the WCDE dataset; Taiwan followed a nearly identical trajectory.
+Both had functioning markets --- what Sen calls ``growth-mediated
+security'' --- but the growth was mediated by education, not the reverse.
+State-driven singular expansion compressed development to 20--34 years
+against the 40--70 years seen in competing-priority cases. The colonial
+base and the Philippines comparison are developed in Section~\ref{the-decision}.
+
+\subsection{Kerala}\label{kerala}
+
+Kerala crossed at \textasciitilde1982 --- the paradigm case of
+competing-priority expansion. Education had been building since the
+early twentieth century through social reform movements --- gradual
+accumulation, demand-pulled, not state-driven at Korea pace. TFR
+crossed by \textasciitilde1974; LE followed \textasciitilde8 years
+later. Kerala had extensive state provision --- public health, food
+distribution, land reform --- but fertility declined because educated
+women made the decision, not because provision was available
+(Section~\ref{demographic-structure-and-the-fertility-transition}). The
+contrast within India confirms this: during the Emergency (1975--77),
+forced sterilisation campaigns failed in the least-educated northern
+states and brought down the government (Gwatkin 1979; Vicziany 1982).
+Kerala needed no coercion. State coercion either arrives after education
+has done the work, or fails where education has not.
+
+The sub-national test has been run systematically. Drèze \& Murthi
+(2001), using district-level panel data for 1981 and 1991, found that
+women's education was the single most important predictor of fertility
+differences across Indian districts, while urbanisation, poverty
+reduction, and male literacy showed no significant association. The
+cross-country result replicates within a single country at district
+level.
+
+\subsection{Four Further Cases}\label{four-further-cases}
+
+\begin{longtable}[]{@{}llp{0.55\textwidth}@{}}
+\toprule
+Case & Crossed & Mechanism tested \\
+\midrule
+\endhead
+Sri Lanka\label{sri-lanka} & 1993 & TFR crossed 1981; LE climbed to 69.0 by 1988, fell to 67.3 during the civil war, recovered to cross 69.8 in 1993. War disrupted the economy and life expectancy without breaking PT. \\
+Myanmar\label{myanmar} & --- & 73 years of military rule, GDP \$1,025 (2015), education at 0.6 pp/yr. TFR fell from 5.9 to 2.3; LE rose from 44.1 to 65.3 --- consistent with 43.5\% completion. The regime suppressed speed; it could not reverse what PT had transmitted. \\
+Cuba\label{cuba} & 1974 & 40.3\% completion in 1960; post-revolution exodus removed the professional class. The 1961 campaign deployed 268,000 volunteers (Prieto 1981), replacing an elite that left with a mass baseline that stayed. Cuba and Taiwan --- Soviet-aligned and US-allied --- crossed within four years. \\
+Bangladesh\label{bangladesh} & 2014 & 11.4\% completion in 1960, GDP \$1,159 at crossing. Sustained commitment to girls' education from the 1990s. TFR decline tracks girls' secondary expansion, not contraceptive distribution (Mamun \& Bongaarts 2022). \\
+\bottomrule
+\end{longtable}
+
+\subsection{China}\label{china}
+
+China crossed in 1994. Three corrections to the standard narrative.
+
+First, what is called an educational catastrophe was
+the largest educational expansion in Chinese history. The standard
+framing conflates the disruption of university education --- a
+small percentage of the population --- with the overall
+trajectory. For rural China --- 80\% of the population
+(National Bureau of Statistics 1982) --- the Cultural Revolution era
+produced the largest lower secondary gains in the WCDE
+1870--2015 record: +10.6pp for the 1975 cohort, +15.0pp for the 1980
+cohort. Community schools (民办学校) brought secondary
+education to villages that had none (Pepper 1996; Unger 1982; Gao 2008).
+
+\textbf{Second: the provision debate is misconceived.} Drèze \& Sen
+(1989, Table~10.6) show China's under-5 mortality at 32\% of what GNP
+predicted --- the largest deviation in their sample --- and attribute it
+to ``support-led security'': barefoot doctors (赤脚医生), direct
+provision. But Sen regressed on income and found a residual. That
+residual is education.
+
+When life expectancy and under-5 mortality are matched on mean years of
+schooling (age 20--24, $\pm$0.5~years) rather than GNP, China's
+advantage reverses. China's LE was \emph{below} education-matched peers
+from 1965 to 1991 --- 6.3~years below at 1965, still 2.4 below at 1980,
+converging only in 1991 --- and its U5MR was \emph{above}
+education-matched peers until 2000.\footnote{See
+\texttt{scripts/china\_mean\_yrs\_vs\_peers.py}. Mean years of schooling
+computed from WCDE~v3 proportions (age 20--24, both sexes); LE and U5MR
+from World Bank WDI.} The barefoot doctors were not producing
+exceptional outcomes; China was underperforming what its education level
+predicted.
+
+The barefoot doctors and the community school teachers came from the same
+CR-era rural mobilisation. The doctors were local, culturally embedded,
+drawn from the villages they served --- optimally delivered provision.
+When Deng dismantled the system after 1980, they left, because rational
+people freed from revolutionary ideology redirected their labour toward
+self-interest. The LE convergence rate was statistically unchanged:
+$+0.28$~years/year before 1981, $+0.29$ after ($\beta_3 = +0.007$, $p =
+0.78$). LE continued to rise --- from 64 to 69.8 by 1994 --- because
+the educational baseline built into rural households did not leave with
+the doctors. Drèze \& Sen (1989, pp.~215--221) document the resulting
+health crises and rising rural medical costs (Gao 2008; Liu et
+al.~2003), but these crises left no detectable mark on the trajectory.
+
+China crossed to \emph{above} education-predicted LE in 1992 and to
+\emph{below} education-predicted U5MR around 2000 --- two decades after
+the barefoot doctors were gone. Mean years of schooling rose from 5.9
+(1965) to 8.0 (1980) to 9.6 (2000), tracking both outcomes across both
+eras.
+
+Third, the TFR threshold was crossed in
+1975 --- five years before the one-child policy. China's
+fertility trajectory mirrors South Korea and Thailand's, both of
+which achieved equivalent TFRs without compulsory policy (Cai 2010; Miller et
+al.~2018).
+
+In every case, development arrived at the generationally predicted
+interval after education investment --- under different political
+systems, income levels, and provision models. Provision buys time;
+education changes trajectory. No country has ever
+developed without education. One case tests the
+mechanism from the opposite direction.
+
+\subsection{Cambodia: The PT Shadow}\label{cambodia-the-pt-shadow}
+
+Cambodia is the direct test of Prediction~\ref{pred:disruption}: what happens when the educated population is destroyed. The country experienced severe disruption under the Khmer
+Rouge (1975--1979), during which the education system collapsed. The
+data shows two distinct stalls. The first is the exogenous shock itself.
+The second --- a generation later --- is PT's prediction: the
+household baseline is the binding constraint (Section~\ref{the-generational-transmission-mechanism}, PT mechanism).
+
+\textbf{First stall (1975--1985).} Completion was 10.1\% in 1975, fell to 9.4\% by 1980, and was still 9.5\% in 1985 --- a decade of zero progress.
+
+\textbf{Recovery and second stall (1990--2010).} After the Paris Accords
+and UN transitional authority (1991--1993), schools were rebuilt with
+sustained international investment. Completion jumped to 35.1\% by 1995
+on the back of that reconstruction. Then it stalled again. From 1995 to
+2010, completion plateaued at 31--36\%, unmoved despite continued
+external funding. The buildings were there; the teachers were there; the
+money was there. Progress did not come. The 35\% plateau is what
+competing-priority expansion looks like when it interacts with a
+parental education shadow: international reconstruction dispersed
+resources across health, infrastructure, governance, and education
+simultaneously, while the parental cohort remained frozen at
+\textasciitilde10\%. Korea proves singular priority can push far beyond
+any parental baseline --- but Cambodia after 1991 was not Korea. The
+plateau reflects dispersed investment meeting a damaged generational
+base.
+
+The first stall is the exogenous shock --- the regime destroyed the
+education system. PT predicts the second. It is the generational shadow:
+the children reaching secondary school in 1996--2010 were born
+approximately 1982--1996 --- their parents were the cohort whose own
+education was frozen at \textasciitilde10\% during 1975--1985 --- the
+pre-disruption level, preserved in households even as the school system
+collapsed. Countries that started at Cambodia's level in 1960 reached a
+median of 21\% by 1985. The children of the frozen cohort inherited a
+10\% parental baseline instead of a \textasciitilde21\% one; the plateau
+reflects that missing growth. Recovery
+from 2011 onward corresponds to the post-disruption cohort's children
+finally dominating the school-age population. The regime fell in 1979,
+but education remained frozen through 1985 (9.5\%). Twenty-five years
+from the end of the educational disruption (1985) lands at 2010 ---
+precisely when recovery began.
+
+Countries that started at Cambodia's level in 1960 reached a median of
+46\% by 2015. Cambodia reached 36\%. The buildings came back in 1991.
+Progress came back in 2011. That twenty-year gap is the PT shadow.
+
+
+\section{The Decision}\label{the-decision}
+
+Every country that developed made the same decision: sustained investment in education. The only variation is speed.
+
+The critical variable is
+expansion rate --- percentage points of completion per year.
+Korea's 2.13 pp/yr crosses in one generation; India's 0.87 takes three.
+
+Japanese colonial
+education policy in Korea and Taiwan was almost singular in its depth:
+compulsory primary schooling enforced from the 1910s, with lower
+secondary infrastructure following by the 1930s. By 1950, Korea had 25\%
+and Taiwan 18\% lower secondary completion --- educational bases built
+by a colonial state, not by household demand. The post-colonial
+governments in both countries then made the decisive choice: sustain and
+accelerate the colonial investment. American colonial education in the
+Philippines was similarly deep --- 22\% lower secondary completion by
+1950, comparable to Korea. In 1960, the Philippines was one of the
+most prosperous countries in developing Asia: GDP per capita of \$1,124
+against Korea's \$1,038 (constant 2017 USD), ahead of Thailand (\$592),
+Indonesia (\$598), and far ahead of India (\$313) and China (\$241). The
+Philippines had both the educational base and the income advantage. But
+no post-independence government sustained the educational investment.
+Korea made education the singular priority and expanded at 2.13 pp/yr;
+the Philippines drifted at roughly half that pace. The result is visible
+in Figure~\ref{fig:2}: comparable colonial base, comparable income, divergent
+post-colonial trajectory. Education policy is a choice, not an inheritance. Income does not make the choice for you.
+
+Spain is the longest counter-case: one of the wealthiest empires in
+history, it had 0.3\% lower secondary completion for the 1900 birth
+cohort and did not reach universal completion until approximately 2000.
+Wealth was present for 450 years. Mass education took that long to
+arrive. Korea compressed the same transition to one generation. The
+mechanism is the same; what varies is how fast the state acts.
+
+The state's role is to reach children whose parents have no
+education. Korea outpaced PT
+all the way to near-universal completion at 7--14 percentage points per
+five years during the main expansion (1955--1980) --- fertility
+declining throughout.
+
+154 countries representing 80\% of the world's population have already
+crossed --- every one through education. The remaining 20\% --- concentrated in sub-Saharan Africa,
+with Pakistan, Afghanistan, and Yemen as the largest exceptions --- is
+not facing an untested proposition.
+
+Sufficiency follows from the mechanism, not just from the data. If
+income stripped of education's contribution predicts nothing --- which
+the residualization result establishes (Section~\ref{gdp-has-no-independent-effect}) --- then income
+adds no causal contribution beyond what education produces. If provision
+without educated populations produces no durable outcomes --- which the
+natural experiments establish (Section~\ref{the-cases}) --- then provision is not an
+independent cause. If institutions are built by educated populations ---
+which the fixed effects and colonial analyses establish
+(Appendix~\ref{the-colonial-test}) --- then institutions are downstream, not upstream.
+Every input previously thought necessary for development is either
+produced by education or irrelevant to it. Education is therefore not
+the most important input. It is the only input. Everything else is
+either its product or, once education's contribution is removed, adds
+nothing.
+
+The state is necessary for scale but not for efficacy. PT operates at
+the household level regardless of state form --- autocracy, democracy,
+colonial administration, revolutionary government. What the state
+provides is reach: the extension of education to children whose parents
+have none. The state is the delivery mechanism, not the cause. The era
+of no priority --- the pre-industrial baseline where hierarchy
+suppressed mass education --- is over. The global education signal is
+now visible everywhere: every government on earth claims to prioritise
+education. The question is no longer whether to educate but at what
+speed. Competing priority is the norm. The decision this paper calls for
+is singular priority.
+
+The question for the remaining 20\% is whether evidence can now
+substitute for the contingent motivations that drove every previous
+breakthrough. Knox, Meiji, and Korea bypassed the cost-benefit frame by
+never entering it; the commitment preceded any calculation.
+Evidence-based commitment would bypass the frame from the other
+direction: by showing that the calculation has already been done across
+185 countries and the answer is always the same --- education first,
+everything else follows.
+
+\subsection*{The Observed Alternative}
+
+Korea, Taiwan, and Cuba did not need external health
+provision to reduce child mortality. They educated, and household
+decisions handled it --- parents who could read a vaccine schedule, act
+on a health protocol, and choose fewer children invested more in each.
+The 154 countries that crossed both development thresholds did so the
+same way. The remaining 20\% are being served by the outer radius ---
+the fragile altruism channel that is already declining
+(Section~\ref{gdp-has-no-independent-effect}). If the decision had been
+education, the household mechanism would now be handling child mortality
+durably, as it has in every country that made the decision. The
+resources spent on provision would have produced the population that no
+longer needs provision.
+
+The function of the evidence is not to win a cost-benefit comparison
+against health or nutrition, which education will always lose at
+decision-relevant timescales, but to remove the comparison altogether:
+to establish that education is not one investment among many but the
+precondition for all others. No leader has yet made the decision on the
+basis of evidence alone. This paper provides the evidence. The decision
+remains.
+
+\subsection*{Acknowledgments}
+
+The arguments, theoretical framework, and conclusions are entirely the author's. Code, data analysis, and prose drafting were assisted by Claude (Anthropic), working under the author's direction.
+
+
+\section*{References}\label{references}
+
+Acemoglu, D. \& Robinson, J.A. (2012). \emph{Why Nations Fail: The
+Origins of Power, Prosperity, and Poverty}. Crown Publishers.
+
+Angrist, N., Djankov, S., Goldberg, P.K. \& Patrinos, H.A. (2021).
+Measuring Human Capital Using Global Learning Data. \emph{Nature}, 592,
+403--408.
+
+Angrist, J.D. \& Pischke, J.S. (2009). \emph{Mostly Harmless
+Econometrics: An Empiricist's Companion}. Princeton University Press.
+
+Auvert, B., Taljaard, D., Lagarde, E., Sobngwi-Tambekou, J., Sitta, R.
+\& Puren, A. (2005). Randomized, Controlled Intervention Trial of Male
+Circumcision for Reduction of HIV Infection Risk: The ANRS 1265 Trial.
+\emph{PLOS Medicine}, 2(11), e298.
+
+Baker, D.P., Collins, J.M. \& Leon, J. (2017). Risk Factor or Social
+Vaccine? The Historical Progression of the Role of Education in HIV and
+AIDS Infection in Sub-Saharan Africa. \emph{Prospects}, 38(4), 467--486.
+
+Boyd, R. \& Richerson, P.J. (1985). \emph{Culture and the Evolutionary
+Process}. University of Chicago Press.
+
+Cai, Y. (2010). China's Below-Replacement Fertility: Government Policy
+or Socioeconomic Development? \emph{Population and Development Review},
+36(3), 419--440.
+
+Callaway, B. \& Sant'Anna, P. (2021). Difference-in-Differences with
+Multiple Time Periods. \emph{Journal of Econometrics}, 225(2), 200--230.
+
+Deaton, A. (2013). \emph{The Great Escape: Health, Wealth, and the
+Origins of Inequality}. Princeton University Press.
+
+Dehaene, S., Pegado, F., Braga, L.W., Ventura, P., Nunes Filho, G.,
+Jobert, A., Dehaene-Lambertz, G., Kolinsky, R., Morais, J. \& Cohen, L.
+(2010). How Learning to Read Changes the Cortical Networks for Vision and
+Language. \emph{Science}, 330(6009), 1359--1364.
+
+De~Neve, J.-W., Fink, G., Subramanian, S.V., Moyo, S. \& Bor, J.
+(2015). Length of Secondary Schooling and Risk of HIV Infection in
+Botswana: Evidence from a Natural Experiment. \emph{Lancet Global
+Health}, 3(8), e470--e477.
+
+De~Walque, D. (2007). How Does the Impact of an HIV/AIDS Information
+Campaign Vary with Educational Attainment? Evidence from Rural Uganda.
+\emph{Journal of Development Economics}, 84(2), 686--714.
+
+Drèze, J. \& Murthi, M. (2001). Fertility, Education, and Development:
+Evidence from India. \emph{Population and Development Review}, 27(1),
+33--63.
+
+Drèze, J. \& Sen, A. (1989). \emph{Hunger and Public Action}. Clarendon
+Press.
+
+Duflo, E. (2001). Schooling and Labor Market Consequences of School
+Construction in Indonesia: Evidence from an Unusual Policy Experiment.
+\emph{American Economic Review}, 91(4), 795--813.
+
+Easterlin, R.A. (1981). Why Isn't the Whole World Developed?
+\emph{Journal of Economic History}, 41(1), 1--19.
+
+Fortson, J.G. (2008). The Gradient in Sub-Saharan Africa: Socioeconomic
+Status and HIV/AIDS. \emph{Demography}, 45(2), 303--322.
+
+Frank, M.C., Everett, D.L., Fedorenko, E. \& Gibson, E. (2008). Number
+as a cognitive technology: Evidence from Pirahã language and cognition.
+\emph{Cognition}, 108(3), 819--824.
+
+Gao, M. (1999). \emph{Gao Village: Rural Life in Modern China}.
+University of Hawai'i Press.
+
+Gao, M. (2008). \emph{The Battle for China's Past: Mao and the Cultural
+Revolution}. Pluto Press.
+
+Goldin, C. \& Katz, L.F. (2008). \emph{The Race Between Education and
+Technology}. Harvard University Press.
+
+Goodman-Bacon, A. (2021). Difference-in-Differences with Variation in
+Treatment Timing. \emph{Econometrica}, 89(5), 2261--2290.
+
+Gwatkin, D.R. (1979). Political Will and Family Planning: The
+Implications of India's Emergency Experience. \emph{Population and
+Development Review}, 5(1), 29--59.
+
+Gordon, P. (2004). Numerical Cognition Without Words: Evidence from
+Amazonia. \emph{Science}, 306(5695), 496--499.
+
+Hanushek, E.A. \& Woessmann, L. (2008). The Role of Cognitive Skills in
+Economic Development. \emph{Journal of Economic Literature}, 46(3),
+607--668.
+
+Hanushek, E.A. \& Woessmann, L. (2015). \emph{The Knowledge Capital of
+Nations: Education and the Economics of Growth}. MIT Press.
+
+Hawkes, K., O'Connell, J.F., Jones, N.G.B., Alvarez, H. \& Charnov, E.L.
+(1998). Grandmothering, menopause, and the evolution of human life
+histories. \emph{Proceedings of the National Academy of Sciences},
+95(3), 1336--1339.
+
+Konner, M. (2010). \emph{The Evolution of Childhood: Relationships,
+Emotion, Mind}. Harvard University Press.
+
+Liu, Y., Rao, K. \& Hsiao, W.C. (2003). Medical Expenditure and Rural
+Impoverishment in China. \emph{Journal of Health, Population and
+Nutrition}, 21(3), 216--222.
+
+Lutz, W. (2009). Sola Schola et Sanitate: Human Capital as the Root
+Cause and Priority for International Development. \emph{Philosophical
+Transactions of the Royal Society B}, 364(1532), 3031--3047.
+
+Lutz, W. \& Kebede, E. (2018). Education and Health: Redrawing the
+Preston Curve. \emph{Population and Development Review}, 44(2),
+343--361.
+
+Lutz, W., Reiter, C., Özdemir, C., Yildiz, D., Guimaraes, R. \& Goujon,
+A. (2021). Skills-adjusted Human Capital Shows Increasing Global
+Progress and Persistent Disparities. \emph{Nature Human Behaviour}, 5,
+701--711.
+
+Mamun, M.A.~\& Bongaarts, J. (2022). Revisiting the causes of fertility
+decline in Bangladesh: the relative importance of female education and
+family planning programs. \emph{Asian Population Studies}, 18(2),
+125--148.
+
+Miller, G., Babiarz, K.S., Chin, Y. \& Song, S. (2018). The Limits and
+Consequences of Population Policy: Evidence from China's Wan Xi Shao
+Campaign. NBER Working Paper No.~25130.
+
+Pearl, J. (2009). \emph{Causality: Models, Reasoning, and Inference}
+(2nd ed.). Cambridge University Press.
+
+National Bureau of Statistics of China. (1982). \emph{Third National
+Population Census of the People's Republic of China}. China Statistics
+Press. {[}Rural population share: 79.7\% in 1980.{]}
+
+Pepper, S. (1996). \emph{Radicalism and Education Reform in 20th-Century
+China}. Cambridge University Press.
+
+Preston, S.H. (1975). The Changing Relation between Mortality and Level
+of Economic Development. \emph{Population Studies}, 29(2), 231--248.
+
+Prieto, A. (1981). Cuba's National Literacy Campaign. \emph{Journal of
+Reading}, 25(3), 215--221. {[}268,000 brigadistas mobilised for the 1961
+campaign.{]}
+
+Sen, A. (1999). \emph{Development as Freedom}. Oxford University Press.
+
+Tooby, J. \& Cosmides, L. (2010). Groups in Mind: The Coalitional Roots
+of War and Morality. In H. H\"{o}gh-Olesen (Ed.), \emph{Human Morality
+and Sociality: Evolutionary and Comparative Perspectives} (pp.~191--234).
+Palgrave Macmillan.
+
+Smith, A. (1776). \emph{An Inquiry into the Nature and Causes of the
+Wealth of Nations}.
+
+Unger, J. (1982). \emph{Education Under Mao: Class and Competition in
+Canton Schools, 1960--1980}. Columbia University Press.
+
+Vicziany, M. (1982). Coercion in a Soft State: The Family-Planning
+Program of India. Part~I: The Myth of Voluntarism. \emph{Pacific
+Affairs}, 55(3), 373--402.
+
+World Bank. World Development Indicators. Various years.
+
+
+\emph{Development threshold data computed from World Bank WDI. USA 1960
+benchmarks: TFR = 3.65, life expectancy = 69.8. Full analysis code,
+data, and verification outputs available at
+\href{https://github.com/rkpagadala/education-of-nations}{github.com/rkpagadala/education-of-nations}.}
+
+
+\appendix
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{table}{0}
+
+\section{Technical Robustness}\label{appendix-robustness}
+
+\refstepcounter{table}\label{tab:a1}\textbf{Table \thetable.} Two-way fixed effects (country + year): child lower
+secondary completion on parental education. R² is the partial within-R²
+(incremental variance explained beyond country + year FEs). See
+\texttt{scripts/table\_a1\_two\_way\_fe.py}.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Parental edu β
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+R² (within)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+n
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Countries
+\end{minipage} \\
+\midrule
+\endhead
+(1) FE + year: parent (\textless{} 30\%) & \textbf{0.739***} &
+\textbf{0.154} & 783 & 137 \\
+(2) FE + year: parent (\textless{} 20\%) & 1.032*** & 0.145 & 600 &
+118 \\
+(3) FE + year: parent (\textless{} 10\%) & 1.019*** & 0.067 & 358 &
+85 \\
+(4) FE + year: parent (all) & 0.083 & 0.009 & 1,665 & 185 \\
+\bottomrule
+\end{longtable}
+
+\emph{*** p\textless0.001. Standard errors account for non-independence
+within countries. Model (4) does not reach conventional significance
+(p=0.07) --- see explanation below.}
+
+\textbf{Why Model 4 shows $\beta$=0.083 and why it does not matter.}
+When each country is compared only to its own past (one-way fixed
+effects), a 10-point increase in parental education predicts a 4.8-point
+increase in child education one generation later ($\beta$=0.483). Adding
+year fixed effects --- which also control for which \emph{decade} an
+observation falls in --- collapses this to $\beta$=0.083. The question
+is whether this collapse reflects a real weakness in the evidence or a
+flaw in the statistical method.
+
+Recent econometrics has shown it is the method. Goodman-Bacon (2021)
+proved that when you add year controls to a panel where countries adopted
+education at different times, the result is a weighted average of every
+possible before-and-after comparison between pairs of country groups.
+Some of these comparisons are clean: countries that expanded education
+compared against countries that had not yet started. Others are
+contaminated: countries just beginning their expansion compared against
+countries already in the middle of theirs --- as if measuring whether a
+runner accelerated by comparing her to someone already
+sprinting.\footnote{A formal decomposition of the education panel
+confirms this: the clean comparisons show large effects; the contaminated
+ones show near-zero effects; and the contaminated comparisons dominate
+the average. See
+\texttt{scripts/robustness/goodman\_bacon\_decomposition.py}.}
+
+Models 1--3 partly address this by restricting to countries still
+expanding education, where the effect is strong. The
+Callaway--Sant'Anna (2021) estimator addresses it directly: it compares
+each country only against countries that have not yet started expanding,
+eliminating the contaminated pairings altogether. The result: crossing
+the 10\% education threshold produces a gain of 7.9 percentage points in
+child education one generation later (95\% CI: 4.4--11.0).
+
+The event study (Figure~\ref{fig:cs-event}) makes the pattern visible.
+Before a country crosses the 10\% threshold, there is no effect ---
+countries that will expand and countries that will not are on identical
+trajectories. After crossing, the effect grows steadily: +1.3 percentage
+points immediately, +6.6 at ten years, +14.9 at twenty-five years,
++21.4 at thirty-five years. Parents who cross the education threshold
+raise more educated children, who raise still more educated children.
+The effect compounds.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_callaway_santanna.png}
+\caption{Callaway--Sant'Anna (2021) event study.
+Treatment: country crosses 10\% lower secondary completion.
+Outcome: child education at T+25.
+Control group: countries not yet treated at each comparison point.
+Shaded band: 95\% confidence interval (500-replication clustered
+bootstrap).
+Pre-treatment effects near zero confirm parallel trends.
+Post-treatment effects grow monotonically from +1.3 to +21.4
+percentage points over 35 years --- consistent with compounding
+intergenerational transmission.
+\emph{(See \texttt{scripts/robustness/callaway\_santanna.py}.)}}
+\label{fig:cs-event}
+\end{figure}
+
+\refstepcounter{table}\label{tab:a2}\textbf{Table \thetable. Robustness to alternative lag lengths.} Education R²
+vs.\ residualized GDP R² across lags 15--30 years. Entry-cohort design
+(entry $\geq$ 10\%, ceiling $\leq$ 90\%), country fixed effects, lower
+secondary completion. The T+25 specification is the theoretically
+motivated anchor, not a cherry-picked optimum; the result holds at every
+lag tested. See \texttt{scripts/lag\_sensitivity.py}.
+
+\begin{longtable}[]{@{}lrrrrrrrr@{}}
+\toprule
+& \multicolumn{2}{c}{Life exp.} & \multicolumn{2}{c}{TFR}
+& \multicolumn{2}{c}{U-5 mort.} & \multicolumn{2}{c}{Child edu} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+Lag & Edu & Resid & Edu & Resid & Edu & Resid & Edu & Resid \\
+\midrule
+\endhead
+15 yr & 0.463 & 0.000 & 0.572 & 0.000 & 0.420 & 0.007 & 0.725 & 0.011 \\
+20 yr & 0.460 & 0.002 & 0.508 & 0.000 & 0.336 & 0.018 & 0.617 & 0.009 \\
+25 yr & 0.472 & 0.003 & 0.478 & 0.000 & 0.284 & 0.023 & 0.524 & 0.008 \\
+30 yr & 0.451 & 0.000 & 0.458 & 0.001 & 0.234 & 0.007 & 0.461 & 0.004 \\
+\bottomrule
+\end{longtable}
+
+\emph{``Edu'' = how much of each country's outcome change is predicted by
+education. ``Resid'' = how much is predicted by income after stripping
+out education's contribution. At every lag tested and every outcome,
+education explains 23\% or more of the variation; leftover income never
+exceeds 2.3\%. n=702 (131 countries) for LE and TFR; n=734 (138
+countries) for U-5 mortality; n=856 (157 countries) for child education.}
+
+\refstepcounter{table}\label{tab:a3}\textbf{Table \thetable. Long-run panel countries (1900--2015, 28 countries).}
+Selected on the criterion of self-determined education policy and data
+quality; colonial-era data for colonised countries reflects colonial
+investment rather than domestic policy decisions and is excluded.
+\emph{East Asia:} Japan, Taiwan, South Korea. \emph{Western Europe:}
+United Kingdom, France, Germany, Sweden, Norway, Denmark, Finland,
+Netherlands, Belgium, Switzerland, Austria, Italy, Spain, Portugal.
+\emph{New World:} United States, Canada, Australia, New Zealand.
+\emph{Latin America:} Argentina, Chile, Uruguay, Cuba, Costa Rica.
+\emph{Other:} Sri Lanka (British Ceylon --- active colonial education
+investment, known anomaly), Hong Kong.
+
+\refstepcounter{table}\label{tab:a4}\textbf{Table \thetable. Development threshold robustness: crossing dates under
+three specifications (World Bank WDI data; Taiwan excluded --- not in
+WDI).} The loose spec uses generous thresholds; the main spec uses the
+1960 USA values; the strict spec tightens to TFR
+\textless{} 2.5 and LE \textgreater{} 72.6 (USA 1975).
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+Case & Loose & Main & Strict & Shift \\
+\midrule
+\endhead
+Cuba & 1964 & 1974 & 1980 & 16 yrs \\
+South Korea & 1978 & 1987 & 1993 & 15 yrs \\
+Sri Lanka & 1975 & 1993 & 2005 & 30 yrs \\
+China & 1982 & 1994 & 2001 & 19 yrs \\
+Bangladesh & 2005 & 2014 & 2019 & 14 yrs \\
+\bottomrule
+\end{longtable}
+
+\emph{Note: Every country crosses under every specification, and the
+ordering never changes. The threshold choice shifts dates by 14--19
+years for fast expanders (Korea 2.13 pp/yr, Cuba 2.27 pp/yr, China
+1.50 pp/yr) and 14--30 years overall, but no country that crosses the
+loose spec fails to cross the strict one. Sri Lanka's 30-year shift
+reflects the civil war holding life expectancy near the threshold while
+the educational base accumulated beneath it; the binding constraint was
+disruption, not the threshold definition. Taiwan (1970 loose, 1980
+strict; WCDE data) is consistent with Cuba under all specifications but
+cannot be computed from WDI data.
+See \texttt{scripts/robustness/threshold\_robustness.py}.}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_threshold_sensitivity.png}
+\caption{Cumulative share of world population crossing development
+thresholds under three specifications: loose (TFR \textless{} 4.5,
+LE \textgreater{} 65), main (TFR \textless{} 3.65,
+LE \textgreater{} 69.8), and strict (TFR \textless{} 2.5,
+LE \textgreater{} 72.6). The shape is identical across
+specifications --- the same China jump, the same steady rise. The
+threshold choice shifts the level; it does not change the story.
+\emph{(Source: World Bank WDI, WCDE v3. See
+\texttt{scripts/fig\_threshold\_sensitivity.py})}}
+\label{fig:threshold-sensitivity}
+\end{figure}
+
+
+\section{Engagement with Alternative Frameworks}\label{appendix-frameworks}
+
+The main text presents the positive case. This appendix tests it against the major competing accounts: Acemoglu \& Robinson's institutional account, the colonial origins literature, and Deaton's health technology diffusion.
+
+\subsection{The Institutional Challenge}\label{the-institutional-challenge}
+
+Institutions are built by educated people. Controlling for institutions is controlling for a product of education.
+
+Acemoglu \& Robinson (2012) argue that institutions ---
+inclusive versus extractive --- are the primary determinant of long-run
+development.
+
+Country fixed effects absorb time-invariant institutional
+characteristics. Time-varying institutional change is itself driven
+by education. Every measure of ``institutional quality'' is produced by
+educated populations. The civil servants, judges, journalists, health
+workers, and administrators who constitute institutional capacity are
+the educated cohort. Educated populations build institutions, not the
+reverse.
+
+Qatar (\$69,000 per capita, stable
+institutions by standard measures) delivered 3.7 percentage points below
+its generational education baseline in 2015. The institutions were
+present; the educational commitment was not; the development did not
+compound. The Philippines (Section~\ref{the-decision}) confirms the same point from the
+opposite direction.
+
+India has had
+democratic institutions, an independent judiciary, and a free press
+since 1947. China had none. China expanded lower secondary completion
+from 10\% to 75\% in 40 years (1950--1990) at 1.6 pp/yr --- under Mao,
+the Cultural Revolution, and the Great Leap Forward. India expanded from
+10\% to 37\% in the same 40 years at 0.7 pp/yr --- with every
+institutional advantage the literature claims to matter. India's
+institutions did not accelerate education; China's absence of them did
+not prevent it. Among countries still
+expanding, mean expansion rates were 1.06 pp/yr in 1950--1975, 0.86 in
+1975--2000, and 0.94 in 2000--2015. If institutions drove
+educational expansion, rates should have risen as institutions matured.
+They did not.
+Autocracy does not predict education
+speed. Merging Polity5 time-varying regime scores with the WCDE
+completion data (160 countries, 1950--2020, lagged 20 years to match the
+regime that made the schooling decision), polity2 explains less than
+0.7\% of the variance in education gain rates (Table~\ref{tab:a5}). Democracies
+are slightly faster on average: 10.3 pp/decade against 8.1 for
+autocracies at the 20-year lag.
+
+What autocracy produces is not speed but \emph{variance}: 76\% of
+autocratic countries fall below the democratic median gain rate, but the
+fat right tail includes Korea and Cuba. Autocracies populate both the
+fastest and the slowest education trajectories in the dataset. Among 50
+countries that transitioned, 30 were faster under democracy (paired mean
+$= +0.6$ pp/decade, $p = 0.57$).
+
+Regime type is a variance amplifier, not a cause. The decision variable
+is education policy (Section~\ref{the-decision}), and it is orthogonal to regime type.
+See \texttt{scripts/regime\_education\_test.py}.
+
+\subsection{The Colonial Test}\label{the-colonial-test}
+
+The famous settler mortality instrument does not measure institutions. It measures whether Protestant colonisers --- who built schools --- survived.
+
+Acemoglu, Johnson \& Robinson (2001) use settler mortality as an
+instrument for institutional quality: where European settlers survived,
+they built inclusive institutions; where they did not, they built
+extractive ones. The instrument cannot distinguish this from an
+alternative channel: where \emph{Protestant} settlers survived, they
+built \emph{schools}. The Reformation made mass literacy a theological
+obligation (Section~\ref{the-generational-transmission-mechanism}). The Counter-Reformation removed it. Protestant
+colonisers (Britain, the Netherlands) transplanted mass education
+systems. Catholic colonisers (Spain, Portugal, France, Belgium) did not.
+AJR's instrument captures this difference and attributes it to
+institutions.
+
+The data separates the two channels. Among 99 former colonies, education
+at independence (1950 lower secondary completion) explains 47\% of the
+variance in current GDP per capita. Polity5 institutional quality
+explains 11\%. Colonial-era education (1900 birth cohort, people
+schooled under colonial rule) explains 38\%. Coloniser religion alone
+explains 7\% --- but adding religion to a model that already contains
+education raises R$^2$ from 0.465 to 0.466. Religion predicts GDP only
+because it predicts education. Once education is in the model, religion
+adds nothing. The channel is religion $\to$ schools $\to$ education $\to$
+development, not religion $\to$ institutions $\to$ development (Table~\ref{tab:a6}).
+
+Latin America is the critical case. Spanish and Portuguese colonies were
+settler colonial --- Europeans came and stayed in large numbers, built
+cities, established legal systems. AJR's framework predicts that
+settlement should produce inclusive institutions and therefore
+development. It did not. AJR require an ad hoc distinction between
+``inclusive'' and ``extractive'' settler colonialism to explain why Latin
+America underperforms. The education account needs no such distinction:
+Catholic settlers brought no mass education tradition. Spain had 0.6\%
+primary completion for its own 1875 birth cohort; Portugal had 0.1\%.
+They could not transplant what they did not possess. The educational
+base at independence was correspondingly low (mean 11\% lower secondary,
+1950), and development followed the education, not the institutions.
+
+The settler mortality instrument is a
+Protestant education instrument.
+See \texttt{scripts/colonial\_education\_vs\_institutions.py}.
+
+The Protestant channel connects to Easterlin's (1981) original insight:
+the divergence in economic growth between early and late industrializers
+tracked the divergence in mass schooling --- driven originally by the
+Reformation's insistence on personal scripture-reading, which produced
+mass literacy across Northern Europe. The distribution of development in
+1960 was substantially the distribution of schooling in 1860. Goldin \&
+Katz (2008) document the same transmission within the United States: the
+``human capital century'' of 1910--1940, driven by the high school
+movement, explains the majority of twentieth-century income growth --- a
+within-country longitudinal result consistent with the cross-country
+generational mechanism estimated here.
+
+\subsection{The Deaton Objection}\label{the-deaton-objection}
+
+Health technology has diffused globally. Outcomes have not. The difference is education.
+
+Deaton (2013) attributes the curve's upward shift to global health
+technology diffusion independent of education. Vaccines, antibiotics, and
+oral rehydration protocols are cheap, well-understood, and globally
+available --- the technology has diffused. But a vaccine in a warehouse
+is not a vaccinated child. Between the existence of a technology and its
+uptake sits every household decision this paper describes. The technology is globally available; the
+capacity to convert it into behaviour is locally determined by education.
+Diffusion without uniform outcomes is itself
+evidence that education is the operative variable.
+
+\refstepcounter{table}\label{tab:a5}\textbf{Table \thetable. Regime type and education gain rate.} Polity5
+time-varying regime scores (polity2, $-10$ to $+10$) merged with WCDE
+lower secondary completion (both sexes, age 20--24). Education at age
+20--24 reflects schooling 15--20 years earlier; lagged specifications
+attribute the education outcome to the regime that made the decision.
+160 countries, 1950--2020. See
+\texttt{scripts/regime\_education\_test.py}.
+
+{\small
+\begin{longtable}[]{@{}lrrrrr@{}}
+\toprule
+Regime lag & R$^2$(polity2) & Polity coef & Auto mean & Demo mean & n intervals \\
+\midrule
+\endhead
+Concurrent (0 yr) & 0.0015 & $+$0.056 & 8.5 & 9.5 & 1,782 \\
+15-year lag & 0.0067 & $+$0.122 & 8.1 & 10.0 & 1,574 \\
+20-year lag & 0.0050 & $+$0.106 & 8.1 & 10.3 & 1,472 \\
+\bottomrule
+\end{longtable}
+}
+
+\emph{Gain rate in percentage points per decade. Polity coef: the slope
+of the democracy score on gain rate (positive = more democratic
+regimes gain faster). R$^2$: share of gain-rate variation explained by
+democracy score alone --- less than 1\% at every lag. Auto = strong
+autocracies (polity2 $\leq -6$); Demo = strong democracies (polity2
+$\geq +6$). Both invest at roughly the same rate.}
+
+\refstepcounter{table}\label{tab:a6}\textbf{Table \thetable. Colonial education vs.\ institutions as predictors of
+current GDP.} 99 former colonies classified by coloniser identity and
+religion (Protestant: Britain, Netherlands; Catholic: Spain, Portugal,
+France, Belgium, Italy). Education data from WCDE v3; GDP from World
+Bank WDI (constant 2017 USD). See
+\texttt{scripts/colonial\_education\_vs\_institutions.py}.
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule
+Predictor & R$^2$ (log GDP 2020) \\
+\midrule
+\endhead
+Current education (2020 lower sec) & 0.696 \\
+Education at independence (1950 lower sec) & 0.465 \\
+Colonial-era education (1900 cohort primary) & 0.377 \\
+Polity2 2015 (institutional quality) & 0.114 \\
+Coloniser religion (Protestant = 1) & 0.069 \\
+Education 1950 + coloniser religion & 0.466 \\
+\bottomrule
+\end{longtable}
+
+\emph{Each row is a separate bivariate OLS regression on log GDP per
+capita 2020, except the final row which includes both regressors.
+Adding coloniser religion to education raises R$^2$ from 0.465 to
+0.466: religion predicts GDP only through its effect on education.}
+
+
+\end{document}

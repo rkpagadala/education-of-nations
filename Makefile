@@ -1,0 +1,35 @@
+# Makefile — education-of-nations replication repo
+#
+# make setup   — create venv + install dependencies
+# make verify  — check all 351 paper claims against data (~2 sec)
+# make scripts — rebuild all checkin JSONs from source data
+
+VENV   = .venv
+PYTHON = $(VENV)/bin/python
+PIP    = $(VENV)/bin/pip
+PAPER_TEX = paper/education_of_nations.tex
+VERIFY_STAMP = checkin/.verified
+
+.PHONY: all setup verify scripts clean
+
+all: verify
+
+setup: $(VENV)/bin/activate
+
+$(VENV)/bin/activate: requirements.txt
+	python3 -m venv $(VENV)
+	$(PIP) install --upgrade pip
+	$(PIP) install -r requirements.txt
+	@touch $@
+
+verify: setup $(VERIFY_STAMP)
+
+$(VERIFY_STAMP): checkin/*.json scripts/verify_nations.py $(PAPER_TEX)
+	$(PYTHON) scripts/verify_nations.py --fast
+	@touch $@
+
+scripts: setup
+	cd scripts && $(MAKE) PYTHON=$(abspath $(PYTHON))
+
+clean:
+	rm -rf $(VENV) $(VERIFY_STAMP)

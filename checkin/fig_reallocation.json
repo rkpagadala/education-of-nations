@@ -1,0 +1,21 @@
+{
+  "starting_conditions": {
+    "year": 2022,
+    "edu_f_pct": 42.0,
+    "u5mr": 65.8,
+    "tfr": 4.08,
+    "source": "WDI 2022, 63 countries with U5MR > 40"
+  },
+  "u5mr_floor_method": "90th percentile of observed U5MR at each education level",
+  "dah_annual_B": 38.2,
+  "dah_u5mr_per_B": 1.23,
+  "edu_cost_total_B": 112.4,
+  "crossover_year": 10,
+  "year_50": {
+    "status_quo_saved_M": 70.0,
+    "reallocation_saved_M": 107.6,
+    "advantage_M": 37.6
+  },
+  "script": "scripts/fig_reallocation.py",
+  "produced": "2026-04-11"
+}

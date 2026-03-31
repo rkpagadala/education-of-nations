@@ -1,0 +1,26 @@
+{
+  "numbers": {
+    "panel_obs": 1665,
+    "panel_countries": 185,
+    "gdp_panel_obs": 1229,
+    "gdp_panel_countries": 148,
+    "ta1_m1_edu_beta": 0.083,
+    "ta1_m1_edu_se": 0.045,
+    "ta1_m1_edu_p": 0.0675,
+    "ta1_m1_r2_within": 0.009,
+    "ta1_m1_n": 1665,
+    "ta1_m2_gdp_beta": 3.93,
+    "ta1_m2_gdp_se": 1.591,
+    "ta1_m2_gdp_p": 0.0135,
+    "ta1_m2_r2_within": 0.027,
+    "ta1_m2_n": 1229,
+    "ta1_m3_edu_beta": 0.239,
+    "ta1_m3_gdp_beta": 3.174,
+    "ta1_m3_r2_within": 0.095,
+    "ta1_m3_n": 1229,
+    "TA1-M1-beta": 0.083,
+    "TA1-M1-R2": 0.009
+  },
+  "script": "scripts/tables/table_a1_two_way_fe.py",
+  "produced": "2026-04-13"
+}
