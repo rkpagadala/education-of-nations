@@ -1,0 +1,22 @@
+{
+  "script": "wcde/scripts/07_education_outcomes.py",
+  "produced": "2026-04-02",
+  "numbers": {
+    "T2-fwd-edu-R2": 0.259,
+    "T2-GDP-beta": 0.012,
+    "T2-GDP-init": 0.173,
+    "T2-GDP-R2": 0.354,
+    "T2-LE-beta": 0.108,
+    "T2-LE-init": 0.301,
+    "T2-LE-R2": 0.384,
+    "T2-TFR-beta": -0.032,
+    "T2-TFR-init": 0.037,
+    "T2-TFR-R2": 0.367,
+    "T2-PB-GDP-beta": 14.853,
+    "T2-PB-GDP-R2": 0.272,
+    "T2-PB-n": 828,
+    "T2-PB-cond-gdp": 3.78,
+    "T2-PB-cond-edu": 0.485,
+    "T2-PB-cond-R2": 0.5
+  }
+}

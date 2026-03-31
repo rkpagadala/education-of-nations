@@ -1,0 +1,5 @@
+{
+  "script": "scripts/u1mr_vs_u5mr.py",
+  "produced": "2026-03-31",
+  "method": "Infant mortality (U1MR) vs under-5 mortality (U5MR) comparison. Entry >= 10%, ceiling <= 90%, T=1960-1990, lag=25. Clustered SEs by country."
+}

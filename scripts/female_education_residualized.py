@@ -1,0 +1,142 @@
+"""
+female_education_residualized.py
+=================================
+Does female education specifically drive outcomes better than both-sexes?
+
+Reruns the residualized analysis for LE, TFR, U5MR, child education
+using female-only completion rates from WCDE. Compares to both-sexes.
+
+If female education is a stronger predictor, that's direct evidence
+for the PTE mechanism (educated mothers).
+"""
+
+import os, sys, json
+import pandas as pd
+import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _shared import *
+
+T_YEARS = list(range(1960, 1995, 5))
+LAG = 25
+CEILINGS = [60, 90]
+COL_NAME = "lower_sec"
+
+print("Loading data...")
+edu_both = load_education("completion_both_long.csv")
+edu_female = load_education("completion_female_long.csv")
+gdp_df = load_wb("gdppercapita_us_inflation_adjusted.csv")
+le_df = load_wb("life_expectancy_years.csv")
+tfr_df = load_wb("children_per_woman_total_fertility.csv")
+u5mr_df = load_wb("child_mortality_u5.csv")
+
+all_results = {}
+
+for sex_label, edu_raw in [("both", edu_both), ("female", edu_female)]:
+    print(f"\n\n{'*' * 90}")
+    print(f"* SEX: {sex_label.upper()}")
+    print(f"{'*' * 90}")
+
+    edu_annual = interpolate_to_annual(edu_raw, COL_NAME)
+    entry_years = precompute_entry_years(edu_annual)
+
+    sex_results = {}
+
+    # WB outcomes
+    for outcome_label, outcome_col, outcome_df in [
+        ("LE", "le", le_df),
+        ("TFR", "tfr", tfr_df),
+        ("U5MR", "u5mr", u5mr_df),
+    ]:
+        panel = build_panel(edu_annual, outcome_df, gdp_df, T_YEARS, LAG, outcome_col)
+        print(f"\n  {outcome_label} (n={len(panel)}, countries={panel['country'].nunique()})")
+
+        outcome_results = {}
+        for ceiling in CEILINGS:
+            cohort = entry_years.get(10, {})
+            sub = filter_panel(panel, cohort, ceiling)
+            if len(sub) < 10:
+                continue
+            r2_e, n_e, c_e = fe_r2("edu_t", outcome_col, sub)
+            r2_g, _, _ = fe_r2("log_gdp_t", outcome_col, sub)
+            resid = fe_residualize_gdp(sub)
+            r2_resid = np.nan
+            if resid is not None:
+                sub_r, _ = resid
+                r2_resid, _, _ = fe_r2("gdp_resid", outcome_col, sub_r)
+
+            def fmt(v): return f"{v:.3f}" if not np.isnan(v) else "n/a"
+            print(f"    ceil={ceiling}%: Edu={fmt(r2_e)}  GDP={fmt(r2_g)}  Resid={fmt(r2_resid)}  n={n_e} ctry={c_e}")
+            outcome_results[str(ceiling)] = {
+                "edu_r2": round(r2_e, 3) if not np.isnan(r2_e) else None,
+                "raw_gdp_r2": round(r2_g, 3) if not np.isnan(r2_g) else None,
+                "resid_gdp_r2": round(r2_resid, 3) if not np.isnan(r2_resid) else None,
+                "n": n_e, "countries": c_e,
+            }
+        sex_results[outcome_label] = outcome_results
+
+    # Child education (parent→child)
+    rows = []
+    for c in sorted(edu_annual.keys()):
+        s = edu_annual[c]
+        for t in T_YEARS:
+            if t not in s.index or (t + LAG) not in s.index:
+                continue
+            parent_edu = s[t]
+            child_edu = s[t + LAG]
+            gdp_t = get_wb_val(gdp_df, c, t)
+            if np.isnan(parent_edu) or np.isnan(child_edu):
+                continue
+            rows.append({
+                "country": c, "t": t, "edu_t": parent_edu,
+                "log_gdp_t": np.log(gdp_t) if not np.isnan(gdp_t) and gdp_t > 0 else np.nan,
+                "child_edu": child_edu,
+            })
+    panel_ce = pd.DataFrame(rows)
+    print(f"\n  ChildEdu (n={len(panel_ce)}, countries={panel_ce['country'].nunique()})")
+    ce_results = {}
+    for ceiling in CEILINGS:
+        cohort = entry_years.get(10, {})
+        sub = filter_panel(panel_ce, cohort, ceiling)
+        if len(sub) < 10:
+            continue
+        r2_e, n_e, c_e = fe_r2("edu_t", "child_edu", sub)
+        r2_g, _, _ = fe_r2("log_gdp_t", "child_edu", sub)
+        resid = fe_residualize_gdp(sub)
+        r2_resid = np.nan
+        if resid is not None:
+            sub_r, _ = resid
+            r2_resid, _, _ = fe_r2("gdp_resid", "child_edu", sub_r)
+        def fmt(v): return f"{v:.3f}" if not np.isnan(v) else "n/a"
+        print(f"    ceil={ceiling}%: Edu={fmt(r2_e)}  GDP={fmt(r2_g)}  Resid={fmt(r2_resid)}  n={n_e} ctry={c_e}")
+        ce_results[str(ceiling)] = {
+            "edu_r2": round(r2_e, 3) if not np.isnan(r2_e) else None,
+            "raw_gdp_r2": round(r2_g, 3) if not np.isnan(r2_g) else None,
+            "resid_gdp_r2": round(r2_resid, 3) if not np.isnan(r2_resid) else None,
+            "n": n_e, "countries": c_e,
+        }
+    sex_results["ChildEdu"] = ce_results
+    all_results[sex_label] = sex_results
+
+# Comparison
+print(f"\n\n{'=' * 90}")
+print(f"FEMALE vs BOTH-SEXES: lower secondary, entry=10%, ceiling=90%")
+print(f"{'=' * 90}")
+print(f"{'Outcome':<12} {'Both Edu':>9} {'Female Edu':>11} {'Both Resid':>11} {'Female Resid':>13}")
+print("-" * 60)
+for outcome in ["LE", "TFR", "U5MR", "ChildEdu"]:
+    rb = all_results["both"].get(outcome, {}).get("90", {})
+    rf = all_results["female"].get(outcome, {}).get("90", {})
+    def fmt(v): return f"{v:.3f}" if v is not None else "n/a"
+    print(f"{outcome:<12} {fmt(rb.get('edu_r2')):>9} {fmt(rf.get('edu_r2')):>11} "
+          f"{fmt(rb.get('resid_gdp_r2')):>11} {fmt(rf.get('resid_gdp_r2')):>13}")
+
+checkin = {
+    "script": "scripts/female_education_residualized.py",
+    "produced": pd.Timestamp.now().strftime("%Y-%m-%d"),
+    "method": "Country FE, residualized GDP. Female vs both-sexes lower secondary. Entry=10%, ceilings 60/90. T=1960-1990, lag=25.",
+    "results": all_results,
+}
+os.makedirs(CHECKIN, exist_ok=True)
+with open(os.path.join(CHECKIN, "female_education_residualized.json"), "w") as f:
+    json.dump(checkin, f, indent=2)
+print(f"\nCheckin written.")

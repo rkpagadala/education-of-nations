@@ -1,0 +1,71 @@
+{
+  "script": "scripts/verify_table_a1_cutoffs.py",
+  "produced": "2026-04-01",
+  "notes": "Two-way FE (country + year), clustered SEs. Full panel: 1683 obs, 187 countries.",
+  "numbers": {
+    "cutoff_10": {
+      "beta": 1.77,
+      "se": 0.209,
+      "t": 8.5,
+      "p": 0.0,
+      "r2": 0.315,
+      "n": 359,
+      "countries": 86
+    },
+    "cutoff_20": {
+      "beta": 1.443,
+      "se": 0.13,
+      "t": 11.1,
+      "p": 0.0,
+      "r2": 0.382,
+      "n": 604,
+      "countries": 119
+    },
+    "cutoff_30": {
+      "beta": 1.085,
+      "se": 0.078,
+      "t": 13.9,
+      "p": 0.0,
+      "r2": 0.383,
+      "n": 790,
+      "countries": 138
+    },
+    "all": {
+      "beta": 0.08,
+      "se": 0.045,
+      "t": 1.8,
+      "p": 0.0772,
+      "r2": 0.009,
+      "n": 1683,
+      "countries": 187
+    }
+  },
+  "paper_claims": {
+    "cutoff_30": {
+      "beta": 0.719,
+      "r2": 0.153,
+      "n": 868,
+      "countries": 147,
+      "t": 12.5
+    },
+    "cutoff_20": {
+      "beta": 1.033,
+      "r2": 0.15,
+      "n": 638,
+      "countries": 116,
+      "t": 10.6
+    },
+    "cutoff_10": {
+      "beta": 1.037,
+      "r2": 0.07,
+      "n": 363,
+      "countries": 76
+    },
+    "all": {
+      "beta": 0.091,
+      "r2": 0.011,
+      "n": 1917,
+      "countries": 213
+    }
+  }
+}

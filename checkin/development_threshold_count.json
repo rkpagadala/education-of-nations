@@ -1,0 +1,16 @@
+{
+  "script": "scripts/development_threshold_count.py",
+  "produced": "2026-03-26",
+  "numbers": {
+    "countries_crossing_both": 153,
+    "countries_not_crossing": 64,
+    "pop_crossed": 6132186400,
+    "pop_world": 7832543000,
+    "pct_developed": 78.3,
+    "tfr_threshold": 3.65,
+    "le_threshold": 69.8,
+    "snapshot_year": 2022,
+    "pop_year": 2020,
+    "no_pop_match_count": 22
+  }
+}

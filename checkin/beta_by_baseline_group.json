@@ -1,0 +1,18 @@
+{
+  "script": "scripts/beta_by_baseline_group.py",
+  "produced": "2026-04-02",
+  "numbers": {
+    "Grp-low-beta": 1.585,
+    "Grp-low-R2": 0.706,
+    "Grp-low-n": 423,
+    "Grp-low-countries": 47,
+    "Grp-med-beta": 0.713,
+    "Grp-med-R2": 0.716,
+    "Grp-med-n": 675,
+    "Grp-med-countries": 75,
+    "Grp-high-beta": 0.176,
+    "Grp-high-R2": 0.442,
+    "Grp-high-n": 585,
+    "Grp-high-countries": 65
+  }
+}

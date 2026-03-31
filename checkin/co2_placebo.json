@@ -1,0 +1,10 @@
+{
+  "script": "scripts/co2_placebo.py",
+  "produced": "2026-04-02",
+  "numbers": {
+    "co2_placebo_r2": 0.089,
+    "edu_ref_r2": 0.455,
+    "ratio": 5.0,
+    "CO2-R2": 0.089
+  }
+}
