@@ -469,13 +469,13 @@ reg("LR-countries", 28,     "checkin", ("long_run_generational.json", "numbers.L
 # PARENTAL INCOME COLLAPSE — inline computation
 # ══════════════════════════════════════════════════════════════════════════
 reg("PI-alone-beta",  15.4,  "checkin", ("table_1_main.json", "numbers.PI-alone-beta"),
-    [(GDP_INDEP, 127)], tol=0.5)
+    [(GDP_INDEP, 33)], tol=0.5)
 reg("PI-alone-R2",    0.293, "checkin", ("table_1_main.json", "numbers.PI-alone-R2"),
-    [(GDP_INDEP, 127)])
+    [(GDP_INDEP, 12)])
 reg("PI-cond-beta",   4.3,   "checkin", ("table_1_main.json", "numbers.PI-cond-beta"),
-    [(GDP_INDEP, 128)], tol=0.5)
+    [(GDP_INDEP, 20)], tol=0.5)
 reg("PI-cond-p",      0.04,  "checkin", ("table_1_main.json", "numbers.PI-cond-p"),
-    [(GDP_INDEP, 129)], tol=0.01)
+    [(GDP_INDEP, 12)], tol=0.01)
 reg("PI-edu-alone",   0.553, "checkin", ("table_1_main.json", "numbers.PI-edu-alone"),
     [(GDP_INDEP, 12)])
 
@@ -812,6 +812,9 @@ reg("College-r-sec",         0.45,  "checkin", ("college_le_gradient.json", "res
 # REMOVED from paper
 # REMOVED from paper
 reg("College-LE-gradient-sec", 5.7, "checkin", ("college_le_gradient.json", "results.gradient.actual"), [GDP_INDEP], tol=0.1)
+
+# --- INVISIBLE section: happiness country count ---
+reg("Happiness-n-countries",  147,  "checkin", ("happiness_education.json", "numbers.n_countries"), [INVISIBLE], tol=0)
 
 # --- HOW_EDU section: Nepal GDP + Myanmar data (L549, L581-L584) ---
 # REMOVED from paper

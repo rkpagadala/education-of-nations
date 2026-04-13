@@ -1,12 +1,12 @@
 # Verification Report
 
-Generated: 2026-04-13 03:50
+Generated: 2026-04-13 11:56
 
-## Result: 262/262 PASS
+## Result: 263/263 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 262 |
+| Verified claims | 263 |
 | Failed | 0 |
 | Missing | 0 |
 | Literature refs (manual) | 18 |
@@ -17,7 +17,7 @@ Generated: 2026-04-13 03:50
 
 | Source | Pass | Fail | Missing |
 |--------|------|------|---------|
-| checkin | 150 | 0 | 0 |
+| checkin | 151 | 0 | 0 |
 | derived | 44 | 0 | 0 |
 | ref | 0 | 0 | 0 |
 | wcde | 20 | 0 | 0 |
@@ -50,4 +50,5 @@ Generated: 2026-04-13 03:50
 | the-evidence | 1 | 1 | 0 |
 | the-institutional-challenge | 13 | 13 | 0 |
 | the-shock-test | 14 | 14 | 0 |
+| why-education-is-invisible | 1 | 1 | 0 |
 

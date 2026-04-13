@@ -69,7 +69,8 @@ analysis: \
 	$(CHECKIN)/u5mr_by_edu_level.json \
 	$(CHECKIN)/lag_sensitivity.json \
 	$(CHECKIN)/completion_vs_test_scores.json \
-	$(CHECKIN)/threshold_robustness.json
+	$(CHECKIN)/threshold_robustness.json \
+	$(CHECKIN)/happiness_education.json
 
 # ── Rules ─────────────────────────────────────────────────────────────
 
@@ -181,6 +182,9 @@ $(CHECKIN)/completion_vs_test_scores.json: robustness/completion_vs_test_scores.
 	$(PYTHON) $<
 
 $(CHECKIN)/threshold_robustness.json: robustness/threshold_robustness.py _shared.py $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/happiness_education.json: happiness_education.py $(DATA)/world_happiness_report.csv $(ALL_DATA)
 	$(PYTHON) $<
 
 $(CHECKIN)/fig_beta_vs_baseline.json: figures/fig_beta_vs_baseline.py $(WCDE_DATA)
