@@ -596,9 +596,27 @@ reg("CostaRica-1.7fold", 1.7, "derived", "GDP-CostaRica-1990 / GDP-CostaRica-196
 # Table 4 "Generations" column: ceil(lag / 25), interpretive rounding
 # Lag values are approximate; Generations = nearest integer of ~25-year cycles
 
-# Table A4 shift ranges (min and max across 5 cases)
+# Table A4 shift ranges (min and max across cases incl. Taiwan)
+reg("threshold-shift-min", 10, "checkin",
+    ("threshold_robustness.json", "results.Taiwan.shift"),
+    ["defining-development"], tol=0)
+reg("threshold-shift-max", 30, "checkin",
+    ("threshold_robustness.json", "results.Sri Lanka.shift"),
+    ["defining-development"], tol=0)
 
 # Table A4 individual shift values
+reg("threshold-shift-Cuba",       16, "checkin",
+    ("threshold_robustness.json", "results.Cuba.shift"),
+    ["defining-development"], tol=0)
+reg("threshold-shift-Korea",      15, "checkin",
+    ("threshold_robustness.json", "results.South Korea.shift"),
+    ["defining-development"], tol=0)
+reg("threshold-shift-China",      19, "checkin",
+    ("threshold_robustness.json", "results.China.shift"),
+    ["defining-development"], tol=0)
+reg("threshold-shift-Bangladesh", 14, "checkin",
+    ("threshold_robustness.json", "results.Bangladesh.shift"),
+    ["defining-development"], tol=0)
 
 # Table A4 threshold variants (aligned with fig_threshold_sensitivity.py)
 

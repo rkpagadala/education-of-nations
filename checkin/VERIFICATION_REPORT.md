@@ -1,12 +1,12 @@
 # Verification Report
 
-Generated: 2026-04-14 03:17
+Generated: 2026-04-14 03:22
 
-## Result: 263/263 PASS
+## Result: 269/269 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 263 |
+| Verified claims | 269 |
 | Failed | 0 |
 | Missing | 0 |
 | Literature refs (manual) | 18 |
@@ -17,7 +17,7 @@ Generated: 2026-04-14 03:17
 
 | Source | Pass | Fail | Missing |
 |--------|------|------|---------|
-| checkin | 151 | 0 | 0 |
+| checkin | 157 | 0 | 0 |
 | derived | 44 | 0 | 0 |
 | ref | 0 | 0 | 0 |
 | wcde | 20 | 0 | 0 |
@@ -34,7 +34,7 @@ Generated: 2026-04-14 03:17
 | china | 12 | 12 | 0 |
 | completion-as-the-operative-variable | 7 | 7 | 0 |
 | data | 3 | 3 | 0 |
-| defining-development | 4 | 4 | 0 |
+| defining-development | 10 | 10 | 0 |
 | education-predicts-development-outcomes-25-years-forward | 41 | 41 | 0 |
 | education-vs-gdp-as-predictors-of-attainment | 31 | 31 | 0 |
 | empirical-strategy | 2 | 2 | 0 |
