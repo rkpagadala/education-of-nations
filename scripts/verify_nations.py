@@ -475,11 +475,11 @@ reg("LR-countries", 28,     "checkin", ("long_run_generational.json", "numbers.L
 # PARENTAL INCOME COLLAPSE — inline computation
 # ══════════════════════════════════════════════════════════════════════════
 reg("PI-alone-beta",  15.4,  "checkin", ("table_1_main.json", "numbers.PI-alone-beta"),
-    [(GDP_INDEP, 33)], tol=0.5)
+    [(GDP_INDEP, 38)], tol=0.5)
 reg("PI-alone-R2",    0.293, "checkin", ("table_1_main.json", "numbers.PI-alone-R2"),
     [(GDP_INDEP, 12)])
 reg("PI-cond-beta",   4.3,   "checkin", ("table_1_main.json", "numbers.PI-cond-beta"),
-    [(GDP_INDEP, 20)], tol=0.5)
+    [(GDP_INDEP, 19)], tol=0.5)
 reg("PI-cond-p",      0.04,  "checkin", ("table_1_main.json", "numbers.PI-cond-p"),
     [(GDP_INDEP, 12)], tol=0.01)
 reg("PI-edu-alone",   0.553, "checkin", ("table_1_main.json", "numbers.PI-edu-alone"),
@@ -541,12 +541,12 @@ reg("GDP-CostaRica-1990", 6037,  "wdi", ("gdp", "Costa Rica", 1990), [], tol=5)
 
 # Other GDP mentions
 
-# Philippines/Korea/Thailand/Indonesia/India/China GDP 1960 comparison (Section 9)
-reg("GDP-Philippines-1960", 1124, "wdi", ("gdp", "Philippines", 1960), [(POLICY, None)], tol=5)
-reg("GDP-Thailand-1960",    592, "wdi", ("gdp", "Thailand", 1960), [(POLICY, 20)], tol=5)
-reg("GDP-Indonesia-1960",   598, "wdi", ("gdp", "Indonesia", 1960), [(POLICY, 21)], tol=5)
-reg("GDP-India-1960",       313, "wdi", ("gdp", "India", 1960), [(POLICY, 21)], tol=5)
-reg("GDP-China-1960",       241, "wdi", ("gdp", "China", 1960), [(POLICY, 21)], tol=5)
+# Philippines/Korea/Thailand/Indonesia/India/China GDP 1960 comparison (Taiwan & Korea section)
+reg("GDP-Philippines-1960", 1124, "wdi", ("gdp", "Philippines", 1960), [(TAIWAN_KOREA, None)], tol=5)
+reg("GDP-Thailand-1960",    592, "wdi", ("gdp", "Thailand", 1960), [(TAIWAN_KOREA, 16)], tol=5)
+reg("GDP-Indonesia-1960",   598, "wdi", ("gdp", "Indonesia", 1960), [(TAIWAN_KOREA, 17)], tol=5)
+reg("GDP-India-1960",       313, "wdi", ("gdp", "India", 1960), [(TAIWAN_KOREA, 17)], tol=5)
+reg("GDP-China-1960",       241, "wdi", ("gdp", "China", 1960), [(TAIWAN_KOREA, 17)], tol=5)
 # Note: Korea 1960 already registered above as GDP-Korea-1960
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -1013,12 +1013,6 @@ reg("Rob-boot-gdp-lo",    0.00, "checkin", ("robustness_tests.json", "numbers.Ro
 reg("Rob-boot-gdp-hi",    0.04, "checkin", ("robustness_tests.json", "numbers.Rob-boot-gdp-hi"),
     [GDP_INDEP], tol=0.01)
 
-# --- DAH reallocation numbers in GDP_INDEP section ---
-reg("DAH-2025-B",  38.4, "checkin", ("dah_reallocation.json", "published_dah_figures.2025"),
-    [POLICY], tol=1.0)
-reg("Realloc-advantage-pct", 54, "derived",
-    "fig_reallocation.json: (37.6 / 70.0) * 100 = 53.7 ≈ 54",
-    [POLICY], tol=1.0)
 
 # --- Fertility R² at primary education in DEMOG section ---
 reg("Fert-primary-R2",    0.65, "checkin", ("edu_vs_gdp_tfr_residualized.json", "numbers.Fert-primary-R2"),
@@ -1603,16 +1597,6 @@ def _china_le_gap_1980(m):
         return abs(v)
 
 
-def _realloc_advantage_pct(m):
-    try:
-        with open(os.path.join(CHECKIN, "fig_reallocation.json")) as f:
-            realloc = json.load(f)
-        sq = realloc["year_50"]["status_quo_saved_M"]
-        adv = realloc["year_50"]["advantage_M"]
-        if sq > 0:
-            return round((adv / sq) * 100, 1)
-    except Exception:
-        pass
 
 def _china_instit_rate(m):
     c90 = load_wcde("lower_sec_both.csv", "China", 1990)
@@ -1773,7 +1757,6 @@ DERIVED_DISPATCH = {
     "PI-drop-pct":            _pi_drop_pct,
     "CostaRica-1.7fold":      _costarica_1_7fold,
     "CR-Korea-ratio":         _cr_korea_ratio,
-    "Realloc-advantage-pct":  _realloc_advantage_pct,
     # Abs of checkin values (paper reports absolute, JSON stores signed)
     "T3-Qatar-resid":         _abs_checkin("regression_tables.json", "country_residuals.T3-Qatar-resid"),
     "T2-TFR-beta-abs":        _abs_checkin("education_outcomes.json", "numbers.T2-TFR-beta"),
