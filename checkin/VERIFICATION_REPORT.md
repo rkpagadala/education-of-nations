@@ -1,12 +1,12 @@
 # Verification Report
 
-Generated: 2026-04-14 03:26
+Generated: 2026-04-14 03:32
 
-## Result: 284/284 PASS
+## Result: 291/291 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 284 |
+| Verified claims | 291 |
 | Failed | 0 |
 | Missing | 0 |
 | Literature refs (manual) | 18 |
@@ -17,7 +17,7 @@ Generated: 2026-04-14 03:26
 
 | Source | Pass | Fail | Missing |
 |--------|------|------|---------|
-| checkin | 172 | 0 | 0 |
+| checkin | 179 | 0 | 0 |
 | derived | 44 | 0 | 0 |
 | ref | 0 | 0 | 0 |
 | wcde | 20 | 0 | 0 |
@@ -44,7 +44,7 @@ Generated: 2026-04-14 03:26
 | kerala | 0 | 0 | 0 |
 | policy-over-performers | 25 | 25 | 0 |
 | taiwan-and-korea | 1 | 1 | 0 |
-| the-cases | 19 | 19 | 0 |
+| the-cases | 26 | 26 | 0 |
 | the-colonial-test | 6 | 6 | 0 |
 | the-decision | 12 | 12 | 0 |
 | the-evidence | 1 | 1 | 0 |

@@ -593,6 +593,29 @@ reg("PI-drop-pct",   72.0,   "derived", "1 - PI-cond-beta/PI-alone-beta",
 reg("CostaRica-1.7fold", 1.7, "derived", "GDP-CostaRica-1990 / GDP-CostaRica-1960",
     [], tol=0.3)
 
+# Table 5 Generations column (rate_predicts_crossing.json)
+reg("T5-gen-Taiwan",      1, "checkin",
+    ("rate_predicts_crossing.json", "Taiwan.generations"),
+    [SEN_CASES], tol=0)
+reg("T5-gen-Korea",       1, "checkin",
+    ("rate_predicts_crossing.json", "Korea.generations"),
+    [SEN_CASES], tol=0)
+reg("T5-gen-Cuba",        1, "checkin",
+    ("rate_predicts_crossing.json", "Cuba.generations"),
+    [SEN_CASES], tol=0)
+reg("T5-gen-Bangladesh",  1, "checkin",
+    ("rate_predicts_crossing.json", "Bangladesh.generations"),
+    [SEN_CASES], tol=0)
+reg("T5-gen-SriLanka",    2, "checkin",
+    ("rate_predicts_crossing.json", "Sri Lanka.generations"),
+    [SEN_CASES], tol=0)
+reg("T5-gen-China",       2, "checkin",
+    ("rate_predicts_crossing.json", "China.generations"),
+    [SEN_CASES], tol=0)
+reg("T5-gen-Kerala",      3, "checkin",
+    ("rate_predicts_crossing.json", "Kerala.generations"),
+    [SEN_CASES], tol=0)
+
 # Table A4 shift ranges (min and max across cases incl. Taiwan)
 reg("threshold-shift-min", 10, "checkin",
     ("threshold_robustness.json", "results.Taiwan.shift"),
