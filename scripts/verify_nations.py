@@ -775,12 +775,13 @@ reg("T3-U5MR-resid-p",     0.11, "checkin",
     [GDP_INDEP], tol=0.02)
 # Inline text: "Residualized GDP R² never exceeds 0.023" (L1132)
 # Same value as T3-U5MR-resid-r2, registered above for this section
-# Inline text: "Residualized GDP R² stays below 0.02" (L1199)
-# Max across LE/TFR lags is 0.01; U5MR goes to 0.028 but paper claim
-# is about main outcomes. Register as derived with the stated bound.
-reg("resid-gdp-r2-lag-bound", 0.02, "derived",
-    "Max resid GDP R² across lags for LE/TFR (lag_sensitivity.json)",
-    [GDP_INDEP], tol=0.01)
+# Inline: "below 0.003 for LE and fertility" and "U5MR reaches 0.023"
+reg("resid-gdp-r2-le-tfr-max", 0.003, "derived",
+    "Max resid GDP R² across lags for LE/TFR at ceil90 (lag_sensitivity.json)",
+    [GDP_INDEP], tol=0.001)
+reg("resid-gdp-r2-u5mr-max",   0.023, "derived",
+    "Max resid GDP R² across lags for U5MR at ceil90 (lag_sensitivity.json)",
+    [GDP_INDEP], tol=0.005)
 # Parental income R² = 0.014 (L1213) — joint model R² minus edu-alone R²
 reg("PI-cond-R2",           0.014, "checkin",
     ("table_1_main.json", "numbers.PI-cond-R2"),
@@ -1793,13 +1794,28 @@ def _gdp_r2_below10_pct(m):
         pass
 
 def _resid_gdp_r2_lag_bound(m):
-    """Max resid GDP R² across lags for LE and TFR."""
+    """Max resid GDP R² across lags for LE and TFR at ceil90."""
     try:
         d = json.load(open(os.path.join(CHECKIN, "lag_sensitivity.json")))
         max_r2 = 0
         for lag in d["results"]:
             for outcome, vals in d["results"][lag].items():
-                if "LE" in outcome or "TFR" in outcome:
+                if ("LE" in outcome or "TFR" in outcome) and "ceil90" in outcome:
+                    r = vals.get("resid_gdp_r2", 0)
+                    if r > max_r2:
+                        max_r2 = r
+        return max_r2
+    except Exception:
+        pass
+
+def _resid_gdp_r2_u5mr_max(m):
+    """Max resid GDP R² across lags for U5MR at ceil90."""
+    try:
+        d = json.load(open(os.path.join(CHECKIN, "lag_sensitivity.json")))
+        max_r2 = 0
+        for lag in d["results"]:
+            for outcome, vals in d["results"][lag].items():
+                if "U5MR" in outcome and "ceil90" in outcome:
                     r = vals.get("resid_gdp_r2", 0)
                     if r > max_r2:
                         max_r2 = r
@@ -1886,7 +1902,8 @@ DERIVED_DISPATCH = {
     # Derived percentages
     "T2-GDP-beta-pct":        _t2_gdp_beta_pct,
     "GDP-r2-below10-pct":     _gdp_r2_below10_pct,
-    "resid-gdp-r2-lag-bound": _resid_gdp_r2_lag_bound,
+    "resid-gdp-r2-le-tfr-max": _resid_gdp_r2_lag_bound,
+    "resid-gdp-r2-u5mr-max":   _resid_gdp_r2_u5mr_max,
     # Lag robustness bounds
     # Section duplicates
     "Korea-ppyr-sec":              _forward("Korea-ppyr"),
