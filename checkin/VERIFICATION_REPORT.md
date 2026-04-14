@@ -1,15 +1,15 @@
 # Verification Report
 
-Generated: 2026-04-14 04:06
+Generated: 2026-04-14 04:10
 
-## Result: 307/307 PASS
+## Result: 308/308 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 307 |
+| Verified claims | 308 |
 | Failed | 0 |
 | Missing | 0 |
-| Literature refs (manual) | 19 |
+| Literature refs (manual) | 18 |
 | Unregistered numbers | 0 |
 | Section offset issues | 0 |
 
@@ -17,7 +17,7 @@ Generated: 2026-04-14 04:06
 
 | Source | Pass | Fail | Missing |
 |--------|------|------|---------|
-| checkin | 188 | 0 | 0 |
+| checkin | 189 | 0 | 0 |
 | derived | 50 | 0 | 0 |
 | ref | 0 | 0 | 0 |
 | wcde | 21 | 0 | 0 |
@@ -39,7 +39,7 @@ Generated: 2026-04-14 04:06
 | education-vs-gdp-as-predictors-of-attainment | 32 | 32 | 0 |
 | empirical-strategy | 2 | 2 | 0 |
 | four-further-cases | 16 | 16 | 0 |
-| gdp-has-no-independent-effect | 39 | 39 | 0 |
+| gdp-has-no-independent-effect | 40 | 40 | 0 |
 | introduction | 1 | 1 | 0 |
 | kerala | 0 | 0 | 0 |
 | policy-over-performers | 25 | 25 | 0 |

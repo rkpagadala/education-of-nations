@@ -30,8 +30,10 @@
     "PI-cond-beta": 4.3,
     "PI-cond-p": 0.04,
     "PI-edu-alone": 0.553,
-    "PI-edu-cond": 0.475
+    "PI-edu-cond": 0.475,
+    "PI-joint-R2": 0.506,
+    "PI-cond-R2": 0.014
   },
   "script": "scripts/tables/table_1_main.py",
-  "produced": "2026-04-13"
+  "produced": "2026-04-14"
 }

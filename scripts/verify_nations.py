@@ -782,10 +782,9 @@ reg("resid-gdp-r2-lag-bound", 0.02, "derived",
     "Max resid GDP R² across lags for LE/TFR (lag_sensitivity.json)",
     [GDP_INDEP], tol=0.01)
 # Parental income R² = 0.014 (L1213) — joint model R² minus edu-alone R²
-# TODO: add PI-joint-R2 to table_1_main.py output, then verify from checkin
-reg("PI-cond-R2",           0.014, "ref",
-    "R² gain from adding income to edu-only parental model (table_1_main.py)",
-    [GDP_INDEP])
+reg("PI-cond-R2",           0.014, "checkin",
+    ("table_1_main.json", "numbers.PI-cond-R2"),
+    [GDP_INDEP], tol=0.005)
 
 # Grandmother effect betas at low education (L1055, L1057)
 reg("GM-TFR-low-beta-gm",  0.059, "derived",
@@ -1888,7 +1887,6 @@ DERIVED_DISPATCH = {
     "T2-GDP-beta-pct":        _t2_gdp_beta_pct,
     "GDP-r2-below10-pct":     _gdp_r2_below10_pct,
     "resid-gdp-r2-lag-bound": _resid_gdp_r2_lag_bound,
-    "PI-cond-R2":             _pi_cond_r2,
     # Lag robustness bounds
     # Section duplicates
     "Korea-ppyr-sec":              _forward("Korea-ppyr"),

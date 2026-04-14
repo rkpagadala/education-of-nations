@@ -193,5 +193,7 @@ write_checkin("table_1_main.json", {
         "PI-cond-p": round(m_pi3.pvalues.iloc[1], 2),
         "PI-edu-alone": round(m_pi2.params.iloc[0], 3),
         "PI-edu-cond": round(m_pi3.params.iloc[0], 3),
+        "PI-joint-R2": round(m_pi3.rsquared, 3),
+        "PI-cond-R2": round(m_pi3.rsquared - m_pi2.rsquared, 3),
     },
 }, script_path="scripts/tables/table_1_main.py")
