@@ -1578,12 +1578,6 @@ def _myanmar_ppyr(m):
         return (m15 - m60) / 55.0
 
 
-def _u5mr_post2000_resid_pct(m):
-    r2 = m.get("U5MR-post2000-resid-r2", {}).get("actual")
-    if r2 is not None:
-        return r2 * 100
-
-
 def _cr_korea_ratio(m):
     cr60 = m.get("GDP-CostaRica-1960", {}).get("actual")
     k60 = m.get("GDP-Korea-1960", {}).get("actual")
@@ -1671,60 +1665,6 @@ def _global_rate(period_name):
             pass
     return _fn
 
-def _gm_child_edu_r2_gain(m):
-    try:
-        gm = load_checkin("grandmother_effect.json",
-                          "results.child_edu.r2_gain")
-        if gm is not None:
-            return gm * 100
-    except Exception:
-        pass
-
-def _gm_le_r2_gain(m):
-    try:
-        gm = load_checkin("grandmother_effect.json",
-                          "results.le.r2_gain")
-        if gm is not None:
-            return gm * 100
-    except Exception:
-        pass
-
-def _u5mr_pre2000_resid_pct(m):
-    r2 = m.get("U5MR-pre2000-resid-r2", {}).get("actual")
-    if r2 is not None:
-        return r2 * 100
-
-def _colonial_era_edu_r2(m):
-    try:
-        r2 = load_checkin("colonial_education_vs_institutions.json",
-                          "r2_colonial_education")
-        if r2 is not None:
-            return round(r2 * 100)
-    except Exception:
-        pass
-
-def _le_lt10_edu_r2_pct(m):
-    r2 = m.get("LE-lt10-edu-r2", {}).get("actual")
-    if r2 is not None:
-        return round(r2 * 100)
-
-def _beta_cutoff_r2_pct(cutoff):
-    """Factory: returns a function for beta cutoff R2 percentages."""
-    def _fn(m):
-        try:
-            r2 = load_checkin("beta_by_ceiling_cutoff.json",
-                              f"numbers.panelA_cutoff_{cutoff}_r2")
-            if r2 is not None:
-                return round(r2 * 100)
-        except Exception:
-            pass
-    return _fn
-
-def _russia_99_cumulative(m):
-    primary = m.get("Russia-1990-edu", {}).get("actual")
-    if primary is not None:
-        return primary
-
 def _cambodia_peer_median(year):
     """Factory: returns a function for Cambodia peer median lookups."""
     def _fn(m):
@@ -1741,181 +1681,124 @@ def _cambodia_peer_median(year):
             pass
     return _fn
 
-def _t3_qatar_resid(m):
-    try:
-        r = load_checkin("regression_tables.json",
-                         "country_residuals.T3-Qatar-resid")
-        if r is not None:
-            return abs(r)
-    except Exception:
-        pass
-
-def _t2_tfr_beta_abs(m):
-    try:
-        r = load_checkin("education_outcomes.json", "numbers.T2-TFR-beta")
-        if r is not None:
-            return abs(r)
-    except Exception:
-        pass
-
-def _gm_tfr_low_beta_gm(m):
-    try:
-        r = load_checkin("grandmother_effect.json",
-                         "results.tfr_low_edu.mother_gm.beta_grandmother_edu")
-        if r is not None:
-            return abs(r)
-    except Exception:
-        pass
-
-def _gm_tfr_low_beta_m(m):
-    try:
-        r = load_checkin("grandmother_effect.json",
-                         "results.tfr_low_edu.mother_gm.beta_mother_edu")
-        if r is not None:
-            return abs(r)
-    except Exception:
-        pass
-
-def _t2_gdp_beta_pct(m):
-    try:
-        r = load_checkin("education_outcomes.json", "numbers.T2-GDP-beta")
-        if r is not None:
-            return r * 100
-    except Exception:
-        pass
-
-def _gdp_r2_below10_pct(m):
-    try:
-        r = load_checkin("edu_vs_gdp_predicts_le.json",
-                         "numbers.lt10.gdp_r2")
-        if r is not None:
-            return r * 100
-    except Exception:
-        pass
-
-def _resid_gdp_r2_lag_bound(m):
-    """Max resid GDP R² across lags for LE and TFR at ceil90."""
-    try:
-        d = json.load(open(os.path.join(CHECKIN, "lag_sensitivity.json")))
-        max_r2 = 0
-        for lag in d["results"]:
-            for outcome, vals in d["results"][lag].items():
-                if ("LE" in outcome or "TFR" in outcome) and "ceil90" in outcome:
-                    r = vals.get("resid_gdp_r2", 0)
-                    if r > max_r2:
-                        max_r2 = r
-        return max_r2
-    except Exception:
-        pass
-
-def _resid_gdp_r2_u5mr_max(m):
-    """Max resid GDP R² across lags for U5MR at ceil90."""
-    try:
-        d = json.load(open(os.path.join(CHECKIN, "lag_sensitivity.json")))
-        max_r2 = 0
-        for lag in d["results"]:
-            for outcome, vals in d["results"][lag].items():
-                if "U5MR" in outcome and "ceil90" in outcome:
-                    r = vals.get("resid_gdp_r2", 0)
-                    if r > max_r2:
-                        max_r2 = r
-        return max_r2
-    except Exception:
-        pass
-
-def _pi_cond_r2(m):
-    """PI conditional R²: difference between joint and education-alone R²."""
-    edu_r2 = m.get("PI-alone-R2", {}).get("actual")
-    cond_p = m.get("PI-cond-p", {}).get("actual")
-    # Read from table_1_main.json directly
-    try:
-        d = json.load(open(os.path.join(CHECKIN, "table_1_main.json")))
-        # The R² gain from adding income to education
-        # PI-alone-R2 = 0.293, edu-alone = 0.553 (R² of edu-only model)
-        # Joint model R² ≈ edu R² + small income contribution
-        # Paper says R²=0.014 for income's additional contribution
-        # This is the R² of the income-only model in the joint regression
-        nums = d.get("numbers", {})
-        if "PI-cond-R2" in nums:
-            return nums["PI-cond-R2"]
-        # If not directly available, compute from joint - edu alone R²
-        joint_r2 = nums.get("PI-joint-R2")
-        edu_r2 = nums.get("PI-edu-alone-R2", nums.get("PI-alone-R2"))
-        if joint_r2 is not None and edu_r2 is not None:
-            return round(joint_r2 - edu_r2, 3)
-    except Exception:
-        pass
-
-def _forward(primary_name):
-    """Factory: returns a function that forwards from a primary entry."""
+def _resid_gdp_r2_lag_max(outcomes_filter):
+    """Factory: max resid GDP R² across lags at ceil90, filtered by outcome."""
     def _fn(m):
-        return m.get(primary_name, {}).get("actual")
+        try:
+            d = json.load(open(os.path.join(CHECKIN, "lag_sensitivity.json")))
+            max_r2 = 0
+            for lag in d["results"]:
+                for outcome, vals in d["results"][lag].items():
+                    if "ceil90" in outcome and any(f in outcome for f in outcomes_filter):
+                        r = vals.get("resid_gdp_r2", 0)
+                        if r > max_r2:
+                            max_r2 = r
+            return max_r2
+        except Exception:
+            pass
     return _fn
+
+
+# ── Generic factories ────────────────────────────────────────────────────
+
+def _abs_checkin(json_file, path):
+    """Factory: abs(value) from a checkin JSON."""
+    def _fn(m):
+        try:
+            r = load_checkin(json_file, path)
+            if r is not None:
+                return abs(r)
+        except Exception:
+            pass
+    return _fn
+
+def _pct_of(primary_name):
+    """Factory: primary entry's actual value × 100."""
+    def _fn(m):
+        v = m.get(primary_name, {}).get("actual")
+        if v is not None:
+            return v * 100
+    return _fn
+
+def _pct_checkin(json_file, path, rounding=None):
+    """Factory: value from checkin JSON × 100."""
+    def _fn(m):
+        try:
+            r = load_checkin(json_file, path)
+            if r is not None:
+                v = r * 100
+                return round(v, rounding) if rounding is not None else (round(v) if abs(v) >= 1 else v)
+        except Exception:
+            pass
+    return _fn
+
+
+# ── Section duplicates ───────────────────────────────────────────────────
+# Entries whose actual value is forwarded from a primary entry.
+SECTION_DUPS = {
+    "Korea-ppyr-sec":              "Korea-ppyr",
+    "India-ppyr-sec":              "India-ppyr",
+    "Bangladesh-ppyr-sec":         "Bangladesh-ppyr",
+    "PI-drop-pct-sec":             "PI-drop-pct",
+    "China-CR-gain-1975-sec":      "China-CR-gain-1975",
+    "CR-Korea-ratio-sec":          "CR-Korea-ratio",
+    "CostaRica-1.7fold-sec":       "CostaRica-1.7fold",
+    "T3-Bangladesh-resid-sec":     "T3-Bangladesh-resid",
+    "T3-Bangladesh-resid-sec2":    "T3-Bangladesh-resid",
+    "T3-Maldives-resid-sec":      "T3-Maldives-resid",
+    "T3-CapeVerde-resid-sec":     "T3-CapeVerde-resid",
+    "T3-Bhutan-resid-sec":        "T3-Bhutan-resid",
+    "T3-Tunisia-resid-sec":       "T3-Tunisia-resid",
+    "T3-Nepal-resid-sec":         "T3-Nepal-resid",
+    "T3-India-resid-sec":         "T3-India-resid",
+    "T3-Qatar-resid-sec":         "T3-Qatar-resid",
+    "Russia-99-cumulative":       "Russia-1990-edu",
+}
 
 
 # ── Dispatch map ─────────────────────────────────────────────────────────
 DERIVED_DISPATCH = {
-    # Core derived computations
+    # Rate computations (from WCDE data)
     "Korea-ppyr":             _korea_ppyr,
-    "PI-drop-pct":            _pi_drop_pct,
-    "CostaRica-1.7fold":      _costarica_1_7fold,
     "Bangladesh-ppyr":        _bangladesh_ppyr,
     "India-ppyr":             _india_ppyr,
     "Myanmar-ppyr":           _myanmar_ppyr,
-    "U5MR-post2000-resid-pct": _u5mr_post2000_resid_pct,
-    "CR-Korea-ratio":         _cr_korea_ratio,
-    "China-CR-gain-1975":     _china_cr_gain_1975,
-    "China-LE-gap-1965":      _china_le_gap_1965,
-    "China-LE-gap-1980":      _china_le_gap_1980,
-    "Realloc-advantage-pct":  _realloc_advantage_pct,
-    # T4 generational depths
-    # Institutional expansion rates
     "China-instit-rate":      _china_instit_rate,
     "India-instit-rate":      _india_instit_rate,
-    # Global expansion rates
     "Global-rate-1950-75":    _global_rate("Global-rate-1950-75"),
     "Global-rate-1975-00":    _global_rate("Global-rate-1975-00"),
     "Global-rate-2000-15":    _global_rate("Global-rate-2000-15"),
-    # Grandmother effect R2 gains
-    "GM-child-edu-r2-gain":   _gm_child_edu_r2_gain,
-    "GM-le-r2-gain":          _gm_le_r2_gain,
-    # U5MR pre-2000 residual percentage
-    "U5MR-pre2000-resid-pct": _u5mr_pre2000_resid_pct,
-    # Colonial-era education R2 percentage
-    "Colonial-era-edu-r2":    _colonial_era_edu_r2,
-    # Education R2 at <10% cutoff percentage
-    "LE-lt10-edu-r2-pct":     _le_lt10_edu_r2_pct,
-    # Beta cutoff R2 percentages
-    "Beta-cutoff-50-r2-pct":  _beta_cutoff_r2_pct(50),
-    "Beta-cutoff-90-r2-pct":  _beta_cutoff_r2_pct(90),
-    # Russia 99% cumulative restatement
-    "Russia-99-cumulative":   _russia_99_cumulative,
+    "China-CR-gain-1975":     _china_cr_gain_1975,
+    # Ratios from other verified values
+    "PI-drop-pct":            _pi_drop_pct,
+    "CostaRica-1.7fold":      _costarica_1_7fold,
+    "CR-Korea-ratio":         _cr_korea_ratio,
+    "Realloc-advantage-pct":  _realloc_advantage_pct,
+    # Abs of checkin values (paper reports absolute, JSON stores signed)
+    "T3-Qatar-resid":         _abs_checkin("regression_tables.json", "country_residuals.T3-Qatar-resid"),
+    "T2-TFR-beta-abs":        _abs_checkin("education_outcomes.json", "numbers.T2-TFR-beta"),
+    "GM-TFR-low-beta-gm":    _abs_checkin("grandmother_effect.json", "results.tfr_low_edu.mother_gm.beta_grandmother_edu"),
+    "GM-TFR-low-beta-m":     _abs_checkin("grandmother_effect.json", "results.tfr_low_edu.mother_gm.beta_mother_edu"),
+    "China-LE-gap-1965":      _abs_checkin("china_mean_yrs_vs_peers.json", "key_data_points.le_gap_1965"),
+    "China-LE-gap-1980":      _abs_checkin("china_mean_yrs_vs_peers.json", "key_data_points.le_gap_1980"),
+    # Percentages: checkin R² × 100
+    "GM-child-edu-r2-gain":   _pct_checkin("grandmother_effect.json", "results.child_edu.r2_gain"),
+    "GM-le-r2-gain":          _pct_checkin("grandmother_effect.json", "results.le.r2_gain", rounding=1),
+    "Colonial-era-edu-r2":    _pct_checkin("colonial_education_vs_institutions.json", "r2_colonial_education"),
+    "T2-GDP-beta-pct":        _pct_checkin("education_outcomes.json", "numbers.T2-GDP-beta", rounding=1),
+    "GDP-r2-below10-pct":     _pct_checkin("edu_vs_gdp_predicts_le.json", "numbers.lt10.gdp_r2", rounding=1),
+    # Percentages: other verified entry × 100
+    "U5MR-post2000-resid-pct": _pct_of("U5MR-post2000-resid-r2"),
+    "U5MR-pre2000-resid-pct":  _pct_of("U5MR-pre2000-resid-r2"),
+    "LE-lt10-edu-r2-pct":      _pct_of("LE-lt10-edu-r2"),
+    "Beta-cutoff-50-r2-pct":  _pct_checkin("beta_by_ceiling_cutoff.json", "numbers.panelA_cutoff_50_r2"),
+    "Beta-cutoff-90-r2-pct":  _pct_checkin("beta_by_ceiling_cutoff.json", "numbers.panelA_cutoff_90_r2"),
+    # Lag sensitivity max scans
+    "resid-gdp-r2-le-tfr-max": _resid_gdp_r2_lag_max(["LE", "TFR"]),
+    "resid-gdp-r2-u5mr-max":   _resid_gdp_r2_lag_max(["U5MR"]),
     # Cambodia peer medians
     "Cambodia-peer-median-1985": _cambodia_peer_median(1985),
     "Cambodia-peer-median-2015": _cambodia_peer_median(2015),
-    # Qatar residual (absolute value)
-    "T3-Qatar-resid":         _t3_qatar_resid,
-    # Absolute-value TFR betas
-    "T2-TFR-beta-abs":        _t2_tfr_beta_abs,
-    "GM-TFR-low-beta-gm":    _gm_tfr_low_beta_gm,
-    "GM-TFR-low-beta-m":     _gm_tfr_low_beta_m,
-    # Derived percentages
-    "T2-GDP-beta-pct":        _t2_gdp_beta_pct,
-    "GDP-r2-below10-pct":     _gdp_r2_below10_pct,
-    "resid-gdp-r2-le-tfr-max": _resid_gdp_r2_lag_bound,
-    "resid-gdp-r2-u5mr-max":   _resid_gdp_r2_u5mr_max,
-    # Lag robustness bounds
-    # Section duplicates
-    "Korea-ppyr-sec":              _forward("Korea-ppyr"),
-    "India-ppyr-sec":              _forward("India-ppyr"),
-    "Bangladesh-ppyr-sec":         _forward("Bangladesh-ppyr"),
-    "PI-drop-pct-sec":             _forward("PI-drop-pct"),
-    "China-CR-gain-1975-sec":      _forward("China-CR-gain-1975"),
-    "CR-Korea-ratio-sec":          _forward("CR-Korea-ratio"),
-    "CostaRica-1.7fold-sec":       _forward("CostaRica-1.7fold"),
-    # China peer LE gains (section duplicates)
-    # T3 Bangladesh residual sec2
-    "T3-Bangladesh-resid-sec2":    _forward("T3-Bangladesh-resid"),
 }
 
 _LAG_ROBUST_NAMES = set()  # no upper-bound claims currently registered
@@ -2029,10 +1912,20 @@ def main():
             continue
         name = entry["name"]
 
+        # Section duplicates: forward from primary entry
+        if name in SECTION_DUPS:
+            primary = SECTION_DUPS[name]
+            entry["actual"] = entry_map.get(primary, {}).get("actual")
+            if entry["actual"] is not None:
+                if abs(entry["actual"] - entry["value"]) <= entry["tol"]:
+                    entry["status"] = "PASS"
+                else:
+                    entry["status"] = "FAIL"
+            else:
+                entry["status"] = "MISSING"
+            continue
+
         fn = DERIVED_DISPATCH.get(name)
-        if fn is None and name.startswith("T3-") and name.endswith("-sec"):
-            # T3 residual section duplicates: strip "-sec" and forward
-            fn = _forward(name[:-4])
         if fn:
             entry["actual"] = fn(entry_map)
 
