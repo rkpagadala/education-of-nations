@@ -1,12 +1,12 @@
 # Verification Report
 
-Generated: 2026-04-14 03:22
+Generated: 2026-04-14 03:25
 
-## Result: 269/269 PASS
+## Result: 284/284 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 269 |
+| Verified claims | 284 |
 | Failed | 0 |
 | Missing | 0 |
 | Literature refs (manual) | 18 |
@@ -17,7 +17,7 @@ Generated: 2026-04-14 03:22
 
 | Source | Pass | Fail | Missing |
 |--------|------|------|---------|
-| checkin | 157 | 0 | 0 |
+| checkin | 172 | 0 | 0 |
 | derived | 44 | 0 | 0 |
 | ref | 0 | 0 | 0 |
 | wcde | 20 | 0 | 0 |
@@ -28,7 +28,7 @@ Generated: 2026-04-14 03:22
 | Section | Claims | Pass | Fail |
 |---------|--------|------|------|
 | abstract | 5 | 5 | 0 |
-| appendix-robustness | 7 | 7 | 0 |
+| appendix-robustness | 22 | 22 | 0 |
 | cambodia-the-pt-shadow | 6 | 6 | 0 |
 | causal-identification-the-bad-control-problem-and-natural-experiments | 3 | 3 | 0 |
 | china | 12 | 12 | 0 |

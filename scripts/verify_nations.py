@@ -593,8 +593,8 @@ reg("PI-drop-pct",   72.0,   "derived", "1 - PI-cond-beta/PI-alone-beta",
 reg("CostaRica-1.7fold", 1.7, "derived", "GDP-CostaRica-1990 / GDP-CostaRica-1960",
     [], tol=0.3)
 
-# Table 4 "Generations" column: ceil(lag / 25), interpretive rounding
-# Lag values are approximate; Generations = nearest integer of ~25-year cycles
+# Table 4 "Generations" column: interpretive rounding of lag / 25.
+# Not registered — these are editorial judgments, not computed values.
 
 # Table A4 shift ranges (min and max across cases incl. Taiwan)
 reg("threshold-shift-min", 10, "checkin",
@@ -618,7 +618,52 @@ reg("threshold-shift-Bangladesh", 14, "checkin",
     ("threshold_robustness.json", "results.Bangladesh.shift"),
     ["defining-development"], tol=0)
 
-# Table A4 threshold variants (aligned with fig_threshold_sensitivity.py)
+# Table A4 crossing years under each spec (threshold_robustness.json)
+reg("A4-Cuba-loose",       1964, "checkin",
+    ("threshold_robustness.json", "results.Cuba.loose"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-Cuba-main",        1974, "checkin",
+    ("threshold_robustness.json", "results.Cuba.main"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-Cuba-strict",      1980, "checkin",
+    ("threshold_robustness.json", "results.Cuba.strict"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-Korea-loose",      1978, "checkin",
+    ("threshold_robustness.json", "results.South Korea.loose"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-Korea-main",       1987, "checkin",
+    ("threshold_robustness.json", "results.South Korea.main"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-Korea-strict",     1993, "checkin",
+    ("threshold_robustness.json", "results.South Korea.strict"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-SriLanka-loose",   1975, "checkin",
+    ("threshold_robustness.json", "results.Sri Lanka.loose"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-SriLanka-main",    1993, "checkin",
+    ("threshold_robustness.json", "results.Sri Lanka.main"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-SriLanka-strict",  2005, "checkin",
+    ("threshold_robustness.json", "results.Sri Lanka.strict"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-China-loose",      1982, "checkin",
+    ("threshold_robustness.json", "results.China.loose"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-China-main",       1994, "checkin",
+    ("threshold_robustness.json", "results.China.main"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-China-strict",     2001, "checkin",
+    ("threshold_robustness.json", "results.China.strict"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-Bangladesh-loose",  2005, "checkin",
+    ("threshold_robustness.json", "results.Bangladesh.loose"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-Bangladesh-main",   2014, "checkin",
+    ("threshold_robustness.json", "results.Bangladesh.main"),
+    [APPENDIX_ROBUST], tol=0)
+reg("A4-Bangladesh-strict", 2019, "checkin",
+    ("threshold_robustness.json", "results.Bangladesh.strict"),
+    [APPENDIX_ROBUST], tol=0)
 
 # pp/yr rates for other countries (derived from WCDE data)
 reg("Bangladesh-ppyr", 1.30, "derived", "Bangladesh edu rate 1990-2020",
