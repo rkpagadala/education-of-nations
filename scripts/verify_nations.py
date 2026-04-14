@@ -593,9 +593,6 @@ reg("PI-drop-pct",   72.0,   "derived", "1 - PI-cond-beta/PI-alone-beta",
 reg("CostaRica-1.7fold", 1.7, "derived", "GDP-CostaRica-1990 / GDP-CostaRica-1960",
     [], tol=0.3)
 
-# Table 4 "Generations" column: interpretive rounding of lag / 25.
-# Not registered — these are editorial judgments, not computed values.
-
 # Table A4 shift ranges (min and max across cases incl. Taiwan)
 reg("threshold-shift-min", 10, "checkin",
     ("threshold_robustness.json", "results.Taiwan.shift"),
