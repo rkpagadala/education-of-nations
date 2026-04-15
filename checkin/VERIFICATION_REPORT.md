@@ -1,6 +1,6 @@
 # Verification Report
 
-Generated: 2026-04-14 06:46
+Generated: 2026-04-15 00:34
 
 ## Result: 307/307 PASS
 
@@ -56,12 +56,12 @@ Generated: 2026-04-14 06:46
 
 8 lines contain numbers not mapped to any verification entry:
 
-- L469 [why-education-is-invisible]: 2050
-- L1101 [gdp-has-no-independent-effect]: 0.24
-- L1156 [gdp-has-no-independent-effect]: 2001
-- L1267 [the-shock-test]: 0.2
-- L1268 [the-shock-test]: 0.18
-- L1269 [the-shock-test]: 0.22
-- L1270 [the-shock-test]: 0.22
-- L1271 [the-shock-test]: 0.18
+- L465 [why-education-is-invisible]: 2050
+- L1229 [gdp-has-no-independent-effect]: 0.24
+- L1284 [gdp-has-no-independent-effect]: 2001
+- L1395 [the-shock-test]: 0.2
+- L1396 [the-shock-test]: 0.18
+- L1397 [the-shock-test]: 0.22
+- L1398 [the-shock-test]: 0.22
+- L1399 [the-shock-test]: 0.18
 
