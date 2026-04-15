@@ -1,23 +1,23 @@
 # Verification Report
 
-Generated: 2026-04-15 00:34
+Generated: 2026-04-15 02:59
 
-## Result: 307/307 PASS
+## Result: 310/310 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 307 |
+| Verified claims | 310 |
 | Failed | 0 |
 | Missing | 0 |
 | Literature refs (manual) | 18 |
-| Unregistered numbers | 8 |
+| Unregistered numbers | 0 |
 | Section offset issues | 0 |
 
 ## By Source Type
 
 | Source | Pass | Fail | Missing |
 |--------|------|------|---------|
-| checkin | 188 | 0 | 0 |
+| checkin | 191 | 0 | 0 |
 | derived | 50 | 0 | 0 |
 | ref | 0 | 0 | 0 |
 | wcde | 21 | 0 | 0 |
@@ -45,23 +45,10 @@ Generated: 2026-04-15 00:34
 | policy-over-performers | 25 | 25 | 0 |
 | taiwan-and-korea | 6 | 6 | 0 |
 | the-cases | 26 | 26 | 0 |
-| the-colonial-test | 6 | 6 | 0 |
+| the-colonial-test | 9 | 9 | 0 |
 | the-decision | 6 | 6 | 0 |
 | the-evidence | 1 | 1 | 0 |
 | the-institutional-challenge | 13 | 13 | 0 |
 | the-shock-test | 14 | 14 | 0 |
 | why-education-is-invisible | 1 | 1 | 0 |
-
-## Unregistered Numbers
-
-8 lines contain numbers not mapped to any verification entry:
-
-- L465 [why-education-is-invisible]: 2050
-- L1229 [gdp-has-no-independent-effect]: 0.24
-- L1284 [gdp-has-no-independent-effect]: 2001
-- L1395 [the-shock-test]: 0.2
-- L1396 [the-shock-test]: 0.18
-- L1397 [the-shock-test]: 0.22
-- L1398 [the-shock-test]: 0.22
-- L1399 [the-shock-test]: 0.18
 

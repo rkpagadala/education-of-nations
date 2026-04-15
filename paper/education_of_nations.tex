@@ -434,6 +434,20 @@ time; educational investment changes trajectory.
 
 \subsection{Why Education Is Invisible}\label{why-education-is-invisible}
 
+An educated person is physically indistinguishable from an uneducated
+one. Same body, same biological drives, same appearance. Wealth builds
+visible infrastructure; disease marks the body; education rewires
+cognition and leaves no trace on the surface. The only observable signal
+is behavioural change --- and we misread it. We see smaller families and
+call it wealth flows, or contraceptive access, or patriarchy relaxing, or
+telenovelas on television. We see longer lives and call it health systems.
+We see rising productivity and call it economic growth. Every discipline
+theorises the downstream behaviour without tracing it back to the
+cognitive reorganisation that produced it. Education has no physical
+signature, so the signature it does leave --- changed decisions, across
+every domain, for the rest of the person's life --- is assigned to
+whatever domain notices it first.
+
 Educated people rank education as important --- one of many important
 things, alongside health, nutrition, governance, and security. They
 cannot categorise it as \emph{fundamental} because that would require
@@ -2206,6 +2220,21 @@ because it predicts education. Once education is in the model, religion
 adds nothing. The channel is religion $\to$ schools $\to$ education $\to$
 development, not religion $\to$ institutions $\to$ development (Table~\ref{tab:a6}).
 
+A formal instrumental-variable test sharpens the result.
+Two-stage least squares using coloniser religion as the excluded
+instrument produces a first-stage F-statistic of 12.2 for education at
+independence --- above the Stock \& Yogo (2005) threshold for instrument
+relevance --- but only 2.6 for Polity2 institutional quality, well below
+the threshold (Table~\ref{tab:a7}). The second stage for education is
+significant ($\hat\beta = +0.059$, $t = 2.44$, $p = 0.017$); the
+institutional 2SLS is unreliable because the instrument is weak. The
+Wu-Hausman test is insignificant ($p = 0.85$), confirming that OLS and
+2SLS agree when the endogenous variable is education --- consistent with
+coloniser religion being exogenous to the education channel.
+AJR's instrument works, but it works \emph{because} it predicts
+education, not because it predicts institutions.
+See \texttt{scripts/robustness/iv\_2sls\_colonial.py}.
+
 Latin America is the critical case. Spanish and Portuguese colonies were
 settler colonial --- Europeans came and stayed in large numbers, built
 cities, established legal systems. AJR's framework predicts that
@@ -2302,6 +2331,31 @@ Education 1950 + coloniser religion & 0.466 \\
 capita 2020, except the final row which includes both regressors.
 Adding coloniser religion to education raises R$^2$ from 0.465 to
 0.466: religion predicts GDP only through its effect on education.}
+
+\refstepcounter{table}\label{tab:a7}\textbf{Table \thetable. 2SLS instrumental-variable contest: education vs.\ institutions.}
+Coloniser religion (Protestant = 1) as the excluded instrument.
+First-stage F $> 10$: strong instrument (Stock \& Yogo 2005).
+84 former colonies with complete data. See
+\texttt{scripts/robustness/iv\_2sls\_colonial.py}.
+
+{\small
+\begin{longtable}[]{@{}lrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{First stage} & \multicolumn{2}{c}{Second stage (log GDP)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Endogenous variable & F-stat & Strength & $\hat\beta$ & $t$ \\
+\midrule
+\endhead
+Education 1950 (lower sec) & 12.2 & Strong & $+$0.059 & 2.44 \\
+Polity2 (institutions) & 2.6 & Weak & $+$0.349 & 2.26$^{\dagger}$ \\
+\bottomrule
+\end{longtable}
+}
+
+\emph{$^{\dagger}$Institutional coefficient is inflated by weak-instrument
+bias (F $= 2.6 < 10$); the 2SLS estimate is unreliable.
+Wu-Hausman test for the education specification: $p = 0.85$ (OLS and 2SLS
+agree). The instrument predicts education, not institutions.}
 
 
 \end{document}

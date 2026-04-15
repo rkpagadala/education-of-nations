@@ -40,6 +40,7 @@ verify: \
 	$(CHECKIN)/u5mr_residual_by_year.json \
 	$(CHECKIN)/regime_education_test.json \
 	$(CHECKIN)/colonial_education_vs_institutions.json \
+	$(CHECKIN)/iv_2sls_colonial.json \
 	$(CHECKIN)/china_mean_yrs_vs_peers.json
 
 # ── Analysis scripts (produce checkin JSONs) ──────────────────────────
@@ -117,6 +118,9 @@ $(CHECKIN)/regime_education_test.json: robustness/regime_education.py $(ALL_DATA
 	$(PYTHON) $<
 
 $(CHECKIN)/colonial_education_vs_institutions.json: robustness/colonial_vs_institutions.py $(ALL_DATA) $(DATA)/p5v2018.xls
+	$(PYTHON) $<
+
+$(CHECKIN)/iv_2sls_colonial.json: robustness/iv_2sls_colonial.py robustness/colonial_vs_institutions.py $(ALL_DATA) $(DATA)/p5v2018.xls
 	$(PYTHON) $<
 
 	$(PYTHON) $<

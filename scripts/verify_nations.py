@@ -1160,6 +1160,10 @@ reg("Colonial-edu1950-plus-religion-r2", 0.466, "checkin",
 reg("Colonial-era-edu-r2",    38,    "derived", "Colonial education R² × 100 rounded", [COLONIAL], tol=1)
 reg("Spain-1875-primary",     0.6,   "wcde", ("cohort_primary_both.csv", "Spain", 1875), [COLONIAL], tol=0.1)
 reg("Portugal-1875-primary",  0.1,   "wcde", ("cohort_primary_both.csv", "Portugal", 1875), [COLONIAL], tol=0.1)
+# 2SLS IV test
+reg("IV-edu-F",               12.2,  "checkin", ("iv_2sls_colonial.json", "gdp_edu_first_stage_F"), [COLONIAL], tol=0.5)
+reg("IV-inst-F",              2.6,   "checkin", ("iv_2sls_colonial.json", "gdp_inst_first_stage_F"), [COLONIAL], tol=0.5)
+reg("IV-edu-coef",            0.059, "checkin", ("iv_2sls_colonial.json", "gdp_edu_2sls_coef"), [COLONIAL], tol=0.005)
 # REMOVED from paper
 # REMOVED from paper
 
@@ -1999,12 +2003,12 @@ def main():
         95,             # 95% confidence interval — methodological constant
         1000,           # 1,000 bootstrap replications — methodological constant
         2026,           # publication year
-        2051,           # future illustration year
+        2050, 2051,     # future illustration years
         2017,           # GDP constant USD base year
         # WCDE five-year grid / data observation years — used as lookup
         # parameters throughout, not computed findings
         1870, 1875, 1900, 1950, 1960, 1975, 1980, 1985, 1990,
-        2000, 2010, 2015, 2022,
+        2000, 2001, 2010, 2015, 2022,
     }
 
     SECTION_REF_RE = re.compile(r'[Ss]ection\s+(\d+\.\d+)')
@@ -2038,6 +2042,8 @@ def main():
         clean = re.sub(r'\\texttt\{[^}]*\}', '', clean)
         # Footnote script references
         clean = re.sub(r'\\footnote\{[^}]*\}', '', clean)
+        # LaTeX table column widths: \real{0.2400}
+        clean = re.sub(r'\\real\{[^}]*\}', '', clean)
 
         nums = []
         for m in NUMBER_RE.finditer(clean):
