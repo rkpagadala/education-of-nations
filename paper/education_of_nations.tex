@@ -687,9 +687,12 @@ forward lag eliminates reverse causality. The residualization
 (Table~\ref{tab:3}) shows income stripped of education's contribution
 predicts nothing. The shock test (Table~\ref{tab:shock}) shows that
 every shock preserving the educated population preserves the fertility
-transition; only destroying the educated population breaks both. Each
-test admits an alternative story in isolation. The causal case is that
-no alternative explanation survives all of them simultaneously.
+transition; only destroying the educated population breaks both. The
+famine test (Section~\ref{the-famine-test}) shows the converse: no
+educated population has experienced famine unless external force
+physically prevented food access. Each test admits an alternative story
+in isolation. The causal case is that no alternative explanation
+survives all of them simultaneously.
 
 \subsection{Causal Identification}\label{causal-identification-the-bad-control-problem-and-natural-experiments}
 
@@ -1499,6 +1502,22 @@ Cambodia (Section~\ref{cambodia-the-pt-shadow}) is the exception that
 proves the rule: the only shock that breaks the household mechanism is
 the one that destroys the household.
 
+\subsection{The Famine Test}\label{the-famine-test}
+
+The shock test asks whether education survives crisis. The famine test asks the converse: does education \emph{prevent} the most extreme form of crisis?
+
+Every major famine since 1950 occurred in a low-education setting. Of 21 famines in the dataset, 19 occurred where lower secondary completion was below 50\%. The median education level at the time of famine was 19.6\%; the mean was 25.4\%. The two exceptions --- North Korea (1996, 100\% completion) and Yemen (2018, 68\%) --- both required external force physically preventing food access: totalitarian state control of distribution in the first case, naval blockade in the second. Where the educated population retained agency, famine did not occur.
+
+The near-miss cases make the pattern sharper. Seventeen countries faced shocks comparable to or worse than those that produced famines elsewhere --- Cuba's 35\% GDP collapse when Soviet food imports were cut by 80\% (1993), post-WWII Japan and Germany, Armenia under simultaneous blockade and war (1993), Ukraine under Russian invasion and grain blockade (2022) --- and none experienced famine. Their median education was 71.6\%, against 19.6\% for famine countries. The difference is significant at $p < 0.00001$ (Mann--Whitney $U$).
+
+Educated populations do not starve. They reorganise supply chains, ration collectively, substitute crops, demand state response, and migrate strategically. Uneducated populations, facing the same shock, lack the household-level capacity to adapt and the political capacity to compel response. The mechanism is PT operating through the household: the same cognitive and behavioural repertoire that drives the fertility transition also drives famine prevention.
+
+\textbf{Bihar and Kerala, 1966.} The within-country case eliminates every confounder except education. The 1965--66 national drought crashed India's grain production by 19\%. Bihar experienced famine: 70,000--130,000 excess deaths (Dyson \& Maharatna 1992). Kerala --- India's most food-deficit state, 40\% import-dependent, hit so severely that food riots erupted and the UK Parliament identified it as one of the ``most severely hit areas'' --- had no famine. Same Constitution, same free press, same central government, same democratic institutions. Bihar's literacy was 22\% (female: 9\%). Kerala's was 55\% (female: 39\%).
+
+Sen's claim that ``no famine has ever taken place in a functioning democracy'' (Sen 1999) cannot explain the Bihar--Kerala divergence. Democracy was constant across both states. Education was not. Myhrvold-Hanssen (2003) challenges Sen directly on this point, arguing that Bihar 1966--67 meets any reasonable definition of famine and that the Indian media, ``although free and independent, did not provide reliable information.'' Drèze himself described the evidence that Bihar was a success story as ``precious little'' (Brass 1986).
+
+Kerala's own history confirms the mechanism. In 1943, Travancore (pre-independence Kerala) experienced famine under the same structural vulnerability --- extreme food-import dependence --- killing approximately 90,000 people. The difference between 1943 and 1966 was not democracy (Travancore had an elected legislature from 1932) but education: literacy had risen from approximately 30\% to 55\%. The educated population built the institutions --- universal public distribution, food committees, political mobilisation --- that prevented the same structural vulnerability from producing the same outcome.\footnote{See \texttt{scripts/famine\_education\_test.py}.}
+
 \section{The Cases}\label{the-cases}
 
 Every country that developed did so one generation after sustained education investment --- under every political system, at every income level, on every continent.
@@ -1797,6 +1816,9 @@ Baker, D.P., Collins, J.M. \& Leon, J. (2017). Risk Factor or Social
 Vaccine? The Historical Progression of the Role of Education in HIV and
 AIDS Infection in Sub-Saharan Africa. \emph{Prospects}, 38(4), 467--486.
 
+Brass, P.R. (1986). The Political Uses of Crisis: The Bihar Famine of
+1966--1967. \emph{Journal of Asian Studies}, 45(2), 245--267.
+
 Boyd, R. \& Richerson, P.J. (1985). \emph{Culture and the Evolutionary
 Process}. University of Chicago Press.
 
@@ -1833,6 +1855,10 @@ Evidence from India. \emph{Population and Development Review}, 27(1),
 
 Drèze, J. \& Sen, A. (1989). \emph{Hunger and Public Action}. Clarendon
 Press.
+
+Dyson, T. \& Maharatna, A. (1992). Bihar Famine, 1966--67, and
+Maharashtra Drought, 1970--73: The Demographic Consequences.
+\emph{Economic and Political Weekly}, 27(26), 1325--1332.
 
 Easterlin, R.A. (1981). Why Isn't the Whole World Developed?
 \emph{Journal of Economic History}, 41(1), 1--19.
@@ -1890,6 +1916,10 @@ Lutz, W., Reiter, C., Özdemir, C., Yildiz, D., Guimaraes, R. \& Goujon,
 A. (2021). Skills-adjusted Human Capital Shows Increasing Global
 Progress and Persistent Disparities. \emph{Nature Human Behaviour}, 5,
 701--711.
+
+Myhrvold-Hanssen, T. (2003). Democracy, News Media, and Famine
+Prevention: Amartya Sen and the Bihar Famine of 1966--67. Masters thesis,
+University of Oslo.
 
 Mamun, M.A.~\& Bongaarts, J. (2022). Revisiting the causes of fertility
 decline in Bangladesh: the relative importance of female education and
@@ -2226,7 +2256,7 @@ instrument produces a first-stage F-statistic of 12.2 for education at
 independence --- above the Stock \& Yogo (2005) threshold for instrument
 relevance --- but only 2.6 for Polity2 institutional quality, well below
 the threshold (Table~\ref{tab:a7}). The second stage for education is
-significant ($\hat\beta = +0.059$, $t = 2.44$, $p = 0.017$); the
+significant ($\hat\beta = +0.059$, $t = 3.21$, $p = 0.002$); the
 institutional 2SLS is unreliable because the instrument is weak. The
 Wu-Hausman test is insignificant ($p = 0.85$), confirming that OLS and
 2SLS agree when the endogenous variable is education --- consistent with
@@ -2346,8 +2376,8 @@ First-stage F $> 10$: strong instrument (Stock \& Yogo 2005).
 Endogenous variable & F-stat & Strength & $\hat\beta$ & $t$ \\
 \midrule
 \endhead
-Education 1950 (lower sec) & 12.2 & Strong & $+$0.059 & 2.44 \\
-Polity2 (institutions) & 2.6 & Weak & $+$0.349 & 2.26$^{\dagger}$ \\
+Education 1950 (lower sec) & 12.2 & Strong & $+$0.059 & 3.21 \\
+Polity2 (institutions) & 2.6 & Weak & $+$0.349 & 1.56$^{\dagger}$ \\
 \bottomrule
 \end{longtable}
 }

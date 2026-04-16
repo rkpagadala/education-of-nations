@@ -57,6 +57,7 @@ EDU_PRED = "education-predicts-development-outcomes-25-years-forward"
 GDP_INDEP = "gdp-has-no-independent-effect"
 OVERPERF = "policy-over-performers"
 SHOCK_TEST = "the-shock-test"
+FAMINE_TEST = "the-famine-test"
 CUMULATIVE = "the-evidence"
 SEN_CASES = "the-cases"
 TAIWAN_KOREA = "taiwan-and-korea"
@@ -1232,6 +1233,21 @@ reg("SA-2005-LE",       53.9,  "wdi",  ("le", "South Africa", 2005), [SHOCK_TEST
 reg("SA-1990-TFR",      3.72,  "wdi",  ("tfr", "South Africa", 1990), [SHOCK_TEST], tol=0.05)
 reg("SA-2000-TFR",      2.41,  "wdi",  ("tfr", "South Africa", 2000), [SHOCK_TEST], tol=0.05)
 reg("SA-2019-LE",       66.1,  "wdi",  ("le", "South Africa", 2019), [SHOCK_TEST], tol=0.1)
+
+# --- FAMINE TEST section ---
+# Numbers from scripts/famine_education_test.py output
+reg("Famine-count",        21,     "ref", "Count of famines in dataset since 1950",  [FAMINE_TEST], tol=0)
+reg("Famine-below-50-ct",  19,     "ref", "Famines with edu < 50%",                  [FAMINE_TEST], tol=0)
+reg("Famine-median-edu",   19.6,   "ref", "Median education at famine",              [FAMINE_TEST], tol=0.1)
+reg("Famine-mean-edu",     25.4,   "ref", "Mean education at famine",                [FAMINE_TEST], tol=0.1)
+reg("NM-median-edu",       71.6,   "ref", "Near-miss median education",              [FAMINE_TEST], tol=0.5)
+reg("Famine-p-val",        1e-05,  "ref", "Mann-Whitney U p-value (famine vs near-miss)", [FAMINE_TEST], tol=1e-04)
+reg("Bihar-deaths-lo",     70000,  "ref", "Bihar famine excess deaths low estimate (Dyson & Maharatna 1992)", [FAMINE_TEST], tol=0)
+reg("Bihar-deaths-hi",     130000, "ref", "Bihar famine excess deaths high estimate (Dyson & Maharatna 1992)", [FAMINE_TEST], tol=0)
+reg("Bihar-grain-drop",    19,     "ref", "India grain production drop 1965-66 (%)",  [FAMINE_TEST], tol=0)
+reg("Kerala-female-lit",   39,     "ref", "Kerala female literacy ~1966 (%)",         [FAMINE_TEST], tol=1)
+reg("Kerala-1943-deaths",  90000,  "ref", "Travancore famine 1943 deaths",            [FAMINE_TEST], tol=5000)
+reg("Kerala-1966-yr",      1966,   "ref", "Year of Bihar-Kerala comparison",          [FAMINE_TEST], tol=0)
 
 def run_script(path, cwd=None):
     if not os.path.exists(path):

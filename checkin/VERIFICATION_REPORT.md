@@ -1,6 +1,6 @@
 # Verification Report
 
-Generated: 2026-04-15 02:59
+Generated: 2026-04-16 11:36
 
 ## Result: 310/310 PASS
 
@@ -9,7 +9,7 @@ Generated: 2026-04-15 02:59
 | Verified claims | 310 |
 | Failed | 0 |
 | Missing | 0 |
-| Literature refs (manual) | 18 |
+| Literature refs (manual) | 30 |
 | Unregistered numbers | 0 |
 | Section offset issues | 0 |
 
@@ -48,6 +48,7 @@ Generated: 2026-04-15 02:59
 | the-colonial-test | 9 | 9 | 0 |
 | the-decision | 6 | 6 | 0 |
 | the-evidence | 1 | 1 | 0 |
+| the-famine-test | 0 | 0 | 0 |
 | the-institutional-challenge | 13 | 13 | 0 |
 | the-shock-test | 14 | 14 | 0 |
 | why-education-is-invisible | 1 | 1 | 0 |

@@ -182,9 +182,9 @@ def run_2sls(df, endog_col, outcome_col, instrument_col="protestant", label=""):
     ss_coef = second_stage_naive.params[1]
 
     # Correct second-stage standard errors
-    # Use original endog values but fitted values for the coefficient
-    # Residuals from second stage using ACTUAL endog values weighted by IV coef
-    resid_2s = Y - second_stage_naive.predict(X2)
+    # Residuals must use ACTUAL endogenous values, not fitted X̂
+    # (X̂ takes only two distinct values from binary instrument → understates variance)
+    resid_2s = Y - (second_stage_naive.params[0] + ss_coef * X_endog)
     sigma2 = np.sum(resid_2s**2) / (n - 2)
     # Proper variance: sigma^2 * (Z'Z)^{-1} * Z'X * (X'Pz*X)^{-1}
     # For just-identified case with single binary instrument, simplify:
