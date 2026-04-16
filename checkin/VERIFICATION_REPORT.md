@@ -1,41 +1,41 @@
 # Verification Report
 
-Generated: 2026-04-16 11:36
+Generated: 2026-04-16 13:52
 
-## Result: 310/310 PASS
+## Result: 330/330 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 310 |
+| Verified claims | 330 |
 | Failed | 0 |
 | Missing | 0 |
 | Literature refs (manual) | 30 |
-| Unregistered numbers | 0 |
+| Unregistered numbers | 4 |
 | Section offset issues | 0 |
 
 ## By Source Type
 
 | Source | Pass | Fail | Missing |
 |--------|------|------|---------|
-| checkin | 191 | 0 | 0 |
-| derived | 50 | 0 | 0 |
+| checkin | 205 | 0 | 0 |
+| derived | 52 | 0 | 0 |
 | ref | 0 | 0 | 0 |
-| wcde | 21 | 0 | 0 |
-| wdi | 48 | 0 | 0 |
+| wcde | 23 | 0 | 0 |
+| wdi | 50 | 0 | 0 |
 
 ## By Paper Section
 
 | Section | Claims | Pass | Fail |
 |---------|--------|------|------|
 | abstract | 5 | 5 | 0 |
-| appendix-robustness | 22 | 22 | 0 |
-| cambodia-the-pt-shadow | 6 | 6 | 0 |
+| appendix-robustness | 34 | 34 | 0 |
+| cambodia-the-pt-shadow | 8 | 8 | 0 |
 | causal-identification-the-bad-control-problem-and-natural-experiments | 3 | 3 | 0 |
 | china | 13 | 13 | 0 |
 | completion-as-the-operative-variable | 7 | 7 | 0 |
 | data | 3 | 3 | 0 |
 | defining-development | 10 | 10 | 0 |
-| education-predicts-development-outcomes-25-years-forward | 47 | 47 | 0 |
+| education-predicts-development-outcomes-25-years-forward | 49 | 49 | 0 |
 | education-vs-gdp-as-predictors-of-attainment | 32 | 32 | 0 |
 | empirical-strategy | 2 | 2 | 0 |
 | four-further-cases | 16 | 16 | 0 |
@@ -46,10 +46,19 @@ Generated: 2026-04-16 11:36
 | taiwan-and-korea | 6 | 6 | 0 |
 | the-cases | 26 | 26 | 0 |
 | the-colonial-test | 9 | 9 | 0 |
-| the-decision | 6 | 6 | 0 |
+| the-decision | 10 | 10 | 0 |
 | the-evidence | 1 | 1 | 0 |
 | the-famine-test | 0 | 0 | 0 |
 | the-institutional-challenge | 13 | 13 | 0 |
 | the-shock-test | 14 | 14 | 0 |
 | why-education-is-invisible | 1 | 1 | 0 |
+
+## Unregistered Numbers
+
+4 lines contain numbers not mapped to any verification entry:
+
+- L1216 [education-predicts-development-outcomes-25-years-forward]: 0.05
+- L1825 [the-decision]: 2025
+- L1830 [the-decision]: 2025
+- L1834 [the-decision]: 2025
 

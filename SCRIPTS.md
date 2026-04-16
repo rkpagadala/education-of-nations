@@ -44,7 +44,7 @@ The paper makes one central claim — education causes development, GDP doesn't 
 | `scripts/robustness/lag_sensitivity.py` | "You cherry-picked 25 years" | Residualized GDP R² < 0.02 at all lags tested (10–30 years). |
 | `scripts/robustness/u5mr_residual_by_year.py` | "GDP helps child mortality" | The small U5MR signal (R²=0.023) is post-2000 only — MDG health spending, not GDP causing health. |
 | `scripts/robustness/threshold_robustness.py` | "Your threshold is arbitrary" | Every country crosses under loose (TFR<4.5, LE>65), main, and strict (TFR<2.5, LE>72.6) specs. Ordering never changes. |
-| `scripts/robustness/grandmother_effect.py` | "It's just the current generation" | Adding grandmother education raises child-edu R² by 5.2pp and LE R² by 3.6pp. Multi-generational transmission confirmed. |
+| `scripts/robustness/grandparent_effect.py` | "It's just the current generation" | Adding grandparent education raises child-edu R² by 5.2pp and LE R² by 3.6pp. Grandfather and grandmother contribute equally in low-education settings. |
 
 ---
 

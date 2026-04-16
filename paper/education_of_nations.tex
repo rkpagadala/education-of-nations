@@ -135,7 +135,9 @@ fundamental. The distinction matters. Important means high on a list.
 Fundamental means the list does not exist without it.
 
 Education is the necessary and sufficient cause of human development.
-No country has developed without it. Educated people are
+No country has developed without it. No country with sustained
+educational expansion has failed to develop --- but sufficiency operates
+across generations, not within individual lifetimes. Educated people are
 developed --- they live longer, have fewer children, make better health
 decisions, and transmit these gains to their children without requiring
 income or provision as intermediaries. The mechanism is Parental
@@ -208,17 +210,19 @@ the canonical cases. Section~\ref{the-decision} addresses the policy decision.
 Educated parents pass what they know to their children, who pass it to theirs. This is the mechanism.
 
 \textbf{PT (Parental Transmission)} is cultural
-transmission from parent to child. The channel is biological, but what
-travels through it is cultural. The paper measures PT through education
-completion; what parents actually
-transmit is broader --- norms, aspirations, health behaviours, the
-decision to send the next child to school. PT is the base unit, and it
-runs on self-interest: parents invest in their own children without
+transmission through the household. The primary channel is parent to child,
+but the household includes grandparents, older siblings, and extended kin
+--- anyone co-resident during the juvenile dependency period. The channel
+is biological, but what travels through it is cultural. The paper measures
+PT through education completion; what the household actually transmits is
+broader --- norms, aspirations, health behaviours, the decision to send
+the next child to school. PT is the base unit, and it runs on
+self-interest: household members invest in their own children without
 requiring ideology, altruism, or institutional commitment to sustain the
-behaviour. It
-transmits across generations: the grandchild's attainment reflects the
-grandparent's through two sequential cycles (\textasciitilde50 years),
-the great-grandchild's through three (\textasciitilde75 years).
+behaviour. It transmits across generations: the grandchild's attainment
+reflects the grandparent's through two sequential cycles
+(\textasciitilde50 years), the great-grandchild's through three
+(\textasciitilde75 years).
 Of everything PT transmits, one item is operative: the decision to
 educate the next child. A parent who completed school sends their child
 to school --- with expectation, monitoring, and reinforcement. A parent
@@ -845,14 +849,13 @@ through self-interest, not ideology --- because school is where they came
 from and where their child belongs. The gate does not require the parent
 to be a good teacher. It requires the parent to have been a student.
 
-This is also why the grandmother effect is strongest at low baselines.
-Where education is scarce, the grandmother is a second educated person
-in the household. She supports the mother in raising children --- and
-that support includes keeping them in school. At high
-baselines, the entire society holds this expectation and the
-grandmother's independent contribution disappears --- exactly the
-pattern the data show (grandmother $\beta$ significant below 50\%
-maternal completion, zero above it).
+This is also why the grandparent effect is strongest at low baselines.
+Where education is scarce, the grandparent is a second educated person
+in the household --- and, in a village where education is rare, a visible
+exemplar to the wider community. At high baselines, the entire society
+holds this expectation and the grandparent's independent contribution
+disappears --- exactly the pattern the data show (grandparent $\beta$
+significant below 50\% parental completion, zero above it).
 
 \paragraph{From reorganisation to specialisation.}
 
@@ -1191,39 +1194,57 @@ expanding education, a great-great-grandparent's completion predicts how long
 their great-great-grandchild will live --- four generations later. No other
 development input has a comparable reach.
 
-\subsubsection*{The grandmother channel}
+\subsubsection*{The grandparent channel}\label{the-grandparent-channel}
 
 The lag-decay results show that education predicts across multiple
-generations. A sharper test: does the grandmother's education predict
-outcomes \emph{independently}, after controlling for the mother's own
+generations. A sharper test: does the grandparent's education predict
+outcomes \emph{independently}, after controlling for the parent's own
 education?
 
 For fertility in the full panel, the answer is no ---
-grandmother's education adds nothing once the mother's is
-controlled ($\beta_{gm}$=+0.001, $p$=0.80). The mother absorbs the
-grandmother's entire contribution to fertility. But restrict to
-countries where education is still scarce (mother's completion
-below 50\%) and the grandmother effect emerges: $\beta_{gm}$=$-$0.059
-($p$=0.0003), nearly twice the mother's own coefficient
-($\beta_m$=$-$0.033). R² jumps from 0.39 to 0.46. Where education is
-scarce, having an educated grandmother independently reduces fertility
-beyond what the mother's own education predicts.
+grandparent education adds nothing once the parent's is
+controlled ($\beta_{gp}$=+0.001, $p$=0.80). The parent absorbs the
+grandparent's entire contribution to fertility. But restrict to
+countries where education is still scarce (parent completion
+below 50\%) and the grandparent effect emerges: $\beta_{gp}$=$-$0.059
+($p$=0.0003), nearly twice the parent's own coefficient
+($\beta_p$=$-$0.033). R² jumps from 0.39 to 0.46. Where education is
+scarce, having an educated grandparent independently reduces fertility
+beyond what the parent's own education predicts. The effect is not
+gendered: grandfather and grandmother education produce comparable
+coefficients in the low-education subsample ($\beta$=$-$0.054 and
+$-$0.050 respectively), consistent with oblique transmission --- in a
+village where education is rare, any educated elder is a visible exemplar.
 
-For life expectancy, the grandmother effect is significant across all
-education levels ($\beta_{gm}$=+0.070, $p$\textless0.0001), adding 3.6
-percentage points of R² beyond the mother alone. Roughly half the
-grandmother's total effect on LE runs through the mother; half is
+For life expectancy, the grandparent effect is significant across all
+education levels ($\beta_{gp}$=+0.070, $p$\textless0.0001), adding 3.6
+percentage points of R² beyond the parent alone. Roughly half the
+grandparent's total effect on LE runs through the parent; half is
 direct. For grandchild education, the effect is strongest:
-$\beta_{gm}$=+0.271 ($p$\textless0.0001), R² gain of 5.2 points.
+$\beta_{gp}$=+0.271 ($p$\textless0.0001), R² gain of 5.2 points.
 
 The pattern is what the generational gate predicts
 (Section~\ref{completion-as-the-operative-variable}): at low baselines
 each educated person in the household adds independent weight; at high
-baselines the mother has internalised everything the grandmother could
-offer. The grandmother effect on fertility is real, but it operates
+baselines the parent has internalised everything the grandparent could
+offer. The grandparent effect on fertility is real, but it operates
 precisely where it matters most --- the steepest part of the
 transition.\footnote{See
-\texttt{scripts/robustness/grandmother\_effect.py}.}
+\texttt{scripts/robustness/grandparent\_effect.py}.}
+
+This finding generates a specific prediction no alternative framework
+produces: the grandparent's \emph{presence} should matter, not just
+their education level. If the channel is household-level transmission
+--- an educated body in the home modelling behaviour and reinforcing
+norms --- then a living educated grandparent in the household should
+improve grandchild outcomes beyond what the parent's education alone
+explains. A deceased grandparent of equal education should not. DHS
+co-residence data can test this directly: compare grandchild fertility
+and educational attainment in households where an educated grandparent
+is present versus households where they are absent, controlling for
+parent education. If the effect is real, it confirms that PT operates
+through physical presence and daily interaction, not merely through
+inherited socioeconomic status.
 
 \subsection{GDP Has No Independent Effect (Prediction~\ref{pred:income})}\label{gdp-has-no-independent-effect}
 
@@ -1749,6 +1770,18 @@ Countries that started at Cambodia's level in 1960 reached a median of
 46\% by 2015. Cambodia reached 36\%. The buildings came back in 1991.
 Progress came back in 2011. That twenty-year gap is the PT shadow.
 
+The shadow is not over. The grandparent channel
+(Section~\ref{the-grandparent-channel}) predicts a second, deeper lag.
+Children reaching adulthood in 2020--2025 have parents from the
+post-reconstruction cohort (35--36\% completion) but grandparents from
+the frozen cohort (9--10\%). At low baselines, grandparent education
+predicts child outcomes independently of parent education, with a
+coefficient nearly twice the parent's
+($\beta_{gp}$\,=\,--0.059 vs $\beta_p$\,=\,--0.033 for fertility).
+The Khmer Rouge fell in 1979; the parental shadow lifted in 2011;
+the grandparent shadow persists through at least 2035, when the first
+post-disruption cohort's children become grandparents themselves.
+
 
 \section{The Decision}\label{the-decision}
 
@@ -1786,7 +1819,23 @@ The function of the evidence is not to win a cost-benefit comparison
 against health or nutrition, which education will always lose at
 decision-relevant timescales, but to remove the comparison altogether:
 to establish that education is not one investment among many but the
-precondition for all others. No leader has yet made the decision on the
+precondition for all others.
+
+This framework makes a falsifiable prediction. Uganda reached 48.8\%
+lower secondary completion in 2025, expanding at approximately 6
+percentage points per five-year period. Its TFR is 4.39 and life
+expectancy 67.7 --- below both development thresholds. If the framework
+is correct, Uganda will cross both thresholds (TFR\,<\,3.65 and
+LE\,>\,69.8) by approximately 2050, conditional on maintaining current
+expansion rates. The 25-year forward lag from 2025 education levels
+predicts outcomes in 2050; the grandparent channel
+(Section~\ref{the-grandparent-channel}) predicts the crossing will be
+modestly delayed by Uganda's low grandparent baseline (9.1\% in 1975
+for the 2025 cohort). If Uganda crosses on schedule, the framework is
+confirmed in a case it did not train on. If it does not, and expansion
+was sustained, the framework is wrong.
+
+No leader has yet made the decision on the
 basis of evidence alone. This paper provides the evidence. The decision
 remains.
 
@@ -2163,6 +2212,42 @@ threshold choice shifts the level; it does not change the story.
 \label{fig:threshold-sensitivity}
 \end{figure}
 
+
+\subsubsection*{Data source robustness}
+
+The paper uses WCDE v3, which reconstructs historical education
+distributions from census microdata, DHS surveys, and demographic
+back-projection. Three tests verify that the result is not an artifact
+of WCDE's reconstruction methodology.
+
+First, the forward-prediction regression (education at T $\rightarrow$
+outcomes at T+25, country FE) replicates on Barro-Lee v3.0 (Lee \& Lee
+2016), an independent dataset built with different source surveys and
+interpolation methods. Barro-Lee's ``at least some secondary'' variable
+(age 15--24, 146 countries) produces R$^2$(within)\,=\,0.320 for life
+expectancy and 0.287 for TFR --- comparable to WCDE's 0.335 and 0.388.
+Mean years of schooling performs even more strongly
+(R$^2$\,=\,0.400 for LE, 0.428 for TFR). All specifications are
+significant at $p < 0.0001$ with the same sign and direction.
+
+Second, the residualization result also replicates on Barro-Lee.
+GDP stripped of education's contribution (Frisch-Waugh-Lovell, country FE)
+produces R$^2$\,$\leq$\,0.003 for both outcomes on Barro-Lee data,
+compared to $\leq$\,0.002 on WCDE. The finding that income
+has no independent predictive power is not specific to one dataset.
+
+Third, restricting WCDE to post-1970 observations only --- where data
+quality is highest and reconstruction plays the least role --- the
+result holds: R$^2$\,=\,0.313 for LE and 0.281 for TFR, both
+$p < 0.0001$. The pre-1970 decades add statistical power but are not
+driving the finding.
+
+The natural experiments (Cambodia, Bihar--Kerala, Asian financial crisis,
+Russia, South Africa) rest on WDI outcome data and documented historical
+events, not on WCDE reconstruction, and are unaffected by any
+data-source concern.\footnote{See
+\texttt{scripts/robustness/barro\_lee\_replication.py}. Barro-Lee v3.0
+source: \texttt{github.com/barrolee/BarroLeeDataSet}.}
 
 \section{Engagement with Alternative Frameworks}\label{appendix-frameworks}
 

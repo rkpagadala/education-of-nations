@@ -788,12 +788,12 @@ reg("PI-cond-R2",           0.014, "checkin",
     ("table_1_main.json", "numbers.PI-cond-R2"),
     [GDP_INDEP], tol=0.005)
 
-# Grandmother effect betas at low education (L1055, L1057)
+# Grandparent effect betas at low education (L1055, L1057)
 reg("GM-TFR-low-beta-gm",  0.059, "derived",
-    "abs(grandmother_effect.json results.tfr_low_edu.mother_gm.beta_grandmother_edu)",
+    "abs(grandparent_effect.json results.tfr_low_edu.parent_gp.beta_grandparent_edu)",
     [EDU_PRED], tol=0.005)
 reg("GM-TFR-low-beta-m",   0.033, "derived",
-    "abs(grandmother_effect.json results.tfr_low_edu.mother_gm.beta_mother_edu)",
+    "abs(grandparent_effect.json results.tfr_low_edu.parent_gp.beta_parent_edu)",
     [EDU_PRED], tol=0.005)
 
 # GDP per capita 1.2% per pp (L983) — from education_outcomes.json
@@ -997,6 +997,48 @@ reg("LE-Uganda-1980-sec",    43.5,  "wdi", ("le", "Uganda", 1980), [MYANMAR], to
 reg("TwoWay-n-sec",          783,   "checkin", ("table_a1_cutoffs.json", "numbers.cutoff_30.n"), [APPENDIX_ROBUST], tol=0)
 reg("TwoWay-countries-sec",  137,   "checkin", ("table_a1_cutoffs.json", "numbers.cutoff_30.countries"), [APPENDIX_ROBUST], tol=0)
 
+# --- APPENDIX_ROBUST: Barro-Lee replication R² values ---
+reg("BL-sec-r2-le",    0.320, "checkin",
+    ("barro_lee_replication.json", "bl_BL_edu_sec_to_le_t25_r2"),
+    [APPENDIX_ROBUST], tol=0.01)
+reg("BL-sec-r2-tfr",   0.287, "checkin",
+    ("barro_lee_replication.json", "bl_BL_edu_sec_to_tfr_t25_r2"),
+    [APPENDIX_ROBUST], tol=0.01)
+reg("BL-mys-r2-le",    0.400, "checkin",
+    ("barro_lee_replication.json", "bl_BL_edu_mys_to_le_t25_r2"),
+    [APPENDIX_ROBUST], tol=0.01)
+reg("BL-mys-r2-tfr",   0.428, "checkin",
+    ("barro_lee_replication.json", "bl_BL_edu_mys_to_tfr_t25_r2"),
+    [APPENDIX_ROBUST], tol=0.01)
+reg("WCDE-full-r2-le",  0.335, "checkin",
+    ("barro_lee_replication.json", "wcde_full_WCDE_full_to_le_t25_r2"),
+    [APPENDIX_ROBUST], tol=0.01)
+reg("WCDE-full-r2-tfr", 0.388, "checkin",
+    ("barro_lee_replication.json", "wcde_full_WCDE_full_to_tfr_t25_r2"),
+    [APPENDIX_ROBUST], tol=0.01)
+reg("WCDE-post70-r2-le",  0.313, "checkin",
+    ("barro_lee_replication.json", "wcde_post70_WCDE_post70_to_le_t25_r2"),
+    [APPENDIX_ROBUST], tol=0.01)
+reg("WCDE-post70-r2-tfr", 0.281, "checkin",
+    ("barro_lee_replication.json", "wcde_post70_WCDE_post70_to_tfr_t25_r2"),
+    [APPENDIX_ROBUST], tol=0.01)
+
+# --- APPENDIX_ROBUST: Barro-Lee FWL residualization R² values ---
+# Paper claims: BL residualized GDP R² ≤ 0.003 (using at-least-some-sec, the higher values)
+reg("BL-resid-r2-le",  0.001, "checkin",
+    ("barro_lee_replication.json", "resid_BL_edu_sec_resid_to_le_t25_resid_gdp_r2"),
+    [APPENDIX_ROBUST], tol=0.005)
+reg("BL-resid-r2-tfr", 0.003, "checkin",
+    ("barro_lee_replication.json", "resid_BL_edu_sec_resid_to_tfr_t25_resid_gdp_r2"),
+    [APPENDIX_ROBUST], tol=0.005)
+# Paper claims: WCDE residualized GDP R² ≤ 0.002
+reg("WCDE-resid-r2-le",  0.000, "checkin",
+    ("barro_lee_replication.json", "resid_WCDE_full_resid_to_le_t25_resid_gdp_r2"),
+    [APPENDIX_ROBUST], tol=0.005)
+reg("WCDE-resid-r2-tfr", 0.002, "checkin",
+    ("barro_lee_replication.json", "resid_WCDE_full_resid_to_tfr_t25_resid_gdp_r2"),
+    [APPENDIX_ROBUST], tol=0.005)
+
 # --- GDP_INDEP section (L1241) ---
 reg("PI-drop-pct-sec", 72.0, "derived",
     "1 - PI-cond-beta/PI-alone-beta",
@@ -1131,6 +1173,17 @@ reg("Cambodia-1980",          9.4,   "wcde", ("lower_sec_both.csv", "Cambodia", 
 reg("Cambodia-1985-sec",      9.5,   "wcde", ("lower_sec_both.csv", "Cambodia", 1985), [CAMBODIA], tol=0.5)
 reg("Cambodia-1995-sec",     35.1,   "wcde", ("lower_sec_both.csv", "Cambodia", 1995), [CAMBODIA], tol=1.0)
 # REMOVED from paper
+# --- CAMBODIA section: grandparent shadow (absolute values of β from EDU_PRED) ---
+reg("GM-tfr-low-beta-gm-cam", 0.059, "derived",
+    "abs(GM-tfr-low-beta-gm) from grandparent_effect.json", [CAMBODIA], tol=0.005)
+reg("GM-tfr-low-beta-m-cam",  0.033, "derived",
+    "abs(GM-tfr-low-beta-m) from grandparent_effect.json", [CAMBODIA], tol=0.005)
+
+# --- POLICY section: Uganda prediction ---
+reg("Uganda-2025-edu",        48.8,   "wcde", ("lower_sec_both.csv", "Uganda", 2025), [POLICY], tol=0.5)
+reg("Uganda-TFR-2022",        4.39,   "wdi", ("tfr", "Uganda", 2022), [POLICY], tol=0.1)
+reg("Uganda-LE-2022",         67.7,   "wdi", ("le", "Uganda", 2022), [POLICY], tol=0.5)
+reg("Uganda-GM-1975",          9.1,   "wcde", ("lower_sec_both.csv", "Uganda", 1975), [POLICY], tol=0.5)
 
 # --- INSTIT section (L1647-L1648) ---
 reg("GDP-Qatar-2015-sec",    69000,  "wdi", ("gdp", "Qatar", 2015), [INSTIT], tol=5000)
@@ -1187,25 +1240,33 @@ reg("CR-Korea-ratio-sec",      3.5,  "derived", "GDP-CostaRica-1960 / GDP-Korea-
 # REMOVED from paper
 reg("CostaRica-1.7fold-sec",  1.7,   "derived", "GDP-CostaRica-1990 / GDP-CostaRica-1960", [POLICY], tol=0.3)
 
-# --- GRANDMOTHER EFFECT (in education-predicts section) ---
+# --- GRANDPARENT EFFECT (in education-predicts section) ---
 reg("GM-child-edu-r2-gain", 5.2, "derived",
-    "child_edu grandmother R² gain × 100",
+    "child_edu grandparent R² gain × 100",
     [(EDU_PRED, None)], tol=0.3)
 reg("GM-tfr-low-beta-gm", -0.059, "checkin",
-    ("grandmother_effect.json", "results.tfr_low_edu.mother_gm.beta_grandmother_edu"),
+    ("grandparent_effect.json", "results.tfr_low_edu.parent_gp.beta_grandparent_edu"),
     [(EDU_PRED, None)], tol=0.005)
 reg("GM-tfr-low-beta-m", -0.033, "checkin",
-    ("grandmother_effect.json", "results.tfr_low_edu.mother_gm.beta_mother_edu"),
+    ("grandparent_effect.json", "results.tfr_low_edu.parent_gp.beta_parent_edu"),
     [(EDU_PRED, None)], tol=0.005)
 reg("GM-child-edu-beta-gm", 0.271, "checkin",
-    ("grandmother_effect.json", "results.child_edu.mother_gm.beta_grandmother_edu"),
+    ("grandparent_effect.json", "results.child_edu.parent_gp.beta_grandparent_edu"),
     [(EDU_PRED, None)], tol=0.01)
 reg("GM-le-beta-gm", 0.070, "checkin",
-    ("grandmother_effect.json", "results.le.mother_gm.beta_grandmother_edu"),
+    ("grandparent_effect.json", "results.le.parent_gp.beta_grandparent_edu"),
     [(EDU_PRED, None)], tol=0.005)
 reg("GM-le-r2-gain", 3.6, "derived",
-    "LE grandmother R² gain × 100",
+    "LE grandparent R² gain × 100",
     [(EDU_PRED, None)], tol=0.3)
+
+# Sex comparison: grandfather and grandmother betas in low-education subsample
+reg("GF-tfr-low-beta", -0.054, "checkin",
+    ("grandparent_effect.json", "results.sex_comparison.male (grandfather)_tfr_low.beta_gp"),
+    [(EDU_PRED, None)], tol=0.005)
+reg("GM-tfr-low-beta-f", -0.050, "checkin",
+    ("grandparent_effect.json", "results.sex_comparison.female (grandmother)_tfr_low.beta_gp"),
+    [(EDU_PRED, None)], tol=0.005)
 
 # --- Russia 99% in shock test section ---
 reg("Russia-99-cumulative", 99, "derived",
@@ -1757,6 +1818,8 @@ SECTION_DUPS = {
     "T3-India-resid-sec":         "T3-India-resid",
     "T3-Qatar-resid-sec":         "T3-Qatar-resid",
     "Russia-99-cumulative":       "Russia-1990-edu",
+    "GM-tfr-low-beta-gm-cam":    "GM-TFR-low-beta-gm",
+    "GM-tfr-low-beta-m-cam":     "GM-TFR-low-beta-m",
 }
 
 
@@ -1780,13 +1843,13 @@ DERIVED_DISPATCH = {
     # Abs of checkin values (paper reports absolute, JSON stores signed)
     "T3-Qatar-resid":         _abs_checkin("regression_tables.json", "country_residuals.T3-Qatar-resid"),
     "T2-TFR-beta-abs":        _abs_checkin("education_outcomes.json", "numbers.T2-TFR-beta"),
-    "GM-TFR-low-beta-gm":    _abs_checkin("grandmother_effect.json", "results.tfr_low_edu.mother_gm.beta_grandmother_edu"),
-    "GM-TFR-low-beta-m":     _abs_checkin("grandmother_effect.json", "results.tfr_low_edu.mother_gm.beta_mother_edu"),
+    "GM-TFR-low-beta-gm":    _abs_checkin("grandparent_effect.json", "results.tfr_low_edu.parent_gp.beta_grandparent_edu"),
+    "GM-TFR-low-beta-m":     _abs_checkin("grandparent_effect.json", "results.tfr_low_edu.parent_gp.beta_parent_edu"),
     "China-LE-gap-1965":      _abs_checkin("china_mean_yrs_vs_peers.json", "key_data_points.le_gap_1965"),
     "China-LE-gap-1980":      _abs_checkin("china_mean_yrs_vs_peers.json", "key_data_points.le_gap_1980"),
     # Percentages: checkin R² × 100
-    "GM-child-edu-r2-gain":   _pct_checkin("grandmother_effect.json", "results.child_edu.r2_gain"),
-    "GM-le-r2-gain":          _pct_checkin("grandmother_effect.json", "results.le.r2_gain", rounding=1),
+    "GM-child-edu-r2-gain":   _pct_checkin("grandparent_effect.json", "results.child_edu.r2_gain"),
+    "GM-le-r2-gain":          _pct_checkin("grandparent_effect.json", "results.le.r2_gain", rounding=1),
     "Colonial-era-edu-r2":    _pct_checkin("colonial_education_vs_institutions.json", "r2_colonial_education"),
     "T2-GDP-beta-pct":        _pct_checkin("education_outcomes.json", "numbers.T2-GDP-beta", rounding=1),
     "GDP-r2-below10-pct":     _pct_checkin("edu_vs_gdp_predicts_le.json", "numbers.lt10.gdp_r2", rounding=1),
