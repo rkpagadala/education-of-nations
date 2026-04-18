@@ -1,6 +1,6 @@
 # Verification Report
 
-Generated: 2026-04-18 03:51
+Generated: 2026-04-18 03:54
 
 ## Result: 348/348 PASS
 
@@ -11,7 +11,7 @@ Generated: 2026-04-18 03:51
 | Missing | 0 |
 | Literature refs (manual) | 24 |
 | Unregistered numbers | 1 |
-| Section offset issues | 1 |
+| Section offset issues | 0 |
 
 ## By Source Type
 
@@ -57,5 +57,5 @@ Generated: 2026-04-18 03:51
 
 1 lines contain numbers not mapped to any verification entry:
 
-- L1089 [completion-as-the-operative-variable]: 2023
+- L1087 [completion-as-the-operative-variable]: 2023
 
