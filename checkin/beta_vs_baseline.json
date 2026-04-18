@@ -10,6 +10,6 @@
     "Fig1-Phil-beta-high": 4.44,
     "Fig1-Phil-beta-low": 0.43
   },
-  "script": "scripts/figures/fig_beta_vs_baseline.py",
-  "produced": "2026-04-13"
+  "script": "scripts/figures/beta_vs_baseline.py",
+  "produced": "2026-04-17"
 }

@@ -191,8 +191,8 @@ Every number in the paper can be traced from the text to a script and source dat
 
 | Paper Claim | Script | JSON → Key | Tolerance |
 |-------------|--------|------------|-----------|
-| β = 0.083 | `tables/table_a1_two_way_fe.py` | `table_a1_two_way_fe.json` → `numbers.ta1_m1_edu_beta` | ±0.001 |
-| R² = 0.009 | `tables/table_a1_two_way_fe.py` | `table_a1_two_way_fe.json` → `numbers.ta1_m1_r2_within` | ±0.001 |
+| β = 0.083 | `robustness/twfe_child_edu.py` | `twfe_child_edu.json` → `numbers.ta1_m1_edu_beta` | ±0.001 |
+| R² = 0.009 | `robustness/twfe_child_edu.py` | `twfe_child_edu.json` → `numbers.ta1_m1_r2_within` | ±0.001 |
 
 ### Forward Prediction (Table 2)
 
@@ -224,17 +224,17 @@ Every number in the paper can be traced from the text to a script and source dat
 
 | Paper Claim | Script | JSON → Key | Tolerance |
 |-------------|--------|------------|-----------|
-| USA β = 1.9 at high baseline | `figures/fig_beta_vs_baseline.py` | `fig_beta_vs_baseline.json` → `numbers.Fig1-USA-beta-high` | ±0.1 |
-| Korea β = 6.5 at low baseline | `figures/fig_beta_vs_baseline.py` | `fig_beta_vs_baseline.json` → `numbers.Fig1-Korea-beta-high` | ±0.1 |
-| Taiwan β = 5.1 | `figures/fig_beta_vs_baseline.py` | `fig_beta_vs_baseline.json` → `numbers.Fig1-Taiwan-beta` | ±0.1 |
+| USA β = 1.9 at high baseline | `figures/beta_vs_baseline.py` | `beta_vs_baseline.json` → `numbers.Fig1-USA-beta-high` | ±0.1 |
+| Korea β = 6.5 at low baseline | `figures/beta_vs_baseline.py` | `beta_vs_baseline.json` → `numbers.Fig1-Korea-beta-high` | ±0.1 |
+| Taiwan β = 5.1 | `figures/beta_vs_baseline.py` | `beta_vs_baseline.json` → `numbers.Fig1-Taiwan-beta` | ±0.1 |
 
 ### Figure A1 — Lag Decay
 
 | Paper Claim | Script | JSON → Key | Tolerance |
 |-------------|--------|------------|-----------|
-| Lag 0: R² = 0.562 | `figures/fig_a1_lag_decay.py` | `fig_a1_lag_decay.json` → `numbers.edu_r2_lag0` | ±0.001 |
-| Lag 25: R² = 0.364 | `figures/fig_a1_lag_decay.py` | `fig_a1_lag_decay.json` → `numbers.edu_r2_lag25` | ±0.001 |
-| Lag 50: R² = 0.171 | `figures/fig_a1_lag_decay.py` | `fig_a1_lag_decay.json` → `numbers.edu_r2_lag50` | ±0.001 |
+| Lag 0: R² = 0.562 | `figures/le_r2_by_lag.py` | `le_r2_by_lag.json` → `numbers.edu_r2_lag0` | ±0.001 |
+| Lag 25: R² = 0.364 | `figures/le_r2_by_lag.py` | `le_r2_by_lag.json` → `numbers.edu_r2_lag25` | ±0.001 |
+| Lag 50: R² = 0.171 | `figures/le_r2_by_lag.py` | `le_r2_by_lag.json` → `numbers.edu_r2_lag50` | ±0.001 |
 
 ### Robustness
 
@@ -608,9 +608,9 @@ Uses clustered standard errors (by country).
   - GDP conditional on education: β=4.3, p=0.04 (72% drop)
   - Education alone: R²=0.553; conditional on GDP: R²=0.475 (small drop)
 
-### table_a1_two_way_fe.py
+### twfe_child_edu.py
 
-**Output:** `checkin/table_a1_two_way_fe.json`
+**Output:** `checkin/twfe_child_edu.json`
 
 **Data:** Same as table_1_main.py.
 
@@ -737,9 +737,9 @@ Sweeps over entry thresholds (10–90%) and ceilings (30%, 50%, 60%, 90%).
 3. **Bootstrap confidence intervals:** 1,000 bootstrap replications of the education R² vs residualized GDP R² comparison.
    - Result: Education 95% CI [0.33, 0.59], GDP 95% CI [0.00, 0.04]. No overlap.
 
-### fig_a1_lag_decay.py
+### le_r2_by_lag.py
 
-**Output:** `checkin/fig_a1_lag_decay.json`
+**Output:** `checkin/le_r2_by_lag.json`
 
 **Data:** WCDE education, World Bank GDP and LE.
 
@@ -761,9 +761,9 @@ Sweeps over entry thresholds (10–90%) and ceilings (30%, 50%, 60%, 90%).
 
 **Key result:** Residualized GDP R² < 0.02 for LE and < 0.01 for TFR at all lags tested. The zero-GDP finding is not an artifact of the 25-year lag choice.
 
-### twoway_fe_all_outcomes.py
+### twfe_all_outcomes.py
 
-**Output:** `checkin/twoway_fe_all_outcomes.json`
+**Output:** `checkin/twfe_all_outcomes.json`
 
 **Data:** WCDE education, World Bank GDP, LE, TFR, U5MR.
 
@@ -789,9 +789,9 @@ Sweeps over entry thresholds (10–90%) and ceilings (30%, 50%, 60%, 90%).
 
 ## 9. Analysis Scripts — Case Studies
 
-### fig_beta_vs_baseline.py
+### beta_vs_baseline.py
 
-**Output:** `checkin/fig_beta_vs_baseline.json`
+**Output:** `checkin/beta_vs_baseline.json`
 
 **Data:** WCDE education (completion_both_long.csv).
 
@@ -936,7 +936,7 @@ wcde/data/processed/*.csv  (185 countries, 1950–2015, 5-year intervals)
   │                                  │
   │  tables/                         │
   │    table_1_main.py               │
-  │    table_a1_two_way_fe.py        │
+  │    twfe_child_edu.py        │
   │    regression_tables.py          │
   │                                  │
   │  residualization/                │
@@ -950,8 +950,8 @@ wcde/data/processed/*.csv  (185 countries, 1950–2015, 5-year intervals)
   │    asian_financial_crisis.py ... │
   │                                  │
   │  figures/                        │
-  │    fig_a1_lag_decay.py           │
-  │    fig_beta_vs_baseline.py       │
+  │    le_r2_by_lag.py           │
+  │    beta_vs_baseline.py       │
   └──────────────────────────────────┘
       │
       ▼

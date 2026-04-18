@@ -24,8 +24,8 @@ The paper makes one central claim — education causes development, GDP doesn't 
 |--------|-----------------|----------------|
 | `scripts/residualization/education_vs_gdp.py` | Frisch-Waugh-Lovell residualization for LE across entry thresholds and ceilings. | The full sweep showing orthogonal GDP predicts nothing. |
 | `scripts/residualization/education_vs_tfr.py` | Same residualization for TFR. Primary education R²=0.65 for TFR. | Extends the zero-GDP result to fertility. Shows even basic education matters. |
-| `scripts/figures/fig_beta_vs_baseline.py` | Figure 1: β trajectories for 9 countries. Korea β=6.5 at low baseline, USA β=1.9. | The visual heart of the paper. Shows generational amplification (β>1) compressing toward ceiling. |
-| `scripts/figures/fig_a1_lag_decay.py` | Figure 3: education vs. income predictive power across lag lengths 0–100 years. | Education R² persists across four generations; GDP collapses within one. Visual proof of multi-generational persistence. |
+| `scripts/figures/beta_vs_baseline.py` | Figure 1: β trajectories for 9 countries. Korea β=6.5 at low baseline, USA β=1.9. | The visual heart of the paper. Shows generational amplification (β>1) compressing toward ceiling. |
+| `scripts/figures/le_r2_by_lag.py` | Figure 3: education vs. income predictive power across lag lengths 0–100 years. | Education R² persists across four generations; GDP collapses within one. Visual proof of multi-generational persistence. |
 | `scripts/robustness/robustness_tests.py` | Bootstrap CIs: education [0.33, 0.59], GDP [0.00, 0.04]. Nickell bias check. Nonlinearity check. | No overlap in confidence intervals. A reviewer will go straight here. |
 | `scripts/wcde/long_run_generational.py` | 28 countries, 1900–2015. β=0.96 (FE) over a century. | Without this, the 25-year lag choice looks arbitrary. |
 
@@ -38,7 +38,7 @@ The paper makes one central claim — education causes development, GDP doesn't 
 | `scripts/robustness/asian_financial_crisis.py` | "GDP causes education" | GDP crashed (Indonesia −14.5%), education kept growing (+5.4pp). Income-removal natural experiment. |
 | `scripts/robustness/colonial_vs_institutions.py` | "Institutions cause development" (Acemoglu) | 1950 education explains 46.5% of 2015 GDP in 99 colonies. Adding institutions adds nothing. |
 | `scripts/robustness/regime_education.py` | "It's just democracy" | Democracies (~10.3 pp/decade) and autocracies (~8.1 pp/decade) invest roughly equally. |
-| `scripts/tables/table_a1_two_way_fe.py` | "It's just a global trend" | β shrinks to 0.083 under two-way FE. Signal survives absorbing global time trends. |
+| `scripts/robustness/twfe_child_edu.py` | "It's just a global trend" | β shrinks to 0.083 under two-way FE. Signal survives absorbing global time trends. |
 | `scripts/robustness/goodman_bacon_decomposition.py` | "Two-way FE kills the result" | Goodman-Bacon (2021) decomposition: clean comparisons give β̄=11.3, contaminated give β̄=1.1. The estimator, not the evidence, is broken. |
 | `scripts/robustness/callaway_santanna.py` | "Two-way FE kills the result" | Callaway–Sant'Anna (2021) heterogeneity-robust ATT=7.9 (95% CI: 4.4–11.0). Event study: +1.3pp at onset → +21.4pp at 35yr, all significant. |
 | `scripts/robustness/lag_sensitivity.py` | "You cherry-picked 25 years" | Residualized GDP R² < 0.02 at all lags tested (10–30 years). |

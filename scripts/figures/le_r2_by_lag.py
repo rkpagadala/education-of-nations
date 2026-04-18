@@ -1,11 +1,11 @@
 """
-figures/fig_a1_lag_decay.py
+figures/le_r2_by_lag.py
 
 Generates Figure A1 for:
   "Education of Nations"
 
 Output:
-  paper/fig_a1_lag_decay.png
+  paper/le_r2_by_lag.png
 
 What it does:
   For each lag L from 0 to 100 years (step 5):
@@ -57,7 +57,7 @@ from _shared import PROC, DATA, CHECKIN, REGIONS, REPO_ROOT, write_checkin
 
 WCDE_PROC   = PROC
 WB_DIR      = DATA
-OUT         = os.path.join(REPO_ROOT, "paper", "fig_a1_lag_decay.png")
+OUT         = os.path.join(REPO_ROOT, "paper", "le_r2_by_lag.png")
 
 # ── parameters ────────────────────────────────────────────────────────────────
 LAG_MIN     = 0
@@ -221,7 +221,7 @@ lag_numbers["FA1-lag25"] = round(r2_edu[lags.index(25)], 3)
 lag_numbers["FA1-lag50"] = round(r2_edu[lags.index(50)], 3)
 lag_numbers["FA1-lag75"] = round(r2_edu[lags.index(75)], 3)
 
-write_checkin("fig_a1_lag_decay.json", {
+write_checkin("le_r2_by_lag.json", {
     "notes": f"{len(countries)} countries. Education uses WCDE 1875-2015; GDP uses WDI 1960-2015. GDP only plotted through lag {GDP_LAG_MAX}.",
     "numbers": lag_numbers,
-}, script_path="scripts/figures/fig_a1_lag_decay.py")
+}, script_path="scripts/figures/le_r2_by_lag.py")

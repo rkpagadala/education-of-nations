@@ -69,5 +69,5 @@
     "no_cutoff_ratio": 2.2
   },
   "script": "scripts/residualization/by_gdp_cutoff.py",
-  "produced": "2026-04-13"
+  "produced": "2026-04-17"
 }

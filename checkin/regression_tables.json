@@ -230,5 +230,5 @@
     "T3-Qatar-resid": -4.8
   },
   "script": "scripts/tables/regression_tables.py",
-  "produced": "2026-04-15"
+  "produced": "2026-04-17"
 }

@@ -9,7 +9,7 @@ Verify Figure 3 country-specific sliding-window betas. The paper cites:
   - Bangladesh: beta~2 through 1-18% baseline
   - India: beta~2 through 28% baseline
 
-Runs the same logic as scripts/figures/figures/fig_beta_vs_baseline.py and extracts
+Runs the same logic as scripts/figures/beta_vs_baseline.py and extracts
 the specific betas mentioned in the paper.
 
 Data source:
@@ -27,7 +27,7 @@ import statsmodels.api as sm
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from _shared import PROC, write_checkin
 
-# ── Parameters (same as figures/fig_beta_vs_baseline.py) ────────────────────────────
+# ── Parameters (same as figures/beta_vs_baseline.py) ────────────────────────────
 WINDOW_SIZE = 25
 STEP = 10
 LAG = 25
@@ -62,7 +62,7 @@ def beta_for_window(country, child_start, child_end):
     return reg.params.iloc[1], df["parent"].mean()
 
 
-# ── Countries (same as figures/fig_beta_vs_baseline.py) ─────────────────────────────
+# ── Countries (same as figures/beta_vs_baseline.py) ─────────────────────────────
 COUNTRIES = [
     ("United States of America",       "USA",         1900),
     ("Republic of Korea",              "Korea",       1920),

@@ -21,6 +21,6 @@
     "TA1-M1-beta": 0.083,
     "TA1-M1-R2": 0.009
   },
-  "script": "scripts/tables/table_a1_two_way_fe.py",
-  "produced": "2026-04-13"
+  "script": "scripts/robustness/twfe_child_edu.py",
+  "produced": "2026-04-17"
 }

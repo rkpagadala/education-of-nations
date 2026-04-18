@@ -46,18 +46,18 @@ verify: \
 # ── Analysis scripts (produce checkin JSONs) ──────────────────────────
 
 analysis: \
-	$(CHECKIN)/fig_beta_vs_baseline.json \
+	$(CHECKIN)/beta_vs_baseline.json \
 	$(CHECKIN)/beta_by_baseline_group.json \
 	$(CHECKIN)/robustness_tests.json \
 	$(CHECKIN)/education_outcomes.json \
 	$(CHECKIN)/long_run_generational.json \
 	$(CHECKIN)/table_1_main.json \
-	$(CHECKIN)/table_a1_two_way_fe.json \
+	$(CHECKIN)/twfe_child_edu.json \
 	$(CHECKIN)/education_vs_gdp_by_cutoff.json \
 	$(CHECKIN)/beta_by_ceiling_cutoff.json \
 	$(CHECKIN)/development_threshold_count.json \
 	$(CHECKIN)/asian_financial_crisis.json \
-	$(CHECKIN)/fig_a1_lag_decay.json \
+	$(CHECKIN)/le_r2_by_lag.json \
 	$(CHECKIN)/edu_vs_gdp_residualized.json \
 	$(CHECKIN)/edu_vs_gdp_tfr_residualized.json \
 	$(CHECKIN)/edu_vs_gdp_entry_ceiling.json \
@@ -65,7 +65,7 @@ analysis: \
 	$(CHECKIN)/edu_vs_gdp_by_level.json \
 	$(CHECKIN)/edu_vs_gdp_child_edu_residualized.json \
 	$(CHECKIN)/female_education_residualized.json \
-	$(CHECKIN)/twoway_fe_all_outcomes.json \
+	$(CHECKIN)/twfe_all_outcomes.json \
 	$(CHECKIN)/residual_by_outcome_year_all.json \
 	$(CHECKIN)/u5mr_by_edu_level.json \
 	$(CHECKIN)/lag_sensitivity.json \
@@ -131,7 +131,7 @@ $(CHECKIN)/china_mean_yrs_vs_peers.json: cases/china_mean_years.py _shared.py $(
 $(CHECKIN)/table_1_main.json: tables/table_1_main.py _shared.py $(ALL_DATA)
 	$(PYTHON) $<
 
-$(CHECKIN)/table_a1_two_way_fe.json: tables/table_a1_two_way_fe.py _shared.py $(ALL_DATA)
+$(CHECKIN)/twfe_child_edu.json: robustness/twfe_child_edu.py _shared.py $(ALL_DATA)
 	$(PYTHON) $<
 
 $(CHECKIN)/education_vs_gdp_by_cutoff.json: residualization/by_gdp_cutoff.py _shared.py $(RESID_SHARED) $(ALL_DATA)
@@ -146,7 +146,7 @@ $(CHECKIN)/development_threshold_count.json: cases/development_threshold_count.p
 $(CHECKIN)/asian_financial_crisis.json: robustness/asian_financial_crisis.py $(ALL_DATA)
 	$(PYTHON) $<
 
-$(CHECKIN)/fig_a1_lag_decay.json: figures/fig_a1_lag_decay.py _shared.py $(ALL_DATA)
+$(CHECKIN)/le_r2_by_lag.json: figures/le_r2_by_lag.py _shared.py $(ALL_DATA)
 	$(PYTHON) $<
 
 $(CHECKIN)/edu_vs_gdp_residualized.json: residualization/education_vs_gdp.py _shared.py $(ALL_DATA)
@@ -170,7 +170,7 @@ $(CHECKIN)/edu_vs_gdp_child_edu_residualized.json: residualization/child_educati
 $(CHECKIN)/female_education_residualized.json: residualization/female_education.py _shared.py $(RESID_SHARED) $(ALL_DATA)
 	$(PYTHON) $<
 
-$(CHECKIN)/twoway_fe_all_outcomes.json: robustness/twoway_fe_all_outcomes.py _shared.py $(RESID_SHARED) $(ALL_DATA)
+$(CHECKIN)/twfe_all_outcomes.json: robustness/twfe_all_outcomes.py _shared.py $(RESID_SHARED) $(ALL_DATA)
 	$(PYTHON) $<
 
 $(CHECKIN)/residual_by_outcome_year_all.json: robustness/residual_by_outcome_year.py _shared.py $(RESID_SHARED) $(ALL_DATA)
@@ -191,7 +191,7 @@ $(CHECKIN)/threshold_robustness.json: robustness/threshold_robustness.py _shared
 $(CHECKIN)/happiness_education.json: happiness_education.py $(DATA)/world_happiness_report.csv $(ALL_DATA)
 	$(PYTHON) $<
 
-$(CHECKIN)/fig_beta_vs_baseline.json: figures/fig_beta_vs_baseline.py $(WCDE_DATA)
+$(CHECKIN)/beta_vs_baseline.json: figures/beta_vs_baseline.py $(WCDE_DATA)
 	$(PYTHON) $<
 
 $(CHECKIN)/beta_by_baseline_group.json: robustness/beta_by_baseline_group.py $(WCDE_DATA)

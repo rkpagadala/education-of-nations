@@ -1,11 +1,11 @@
 """
-figures/fig_beta_vs_baseline.py
+figures/beta_vs_baseline.py
 
 Generates Figure 3 for:
   "Education of Nations"
 
 Output:
-  paper/fig_beta_vs_baseline.png
+  paper/beta_vs_baseline.png
 
 What it does:
   For each country, computes the intergenerational education transmission
@@ -43,7 +43,7 @@ sys.path.insert(0, os.path.join(SCRIPT_DIR, ".."))
 from _shared import PROC, DATA, CHECKIN, REGIONS, REPO_ROOT, write_checkin
 
 PTE_PROC   = PROC
-OUT        = os.path.join(REPO_ROOT, "paper", "fig_beta_vs_baseline.png")
+OUT        = os.path.join(REPO_ROOT, "paper", "beta_vs_baseline.png")
 
 # ── parameters ────────────────────────────────────────────────────────────────
 WINDOW_SIZE = 25    # years (6 cohorts at 5-year intervals)
@@ -156,7 +156,7 @@ def get_beta(country_name, child_start):
     beta, avg_parent = beta_for_window(country_name, child_start, child_end)
     return round(beta, 2) if not np.isnan(beta) else None
 
-write_checkin("fig_beta_vs_baseline.json", {
+write_checkin("beta_vs_baseline.json", {
     "numbers": {
         "Fig1-USA-beta-high": get_beta("United States of America", 1900),
         "Fig1-USA-beta-low": get_beta("United States of America", 1980),
@@ -168,4 +168,4 @@ write_checkin("fig_beta_vs_baseline.json", {
         "Fig1-Phil-beta-high": get_beta("Philippines", 1920),
         "Fig1-Phil-beta-low": get_beta("Philippines", 1990),
     },
-}, script_path="scripts/figures/fig_beta_vs_baseline.py")
+}, script_path="scripts/figures/beta_vs_baseline.py")

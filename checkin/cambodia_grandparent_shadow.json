@@ -1,5 +1,5 @@
 {
-  "test": "Cambodia grandmother shadow",
+  "test": "Cambodia grandparent shadow",
   "cambodia_2010": 33.3,
   "cambodia_2025": 49.5,
   "cambodia_gain_2010_2025": 16.2,
@@ -30,6 +30,6 @@
     "Uganda",
     "Yemen"
   ],
-  "script": "scripts/cambodia_grandmother_shadow.py",
-  "produced": "2026-04-16"
+  "script": "scripts/cambodia_grandparent_shadow.py",
+  "produced": "2026-04-17"
 }

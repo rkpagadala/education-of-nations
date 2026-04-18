@@ -139,7 +139,7 @@ print(f"  Table A1 Model (2): β={m2.params.iloc[0]:.3f}, R²={m2.rsquared:.3f},
 print(f"  Table A1 Model (3): β_edu={m3.params.iloc[0]:.3f}, β_gdp={m3.params.iloc[1]:.3f}, R²={m3.rsquared:.3f}, N={n3}")
 
 # ── Write checkin JSON ───────────────────────────────────────────
-write_checkin("table_a1_two_way_fe.json", {
+write_checkin("twfe_child_edu.json", {
     "numbers": {
         "panel_obs": n1,
         "panel_countries": nc1,
@@ -162,4 +162,4 @@ write_checkin("table_a1_two_way_fe.json", {
         "TA1-M1-beta": round(m1.params.iloc[0], 3),
         "TA1-M1-R2": round(m1.rsquared, 3),
     },
-}, script_path="scripts/tables/table_a1_two_way_fe.py")
+}, script_path="scripts/robustness/twfe_child_edu.py")

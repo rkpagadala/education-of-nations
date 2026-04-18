@@ -1,5 +1,5 @@
 """
-robustness/twoway_fe_all_outcomes.py
+robustness/twfe_all_outcomes.py
 ==========================
 Two-way fixed effects (country + time) residualization for all four outcomes:
   - Life expectancy (T+25)
@@ -122,7 +122,7 @@ for outcome_label in ["LE", "TFR", "U5MR", "ChildEdu"]:
         print(f"{outcome_label:<15} {fmt_r2(r.get('edu_r2')):>7} {fmt_r2(r.get('raw_gdp_r2')):>7} "
               f"{fmt_r2(r.get('resid_gdp_r2')):>9} {fmt_r2(r.get('edu_gdp_r2')):>8}")
 
-write_checkin("twoway_fe_all_outcomes.json", {
+write_checkin("twfe_all_outcomes.json", {
     "method": "Two-way FE (country + time). Residualized GDP. Entry-cohort + ceiling. T=1960-1990, lag=25. Four outcomes × three education levels.",
     "results": {k: {lev: v for lev, v in out.items()} for k, out in all_results.items()},
-}, script_path="scripts/robustness/twoway_fe_all_outcomes.py")
+}, script_path="scripts/robustness/twfe_all_outcomes.py")

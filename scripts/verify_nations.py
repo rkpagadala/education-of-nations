@@ -213,10 +213,10 @@ def reg(name, value, source, detail, section, tol=0.001):
 
 # ── Script paths ─────────────────────────────────────────────────────────
 S_T1    = os.path.join(REPO_ROOT, "scripts", "tables", "table_1_main.py")
-S_TA1   = os.path.join(REPO_ROOT, "scripts", "tables", "table_a1_two_way_fe.py")
-S_FA1   = os.path.join(REPO_ROOT, "scripts", "figures", "fig_a1_lag_decay.py")
+S_TA1   = os.path.join(REPO_ROOT, "scripts", "robustness", "twfe_child_edu.py")
+S_FA1   = os.path.join(REPO_ROOT, "scripts", "figures", "le_r2_by_lag.py")
 S_CO2   = os.path.join(REPO_ROOT, "scripts", "co2_placebo.py")
-S_BETA  = os.path.join(REPO_ROOT, "scripts", "figures", "fig_beta_vs_baseline.py")
+S_BETA  = os.path.join(REPO_ROOT, "scripts", "figures", "beta_vs_baseline.py")
 S_ROB   = os.path.join(REPO_ROOT, "scripts", "robustness", "robustness_tests.py")
 S_TFR   = os.path.join(REPO_ROOT, "scripts", "residualization", "education_vs_tfr.py")
 
@@ -226,15 +226,15 @@ S_TFR   = os.path.join(REPO_ROOT, "scripts", "residualization", "education_vs_tf
 reg("T1-obs",        1665,   "checkin", ("table_1_main.json", "numbers.panel_obs"),
     [(DATA_SEC, None), (APPENDIX_ROBUST, None)], tol=0)
 reg("T1-countries",  185,    "checkin", ("table_1_main.json", "numbers.panel_countries"),
-    [(ABSTRACT, 114), (THE_EVIDENCE, None), (DATA_SEC, 3), (APPENDIX_ROBUST, 34)], tol=0)
+    [(ABSTRACT, 130), (THE_EVIDENCE, None), (DATA_SEC, 3), (APPENDIX_ROBUST, 34)], tol=0)
 # ══════════════════════════════════════════════════════════════════════════
-# TABLE A1 — Two-way FE (table_a1_two_way_fe.py)
+# TABLE A1 — Two-way FE (twfe_child_edu.py)
 # ══════════════════════════════════════════════════════════════════════════
-reg("TA1-M1-beta",  0.083,  "checkin", ("table_a1_two_way_fe.json", "numbers.ta1_m1_edu_beta"),
+reg("TA1-M1-beta",  0.083,  "checkin", ("twfe_child_edu.json", "numbers.ta1_m1_edu_beta"),
     [(EMPIRICAL, None), (EDU_VS_GDP, 6), (APPENDIX_ROBUST, 34)])
-reg("TA1-M1-p",     0.07,   "checkin", ("table_a1_two_way_fe.json", "numbers.ta1_m1_edu_p"),
+reg("TA1-M1-p",     0.07,   "checkin", ("twfe_child_edu.json", "numbers.ta1_m1_edu_p"),
     [(EMPIRICAL, None)], tol=0.005)
-reg("TA1-M1-R2",    0.009,  "checkin", ("table_a1_two_way_fe.json", "numbers.ta1_m1_r2_within"),
+reg("TA1-M1-R2",    0.009,  "checkin", ("twfe_child_edu.json", "numbers.ta1_m1_r2_within"),
     [(APPENDIX_ROBUST, 34)])
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -263,15 +263,15 @@ reg("HLO-U5MR-test-p",  0.24, "checkin",
     [COMPLETION], tol=0.01)
 
 # ══════════════════════════════════════════════════════════════════════════
-# FIGURE A1 — Lag decay (fig_a1_lag_decay.py)
+# FIGURE A1 — Lag decay (le_r2_by_lag.py)
 # ══════════════════════════════════════════════════════════════════════════
-reg("FA1-lag0",     0.562,  "checkin", ("fig_a1_lag_decay.json", "numbers.edu_r2_lag0"),
+reg("FA1-lag0",     0.562,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag0"),
     [(EDU_PRED, 11)])
-reg("FA1-lag25",    0.364,  "checkin", ("fig_a1_lag_decay.json", "numbers.edu_r2_lag25"),
+reg("FA1-lag25",    0.364,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag25"),
     [(EDU_PRED, 15)])
-reg("FA1-lag50",    0.171,  "checkin", ("fig_a1_lag_decay.json", "numbers.edu_r2_lag50"),
+reg("FA1-lag50",    0.171,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag50"),
     [(EDU_PRED, 15)])
-reg("FA1-lag75",    0.085,  "checkin", ("fig_a1_lag_decay.json", "numbers.edu_r2_lag75"),
+reg("FA1-lag75",    0.085,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag75"),
     [(EDU_PRED, 15)])
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -326,19 +326,19 @@ reg("CutOff-no-edu-r2",    0.533, "checkin",
     [(EDU_VS_GDP, 7)])
 
 # ══════════════════════════════════════════════════════════════════════════
-# CHECKIN — fig_a1_lag_decay.json
+# CHECKIN — le_r2_by_lag.json
 # ══════════════════════════════════════════════════════════════════════════
 reg("CK-FA1-lag0",   0.562, "checkin",
-    ("fig_a1_lag_decay.json", "numbers.edu_r2_lag0"),
+    ("le_r2_by_lag.json", "numbers.edu_r2_lag0"),
     [(EDU_PRED, 11)])
 reg("CK-FA1-lag25",  0.364, "checkin",
-    ("fig_a1_lag_decay.json", "numbers.edu_r2_lag25"),
+    ("le_r2_by_lag.json", "numbers.edu_r2_lag25"),
     [(EDU_PRED, 15)])
 reg("CK-FA1-lag50",  0.171, "checkin",
-    ("fig_a1_lag_decay.json", "numbers.edu_r2_lag50"),
+    ("le_r2_by_lag.json", "numbers.edu_r2_lag50"),
     [(EDU_PRED, 15)])
 reg("CK-FA1-lag75",  0.085, "checkin",
-    ("fig_a1_lag_decay.json", "numbers.edu_r2_lag75"),
+    ("le_r2_by_lag.json", "numbers.edu_r2_lag75"),
     [(EDU_PRED, 15)])
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -386,25 +386,25 @@ reg("AFC-Thailand-prior",   10.0,  "checkin",
     [(GDP_INDEP, 12)])
 
 # ══════════════════════════════════════════════════════════════════════════
-# FIGURE 3 — Country-specific sliding-window betas (fig_beta_vs_baseline.py)
+# FIGURE 3 — Country-specific sliding-window betas (beta_vs_baseline.py)
 # ══════════════════════════════════════════════════════════════════════════
-reg("Fig1-USA-beta-high",   1.9, "checkin", ("fig_beta_vs_baseline.json", "numbers.Fig1-USA-beta-high"),
+reg("Fig1-USA-beta-high",   1.9, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-USA-beta-high"),
     [(EDU_VS_GDP, 6)], tol=0.1)
-reg("Fig1-USA-beta-low",   0.08, "checkin", ("fig_beta_vs_baseline.json", "numbers.Fig1-USA-beta-low"),
+reg("Fig1-USA-beta-low",   0.08, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-USA-beta-low"),
     [(EDU_VS_GDP, 6)], tol=0.02)
-reg("Fig1-Korea-beta-high", 6.5, "checkin", ("fig_beta_vs_baseline.json", "numbers.Fig1-Korea-beta-high"),
+reg("Fig1-Korea-beta-high", 6.5, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Korea-beta-high"),
     [(EDU_VS_GDP, 16)], tol=0.1)
-reg("Fig1-Korea-beta-3.6",  3.6, "checkin", ("fig_beta_vs_baseline.json", "numbers.Fig1-Korea-beta-3.6"),
+reg("Fig1-Korea-beta-3.6",  3.6, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Korea-beta-3.6"),
     [(EDU_VS_GDP, 26)], tol=0.1)
-reg("Fig1-Korea-beta-1.8",  1.8, "checkin", ("fig_beta_vs_baseline.json", "numbers.Fig1-Korea-beta-1.8"),
+reg("Fig1-Korea-beta-1.8",  1.8, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Korea-beta-1.8"),
     [(EDU_VS_GDP, 68)], tol=0.1)
-reg("Fig1-Korea-beta-low",  0.2, "checkin", ("fig_beta_vs_baseline.json", "numbers.Fig1-Korea-beta-low"),
+reg("Fig1-Korea-beta-low",  0.2, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Korea-beta-low"),
     [(EDU_VS_GDP, 6)], tol=0.05)
-reg("Fig1-Taiwan-beta",     5.1, "checkin", ("fig_beta_vs_baseline.json", "numbers.Fig1-Taiwan-beta"),
+reg("Fig1-Taiwan-beta",     5.1, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Taiwan-beta"),
     [(EDU_VS_GDP, 26)], tol=0.1)
-reg("Fig1-Phil-beta-high",  4.4, "checkin", ("fig_beta_vs_baseline.json", "numbers.Fig1-Phil-beta-high"),
+reg("Fig1-Phil-beta-high",  4.4, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Phil-beta-high"),
     [(EDU_VS_GDP, 26)], tol=0.1)
-reg("Fig1-Phil-beta-low",   0.4, "checkin", ("fig_beta_vs_baseline.json", "numbers.Fig1-Phil-beta-low"),
+reg("Fig1-Phil-beta-low",   0.4, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Phil-beta-low"),
     [(EDU_VS_GDP, 6)], tol=0.1)
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -600,27 +600,27 @@ reg("PI-drop-pct",   72.0,   "derived", "1 - PI-cond-beta/PI-alone-beta",
 reg("CostaRica-1.7fold", 1.7, "derived", "GDP-CostaRica-1990 / GDP-CostaRica-1960",
     [], tol=0.3)
 
-# Table 5 Generations column (rate_predicts_crossing.json)
+# Table 5 Generations column (expansion_rate_predicts_crossing.json)
 reg("T5-gen-Taiwan",      1, "checkin",
-    ("rate_predicts_crossing.json", "Taiwan.generations"),
+    ("expansion_rate_predicts_crossing.json", "Taiwan.generations"),
     [SEN_CASES], tol=0)
 reg("T5-gen-Korea",       1, "checkin",
-    ("rate_predicts_crossing.json", "Korea.generations"),
+    ("expansion_rate_predicts_crossing.json", "Korea.generations"),
     [SEN_CASES], tol=0)
 reg("T5-gen-Cuba",        1, "checkin",
-    ("rate_predicts_crossing.json", "Cuba.generations"),
+    ("expansion_rate_predicts_crossing.json", "Cuba.generations"),
     [SEN_CASES], tol=0)
 reg("T5-gen-Bangladesh",  1, "checkin",
-    ("rate_predicts_crossing.json", "Bangladesh.generations"),
+    ("expansion_rate_predicts_crossing.json", "Bangladesh.generations"),
     [SEN_CASES], tol=0)
 reg("T5-gen-SriLanka",    2, "checkin",
-    ("rate_predicts_crossing.json", "Sri Lanka.generations"),
+    ("expansion_rate_predicts_crossing.json", "Sri Lanka.generations"),
     [SEN_CASES], tol=0)
 reg("T5-gen-China",       2, "checkin",
-    ("rate_predicts_crossing.json", "China.generations"),
+    ("expansion_rate_predicts_crossing.json", "China.generations"),
     [SEN_CASES], tol=0)
 reg("T5-gen-Kerala",      3, "checkin",
-    ("rate_predicts_crossing.json", "Kerala.generations"),
+    ("expansion_rate_predicts_crossing.json", "Kerala.generations"),
     [SEN_CASES], tol=0)
 
 # Table A4 shift ranges (min and max across cases incl. Taiwan)
@@ -1233,7 +1233,7 @@ reg("Abstract-resid-p",       0.1,   "checkin",
 reg("Spain-450",              450,   "ref", "Spain ~450 years of wealth without mass education (1492-1940s)", [POLICY], tol=50)
 
 # --- POLICY section: Korea-Costa Rica comparison ---
-reg("Fig1-Korea-beta-3.6-sec", 3.6,  "checkin", ("fig_beta_vs_baseline.json", "numbers.Fig1-Korea-beta-3.6"), [POLICY], tol=0.1)
+reg("Fig1-Korea-beta-3.6-sec", 3.6,  "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Korea-beta-3.6"), [POLICY], tol=0.1)
 reg("CR-Korea-ratio-sec",      3.5,  "derived", "GDP-CostaRica-1960 / GDP-Korea-1960", [POLICY], tol=0.1)
 # REMOVED from paper
 # REMOVED from paper
@@ -1297,8 +1297,8 @@ reg("SA-2019-LE",       66.1,  "wdi",  ("le", "South Africa", 2019), [SHOCK_TEST
 
 # --- FAMINE TEST section ---
 # Numbers from scripts/famine_education_test.py output
-reg("Famine-count",        21,     "ref", "Count of famines in dataset since 1950",  [FAMINE_TEST], tol=0)
-reg("Famine-below-50-ct",  19,     "ref", "Famines with edu < 50%",                  [FAMINE_TEST], tol=0)
+reg("Famine-count",        21,     "ref", "Count of famines in dataset since 1950",  [FAMINE_TEST, INVISIBLE], tol=0)
+reg("Famine-below-50-ct",  19,     "ref", "Famines with edu < 50%",                  [FAMINE_TEST, INVISIBLE], tol=0)
 reg("Famine-median-edu",   19.6,   "ref", "Median education at famine",              [FAMINE_TEST], tol=0.1)
 reg("Famine-mean-edu",     25.4,   "ref", "Mean education at famine",                [FAMINE_TEST], tol=0.1)
 reg("NM-median-edu",       71.6,   "ref", "Near-miss median education",              [FAMINE_TEST], tol=0.5)
@@ -2335,12 +2335,39 @@ def main():
     if line_issues == 0:
         print(f"    All values found in their claimed sections")
 
+    # ── Script path existence check ──────────────────────────────────
+    print("\n" + "=" * 72)
+    print("SCRIPT PATHS — \\texttt{scripts/...} references in paper")
+    print("=" * 72 + "\n")
+    script_ref_pattern = re.compile(
+        r"\\texttt\{(scripts/[A-Za-z0-9_/\\]*?\.py)\}"
+    )
+    broken_paths = []
+    seen_paths = set()
+    for line_no, raw_line in enumerate(paper_lines, start=1):
+        for m in script_ref_pattern.finditer(raw_line):
+            tex_path = m.group(1)
+            # Strip LaTeX backslash escapes (\_ -> _)
+            clean_path = tex_path.replace("\\_", "_")
+            abs_path = os.path.join(REPO_ROOT, clean_path)
+            if clean_path in seen_paths:
+                continue
+            seen_paths.add(clean_path)
+            if not os.path.exists(abs_path):
+                broken_paths.append((line_no, clean_path))
+    if broken_paths:
+        for line_no, p in broken_paths:
+            print(f"    ✗ L{line_no:<5} {p} — NOT FOUND")
+    else:
+        print(f"    All {len(seen_paths)} script paths cited in paper exist")
+
     # ── Summary ──────────────────────────────────────────────────────
     total = passed + failed + missing
     print("\n" + "=" * 72)
     print(f"SUMMARY: {passed}/{total} PASS, {failed} FAIL, {missing} MISSING, "
           f"{ref_count} REF (manual check)")
     print(f"COVERAGE: {len(unregistered_lines)} lines with unregistered numbers")
+    print(f"SCRIPT PATHS: {len(broken_paths)} broken, {len(seen_paths) - len(broken_paths)} OK")
     print("=" * 72)
 
     # ── Write markdown report ────────────────────────────────────────
@@ -2355,6 +2382,8 @@ def main():
     if missing > 0 and "--fast" not in sys.argv:
         sys.exit(1)
     if line_issues > 0:
+        sys.exit(1)
+    if broken_paths:
         sys.exit(1)
 
 

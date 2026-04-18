@@ -1,6 +1,6 @@
 # Verification Report
 
-Generated: 2026-04-16 14:08
+Generated: 2026-04-17 22:10
 
 ## Result: 330/330 PASS
 
@@ -57,8 +57,8 @@ Generated: 2026-04-16 14:08
 
 4 lines contain numbers not mapped to any verification entry:
 
-- L1216 [education-predicts-development-outcomes-25-years-forward]: 0.05
-- L1825 [the-decision]: 2025
-- L1830 [the-decision]: 2025
-- L1834 [the-decision]: 2025
+- L1343 [education-predicts-development-outcomes-25-years-forward]: 0.05
+- L1952 [the-decision]: 2025
+- L1957 [the-decision]: 2025
+- L1961 [the-decision]: 2025
 
