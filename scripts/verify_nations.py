@@ -226,7 +226,7 @@ S_TFR   = os.path.join(REPO_ROOT, "scripts", "residualization", "education_vs_tf
 reg("T1-obs",        1665,   "checkin", ("table_1_main.json", "numbers.panel_obs"),
     [(DATA_SEC, None), (APPENDIX_ROBUST, None)], tol=0)
 reg("T1-countries",  185,    "checkin", ("table_1_main.json", "numbers.panel_countries"),
-    [(ABSTRACT, 130), (THE_EVIDENCE, None), (DATA_SEC, 3), (APPENDIX_ROBUST, 34)], tol=0)
+    [(ABSTRACT, 126), (THE_EVIDENCE, None), (DATA_SEC, 3), (APPENDIX_ROBUST, 34)], tol=0)
 # ══════════════════════════════════════════════════════════════════════════
 # TABLE A1 — Two-way FE (twfe_child_edu.py)
 # ══════════════════════════════════════════════════════════════════════════
@@ -263,16 +263,57 @@ reg("HLO-U5MR-test-p",  0.24, "checkin",
     [COMPLETION], tol=0.01)
 
 # ══════════════════════════════════════════════════════════════════════════
+# DURATION vs FIDELITY — 4-horse race (completion_vs_years_vs_tests.py)
+# WCDE completion, WCDE mean years, Barro-Lee mean years, HLO test scores
+# on the overlap sample, at 10-year forward lag.
+# ══════════════════════════════════════════════════════════════════════════
+reg("DVF-LE-wcde-mys-r2",   0.173, "checkin",
+    ("completion_vs_years_vs_tests.json", "results.lag_10.le.wcde_mys_t.r2"),
+    [COMPLETION], tol=0.005)
+reg("DVF-LE-bl-mys-r2",     0.076, "checkin",
+    ("completion_vs_years_vs_tests.json", "results.lag_10.le.bl_mys_t.r2"),
+    [COMPLETION], tol=0.005)
+reg("DVF-LE-test-r2",       0.000, "checkin",
+    ("completion_vs_years_vs_tests.json", "results.lag_10.le.test_t.r2"),
+    [COMPLETION], tol=0.005)
+reg("DVF-LE-test-p",        0.82,  "checkin",
+    ("completion_vs_years_vs_tests.json", "results.lag_10.le.test_t.pval"),
+    [COMPLETION], tol=0.02)
+reg("DVF-TFR-wcde-mys-r2",  0.338, "checkin",
+    ("completion_vs_years_vs_tests.json", "results.lag_10.tfr.wcde_mys_t.r2"),
+    [COMPLETION], tol=0.005)
+reg("DVF-TFR-bl-mys-r2",    0.101, "checkin",
+    ("completion_vs_years_vs_tests.json", "results.lag_10.tfr.bl_mys_t.r2"),
+    [COMPLETION], tol=0.005)
+reg("DVF-TFR-test-r2",      0.005, "checkin",
+    ("completion_vs_years_vs_tests.json", "results.lag_10.tfr.test_t.r2"),
+    [COMPLETION], tol=0.005)
+reg("DVF-TFR-test-p",       0.47,  "checkin",
+    ("completion_vs_years_vs_tests.json", "results.lag_10.tfr.test_t.pval"),
+    [COMPLETION], tol=0.02)
+reg("DVF-U5MR-wcde-mys-r2", 0.449, "checkin",
+    ("completion_vs_years_vs_tests.json", "results.lag_10.u5mr.wcde_mys_t.r2"),
+    [COMPLETION], tol=0.01)
+reg("DVF-U5MR-bl-mys-r2",   0.305, "checkin",
+    ("completion_vs_years_vs_tests.json", "results.lag_10.u5mr.bl_mys_t.r2"),
+    [COMPLETION], tol=0.01)
+reg("DVF-U5MR-test-r2",     0.028, "checkin",
+    ("completion_vs_years_vs_tests.json", "results.lag_10.u5mr.test_t.r2"),
+    [COMPLETION], tol=0.005)
+
+# ══════════════════════════════════════════════════════════════════════════
 # FIGURE A1 — Lag decay (le_r2_by_lag.py)
 # ══════════════════════════════════════════════════════════════════════════
 reg("FA1-lag0",     0.562,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag0"),
-    [(EDU_PRED, 11)])
+    [(EDU_PRED, None)])
 reg("FA1-lag25",    0.364,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag25"),
-    [(EDU_PRED, 15)])
+    [(EDU_PRED, None)])
 reg("FA1-lag50",    0.171,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag50"),
-    [(EDU_PRED, 15)])
+    [(EDU_PRED, None)])
 reg("FA1-lag75",    0.085,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag75"),
-    [(EDU_PRED, 15)])
+    [(EDU_PRED, None)])
+reg("FA1-lag100",   0.052,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag100"),
+    [(EDU_PRED, None)])
 
 # ══════════════════════════════════════════════════════════════════════════
 # CHECKIN — edu_vs_gdp_predicts_le.json
@@ -712,13 +753,13 @@ reg("China-LE-beta-break", 0.007, "checkin",
     [CHINA], tol=0.005)
 reg("China-LE-gap-1965",   6.3, "derived",
     "abs(le_gap_1965) from china_mean_yrs_vs_peers.json",
-    [(CHINA, 26)], tol=0.05)
+    [(CHINA, 27)], tol=0.05)
 reg("China-LE-gap-1980",   2.4, "derived",
     "abs(le_gap_1980) from china_mean_yrs_vs_peers.json",
-    [(CHINA, 26)], tol=0.05)
+    [(CHINA, 28)], tol=0.05)
 reg("China-MYS-1965",      5.9, "checkin",
     ("china_mean_yrs_vs_peers.json", "key_data_points.china_mys_1965"),
-    [(CHINA, 50)], tol=0.02)
+    [(CHINA, 52)], tol=0.02)
 
 # ══════════════════════════════════════════════════════════════════════════
 # CONSTANTS — definitional, just verify consistency

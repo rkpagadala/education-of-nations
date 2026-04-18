@@ -1,23 +1,23 @@
 # Verification Report
 
-Generated: 2026-04-17 22:10
+Generated: 2026-04-18 02:24
 
-## Result: 330/330 PASS
+## Result: 342/342 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 330 |
+| Verified claims | 342 |
 | Failed | 0 |
 | Missing | 0 |
 | Literature refs (manual) | 30 |
 | Unregistered numbers | 4 |
-| Section offset issues | 0 |
+| Section offset issues | 2 |
 
 ## By Source Type
 
 | Source | Pass | Fail | Missing |
 |--------|------|------|---------|
-| checkin | 205 | 0 | 0 |
+| checkin | 217 | 0 | 0 |
 | derived | 52 | 0 | 0 |
 | ref | 0 | 0 | 0 |
 | wcde | 23 | 0 | 0 |
@@ -32,10 +32,10 @@ Generated: 2026-04-17 22:10
 | cambodia-the-pt-shadow | 8 | 8 | 0 |
 | causal-identification-the-bad-control-problem-and-natural-experiments | 3 | 3 | 0 |
 | china | 13 | 13 | 0 |
-| completion-as-the-operative-variable | 7 | 7 | 0 |
+| completion-as-the-operative-variable | 18 | 18 | 0 |
 | data | 3 | 3 | 0 |
 | defining-development | 10 | 10 | 0 |
-| education-predicts-development-outcomes-25-years-forward | 49 | 49 | 0 |
+| education-predicts-development-outcomes-25-years-forward | 50 | 50 | 0 |
 | education-vs-gdp-as-predictors-of-attainment | 32 | 32 | 0 |
 | empirical-strategy | 2 | 2 | 0 |
 | four-further-cases | 16 | 16 | 0 |
@@ -57,8 +57,8 @@ Generated: 2026-04-17 22:10
 
 4 lines contain numbers not mapped to any verification entry:
 
-- L1343 [education-predicts-development-outcomes-25-years-forward]: 0.05
-- L1952 [the-decision]: 2025
-- L1957 [the-decision]: 2025
-- L1961 [the-decision]: 2025
+- L1344 [education-predicts-development-outcomes-25-years-forward]: 6.3
+- L2036 [the-decision]: 2025
+- L2041 [the-decision]: 2025
+- L2045 [the-decision]: 2025
 
