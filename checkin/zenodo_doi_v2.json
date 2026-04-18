@@ -1,8 +1,6 @@
 {
   "doi": "10.5281/zenodo.19641662",
   "url": "https://zenodo.org/record/19641662",
-  "version": "current",
-  "related": {
-    "v1": "10.5281/zenodo.19641493"
-  }
+  "version": "2",
+  "related_to": "10.5281/zenodo.19641493"
 }
