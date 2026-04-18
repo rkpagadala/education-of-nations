@@ -1,23 +1,23 @@
 # Verification Report
 
-Generated: 2026-04-18 02:53
+Generated: 2026-04-18 03:12
 
-## Result: 342/342 PASS
+## Result: 348/348 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 342 |
+| Verified claims | 348 |
 | Failed | 0 |
 | Missing | 0 |
-| Literature refs (manual) | 30 |
-| Unregistered numbers | 4 |
-| Section offset issues | 2 |
+| Literature refs (manual) | 24 |
+| Unregistered numbers | 0 |
+| Section offset issues | 0 |
 
 ## By Source Type
 
 | Source | Pass | Fail | Missing |
 |--------|------|------|---------|
-| checkin | 217 | 0 | 0 |
+| checkin | 223 | 0 | 0 |
 | derived | 52 | 0 | 0 |
 | ref | 0 | 0 | 0 |
 | wcde | 23 | 0 | 0 |
@@ -48,17 +48,8 @@ Generated: 2026-04-18 02:53
 | the-colonial-test | 9 | 9 | 0 |
 | the-decision | 10 | 10 | 0 |
 | the-evidence | 1 | 1 | 0 |
-| the-famine-test | 0 | 0 | 0 |
+| the-famine-test | 6 | 6 | 0 |
 | the-institutional-challenge | 13 | 13 | 0 |
 | the-shock-test | 14 | 14 | 0 |
-| why-education-is-invisible | 1 | 1 | 0 |
-
-## Unregistered Numbers
-
-4 lines contain numbers not mapped to any verification entry:
-
-- L1344 [education-predicts-development-outcomes-25-years-forward]: 6.3
-- L2036 [the-decision]: 2025
-- L2041 [the-decision]: 2025
-- L2045 [the-decision]: 2025
+| why-education-is-invisible | 3 | 3 | 0 |
 

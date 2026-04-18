@@ -50,6 +50,7 @@ analysis: \
 	$(CHECKIN)/beta_by_baseline_group.json \
 	$(CHECKIN)/robustness_tests.json \
 	$(CHECKIN)/education_outcomes.json \
+	$(CHECKIN)/famine_education_test.json \
 	$(CHECKIN)/long_run_generational.json \
 	$(CHECKIN)/table_1_main.json \
 	$(CHECKIN)/twfe_child_edu.json \
@@ -189,6 +190,9 @@ $(CHECKIN)/threshold_robustness.json: robustness/threshold_robustness.py _shared
 	$(PYTHON) $<
 
 $(CHECKIN)/happiness_education.json: happiness_education.py $(DATA)/world_happiness_report.csv $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/famine_education_test.json: famine_education_test.py _shared.py $(ALL_DATA)
 	$(PYTHON) $<
 
 $(CHECKIN)/beta_vs_baseline.json: figures/beta_vs_baseline.py $(WCDE_DATA)

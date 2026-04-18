@@ -402,7 +402,7 @@ reg("Beta-cutoff-90-r2-pct", 77, "derived",
     [(EDU_VS_GDP, None)], tol=1)
 reg("Beta-no-cutoff",  1.041, "checkin",
     ("beta_by_ceiling_cutoff.json", "numbers.panelA_no_cutoff_beta"),
-    [(EDU_VS_GDP, 62)])
+    [(EDU_VS_GDP, 55)])
 
 # ══════════════════════════════════════════════════════════════════════════
 # CHECKIN — asian_financial_crisis.json
@@ -511,7 +511,7 @@ reg("T2-LE-beta-sec",   0.109, "checkin", ("education_outcomes.json", "numbers.T
 # LONG-RUN PANEL (04b_long_run_generational.py)
 # ══════════════════════════════════════════════════════════════════════════
 reg("LR-countries", 28,     "checkin", ("long_run_generational.json", "numbers.LR-countries"),
-    [(DATA_SEC, 14), (EDU_VS_GDP, 70), (APPENDIX_ROBUST, 129)], tol=0)
+    [(DATA_SEC, 14), (EDU_VS_GDP, 74), (APPENDIX_ROBUST, 129)], tol=0)
 
 # ══════════════════════════════════════════════════════════════════════════
 # PARENTAL INCOME COLLAPSE — inline computation
@@ -1338,12 +1338,18 @@ reg("SA-2019-LE",       66.1,  "wdi",  ("le", "South Africa", 2019), [SHOCK_TEST
 
 # --- FAMINE TEST section ---
 # Numbers from scripts/famine_education_test.py output
-reg("Famine-count",        21,     "ref", "Count of famines in dataset since 1950",  [FAMINE_TEST, INVISIBLE], tol=0)
-reg("Famine-below-50-ct",  19,     "ref", "Famines with edu < 50%",                  [FAMINE_TEST, INVISIBLE], tol=0)
-reg("Famine-median-edu",   19.6,   "ref", "Median education at famine",              [FAMINE_TEST], tol=0.1)
-reg("Famine-mean-edu",     25.4,   "ref", "Mean education at famine",                [FAMINE_TEST], tol=0.1)
-reg("NM-median-edu",       71.6,   "ref", "Near-miss median education",              [FAMINE_TEST], tol=0.5)
-reg("Famine-p-val",        1e-05,  "ref", "Mann-Whitney U p-value (famine vs near-miss)", [FAMINE_TEST], tol=1e-04)
+reg("Famine-count",        21,     "checkin", ("famine_education_test.json", "numbers.Famine-count"),
+    [FAMINE_TEST, INVISIBLE], tol=0)
+reg("Famine-below-50-ct",  19,     "checkin", ("famine_education_test.json", "numbers.Famine-below-50-ct"),
+    [FAMINE_TEST, INVISIBLE], tol=0)
+reg("Famine-median-edu",   19.6,   "checkin", ("famine_education_test.json", "numbers.Famine-median-edu"),
+    [FAMINE_TEST], tol=0.1)
+reg("Famine-mean-edu",     25.4,   "checkin", ("famine_education_test.json", "numbers.Famine-mean-edu"),
+    [FAMINE_TEST], tol=0.1)
+reg("NM-median-edu",       71.6,   "checkin", ("famine_education_test.json", "numbers.NM-median-edu"),
+    [FAMINE_TEST], tol=0.5)
+reg("Famine-p-val",        1e-05,  "checkin", ("famine_education_test.json", "numbers.Famine-p-val"),
+    [FAMINE_TEST], tol=1e-04)
 reg("Bihar-deaths-lo",     70000,  "ref", "Bihar famine excess deaths low estimate (Dyson & Maharatna 1992)", [FAMINE_TEST], tol=0)
 reg("Bihar-deaths-hi",     130000, "ref", "Bihar famine excess deaths high estimate (Dyson & Maharatna 1992)", [FAMINE_TEST], tol=0)
 reg("Bihar-grain-drop",    19,     "ref", "India grain production drop 1965-66 (%)",  [FAMINE_TEST], tol=0)
@@ -2116,12 +2122,14 @@ def main():
         0.001,
         0.1429,       # LaTeX table column fraction (1/7) in longtable format
         0.4, 0.5, 1.5,  # LaTeX formatting: headrulewidth, titleformat spacing, vspace
+        6.3,            # LaTeX column width for tables
         85,            # education threshold (>85% lower-sec) — structural cutoff
         # 970, 973, 974, 981, 982 — no longer needed: \textasciitilde is now stripped
         1560, 1696, 1723, 1776,
         400, 500, 600,
         95,             # 95% confidence interval — methodological constant
         1000,           # 1,000 bootstrap replications — methodological constant
+        2025,           # Uganda forecast year (narrative prediction)
         2026,           # publication year
         2050, 2051,     # future illustration years
         2017,           # GDP constant USD base year
@@ -2164,6 +2172,8 @@ def main():
         clean = re.sub(r'\\footnote\{[^}]*\}', '', clean)
         # LaTeX table column widths: \real{0.2400}
         clean = re.sub(r'\\real\{[^}]*\}', '', clean)
+        # LaTeX column specifications: p{6.3cm}, m{5cm}, etc.
+        clean = re.sub(r'[pmb]\{[^}]*?[0-9.]+\s*c?m\}', '', clean)
 
         nums = []
         for m in NUMBER_RE.finditer(clean):
