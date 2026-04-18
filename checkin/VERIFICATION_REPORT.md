@@ -1,6 +1,6 @@
 # Verification Report
 
-Generated: 2026-04-18 03:12
+Generated: 2026-04-18 03:37
 
 ## Result: 348/348 PASS
 
@@ -11,7 +11,7 @@ Generated: 2026-04-18 03:12
 | Missing | 0 |
 | Literature refs (manual) | 24 |
 | Unregistered numbers | 0 |
-| Section offset issues | 0 |
+| Section offset issues | 1 |
 
 ## By Source Type
 
