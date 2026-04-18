@@ -1,6 +1,6 @@
 # Verification Report
 
-Generated: 2026-04-18 03:37
+Generated: 2026-04-18 03:51
 
 ## Result: 348/348 PASS
 
@@ -10,7 +10,7 @@ Generated: 2026-04-18 03:37
 | Failed | 0 |
 | Missing | 0 |
 | Literature refs (manual) | 24 |
-| Unregistered numbers | 0 |
+| Unregistered numbers | 1 |
 | Section offset issues | 1 |
 
 ## By Source Type
@@ -52,4 +52,10 @@ Generated: 2026-04-18 03:37
 | the-institutional-challenge | 13 | 13 | 0 |
 | the-shock-test | 14 | 14 | 0 |
 | why-education-is-invisible | 3 | 3 | 0 |
+
+## Unregistered Numbers
+
+1 lines contain numbers not mapped to any verification entry:
+
+- L1089 [completion-as-the-operative-variable]: 2023
 
