@@ -214,7 +214,7 @@ def reg(name, value, source, detail, section, tol=0.001):
 # ── Script paths ─────────────────────────────────────────────────────────
 S_T1    = os.path.join(REPO_ROOT, "scripts", "tables", "table_1_main.py")
 S_TA1   = os.path.join(REPO_ROOT, "scripts", "robustness", "twfe_child_edu.py")
-S_FA1   = os.path.join(REPO_ROOT, "scripts", "figures", "le_r2_by_lag.py")
+S_FA1   = os.path.join(REPO_ROOT, "scripts", "figures", "outcomes_r2_by_lag.py")
 S_CO2   = os.path.join(REPO_ROOT, "scripts", "co2_placebo.py")
 S_BETA  = os.path.join(REPO_ROOT, "scripts", "figures", "beta_vs_baseline.py")
 S_ROB   = os.path.join(REPO_ROOT, "scripts", "robustness", "robustness_tests.py")
@@ -312,18 +312,57 @@ reg("DVF-U5MR-test-r2",     0.028, "checkin",
     [COMPLETION], tol=0.005)
 
 # ══════════════════════════════════════════════════════════════════════════
-# FIGURE A1 — Lag decay (le_r2_by_lag.py)
+# FIGURE 3 — Lag decay, four outcomes (outcomes_r2_by_lag.py)
+# Table in §Evidence cites values at generational anchors (0, 25, 50, 75, 100)
+# for each of the four outcomes: LE, TFR, U-5 mortality (log), child edu.
 # ══════════════════════════════════════════════════════════════════════════
-reg("FA1-lag0",     0.562,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag0"),
+# Life expectancy
+reg("OR-le-lag0",    0.552, "checkin", ("outcomes_r2_by_lag.json", "numbers.le_r2_lag0"),
     [(EDU_PRED, None)])
-reg("FA1-lag25",    0.364,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag25"),
+reg("OR-le-lag25",   0.356, "checkin", ("outcomes_r2_by_lag.json", "numbers.le_r2_lag25"),
     [(EDU_PRED, None)])
-reg("FA1-lag50",    0.171,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag50"),
+reg("OR-le-lag50",   0.169, "checkin", ("outcomes_r2_by_lag.json", "numbers.le_r2_lag50"),
     [(EDU_PRED, None)])
-reg("FA1-lag75",    0.085,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag75"),
+reg("OR-le-lag75",   0.080, "checkin", ("outcomes_r2_by_lag.json", "numbers.le_r2_lag75"),
     [(EDU_PRED, None)])
-reg("FA1-lag100",   0.052,  "checkin", ("le_r2_by_lag.json", "numbers.edu_r2_lag100"),
+reg("OR-le-lag100",  0.050, "checkin", ("outcomes_r2_by_lag.json", "numbers.le_r2_lag100"),
     [(EDU_PRED, None)])
+# Total fertility rate
+reg("OR-tfr-lag0",   0.668, "checkin", ("outcomes_r2_by_lag.json", "numbers.tfr_r2_lag0"),
+    [(EDU_PRED, None)])
+reg("OR-tfr-lag25",  0.480, "checkin", ("outcomes_r2_by_lag.json", "numbers.tfr_r2_lag25"),
+    [(EDU_PRED, None)])
+reg("OR-tfr-lag50",  0.204, "checkin", ("outcomes_r2_by_lag.json", "numbers.tfr_r2_lag50"),
+    [(EDU_PRED, None)])
+reg("OR-tfr-lag75",  0.066, "checkin", ("outcomes_r2_by_lag.json", "numbers.tfr_r2_lag75"),
+    [(EDU_PRED, None)])
+reg("OR-tfr-lag100", 0.018, "checkin", ("outcomes_r2_by_lag.json", "numbers.tfr_r2_lag100"),
+    [(EDU_PRED, None)])
+# Under-5 mortality (log)
+reg("OR-u5-lag0",    0.663, "checkin", ("outcomes_r2_by_lag.json", "numbers.u5log_r2_lag0"),
+    [(EDU_PRED, None)])
+reg("OR-u5-lag25",   0.673, "checkin", ("outcomes_r2_by_lag.json", "numbers.u5log_r2_lag25"),
+    [(EDU_PRED, None)])
+reg("OR-u5-lag50",   0.441, "checkin", ("outcomes_r2_by_lag.json", "numbers.u5log_r2_lag50"),
+    [(EDU_PRED, None)])
+reg("OR-u5-lag75",   0.252, "checkin", ("outcomes_r2_by_lag.json", "numbers.u5log_r2_lag75"),
+    [(EDU_PRED, None)])
+reg("OR-u5-lag100",  0.156, "checkin", ("outcomes_r2_by_lag.json", "numbers.u5log_r2_lag100"),
+    [(EDU_PRED, None)])
+reg("OR-u5-lag100-pct", 15.6, "derived",
+    "U-5 mortality R² at lag 100 × 100",
+    [(EDU_PRED, None)], tol=0.1)
+# Child education (autoregression)
+reg("OR-cedu-lag25", 0.521, "checkin", ("outcomes_r2_by_lag.json", "numbers.cedu_r2_lag25"),
+    [(EDU_PRED, None)])
+reg("OR-cedu-lag50", 0.150, "checkin", ("outcomes_r2_by_lag.json", "numbers.cedu_r2_lag50"),
+    [(EDU_PRED, None)])
+reg("OR-cedu-lag75", 0.051, "checkin", ("outcomes_r2_by_lag.json", "numbers.cedu_r2_lag75"),
+    [(EDU_PRED, None)])
+reg("OR-cedu-lag100",0.023, "checkin", ("outcomes_r2_by_lag.json", "numbers.cedu_r2_lag100"),
+    [(EDU_PRED, None)])
+reg("OR-n-countries", 142, "checkin", ("outcomes_r2_by_lag.json", "numbers.n_countries"),
+    [(EDU_PRED, None)], tol=0)
 
 # ══════════════════════════════════════════════════════════════════════════
 # CHECKIN — edu_vs_gdp_predicts_le.json
@@ -379,18 +418,8 @@ reg("CutOff-no-edu-r2",    0.533, "checkin",
 # ══════════════════════════════════════════════════════════════════════════
 # CHECKIN — le_r2_by_lag.json
 # ══════════════════════════════════════════════════════════════════════════
-reg("CK-FA1-lag0",   0.562, "checkin",
-    ("le_r2_by_lag.json", "numbers.edu_r2_lag0"),
-    [(EDU_PRED, 11)])
-reg("CK-FA1-lag25",  0.364, "checkin",
-    ("le_r2_by_lag.json", "numbers.edu_r2_lag25"),
-    [(EDU_PRED, 15)])
-reg("CK-FA1-lag50",  0.171, "checkin",
-    ("le_r2_by_lag.json", "numbers.edu_r2_lag50"),
-    [(EDU_PRED, 15)])
-reg("CK-FA1-lag75",  0.085, "checkin",
-    ("le_r2_by_lag.json", "numbers.edu_r2_lag75"),
-    [(EDU_PRED, 15)])
+# (CK-FA1-* entries removed: paper no longer cites LE-only lag values;
+#  see OR-* registrations above for the four-outcome version.)
 
 # ══════════════════════════════════════════════════════════════════════════
 # CHECKIN — beta_by_ceiling_cutoff.json
@@ -1319,6 +1348,82 @@ reg("GM-tfr-low-beta-f", -0.050, "checkin",
     ("grandparent_effect.json", "results.sex_comparison.female (grandmother)_tfr_low.beta_gp"),
     [(EDU_PRED, None)], tol=0.005)
 
+# --- GRANDPARENT EFFECT on U-5 MORTALITY (full panel, EDU_PRED) ---
+reg("GM-u5-beta-gp", -0.018, "checkin",
+    ("grandparent_effect_all_outcomes.json",
+     "outcomes.u5_log.full.parent_gp.beta_grandparent_edu"),
+    [(EDU_PRED, None)], tol=0.005)
+reg("GM-u5-beta-p", -0.016, "checkin",
+    ("grandparent_effect_all_outcomes.json",
+     "outcomes.u5_log.full.parent_gp.beta_parent_edu"),
+    [(EDU_PRED, None)], tol=0.005)
+reg("GM-u5-beta-ratio", 1.16, "checkin",
+    ("grandparent_effect_all_outcomes.json",
+     "outcomes.u5_log.full.beta_ratio_gp_over_p"),
+    [(EDU_PRED, None)], tol=0.05)
+reg("GM-u5-r2-m1", 0.377, "checkin",
+    ("grandparent_effect_all_outcomes.json",
+     "outcomes.u5_log.full.parent_only.within_r2"),
+    [(EDU_PRED, None)], tol=0.005)
+reg("GM-u5-r2-m2", 0.561, "checkin",
+    ("grandparent_effect_all_outcomes.json",
+     "outcomes.u5_log.full.parent_gp.within_r2"),
+    [(EDU_PRED, None)], tol=0.005)
+reg("GM-u5-r2-gain-pct", 18.4, "derived",
+    "U5 grandparent R² gain × 100 (grandparent_effect_all_outcomes.json outcomes.u5_log.full.r2_gain)",
+    [(EDU_PRED, None)], tol=0.3)
+
+# --- BACKFILL all-outcomes: zero-R² threshold (EDU_PRED) ---
+reg("Backfill-zero-threshold", 0.01, "checkin",
+    ("backfill_all_outcomes.json", "numbers.zero_r2_threshold"),
+    [(EDU_PRED, None)], tol=0.001)
+
+# --- CUTOFF all-outcomes (EDU_PRED): TFR at <50% and U-5 at <10% ---
+reg("Cutoff-TFR-lt50-ratio", 51, "checkin",
+    ("cutoff_all_outcomes.json", "results.tfr.lt50.ratio"),
+    [(EDU_PRED, None)], tol=1)
+reg("Cutoff-TFR-lt50-edu-r2", 0.375, "checkin",
+    ("cutoff_all_outcomes.json", "results.tfr.lt50.edu_r2"),
+    [(EDU_PRED, None)], tol=0.005)
+reg("Cutoff-TFR-lt50-gdp-r2", 0.007, "checkin",
+    ("cutoff_all_outcomes.json", "results.tfr.lt50.gdp_r2"),
+    [(EDU_PRED, None)], tol=0.002)
+reg("Cutoff-U5-lt10-ratio", 39, "checkin",
+    ("cutoff_all_outcomes.json", "results.log_u5mr.lt10.ratio"),
+    [(EDU_PRED, None)], tol=1)
+reg("Cutoff-U5-lt10-edu-r2", 0.570, "checkin",
+    ("cutoff_all_outcomes.json", "results.log_u5mr.lt10.edu_r2"),
+    [(EDU_PRED, None)], tol=0.005)
+reg("Cutoff-U5-lt10-gdp-r2", 0.015, "checkin",
+    ("cutoff_all_outcomes.json", "results.log_u5mr.lt10.gdp_r2"),
+    [(EDU_PRED, None)], tol=0.002)
+
+# --- COLONIAL 4-outcome within-country FE horse race (COLONIAL) ---
+reg("Colonial4-n-countries", 103, "checkin",
+    ("colonial_all_outcomes.json", "n_countries"),
+    [COLONIAL], tol=0)
+reg("Colonial4-n-obs", 721, "checkin",
+    ("colonial_all_outcomes.json", "n_panel_obs"),
+    [COLONIAL], tol=0)
+reg("Colonial4-u5-edu-r2", 0.632, "checkin",
+    ("colonial_all_outcomes.json", "outcomes.log_u5mr.r2_education"),
+    [COLONIAL], tol=0.005)
+reg("Colonial4-u5-polity-r2", 0.245, "checkin",
+    ("colonial_all_outcomes.json", "outcomes.log_u5mr.r2_polity2"),
+    [COLONIAL], tol=0.005)
+reg("Colonial4-u5-delta", 0.387, "checkin",
+    ("colonial_all_outcomes.json", "outcomes.log_u5mr.edu_minus_polity"),
+    [COLONIAL], tol=0.005)
+reg("Colonial4-cedu-delta", 0.327, "checkin",
+    ("colonial_all_outcomes.json", "outcomes.child_edu.edu_minus_polity"),
+    [COLONIAL], tol=0.005)
+reg("Colonial4-tfr-delta", 0.109, "checkin",
+    ("colonial_all_outcomes.json", "outcomes.tfr.edu_minus_polity"),
+    [COLONIAL], tol=0.005)
+reg("Colonial4-le-delta", 0.061, "checkin",
+    ("colonial_all_outcomes.json", "outcomes.le.edu_minus_polity"),
+    [COLONIAL], tol=0.005)
+
 # --- Russia 99% in shock test section ---
 reg("Russia-99-cumulative", 99, "derived",
     "Cumulative % from Russia shock test",
@@ -1907,6 +2012,7 @@ DERIVED_DISPATCH = {
     # Percentages: checkin R² × 100
     "GM-child-edu-r2-gain":   _pct_checkin("grandparent_effect.json", "results.child_edu.r2_gain"),
     "GM-le-r2-gain":          _pct_checkin("grandparent_effect.json", "results.le.r2_gain", rounding=1),
+    "GM-u5-r2-gain-pct":      _pct_checkin("grandparent_effect_all_outcomes.json", "outcomes.u5_log.full.r2_gain", rounding=1),
     "Colonial-era-edu-r2":    _pct_checkin("colonial_education_vs_institutions.json", "r2_colonial_education"),
     "T2-GDP-beta-pct":        _pct_checkin("education_outcomes.json", "numbers.T2-GDP-beta", rounding=1),
     "GDP-r2-below10-pct":     _pct_checkin("edu_vs_gdp_predicts_le.json", "numbers.lt10.gdp_r2", rounding=1),
@@ -1914,6 +2020,7 @@ DERIVED_DISPATCH = {
     "U5MR-post2000-resid-pct": _pct_of("U5MR-post2000-resid-r2"),
     "U5MR-pre2000-resid-pct":  _pct_of("U5MR-pre2000-resid-r2"),
     "LE-lt10-edu-r2-pct":      _pct_of("LE-lt10-edu-r2"),
+    "OR-u5-lag100-pct":        _pct_of("OR-u5-lag100"),
     "Beta-cutoff-50-r2-pct":  _pct_checkin("beta_by_ceiling_cutoff.json", "numbers.panelA_cutoff_50_r2"),
     "Beta-cutoff-90-r2-pct":  _pct_checkin("beta_by_ceiling_cutoff.json", "numbers.panelA_cutoff_90_r2"),
     # Lag sensitivity max scans

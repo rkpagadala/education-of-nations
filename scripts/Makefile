@@ -60,6 +60,7 @@ analysis: \
 	$(CHECKIN)/development_threshold_count.json \
 	$(CHECKIN)/asian_financial_crisis.json \
 	$(CHECKIN)/le_r2_by_lag.json \
+	$(CHECKIN)/outcomes_r2_by_lag.json \
 	$(CHECKIN)/edu_vs_gdp_residualized.json \
 	$(CHECKIN)/edu_vs_gdp_tfr_residualized.json \
 	$(CHECKIN)/edu_vs_gdp_entry_ceiling.json \
@@ -73,7 +74,11 @@ analysis: \
 	$(CHECKIN)/lag_sensitivity.json \
 	$(CHECKIN)/completion_vs_test_scores.json \
 	$(CHECKIN)/threshold_robustness.json \
-	$(CHECKIN)/happiness_education.json
+	$(CHECKIN)/happiness_education.json \
+	$(CHECKIN)/grandparent_effect_all_outcomes.json \
+	$(CHECKIN)/backfill_all_outcomes.json \
+	$(CHECKIN)/colonial_all_outcomes.json \
+	$(CHECKIN)/cutoff_all_outcomes.json
 
 # ── Rules ─────────────────────────────────────────────────────────────
 
@@ -154,6 +159,9 @@ $(CHECKIN)/asian_financial_crisis.json: robustness/asian_financial_crisis.py $(A
 $(CHECKIN)/le_r2_by_lag.json: figures/le_r2_by_lag.py _shared.py $(ALL_DATA)
 	$(PYTHON) $<
 
+$(CHECKIN)/outcomes_r2_by_lag.json: figures/outcomes_r2_by_lag.py _shared.py $(ALL_DATA)
+	$(PYTHON) $<
+
 $(CHECKIN)/edu_vs_gdp_residualized.json: residualization/education_vs_gdp.py _shared.py $(ALL_DATA)
 	$(PYTHON) $<
 
@@ -194,6 +202,18 @@ $(CHECKIN)/threshold_robustness.json: robustness/threshold_robustness.py _shared
 	$(PYTHON) $<
 
 $(CHECKIN)/happiness_education.json: happiness_education.py $(DATA)/world_happiness_report.csv $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/grandparent_effect_all_outcomes.json: robustness/grandparent_effect_all_outcomes.py _shared.py $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/backfill_all_outcomes.json: robustness/backfill_all_outcomes.py _shared.py $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/colonial_all_outcomes.json: robustness/colonial_all_outcomes.py _shared.py $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/cutoff_all_outcomes.json: residualization/cutoff_all_outcomes.py _shared.py $(RESID_SHARED) $(ALL_DATA)
 	$(PYTHON) $<
 
 $(CHECKIN)/famine_education_test.json: famine_education_test.py _shared.py $(ALL_DATA)

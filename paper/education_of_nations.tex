@@ -1352,35 +1352,52 @@ completion, education explains 31\% of the variation vs 2\% for GDP ---
 a 15× gap. Among countries below 10\%, education explains 63\% while
 GDP explains 1.6\%. Even that small GDP signal vanishes once education's
 contribution is stripped out
-(Section~\ref{gdp-has-no-independent-effect}).
+(Section~\ref{gdp-has-no-independent-effect}). The same pattern holds
+for the other outcomes: at completion below 50\%, fertility shows a
+51× edu-over-GDP ratio (edu R$^2$=0.375, GDP R$^2$=0.007); at
+completion below 10\%, log under-5 mortality shows a 39× ratio (edu
+R$^2$=0.570, GDP R$^2$=0.015).\footnote{See
+\texttt{scripts/residualization/cutoff\_all\_outcomes.py}.}
 
 \subsubsection*{Lag-decay shape (Prediction~\ref{pred:persistence})}
 
-Education's signal survives four generations. Income's collapses within one.
+Education's signal survives four generations across every outcome
+tested. Income's collapses within one.
 
 Each lag corresponds to a generational relationship, and the
-relationship names what the number actually measures:
+relationship names what the number actually measures. The same pattern
+holds for all four development outcomes the paper cares about:
 
 \begin{center}
 \footnotesize
-\begin{tabular}{@{}ll>{\raggedright\arraybackslash}p{6.3cm}l@{}}
+\begin{tabular}{@{}llp{4.4cm}cccc@{}}
 \toprule
-Lag (yr) & Gens & Relationship & $R^2$ \\
+Lag & Gens & Relationship & LE & TFR & U-5 mort. & Child edu \\
 \midrule
-0   & ---  & same cohort (contemporary)                                  & 0.562 \\
-25  & 1    & parent $\to$ child                                          & 0.364 \\
-50  & 2    & grandparent $\to$ grandchild                                & 0.171 \\
-75  & 3    & great-grandparent $\to$ great-grandchild                    & 0.085 \\
-100 & 4    & great-great-grandparent $\to$ great-great-grandchild        & 0.052 \\
+0   & ---  & contemporary                                 & 0.552 & 0.668 & 0.663 & --- \\
+25  & 1    & parent $\to$ child                           & 0.356 & 0.480 & 0.673 & 0.521 \\
+50  & 2    & grandparent $\to$ grandchild                 & 0.169 & 0.204 & 0.441 & 0.150 \\
+75  & 3    & great-grandparent $\to$ great-grandchild     & 0.080 & 0.066 & 0.252 & 0.051 \\
+100 & 4    & g-great-gp $\to$ g-great-grandchild          & 0.050 & 0.018 & 0.156 & 0.023 \\
 \bottomrule
 \end{tabular}\\
-\textit{$R^2$: within-country FE, life expectancy on lower secondary completion.}
+\textit{$R^2$: within-country FE, outcome on lower secondary completion
+at T$-$lag. Under-5 mortality is logged; child education at lag 0 is
+identity and not shown. 142 countries.}
 \end{center}
 
-Each generation halves the remaining signal, but it never reaches zero:
-a great-great-grandparent's school completion still predicts how long
-their great-great-grandchild will live, four generations later ---
-roughly a century of PT running through three intermediate households.
+Each generation roughly halves the remaining signal, but it never
+reaches zero across any of the four outcomes. The strongest signature
+is on child survival: a great-great-grandparent's school completion
+explains 15.6\% of within-country variation in under-5 mortality four
+generations later --- three times larger than the life-expectancy
+signal at the same depth, and the only outcome where education still
+explains more than 15\% of within-country variance after a century of
+intervening households. Life expectancy, fertility, and child education
+show the same smooth monotonic decay, all still detectable at 100
+years. Roughly a century of PT running through three intermediate
+households leaves a measurable trace in every dimension of human
+development the paper defines.
 
 No other development input has comparable reach. Income's $R^2$ is
 already fading by lag 20--25, and it cannot be tested beyond that
@@ -1395,21 +1412,32 @@ provision fail the same generational-depth test: none survives at the
 depth education reaches. This is not a separate finding for each
 alternative --- it is a single methodological principle derived from
 the mechanism itself. Backfilling pre-1960 income at \$500 does not
-rescue income's predictive power.\footnote{See
-\texttt{scripts/robustness/le\_r2\_by\_lag\_backfilled.py}.}
+rescue income's predictive power for any of the four outcomes:
+backfilled-GDP within-R$^2$ falls below 0.01 by lag 55--60 for life
+expectancy, fertility, log under-5 mortality, and child education,
+while education stays predictive through lag 100.\footnote{See
+\texttt{scripts/robustness/backfill\_all\_outcomes.py}.}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{le_r2_by_lag.png}
-\caption{Education vs.\ income predictive power across lag lengths
-(within-country FE, outcome: life expectancy at birth). Within-country
-$R^2$ for lower secondary completion and log GDP per capita plotted
-against lag lengths from 0 to 100 years. The four generational horizons
-(lag 25 = 1 generation, 50 = 2, 75 = 3, 100 = 4) are marked. Income is
-shown through lag 25 only; beyond that, income was uniformly low across
-pre-literate subsistence societies, so the comparison is undefined.
-\emph{(Source: author's calculation, World Bank WDI and WCDE v3. See
-\texttt{scripts/figures/le\_r2\_by\_lag.py})}}
+\includegraphics[width=\textwidth]{outcomes_r2_by_lag.png}
+\caption{Education vs.\ GDP predictive power across lag lengths
+(within-country FE). Solid curves: within-country $R^2$ for lower
+secondary completion predicting four development outcomes (under-5
+mortality log, child education, total fertility rate, life expectancy)
+at lags 0--100 years. Dashed curves: log GDP per capita predicting the
+same four outcomes, matched by color. Education beats GDP at every
+outcome and every lag. GDP curves terminate where World Bank WDI data
+runs out (\textasciitilde lag 55); they are not smooth because the
+panel shrinks toward richer countries at longer lags as poor-country
+GDP records thin, causing sample-selection artifacts --- the apparent
+rises in GDP curves beyond lag 10--15 are this artifact, not real
+signal. Education curves use the full WCDE 1875--2015 coverage and are
+therefore smooth across all 100 lags. Generational horizons (1--3) are
+marked. All four education curves remain detectable at four
+generations; GDP cannot be tested that far. \emph{(Source: author's
+calculation, World Bank WDI and WCDE v3. See
+\texttt{scripts/figures/outcomes\_r2\_by\_lag.py})}}
 \label{fig:3}
 \end{figure}
 
@@ -1439,8 +1467,23 @@ For life expectancy, the grandparent effect is significant across all
 education levels ($\beta_{gp}$=+0.070, $p$\textless0.0001), adding 3.6
 percentage points of R² beyond the parent alone. Roughly half the
 grandparent's total effect on LE runs through the parent; half is
-direct. For grandchild education, the effect is strongest:
-$\beta_{gp}$=+0.271 ($p$\textless0.0001), R² gain of 5.2 points.
+direct. For grandchild education, the grandparent coefficient is
+$\beta_{gp}$=+0.271 ($p$\textless0.0001), with an R² gain of 5.2 points.
+
+The largest grandparent effect is on child survival. Regressing log
+under-5 mortality on both generations' lower secondary completion in
+the full panel, the grandparent coefficient is larger in absolute
+terms than the parent's ($\beta_{gp}$=$-$0.018, $\beta_p$=$-$0.016;
+$|\beta_{gp}/\beta_p|$=1.16, both $p$\textless0.0001). Within-R² rises
+from 0.377 to 0.561 once grandparent education is added --- a gain of
+18.4 percentage points, roughly five times the life-expectancy gain
+and the largest grandparent contribution of any development outcome
+the paper tracks. The grandmother's cohort carries an independent
+signal for child survival that, in magnitude, matches the mother's
+own education --- the signature expected if the mechanism is kin
+transmission of child-care practice (sanitation, feeding,
+vaccination) within the household and kin radius.\footnote{See
+\texttt{scripts/robustness/grandparent\_effect\_all\_outcomes.py}.}
 
 The pattern is what the generational gate predicts
 (Section~\ref{completion-as-the-operative-variable}): at low baselines
@@ -2685,6 +2728,18 @@ primary completion for its own 1875 birth cohort; Portugal had 0.1\%.
 They could not transplant what they did not possess. The educational
 base at independence was correspondingly low (mean 11\% lower secondary,
 1950), and development followed the education, not the institutions.
+
+The horse race also extends to within-country variation. In a
+country-FE panel of 103 former colonies (1985--2015, outcomes every
+five years, education lagged one generation, polity2 contemporaneous,
+721 observations), education beats polity2 on every outcome the
+paper tracks: log under-5 mortality (edu R$^2$=0.632, polity
+R$^2$=0.245, $\Delta$=+0.387), child education ($\Delta$=+0.327),
+total fertility rate ($\Delta$=+0.109), and life expectancy
+($\Delta$=+0.061). The margin is largest precisely where the
+mechanism predicts --- child survival mediated by maternal
+education, not by colonial legal tradition.
+See \texttt{scripts/robustness/colonial\_all\_outcomes.py}.
 
 The settler mortality instrument is a
 Protestant education instrument.

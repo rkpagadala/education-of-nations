@@ -9,5 +9,5 @@
   "r2_education_2020": 0.696,
   "r2_education_1950_plus_religion": 0.466,
   "script": "scripts/robustness/colonial_vs_institutions.py",
-  "produced": "2026-04-17"
+  "produced": "2026-04-19"
 }

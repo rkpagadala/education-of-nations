@@ -1,12 +1,12 @@
 # Verification Report
 
-Generated: 2026-04-18 20:40
+Generated: 2026-04-19 02:03
 
-## Result: 352/352 PASS
+## Result: 385/385 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 352 |
+| Verified claims | 385 |
 | Failed | 0 |
 | Missing | 0 |
 | Literature refs (manual) | 24 |
@@ -17,8 +17,8 @@ Generated: 2026-04-18 20:40
 
 | Source | Pass | Fail | Missing |
 |--------|------|------|---------|
-| checkin | 227 | 0 | 0 |
-| derived | 52 | 0 | 0 |
+| checkin | 258 | 0 | 0 |
+| derived | 54 | 0 | 0 |
 | ref | 0 | 0 | 0 |
 | wcde | 23 | 0 | 0 |
 | wdi | 50 | 0 | 0 |
@@ -35,7 +35,7 @@ Generated: 2026-04-18 20:40
 | completion-as-the-operative-variable | 18 | 18 | 0 |
 | data | 3 | 3 | 0 |
 | defining-development | 10 | 10 | 0 |
-| education-predicts-development-outcomes-25-years-forward | 50 | 50 | 0 |
+| education-predicts-development-outcomes-25-years-forward | 75 | 75 | 0 |
 | education-vs-gdp-as-predictors-of-attainment | 32 | 32 | 0 |
 | empirical-strategy | 6 | 6 | 0 |
 | four-further-cases | 16 | 16 | 0 |
@@ -45,7 +45,7 @@ Generated: 2026-04-18 20:40
 | policy-over-performers | 25 | 25 | 0 |
 | taiwan-and-korea | 6 | 6 | 0 |
 | the-cases | 26 | 26 | 0 |
-| the-colonial-test | 9 | 9 | 0 |
+| the-colonial-test | 17 | 17 | 0 |
 | the-decision | 10 | 10 | 0 |
 | the-evidence | 1 | 1 | 0 |
 | the-famine-test | 6 | 6 | 0 |
