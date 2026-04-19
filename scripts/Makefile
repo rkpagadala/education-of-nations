@@ -59,7 +59,6 @@ analysis: \
 	$(CHECKIN)/beta_by_ceiling_cutoff.json \
 	$(CHECKIN)/development_threshold_count.json \
 	$(CHECKIN)/asian_financial_crisis.json \
-	$(CHECKIN)/le_r2_by_lag.json \
 	$(CHECKIN)/outcomes_r2_by_lag.json \
 	$(CHECKIN)/edu_vs_gdp_residualized.json \
 	$(CHECKIN)/edu_vs_gdp_tfr_residualized.json \
@@ -154,9 +153,6 @@ $(CHECKIN)/development_threshold_count.json: cases/development_threshold_count.p
 	$(PYTHON) $<
 
 $(CHECKIN)/asian_financial_crisis.json: robustness/asian_financial_crisis.py $(ALL_DATA)
-	$(PYTHON) $<
-
-$(CHECKIN)/le_r2_by_lag.json: figures/le_r2_by_lag.py _shared.py $(ALL_DATA)
 	$(PYTHON) $<
 
 $(CHECKIN)/outcomes_r2_by_lag.json: figures/outcomes_r2_by_lag.py _shared.py $(ALL_DATA)

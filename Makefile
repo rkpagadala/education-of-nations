@@ -1,7 +1,7 @@
 # Makefile — education-of-nations replication repo
 #
 # make setup   — create venv + install dependencies
-# make verify  — check all 351 paper claims against data (~2 sec)
+# make verify  — check all 385 paper claims against data (~2 sec)
 # make scripts — rebuild all checkin JSONs from source data
 
 VENV   = .venv
