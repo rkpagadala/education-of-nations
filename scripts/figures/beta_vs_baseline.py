@@ -43,7 +43,7 @@ sys.path.insert(0, os.path.join(SCRIPT_DIR, ".."))
 from _shared import PROC, DATA, CHECKIN, REGIONS, REPO_ROOT, write_checkin
 
 PTE_PROC   = PROC
-OUT        = os.path.join(REPO_ROOT, "paper", "beta_vs_baseline.png")
+OUT        = os.path.join(REPO_ROOT, "paper", "figures", "beta_vs_baseline.png")
 
 # ── parameters ────────────────────────────────────────────────────────────────
 WINDOW_SIZE = 25    # years (6 cohorts at 5-year intervals)

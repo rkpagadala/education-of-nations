@@ -38,7 +38,7 @@ from _shared import PROC, DATA, REPO_ROOT, write_checkin
 
 WCDE_PROC = PROC
 WB_DIR    = DATA
-OUT_FIG   = os.path.join(REPO_ROOT, "paper", "female_edu_by_lag.png")
+OUT_FIG   = os.path.join(REPO_ROOT, "paper", "figures", "female_edu_by_lag.png")
 
 LAG_MIN     = 0
 LAG_MAX     = 30

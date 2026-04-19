@@ -6,7 +6,7 @@ lag-decay analysis from life expectancy to all four development outcomes
 the paper cares about.
 
 Output:
-  paper/outcomes_r2_by_lag.png
+  paper/figures/outcomes_r2_by_lag.png
   checkin/outcomes_r2_by_lag.json
 
 What it does:
@@ -56,7 +56,7 @@ from _shared import PROC, DATA, REPO_ROOT, write_checkin
 
 WCDE_PROC = PROC
 WB_DIR    = DATA
-OUT       = os.path.join(REPO_ROOT, "paper", "outcomes_r2_by_lag.png")
+OUT       = os.path.join(REPO_ROOT, "paper", "figures", "outcomes_r2_by_lag.png")
 
 # ── parameters ────────────────────────────────────────────────────────────────
 LAG_MIN     = 0

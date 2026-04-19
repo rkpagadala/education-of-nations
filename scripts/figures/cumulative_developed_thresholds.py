@@ -27,7 +27,7 @@ from _shared import (
     load_wide_indicator, load_population_by_year,
 )
 
-OUT_PATH = os.path.join(REPO_ROOT, "paper", "cumulative_developed_thresholds.png")
+OUT_PATH = os.path.join(REPO_ROOT, "paper", "figures", "cumulative_developed_thresholds.png")
 
 START_YEAR = 1960
 END_YEAR = 2022
