@@ -226,7 +226,7 @@ S_TFR   = os.path.join(REPO_ROOT, "scripts", "residualization", "education_vs_tf
 reg("T1-obs",        1665,   "checkin", ("table_1_main.json", "numbers.panel_obs"),
     [(DATA_SEC, None), (APPENDIX_ROBUST, None)], tol=0)
 reg("T1-countries",  185,    "checkin", ("table_1_main.json", "numbers.panel_countries"),
-    [(ABSTRACT, 126), (THE_EVIDENCE, None), (DATA_SEC, 3), (APPENDIX_ROBUST, 34)], tol=0)
+    [(ABSTRACT, 132), (THE_EVIDENCE, None), (DATA_SEC, 3), (APPENDIX_ROBUST, 34)], tol=0)
 # ══════════════════════════════════════════════════════════════════════════
 # TABLE A1 — Two-way FE (twfe_child_edu.py)
 # ══════════════════════════════════════════════════════════════════════════
@@ -236,6 +236,16 @@ reg("TA1-M1-p",     0.07,   "checkin", ("twfe_child_edu.json", "numbers.ta1_m1_e
     [(EMPIRICAL, None)], tol=0.005)
 reg("TA1-M1-R2",    0.009,  "checkin", ("twfe_child_edu.json", "numbers.ta1_m1_r2_within"),
     [(APPENDIX_ROBUST, 34)])
+
+# Callaway--Sant'Anna headline numbers cited inline in §4.1 ("On year fixed effects")
+reg("CS-att",       7.88,   "checkin", ("callaway_santanna.json", "child_education.att_aggregate"),
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.05)
+reg("CS-ci-lo",     4.37,   "checkin", ("callaway_santanna.json", "child_education.att_ci_lo"),
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.05)
+reg("CS-ci-hi",     11.04,  "checkin", ("callaway_santanna.json", "child_education.att_ci_hi"),
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.05)
+reg("CS-att-yr35",  21.42,  "checkin", ("callaway_santanna.json", "child_education.event_study.7.att"),
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.05)
 
 # ══════════════════════════════════════════════════════════════════════════
 # COMPLETION vs TEST SCORES — horse race (completion_vs_test_scores.py)
@@ -2221,11 +2231,13 @@ def main():
         for m in re.finditer(r'\b(1[89]\d{2}|20[0-3]\d)\b', paper_lines[i]):
             refs_years.add(int(m.group(1)))
 
-    # Regex to detect citation context: year near an author name
+    # Regex to detect citation context: year near an author name.
+    # Author names can be Cap+lower ("Smith"), CamelCase ("McDonald"),
+    # or all-caps acronyms ("UNESCO", "WHO", "IMF", "OECD").
     CITE_CONTEXT_RE = re.compile(
         r'(?:'
-        r'[A-Z][a-z]+(?:\s+(?:&|and)\s+[A-Z][a-z]+)?[~\s,;]+(\d{4})'  # Author YYYY
-        r'|[A-Z][a-z]+\s+et\s+al\.?[~\s,;]+(\d{4})'  # Author et al. YYYY
+        r'[A-Z][A-Za-z]+(?:\s+(?:&|and)\s+[A-Z][A-Za-z]+)?[~\s,;]+(\d{4})'  # Author YYYY
+        r'|[A-Z][A-Za-z]+\s+et\s+al\.?[~\s,;]+(\d{4})'  # Author et al. YYYY
         r'|al\.?[~\s]+(\d{4})'  # line-split "al. YYYY"
         r'|\(([^)]*\d{4}[^)]*)\)'  # (anything with YYYY)
         r')'

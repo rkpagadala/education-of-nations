@@ -41,7 +41,8 @@ verify: \
 	$(CHECKIN)/regime_education_test.json \
 	$(CHECKIN)/colonial_education_vs_institutions.json \
 	$(CHECKIN)/iv_2sls_colonial.json \
-	$(CHECKIN)/china_mean_yrs_vs_peers.json
+	$(CHECKIN)/china_mean_yrs_vs_peers.json \
+	$(CHECKIN)/china_band_sensitivity.json
 
 # ── Analysis scripts (produce checkin JSONs) ──────────────────────────
 
@@ -127,6 +128,9 @@ $(CHECKIN)/iv_2sls_colonial.json: robustness/iv_2sls_colonial.py robustness/colo
 	$(PYTHON) $<
 
 $(CHECKIN)/china_mean_yrs_vs_peers.json: cases/china_mean_years.py _shared.py $(ALL_DATA) ../wcde/data/raw/prop_both.csv
+	$(PYTHON) $<
+
+$(CHECKIN)/china_band_sensitivity.json: cases/china_band_sensitivity.py _shared.py $(ALL_DATA) ../wcde/data/raw/prop_both.csv
 	$(PYTHON) $<
 
 $(CHECKIN)/table_1_main.json: tables/table_1_main.py _shared.py $(ALL_DATA)
