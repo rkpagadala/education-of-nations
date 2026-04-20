@@ -252,25 +252,25 @@ reg("CS-att-yr35",  21.42,  "checkin", ("callaway_santanna.json", "child_educati
 # ══════════════════════════════════════════════════════════════════════════
 # COMPLETION vs TEST SCORES — horse race (completion_vs_test_scores.py)
 # ══════════════════════════════════════════════════════════════════════════
-reg("HLO-overlap-countries", 85, "checkin",
+reg("HLO-overlap-countries", 96, "checkin",
     ("completion_vs_test_scores.json", "coverage.overlap_countries"),
     [COMPLETION], tol=0)
-reg("HLO-TFR-edu-r2",  0.26, "checkin",
+reg("HLO-TFR-edu-r2",  0.28, "checkin",
     ("completion_vs_test_scores.json", "short_lag.10.tfr.edu.r2"),
     [COMPLETION], tol=0.01)
-reg("HLO-TFR-test-r2", 0.005, "checkin",
+reg("HLO-TFR-test-r2", 0.011, "checkin",
     ("completion_vs_test_scores.json", "short_lag.10.tfr.test.r2"),
     [COMPLETION], tol=0.005)
-reg("HLO-TFR-test-p",  0.48, "checkin",
+reg("HLO-TFR-test-p",  0.23, "checkin",
     ("completion_vs_test_scores.json", "short_lag.10.tfr.test.pval"),
     [COMPLETION], tol=0.01)
-reg("HLO-U5MR-edu-r2", 0.48, "checkin",
+reg("HLO-U5MR-edu-r2", 0.44, "checkin",
     ("completion_vs_test_scores.json", "short_lag.10.u5mr.edu.r2"),
     [COMPLETION], tol=0.01)
-reg("HLO-U5MR-test-r2", 0.03, "checkin",
+reg("HLO-U5MR-test-r2", 0.01, "checkin",
     ("completion_vs_test_scores.json", "short_lag.10.u5mr.test.r2"),
     [COMPLETION], tol=0.01)
-reg("HLO-U5MR-test-p",  0.24, "checkin",
+reg("HLO-U5MR-test-p",  0.48, "checkin",
     ("completion_vs_test_scores.json", "short_lag.10.u5mr.test.pval"),
     [COMPLETION], tol=0.01)
 
@@ -288,10 +288,10 @@ reg("DVF-LE-bl-mys-r2",     0.076, "checkin",
 reg("DVF-LE-test-r2",       0.000, "checkin",
     ("completion_vs_years_vs_tests.json", "results.lag_10.le.test_t.r2"),
     [COMPLETION], tol=0.005)
-reg("DVF-LE-test-p",        0.82,  "checkin",
+reg("DVF-LE-test-p",        0.97,  "checkin",
     ("completion_vs_years_vs_tests.json", "results.lag_10.le.test_t.pval"),
     [COMPLETION], tol=0.02)
-reg("DVF-TFR-wcde-mys-r2",  0.338, "checkin",
+reg("DVF-TFR-wcde-mys-r2",  0.330, "checkin",
     ("completion_vs_years_vs_tests.json", "results.lag_10.tfr.wcde_mys_t.r2"),
     [COMPLETION], tol=0.005)
 reg("DVF-TFR-bl-mys-r2",    0.101, "checkin",
@@ -300,7 +300,7 @@ reg("DVF-TFR-bl-mys-r2",    0.101, "checkin",
 reg("DVF-TFR-test-r2",      0.005, "checkin",
     ("completion_vs_years_vs_tests.json", "results.lag_10.tfr.test_t.r2"),
     [COMPLETION], tol=0.005)
-reg("DVF-TFR-test-p",       0.47,  "checkin",
+reg("DVF-TFR-test-p",       0.41,  "checkin",
     ("completion_vs_years_vs_tests.json", "results.lag_10.tfr.test_t.pval"),
     [COMPLETION], tol=0.02)
 reg("DVF-U5MR-wcde-mys-r2", 0.449, "checkin",
@@ -370,19 +370,19 @@ reg("OR-n-countries", 142, "checkin", ("outcomes_r2_by_lag.json", "numbers.n_cou
 # CHECKIN — edu_vs_gdp_predicts_le.json
 # FE regressions: education vs GDP predicting life expectancy(T+25)
 # ══════════════════════════════════════════════════════════════════════════
-reg("LE-lt10-edu-r2",  0.628, "checkin",
+reg("LE-lt10-edu-r2",  0.506, "checkin",
     ("edu_vs_gdp_predicts_le.json", "numbers.lt10.edu_r2"),
     [(EDU_PRED, 11)])
 reg("LE-lt10-gdp-r2",  0.016, "checkin",
     ("edu_vs_gdp_predicts_le.json", "numbers.lt10.gdp_r2"),
     [(EDU_PRED, 15)])
-reg("LE-lt30-edu-r2",  0.309, "checkin",
+reg("LE-lt30-edu-r2",  0.328, "checkin",
     ("edu_vs_gdp_predicts_le.json", "numbers.lt30.edu_r2"),
     [(EDU_PRED, 15)])
-reg("LE-lt30-gdp-r2",  0.021, "checkin",
+reg("LE-lt30-gdp-r2",  0.024, "checkin",
     ("edu_vs_gdp_predicts_le.json", "numbers.lt30.gdp_r2"),
     [(EDU_PRED, 15)])
-reg("LE-lt10-edu-r2-pct", 63, "derived",
+reg("LE-lt10-edu-r2-pct", 51, "derived",
     "Education R² at <10% cutoff × 100",
     [(EDU_PRED, None)], tol=1)
 
@@ -509,11 +509,11 @@ reg("Grp-high-R2",     0.442, "checkin", ("beta_by_baseline_group.json", "number
 # ══════════════════════════════════════════════════════════════════════════
 # TABLE 2 — Forward predictions (07_education_outcomes.py)
 # ══════════════════════════════════════════════════════════════════════════
-reg("T2-GDP-beta",  0.012,  "checkin", ("education_outcomes.json", "numbers.T2-GDP-beta"),
+reg("T2-GDP-beta",  0.011,  "checkin", ("education_outcomes.json", "numbers.T2-GDP-beta"),
     [(EDU_PRED, 15)])
-reg("T2-GDP-R2",    0.354,  "checkin", ("education_outcomes.json", "numbers.T2-GDP-R2"),
+reg("T2-GDP-R2",    0.387,  "checkin", ("education_outcomes.json", "numbers.T2-GDP-R2"),
     [(EDU_PRED, 15)])
-reg("T2-GDP-init",  0.173,  "checkin", ("education_outcomes.json", "numbers.T2-GDP-init"),
+reg("T2-GDP-init",  0.182,  "checkin", ("education_outcomes.json", "numbers.T2-GDP-init"),
     [(EDU_PRED, 15)])
 reg("T2-LE-beta",   0.109,  "checkin", ("education_outcomes.json", "numbers.T2-LE-beta"),
     [(EDU_PRED, 15)])
@@ -528,18 +528,18 @@ reg("T2-TFR-R2",    0.362,  "checkin", ("education_outcomes.json", "numbers.T2-T
 reg("T2-TFR-init",  0.039,  "checkin", ("education_outcomes.json", "numbers.T2-TFR-init"),
     [(EDU_PRED, 15), (OVERPERF, None)])
 # Panel B
-reg("T2-PB-GDP-beta",   14.85, "checkin", ("education_outcomes.json", "numbers.T2-PB-GDP-beta"),
+reg("T2-PB-GDP-beta",   14.42, "checkin", ("education_outcomes.json", "numbers.T2-PB-GDP-beta"),
     [(EDU_PRED, 64)], tol=0.1)
-reg("T2-PB-GDP-R2",     0.272, "checkin", ("education_outcomes.json", "numbers.T2-PB-GDP-R2"),
+reg("T2-PB-GDP-R2",     0.263, "checkin", ("education_outcomes.json", "numbers.T2-PB-GDP-R2"),
     [(EDU_PRED, 15)])
-reg("T2-PB-cond-gdp",   3.780, "checkin", ("education_outcomes.json", "numbers.T2-PB-cond-gdp"),
+reg("T2-PB-cond-gdp",   2.87, "checkin", ("education_outcomes.json", "numbers.T2-PB-cond-gdp"),
     [(EDU_PRED, 31)], tol=0.1)
 reg("T2-PB-cond-edu",   0.485, "checkin", ("education_outcomes.json", "numbers.T2-PB-cond-edu"),
     [(EDU_PRED, 15)], tol=0.01)
-reg("T2-PB-cond-R2",    0.500, "checkin", ("education_outcomes.json", "numbers.T2-PB-cond-R2"),
+reg("T2-PB-cond-R2",    0.495, "checkin", ("education_outcomes.json", "numbers.T2-PB-cond-R2"),
     [(EDU_PRED, 15)])
-reg("T2-PB-n",          828,   "checkin", ("education_outcomes.json", "numbers.T2-PB-n"),
-    [(EDU_PRED, 11)], tol=0)
+reg("T2-PB-n",          927,   "checkin", ("education_outcomes.json", "numbers.T2-PB-n"),
+    [(EDU_PRED, 69)], tol=0)
 # Table 2 values surfaced by coverage scan
 reg("T2-TFR-beta-abs",  0.032, "derived",
     "abs(T2-TFR-beta) — paper reports absolute value",
@@ -557,15 +557,15 @@ reg("LR-countries", 28,     "checkin", ("long_run_generational.json", "numbers.L
 # ══════════════════════════════════════════════════════════════════════════
 # PARENTAL INCOME COLLAPSE — inline computation
 # ══════════════════════════════════════════════════════════════════════════
-reg("PI-alone-beta",  15.4,  "checkin", ("table_1_main.json", "numbers.PI-alone-beta"),
+reg("PI-alone-beta",  14.4,  "checkin", ("table_1_main.json", "numbers.PI-alone-beta"),
     [(GDP_INDEP, 38)], tol=0.5)
-reg("PI-alone-R2",    0.293, "checkin", ("table_1_main.json", "numbers.PI-alone-R2"),
+reg("PI-alone-R2",    0.263, "checkin", ("table_1_main.json", "numbers.PI-alone-R2"),
     [(GDP_INDEP, 12)])
-reg("PI-cond-beta",   4.3,   "checkin", ("table_1_main.json", "numbers.PI-cond-beta"),
-    [(GDP_INDEP, 19)], tol=0.5)
-reg("PI-cond-p",      0.04,  "checkin", ("table_1_main.json", "numbers.PI-cond-p"),
+reg("PI-cond-beta",   2.9,   "checkin", ("table_1_main.json", "numbers.PI-cond-beta"),
+    [(GDP_INDEP, 10)], tol=0.5)
+reg("PI-cond-p",      0.16,  "checkin", ("table_1_main.json", "numbers.PI-cond-p"),
     [(GDP_INDEP, 12)], tol=0.01)
-reg("PI-edu-alone",   0.553, "checkin", ("table_1_main.json", "numbers.PI-edu-alone"),
+reg("PI-edu-alone",   0.540, "checkin", ("table_1_main.json", "numbers.PI-edu-alone"),
     [(GDP_INDEP, 12)])
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -687,7 +687,7 @@ reg("T3-Qatar-resid",       4.8,  "derived",
 # ══════════════════════════════════════════════════════════════════════════
 reg("Korea-ppyr",    2.13,   "derived", "(Korea-1985 - Korea-1955) / 30",
     [], tol=0.1)
-reg("PI-drop-pct",   72.0,   "derived", "1 - PI-cond-beta/PI-alone-beta",
+reg("PI-drop-pct",   79.9,   "derived", "1 - PI-cond-beta/PI-alone-beta",
     [GDP_INDEP], tol=5.0)
 reg("CostaRica-1.7fold", 1.7, "derived", "GDP-CostaRica-1990 / GDP-CostaRica-1960",
     [], tol=0.3)
@@ -793,19 +793,19 @@ reg("Myanmar-ppyr",   0.6,   "derived", "(Myanmar-2015 - Myanmar-1960) / 55 = 0.
     [MYANMAR], tol=0.1)
 reg("China-CR-gain-1975", 10.6, "derived", "China CR-era cohort gain (1975 - 1970)",
     [], tol=0.5)
-reg("China-LE-pre-slope",  0.28, "checkin",
+reg("China-LE-pre-slope",  0.31, "checkin",
     ("china_mean_yrs_vs_peers.json", "structural_break_1981.le.pre_slope"),
     [CHINA], tol=0.01)
-reg("China-LE-post-slope", 0.29, "checkin",
+reg("China-LE-post-slope", 0.30, "checkin",
     ("china_mean_yrs_vs_peers.json", "structural_break_1981.le.post_slope"),
     [CHINA], tol=0.01)
-reg("China-LE-beta-break", 0.007, "checkin",
+reg("China-LE-beta-break", -0.007, "checkin",
     ("china_mean_yrs_vs_peers.json", "structural_break_1981.le.beta_break_slope"),
     [CHINA], tol=0.005)
-reg("China-LE-gap-1965",   6.3, "derived",
+reg("China-LE-gap-1965",   6.6, "derived",
     "abs(le_gap_1965) from china_mean_yrs_vs_peers.json",
     [(CHINA, 31)], tol=0.05)
-reg("China-LE-gap-1980",   2.4, "derived",
+reg("China-LE-gap-1980",   2.7, "derived",
     "abs(le_gap_1980) from china_mean_yrs_vs_peers.json",
     [(CHINA, 32)], tol=0.05)
 reg("China-MYS-1965",      5.9, "checkin",
@@ -848,7 +848,7 @@ reg("College-LE-high",     79.6,"checkin", ("college_le_gradient.json", "results
     [], tol=0.1)
 
 # Table 3 residualized values (surfaced by coverage scan fix)
-reg("T3-LE-raw-gdp-r2",    0.165, "checkin",
+reg("T3-LE-raw-gdp-r2",    0.179, "checkin",
     ("regression_tables.json", "results.LE.90.GDP (raw).r2"),
     [GDP_INDEP], tol=0.005)
 reg("T3-LE-resid-r2",      0.003, "checkin",
@@ -857,7 +857,7 @@ reg("T3-LE-resid-r2",      0.003, "checkin",
 reg("T3-TFR-raw-gdp-r2",   0.175, "checkin",
     ("regression_tables.json", "results.TFR.90.GDP (raw).r2"),
     [GDP_INDEP], tol=0.005)
-reg("T3-TFR-resid-p",      0.98, "checkin",
+reg("T3-TFR-resid-p",      0.87, "checkin",
     ("regression_tables.json", "results.TFR.90.GDP (residualized).pval"),
     [GDP_INDEP], tol=0.02)
 reg("T3-U5MR-resid-r2",    0.023, "checkin",
@@ -876,7 +876,7 @@ reg("resid-gdp-r2-u5mr-max",   0.023, "derived",
     "Max resid GDP R² across lags for U5MR at ceil90 (lag_sensitivity.json)",
     [GDP_INDEP], tol=0.005)
 # Parental income R² = 0.014 (L1213) — joint model R² minus edu-alone R²
-reg("PI-cond-R2",           0.014, "checkin",
+reg("PI-cond-R2",           0.006, "checkin",
     ("table_1_main.json", "numbers.PI-cond-R2"),
     [GDP_INDEP], tol=0.005)
 
@@ -902,7 +902,7 @@ reg("GDP-r2-cutoff-high",  0.3, "checkin",
     [EDU_VS_GDP], tol=0.01)
 
 # China p-value 0.78 (L1501)
-reg("China-LE-break-p",    0.78, "checkin",
+reg("China-LE-break-p",    0.82, "checkin",
     ("china_mean_yrs_vs_peers.json", "structural_break_1981.le.p_break_slope"),
     [CHINA], tol=0.01)
 
@@ -915,7 +915,7 @@ reg("Spain-1900-edu",      0.3, "wcde", ("cohort_lower_sec_both.csv", "Spain", 1
 # ══════════════════════════════════════════════════════════════════════════
 # Section 4/6.2: education/GDP ratio at 30% cutoff for child education = 0.701/0.208 ~ 3.4x
 
-reg("T2b-edu-gdp-r2",     0.417, "checkin",
+reg("T2b-edu-gdp-r2",     0.431, "checkin",
     ("edu_vs_gdp_residualized.json", "levels.lower_secondary.90.10.edu_gdp_r2"),
     [], tol=0.005)
 
@@ -925,13 +925,13 @@ reg("T2b-edu-gdp-r2",     0.417, "checkin",
 reg("U5MR-pre2000-resid-r2",  0.008, "checkin",
     ("u5mr_residual_by_year.json", "before_after_2000.Before 2000.resid_gdp_r2"),
     [(GDP_INDEP, None)], tol=0.005)
-reg("U5MR-post2000-resid-r2", 0.032, "checkin",
+reg("U5MR-post2000-resid-r2", 0.027, "checkin",
     ("u5mr_residual_by_year.json", "before_after_2000.After 2000.resid_gdp_r2"),
     [(GDP_INDEP, None)], tol=0.005)
-reg("U5MR-post2000-resid-pct", 3.2, "derived",
+reg("U5MR-post2000-resid-pct", 2.7, "derived",
     "U5MR-post2000-resid-r2 x 100 (R2 as percentage in paper text)",
     [(GDP_INDEP, None)], tol=0.2)
-reg("U5MR-pre2000-resid-pct", 0.8, "derived",
+reg("U5MR-pre2000-resid-pct", 0.9, "derived",
     "Pre-2000 resid GDP R² × 100",
     [(GDP_INDEP, None)], tol=0.1)
 reg("U5MR-post2000-p", 0.04, "checkin",
@@ -975,7 +975,7 @@ reg("T1-countries-intro",  185, "checkin",
     [(INTRO, None)], tol=0)
 # Causal: 4.5 cross-reference
 # Table 2 footnotes: sample sizes
-reg("T2-n-GDP",          828, "checkin",
+reg("T2-n-GDP",          927, "checkin",
     ("education_outcomes.json", "numbers.T2-PB-n"),
     [(EDU_PRED, None)], tol=0)
 reg("T2-n-LE-TFR",      1295, "checkin",
@@ -985,17 +985,17 @@ reg("T2-countries-fn",   185, "checkin",
     ("table_1_main.json", "numbers.panel_countries"),
     [(EDU_PRED, None)], tol=0)
 # Table 3 footnotes: sample sizes
-reg("T3-n-LE-TFR",      702, "checkin", ("lag_sensitivity.json", "results.25.LE_ceil90.n"),
+reg("T3-n-LE-TFR",      822, "checkin", ("lag_sensitivity.json", "results.25.LE_ceil90.n"),
     [(GDP_INDEP, None)], tol=0)
-reg("T3-ctry-LE-TFR",   131, "checkin", ("lag_sensitivity.json", "results.25.LE_ceil90.countries"),
+reg("T3-ctry-LE-TFR",   152, "checkin", ("lag_sensitivity.json", "results.25.LE_ceil90.countries"),
     [(GDP_INDEP, None)], tol=0)
 reg("T3-n-child-edu",   856, "checkin", ("lag_sensitivity.json", "results.25.ChildEdu_ceil90.n"),
     [(GDP_INDEP, None)], tol=0)
 reg("T3-ctry-child-edu", 157, "checkin", ("lag_sensitivity.json", "results.25.ChildEdu_ceil90.countries"),
     [(GDP_INDEP, None)], tol=0)
-reg("T3-n-u5mr",         734, "checkin", ("lag_sensitivity.json", "results.25.U5MR_ceil90.n"),
+reg("T3-n-u5mr",         787, "checkin", ("lag_sensitivity.json", "results.25.U5MR_ceil90.n"),
     [(GDP_INDEP, None)], tol=0)
-reg("T3-ctry-u5mr",      138, "checkin", ("lag_sensitivity.json", "results.25.U5MR_ceil90.countries"),
+reg("T3-ctry-u5mr",      147, "checkin", ("lag_sensitivity.json", "results.25.U5MR_ceil90.countries"),
     [(GDP_INDEP, None)], tol=0)
 # T3-n-gdp (577) and T3-ctry-gdp (109) removed from paper
 # Cambodia: peer median
@@ -1082,7 +1082,7 @@ reg("LE-Myanmar-2015-sec",   65.3,  "wdi", ("le", "Myanmar", 2015), [MYANMAR], t
 # REMOVED from paper
 
 # --- CAUSAL section: regression + Uganda/India LE (L628-L653) ---
-reg("T2-GDP-beta-causal",   0.012,  "checkin",
+reg("T2-GDP-beta-causal",   0.011,  "checkin",
     ("education_outcomes.json", "numbers.T2-GDP-beta"),
     [CAUSAL], tol=0.001)
 reg("CutOff-10-gdp-r2-causal", 0.290, "checkin",
@@ -1143,7 +1143,7 @@ reg("WCDE-resid-r2-tfr", 0.002, "checkin",
     [APPENDIX_ROBUST], tol=0.005)
 
 # --- GDP_INDEP section (L1241) ---
-reg("PI-drop-pct-sec", 72.0, "derived",
+reg("PI-drop-pct-sec", 79.9, "derived",
     "1 - PI-cond-beta/PI-alone-beta",
     [GDP_INDEP], tol=5.0)
 
@@ -1156,7 +1156,7 @@ reg("Rob-boot-edu-hi",    0.59, "checkin", ("robustness_tests.json", "numbers.Ro
     [GDP_INDEP], tol=0.02)
 reg("Rob-boot-gdp-lo",    0.00, "checkin", ("robustness_tests.json", "numbers.Rob-boot-gdp-lo"),
     [GDP_INDEP], tol=0.01)
-reg("Rob-boot-gdp-hi",    0.04, "checkin", ("robustness_tests.json", "numbers.Rob-boot-gdp-hi"),
+reg("Rob-boot-gdp-hi",    0.03, "checkin", ("robustness_tests.json", "numbers.Rob-boot-gdp-hi"),
     [GDP_INDEP], tol=0.01)
 
 
@@ -1314,21 +1314,21 @@ reg("Colonial-edu1950-r2",    0.465, "checkin", ("colonial_education_vs_institut
 reg("Colonial-edu1950-plus-religion-r2", 0.466, "checkin",
     ("colonial_education_vs_institutions.json", "r2_education_1950_plus_religion"),
     [COLONIAL], tol=0.005)
-reg("Colonial-era-edu-r2",    38,    "derived", "Colonial education R² × 100 rounded", [COLONIAL], tol=1)
+reg("Colonial-era-edu-r2",    35,    "derived", "Colonial education R² × 100 rounded", [COLONIAL], tol=1)
 reg("Spain-1875-primary",     0.6,   "wcde", ("cohort_primary_both.csv", "Spain", 1875), [COLONIAL], tol=0.1)
 reg("Portugal-1875-primary",  0.1,   "wcde", ("cohort_primary_both.csv", "Portugal", 1875), [COLONIAL], tol=0.1)
 # 2SLS IV test
-reg("IV-edu-F",               12.2,  "checkin", ("iv_2sls_colonial.json", "gdp_edu_first_stage_F"), [COLONIAL], tol=0.5)
-reg("IV-inst-F",              2.6,   "checkin", ("iv_2sls_colonial.json", "gdp_inst_first_stage_F"), [COLONIAL], tol=0.5)
+reg("IV-edu-F",               10.8,  "checkin", ("iv_2sls_colonial.json", "gdp_edu_first_stage_F"), [COLONIAL], tol=0.5)
+reg("IV-inst-F",              1.4,   "checkin", ("iv_2sls_colonial.json", "gdp_inst_first_stage_F"), [COLONIAL], tol=0.5)
 reg("IV-edu-coef",            0.059, "checkin", ("iv_2sls_colonial.json", "gdp_edu_2sls_coef"), [COLONIAL], tol=0.005)
 # REMOVED from paper
 # REMOVED from paper
 
 # --- ABSTRACT: residualization summary thresholds ---
-reg("Abstract-resid-r2",      0.025, "checkin",
+reg("Abstract-resid-r2",      0.019, "checkin",
     ("regression_tables.json", "results.U5MR.90.GDP (residualized).r2"),
     [ABSTRACT], tol=0.005)
-reg("Abstract-resid-p",       0.1,   "checkin",
+reg("Abstract-resid-p",       0.11,   "checkin",
     ("regression_tables.json", "results.U5MR.90.GDP (residualized).pval"),
     [ABSTRACT], tol=0.01)
 
@@ -1402,13 +1402,13 @@ reg("Backfill-zero-threshold", 0.01, "checkin",
     [(EDU_PRED, None)], tol=0.001)
 
 # --- CUTOFF all-outcomes (EDU_PRED): TFR at <50% and U-5 at <10% ---
-reg("Cutoff-TFR-lt50-ratio", 51, "checkin",
+reg("Cutoff-TFR-lt50-ratio", 32, "checkin",
     ("cutoff_all_outcomes.json", "results.tfr.lt50.ratio"),
     [(EDU_PRED, None)], tol=1)
-reg("Cutoff-TFR-lt50-edu-r2", 0.375, "checkin",
+reg("Cutoff-TFR-lt50-edu-r2", 0.359, "checkin",
     ("cutoff_all_outcomes.json", "results.tfr.lt50.edu_r2"),
     [(EDU_PRED, None)], tol=0.005)
-reg("Cutoff-TFR-lt50-gdp-r2", 0.007, "checkin",
+reg("Cutoff-TFR-lt50-gdp-r2", 0.011, "checkin",
     ("cutoff_all_outcomes.json", "results.tfr.lt50.gdp_r2"),
     [(EDU_PRED, None)], tol=0.002)
 reg("Cutoff-U5-lt10-ratio", 39, "checkin",
@@ -1440,10 +1440,10 @@ reg("Colonial4-u5-delta", 0.387, "checkin",
 reg("Colonial4-cedu-delta", 0.327, "checkin",
     ("colonial_all_outcomes.json", "outcomes.child_edu.edu_minus_polity"),
     [COLONIAL], tol=0.005)
-reg("Colonial4-tfr-delta", 0.109, "checkin",
+reg("Colonial4-tfr-delta", 0.163, "checkin",
     ("colonial_all_outcomes.json", "outcomes.tfr.edu_minus_polity"),
     [COLONIAL], tol=0.005)
-reg("Colonial4-le-delta", 0.061, "checkin",
+reg("Colonial4-le-delta", 0.125, "checkin",
     ("colonial_all_outcomes.json", "outcomes.le.edu_minus_polity"),
     [COLONIAL], tol=0.005)
 

@@ -11,5 +11,5 @@
     "Fig1-Phil-beta-low": 0.43
   },
   "script": "scripts/figures/beta_vs_baseline.py",
-  "produced": "2026-04-17"
+  "produced": "2026-04-20"
 }

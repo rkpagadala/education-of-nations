@@ -126,6 +126,9 @@ def fe_r2(x_col, y_col, data):
     Country fixed-effects R² (within-R²).
     Demean by country, regress demeaned y on demeaned x via OLS (no intercept).
     Returns (r2, n_obs, n_countries).
+
+    Closed-form: R² = sxy² / (sxx · syy) matches statsmodels' uncentered R²
+    for a no-intercept 1-regressor fit.
     """
     result = _demean_and_filter(data, [x_col, y_col])
     if result is None:
@@ -134,10 +137,17 @@ def fe_r2(x_col, y_col, data):
     X = dm[x_col].values
     y = dm[y_col].values
     ok = ~np.isnan(X) & ~np.isnan(y)
-    if ok.sum() < 10:
+    n = int(ok.sum())
+    if n < 10:
         return np.nan, 0, 0
-    model = sm.OLS(y[ok], X[ok]).fit()
-    return model.rsquared, int(ok.sum()), n_countries
+    x = X[ok]
+    yv = y[ok]
+    sxx = float(np.dot(x, x))
+    syy = float(np.dot(yv, yv))
+    sxy = float(np.dot(x, yv))
+    if sxx <= 0.0 or syy <= 0.0:
+        return np.nan, n, n_countries
+    return (sxy * sxy) / (sxx * syy), n, n_countries
 
 
 def fe_twoway_r2(x_col, y_col, data, time_col="t"):
@@ -158,10 +168,17 @@ def fe_twoway_r2(x_col, y_col, data, time_col="t"):
     X = xdm2.values
     y = ydm2.values
     ok = ~np.isnan(X) & ~np.isnan(y)
-    if ok.sum() < 10:
+    n = int(ok.sum())
+    if n < 10:
         return np.nan, 0, 0
-    model = sm.OLS(y[ok], X[ok]).fit()
-    return model.rsquared, int(ok.sum()), n_countries
+    x = X[ok]
+    yv = y[ok]
+    sxx = float(np.dot(x, x))
+    syy = float(np.dot(yv, yv))
+    sxy = float(np.dot(x, yv))
+    if sxx <= 0.0 or syy <= 0.0:
+        return np.nan, n, n_countries
+    return (sxy * sxy) / (sxx * syy), n, n_countries
 
 
 def fe_residualize_gdp(data, fe_func=fe_r2):
@@ -178,9 +195,16 @@ def fe_residualize_gdp(data, fe_func=fe_r2):
     ok = ~np.isnan(X) & ~np.isnan(y)
     if ok.sum() < 10:
         return None
-    model = sm.OLS(y[ok], X[ok]).fit()
-    sub["gdp_resid"] = y - model.predict(X)
-    return sub, model.rsquared
+    xo, yo = X[ok], y[ok]
+    sxx = float(np.dot(xo, xo))
+    syy = float(np.dot(yo, yo))
+    sxy = float(np.dot(xo, yo))
+    if sxx <= 0.0:
+        return None
+    beta = sxy / sxx
+    r2 = (sxy * sxy) / (sxx * syy) if syy > 0.0 else np.nan
+    sub["gdp_resid"] = y - beta * X
+    return sub, r2
 
 
 def fe_residualize_gdp_twoway(data, time_col="t"):
@@ -202,9 +226,16 @@ def fe_residualize_gdp_twoway(data, time_col="t"):
     ok = ~np.isnan(X) & ~np.isnan(y)
     if ok.sum() < 10:
         return None
-    model = sm.OLS(y[ok], X[ok]).fit()
-    sub["gdp_resid"] = y - model.predict(X)
-    return sub, model.rsquared
+    xo, yo = X[ok], y[ok]
+    sxx = float(np.dot(xo, xo))
+    syy = float(np.dot(yo, yo))
+    sxy = float(np.dot(xo, yo))
+    if sxx <= 0.0:
+        return None
+    beta = sxy / sxx
+    r2 = (sxy * sxy) / (sxx * syy) if syy > 0.0 else np.nan
+    sub["gdp_resid"] = y - beta * X
+    return sub, r2
 
 
 def run_residualized_sweep(panel, entry_years, outcome_col, ceilings,
@@ -289,10 +320,19 @@ def fe_beta_r2(x_col, y_col, data):
     X = dm[x_col].values
     y = dm[y_col].values
     ok = ~np.isnan(X) & ~np.isnan(y)
-    if ok.sum() < 10:
+    n = int(ok.sum())
+    if n < 10:
         return np.nan, np.nan, 0, 0
-    model = sm.OLS(y[ok], X[ok]).fit()
-    return model.params[0], model.rsquared, int(ok.sum()), n_countries
+    x = X[ok]
+    yv = y[ok]
+    sxx = float(np.dot(x, x))
+    syy = float(np.dot(yv, yv))
+    sxy = float(np.dot(x, yv))
+    if sxx <= 0.0:
+        return np.nan, np.nan, n, n_countries
+    beta = sxy / sxx
+    r2 = (sxy * sxy) / (sxx * syy) if syy > 0.0 else np.nan
+    return beta, r2, n, n_countries
 
 
 def clustered_fe(x_col, y_col, data):

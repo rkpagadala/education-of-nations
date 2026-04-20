@@ -3,98 +3,98 @@
   "sweep": [
     {
       "outcome_year_cutoff": 1990,
-      "edu_r2": 0.3091,
+      "edu_r2": 0.3313,
       "edu_pval": 0.0,
-      "raw_gdp_r2": 0.2229,
-      "resid_gdp_r2": 0.0104,
-      "resid_pvalue": 0.4322,
-      "n_obs": 188,
-      "n_countries": 94
+      "raw_gdp_r2": 0.2518,
+      "resid_gdp_r2": 0.0181,
+      "resid_pvalue": 0.2937,
+      "n_obs": 202,
+      "n_countries": 101
     },
     {
       "outcome_year_cutoff": 1995,
-      "edu_r2": 0.3171,
+      "edu_r2": 0.3265,
       "edu_pval": 0.0,
-      "raw_gdp_r2": 0.2264,
-      "resid_gdp_r2": 0.0083,
-      "resid_pvalue": 0.3276,
-      "n_obs": 294,
-      "n_countries": 105
+      "raw_gdp_r2": 0.2397,
+      "resid_gdp_r2": 0.0092,
+      "resid_pvalue": 0.2401,
+      "n_obs": 314,
+      "n_countries": 112
     },
     {
       "outcome_year_cutoff": 2000,
-      "edu_r2": 0.3158,
+      "edu_r2": 0.3131,
       "edu_pval": 0.0,
-      "raw_gdp_r2": 0.1894,
-      "resid_gdp_r2": 0.0026,
-      "resid_pvalue": 0.5873,
-      "n_obs": 403,
-      "n_countries": 116
-    },
-    {
-      "outcome_year_cutoff": 2005,
-      "edu_r2": 0.2865,
-      "edu_pval": 0.0,
-      "raw_gdp_r2": 0.1456,
-      "resid_gdp_r2": 0.0001,
-      "resid_pvalue": 0.9038,
-      "n_obs": 513,
+      "raw_gdp_r2": 0.1903,
+      "resid_gdp_r2": 0.0031,
+      "resid_pvalue": 0.4998,
+      "n_obs": 431,
       "n_countries": 124
     },
     {
-      "outcome_year_cutoff": 2010,
-      "edu_r2": 0.2715,
+      "outcome_year_cutoff": 2005,
+      "edu_r2": 0.2821,
       "edu_pval": 0.0,
-      "raw_gdp_r2": 0.0879,
-      "resid_gdp_r2": 0.005,
-      "resid_pvalue": 0.3951,
-      "n_obs": 624,
+      "raw_gdp_r2": 0.1494,
+      "resid_gdp_r2": 0.0001,
+      "resid_pvalue": 0.9222,
+      "n_obs": 550,
       "n_countries": 133
     },
     {
-      "outcome_year_cutoff": 2015,
-      "edu_r2": 0.2836,
+      "outcome_year_cutoff": 2010,
+      "edu_r2": 0.2686,
       "edu_pval": 0.0,
-      "raw_gdp_r2": 0.0464,
-      "resid_gdp_r2": 0.0232,
-      "resid_pvalue": 0.1058,
-      "n_obs": 734,
-      "n_countries": 138
+      "raw_gdp_r2": 0.0968,
+      "resid_gdp_r2": 0.0041,
+      "resid_pvalue": 0.401,
+      "n_obs": 669,
+      "n_countries": 142
+    },
+    {
+      "outcome_year_cutoff": 2015,
+      "edu_r2": 0.2803,
+      "edu_pval": 0.0,
+      "raw_gdp_r2": 0.0578,
+      "resid_gdp_r2": 0.0188,
+      "resid_pvalue": 0.1151,
+      "n_obs": 787,
+      "n_countries": 147
     },
     {
       "outcome_year_cutoff": 2020,
-      "edu_r2": 0.2836,
+      "edu_r2": 0.2803,
       "edu_pval": 0.0,
-      "raw_gdp_r2": 0.0464,
-      "resid_gdp_r2": 0.0232,
-      "resid_pvalue": 0.1058,
-      "n_obs": 734,
-      "n_countries": 138
+      "raw_gdp_r2": 0.0578,
+      "resid_gdp_r2": 0.0188,
+      "resid_pvalue": 0.1151,
+      "n_obs": 787,
+      "n_countries": 147
     }
   ],
   "before_after_2000": {
     "Before 2000": {
-      "edu_r2": 0.3171,
-      "resid_gdp_r2": 0.0083,
-      "resid_pvalue": 0.3276,
-      "n_obs": 294,
-      "n_countries": 105
+      "edu_r2": 0.3265,
+      "resid_gdp_r2": 0.0092,
+      "resid_pvalue": 0.2401,
+      "n_obs": 314,
+      "n_countries": 112
     },
     "After 2000": {
-      "edu_r2": 0.2086,
-      "resid_gdp_r2": 0.0317,
-      "resid_pvalue": 0.0421,
-      "n_obs": 425,
-      "n_countries": 116
+      "edu_r2": 0.2092,
+      "resid_gdp_r2": 0.0266,
+      "resid_pvalue": 0.046,
+      "n_obs": 457,
+      "n_countries": 124
     },
     "All years": {
-      "edu_r2": 0.2836,
-      "resid_gdp_r2": 0.0232,
-      "resid_pvalue": 0.1058,
-      "n_obs": 734,
-      "n_countries": 138
+      "edu_r2": 0.2803,
+      "resid_gdp_r2": 0.0188,
+      "resid_pvalue": 0.1151,
+      "n_obs": 787,
+      "n_countries": 147
     }
   },
   "script": "scripts/robustness/u5mr_residual_by_year.py",
-  "produced": "2026-04-17"
+  "produced": "2026-04-20"
 }

@@ -25,7 +25,8 @@ import statsmodels.api as sm
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(SCRIPT_DIR))
-from _shared import PROC, DATA, CHECKIN, REGIONS as NON_SOVEREIGN, write_checkin
+from _shared import (PROC, DATA, CHECKIN, REGIONS as NON_SOVEREIGN,
+                     write_checkin, add_canonical_aliases)
 
 # ── Constants ─────────────────────────────────────────────────────
 PARENTAL_LAG = 25
@@ -37,6 +38,7 @@ agg = pd.read_csv(os.path.join(PROC, "lower_sec_both.csv"), index_col="country")
 gdp_raw = pd.read_csv(os.path.join(DATA, "gdppercapita_us_inflation_adjusted.csv"),
                        index_col="Country")
 gdp_raw.index = gdp_raw.index.str.lower()
+gdp_raw = add_canonical_aliases(gdp_raw)
 
 # ── Build panel ───────────────────────────────────────────────────
 rows = []

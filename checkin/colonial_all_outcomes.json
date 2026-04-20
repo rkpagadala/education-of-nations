@@ -6,32 +6,32 @@
   "n_countries": 103,
   "outcomes": {
     "le": {
-      "r2_education": 0.3321,
-      "r2_polity2": 0.2707,
-      "edu_minus_polity": 0.0614,
-      "n_obs_edu": 658,
-      "n_obs_polity": 545,
-      "n_countries_edu": 94,
-      "n_countries_polity": 79,
+      "r2_education": 0.356,
+      "r2_polity2": 0.2311,
+      "edu_minus_polity": 0.1249,
+      "n_obs_edu": 714,
+      "n_obs_polity": 594,
+      "n_countries_edu": 102,
+      "n_countries_polity": 86,
       "winner": "edu"
     },
     "tfr": {
-      "r2_education": 0.4674,
-      "r2_polity2": 0.358,
-      "edu_minus_polity": 0.1094,
-      "n_obs_edu": 658,
-      "n_obs_polity": 545,
-      "n_countries_edu": 94,
-      "n_countries_polity": 79,
+      "r2_education": 0.4626,
+      "r2_polity2": 0.2995,
+      "edu_minus_polity": 0.1631,
+      "n_obs_edu": 714,
+      "n_obs_polity": 594,
+      "n_countries_edu": 102,
+      "n_countries_polity": 86,
       "winner": "edu"
     },
     "log_u5mr": {
-      "r2_education": 0.6317,
+      "r2_education": 0.6321,
       "r2_polity2": 0.2453,
-      "edu_minus_polity": 0.3865,
-      "n_obs_edu": 714,
+      "edu_minus_polity": 0.3868,
+      "n_obs_edu": 721,
       "n_obs_polity": 601,
-      "n_countries_edu": 102,
+      "n_countries_edu": 103,
       "n_countries_polity": 87,
       "winner": "edu"
     },
@@ -50,7 +50,7 @@
     {
       "outcome": "log U5MR",
       "column": "log_u5mr",
-      "edu_minus_polity": 0.3865
+      "edu_minus_polity": 0.3868
     },
     {
       "outcome": "Child edu (lower sec)",
@@ -60,15 +60,15 @@
     {
       "outcome": "TFR",
       "column": "tfr",
-      "edu_minus_polity": 0.1094
+      "edu_minus_polity": 0.1631
     },
     {
       "outcome": "LE",
       "column": "le",
-      "edu_minus_polity": 0.0614
+      "edu_minus_polity": 0.1249
     }
   ],
   "education_wins_all": true,
   "script": "scripts/robustness/colonial_all_outcomes.py",
-  "produced": "2026-04-19"
+  "produced": "2026-04-20"
 }

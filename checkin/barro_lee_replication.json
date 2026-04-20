@@ -63,5 +63,5 @@
   "resid_WCDE_full_resid_to_tfr_t25_resid_gdp_p": 0.647232,
   "resid_WCDE_full_resid_to_tfr_t25_n": 818,
   "script": "scripts/robustness/barro_lee_replication.py",
-  "produced": "2026-04-16"
+  "produced": "2026-04-20"
 }

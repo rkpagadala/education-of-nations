@@ -1729,14 +1729,14 @@ internalise an abstract procedure --- was never constructed.
 
 \paragraph{The empirical confirmation.}
 
-A direct test confirms the mechanistic argument. On the 85 countries
+A direct test confirms the mechanistic argument. On the 96 countries
 where both completion rates and harmonised test scores exist (Angrist et
 al.~2021), I run a horse race: which measure better predicts life
 expectancy, TFR, and child mortality? With country fixed effects at a
-10-year forward lag, completion explains 26\% of within-country TFR
-variation; test scores explain 0.5\% ($p = 0.48$). For child mortality
-the ratio is similar: completion $R^2 = 0.48$, test scores $R^2 = 0.03$
-($p = 0.24$). Hanushek \& Woessmann's quality measure predicts GDP
+10-year forward lag, completion explains 28\% of within-country TFR
+variation; test scores explain 1.1\% ($p = 0.23$). For child mortality
+the ratio is similar: completion $R^2 = 0.44$, test scores $R^2 = 0.01$
+($p = 0.48$). Hanushek \& Woessmann's quality measure predicts GDP
 growth --- their dependent variable. It does not predict development
 outcomes.
 
@@ -1745,10 +1745,10 @@ claim directly. On the overlap sample where completion, test scores,
 WCDE mean years of schooling (age 20--24, weighted by cohort
 attainment), and Barro-Lee mean years (age 15--24, independent dataset)
 all exist, both duration measures beat test scores at a 10-year forward
-lag: for life expectancy, WCDE mean years $R^2$\,=\,0.173 and Barro-Lee
+lag: for life expectancy, WCDE mean years $R^2$\,=\,0.170 and Barro-Lee
 mean years $R^2$\,=\,0.076 versus test scores $R^2$\,=\,0.000
-($p$\,=\,0.82); for TFR, 0.338 and 0.101 versus 0.005 ($p$\,=\,0.47);
-for under-5 mortality, 0.449 and 0.305 versus 0.028. Duration of
+($p$\,=\,0.97); for TFR, 0.330 and 0.101 versus 0.011 ($p$\,=\,0.41);
+for under-5 mortality, 0.431 and 0.305 versus 0.028. Duration of
 exposure --- measured two different ways, on two different datasets ---
 predicts development outcomes. Fidelity of instruction does not.\footnote{See
 \texttt{scripts/robustness/completion\_vs\_years\_vs\_tests.py}.}
@@ -1758,8 +1758,8 @@ UNESCO 2023) measures the wrong dimension of the right variable. Test
 quality matters for GDP growth, which is Hanushek \& Woessmann's dependent
 variable. It does not matter for the fertility transition, child survival,
 life expectancy, or intergenerational transmission --- the outcomes that
-constitute human development. The empirical result (completion $R^2 = 0.26$
-for TFR vs.\ test scores $R^2 = 0.005$) is not a puzzle. It is the mechanism's
+constitute human development. The empirical result (completion $R^2 = 0.28$
+for TFR vs.\ test scores $R^2 = 0.011$) is not a puzzle. It is the mechanism's
 prediction: exposure to schooling reorganises cognition and opens the
 generational gate; test performance determines how much income the reorganised
 individual earns. Both are real. Only one is the cause of development.
@@ -1922,7 +1922,7 @@ for initial outcomes. Panel A reports education predicting development
 outcomes forward; Panel B reports the symmetric reverse regression (GDP
 predicting education forward) to demonstrate mutual endogeneity.
 
-\emph{Panel A: Education(T) → development outcomes(T+25). n=828 (185
+\emph{Panel A: Education(T) → development outcomes(T+25). n=927 (179
 countries) for GDP row; n=1,295 (185 countries) for LE and TFR rows.}
 
 \begin{longtable}[]{@{}
@@ -1942,7 +1942,7 @@ R² (within)
 \end{minipage} \\
 \midrule
 \endhead
-Log GDP per capita & +0.012*** & +0.173*** & 0.354 \\
+Log GDP per capita & +0.011*** & +0.182*** & 0.387 \\
 Life expectancy (years) & +0.109*** & +0.301*** & 0.382 \\
 Total fertility rate & −0.032*** & +0.039* & 0.362 \\
 \bottomrule
@@ -1975,14 +1975,14 @@ R² (within)
 \end{minipage} \\
 \midrule
 \endhead
-Lower secondary completion & +14.85*** & --- & 0.272 \\
-Lower secondary completion & +3.780*** & +0.485*** & 0.500 \\
+Lower secondary completion & +14.42*** & --- & 0.263 \\
+Lower secondary completion & +2.865*** & +0.485*** & 0.495 \\
 \bottomrule
 \end{longtable}
 
-\emph{Country fixed effects. Panel A: n=828 (185 countries) for GDP row;
+\emph{Country fixed effects. Panel A: n=927 (179 countries) for GDP row;
 n=1,295 (185 countries) for LE and TFR rows (GDP coverage is sparser).
-Panel B: n=828 for GDP-education matched obs.}
+Panel B: n=927 for GDP-education matched obs.}
 
 Income alone explains 27\% of child education variation across the
 full panel (Panel B row 1). But add the parents' education to the same
@@ -1991,7 +1991,7 @@ model's explanatory power jumps from 27\% to 50\%, almost entirely from
 education, not income.
 
 Each 1-percentage-point gain in lower secondary completion predicts, one
-generation forward: 1.2\% higher GDP per capita, 0.109 more years of
+generation forward: 1.1\% higher GDP per capita, 0.109 more years of
 life, and 0.032 fewer children per woman --- all from within-country
 change over time, controlling for each country's starting point.
 
@@ -2000,13 +2000,13 @@ cutoff tested.\footnote{See
 \texttt{scripts/residualization/by\_gdp\_cutoff.py}.}
 
 For life expectancy the gap is even wider: among countries below 30\%
-completion, education explains 31\% of the variation vs 2\% for GDP ---
-a 15× gap. Among countries below 10\%, education explains 63\% while
+completion, education explains 33\% of the variation vs 2\% for GDP ---
+a 14× gap. Among countries below 10\%, education explains 51\% while
 GDP explains 1.6\%. Even that small GDP signal vanishes once education's
 contribution is stripped out
 (Section~\ref{gdp-has-no-independent-effect}). The same pattern holds
 for the other outcomes: at completion below 50\%, fertility shows a
-51× edu-over-GDP ratio (edu R$^2$=0.375, GDP R$^2$=0.007); at
+32× edu-over-GDP ratio (edu R$^2$=0.359, GDP R$^2$=0.011); at
 completion below 10\%, log under-5 mortality shows a 39× ratio (edu
 R$^2$=0.570, GDP R$^2$=0.015).\footnote{See
 \texttt{scripts/residualization/cutoff\_all\_outcomes.py}.}
@@ -2186,8 +2186,8 @@ completion, T=1960--1990, lag=25 years.
 Outcome (T+25) & Edu R² & Raw income R² & Income R² (edu removed) & p-value \\
 \midrule
 \endhead
-Life expectancy & 0.472 & 0.165 & \textbf{0.003} & 0.56 \\
-Total fertility rate & 0.478 & 0.175 & \textbf{0.000} & 0.98 \\
+Life expectancy & 0.472 & 0.179 & \textbf{0.003} & 0.56 \\
+Total fertility rate & 0.478 & 0.175 & \textbf{0.000} & 0.87 \\
 Child education & 0.524 & 0.303 & \textbf{0.008} & 0.31 \\
 Under-5 mortality & 0.284 & 0.046 & \textbf{0.023} & 0.11 \\
 \bottomrule
@@ -2198,8 +2198,8 @@ after stripping out education's contribution --- the question is whether
 the leftover income predicts anything on its own. Education explains
 42\% of within-country income variation across all four outcomes;
 the remaining 58\% predicts nothing. Standard errors adjusted for
-country clustering. n=702 (131 countries) for LE and TFR; n=856
-(157 countries) for child education; n=734 (138 countries) for under-5
+country clustering. n=822 (152 countries) for LE and TFR; n=856
+(157 countries) for child education; n=787 (147 countries) for under-5
 mortality. See
 \nolinkurl{scripts/residualization/education_vs_gdp.py},
 \nolinkurl{scripts/residualization/education_vs_tfr.py},
@@ -2220,8 +2220,8 @@ years. \emph{(See \texttt{scripts/figures/edu\_vs\_resid\_gdp\_bars.py})}}
 
 \textbf{Child mortality: one bounded exception.} Child mortality is the
 only outcome where residualized income shows a marginal independent
-effect. Before 2000, leftover income explains 0.8\% (not statistically
-significant); after 2000, 3.2\% (p=0.04). The effect appears only at
+effect. Before 2000, leftover income explains 0.9\% (not statistically
+significant); after 2000, 2.7\% (p=0.03). The effect appears only at
 intermediate education levels and vanishes below 20\% completion in any
 period. The paper's claim does not require every residual to be
 education: income, through external provision (GAVI founded 2000,
@@ -2273,9 +2273,9 @@ that have already solved the lower-secondary problem.\footnote{See
 \subsubsection*{Robustness and additional tests}
 
 Residualized GDP R² stays below 0.003 for life expectancy and fertility
-across all lag lengths tested; under-5 mortality reaches 0.023
+across all lag lengths tested; under-5 mortality reaches 0.019
 (Table~\ref{tab:a2}). The confidence intervals do not overlap: education R²
-[0.33, 0.59] vs residualized GDP R² [0.00, 0.04] (500-replication
+[0.33, 0.59] vs residualized GDP R² [0.00, 0.03] (500-replication
 bootstrap). An alternative estimation method designed
 specifically to correct for bias in short panels (Anderson-Hsiao
 instrumental variables) produces results within 3--10\% of the main
@@ -2285,10 +2285,10 @@ education produces stronger results than the aggregate on every outcome.
 The parental income test asks a simple question: does family income
 predict child education independently, or only because richer parents
 tend to be more educated? Parental income alone predicts child education
-moderately ($\beta$=15.4, R²=0.293). But add parental education to the
-same regression and income's coefficient collapses by 72\% to $\beta$=4.3
-(p=0.04), adding almost nothing (R²=0.014) beyond education alone.
-Education's coefficient barely moves ($\beta$=0.475 from 0.553) while
+moderately ($\beta$=14.4, R²=0.263). But add parental education to the
+same regression and income's coefficient collapses by 80\% to $\beta$=2.9
+(p=0.16), adding almost nothing (R²=0.006) beyond education alone.
+Education's coefficient barely moves ($\beta$=0.489 from 0.540) while
 income's collapses. Income transmits through education, not vice versa.
 
 The Asian Financial Crisis (1997--98) tests Prediction~\ref{pred:disruption}: GDP collapsed across five countries (Indonesia −14.5\%,
@@ -2445,10 +2445,10 @@ lag tested. See \texttt{scripts/robustness/lag\_sensitivity.py}.
 Lag & Edu & Resid & Edu & Resid & Edu & Resid & Edu & Resid \\
 \midrule
 \endhead
-15 yr & 0.463 & 0.000 & 0.572 & 0.000 & 0.420 & 0.007 & 0.725 & 0.011 \\
-20 yr & 0.460 & 0.002 & 0.508 & 0.000 & 0.336 & 0.018 & 0.617 & 0.009 \\
-25 yr & 0.472 & 0.003 & 0.478 & 0.000 & 0.284 & 0.023 & 0.524 & 0.008 \\
-30 yr & 0.451 & 0.000 & 0.458 & 0.001 & 0.234 & 0.007 & 0.461 & 0.004 \\
+15 yr & 0.455 & 0.001 & 0.569 & 0.000 & 0.409 & 0.005 & 0.725 & 0.009 \\
+20 yr & 0.451 & 0.002 & 0.509 & 0.000 & 0.328 & 0.013 & 0.617 & 0.006 \\
+25 yr & 0.474 & 0.002 & 0.482 & 0.000 & 0.280 & 0.019 & 0.524 & 0.005 \\
+30 yr & 0.457 & 0.000 & 0.473 & 0.001 & 0.232 & 0.005 & 0.461 & 0.004 \\
 \bottomrule
 \end{longtable}
 
@@ -2456,7 +2456,7 @@ Lag & Edu & Resid & Edu & Resid & Edu & Resid & Edu & Resid \\
 education. ``Resid'' = how much is predicted by income after stripping
 out education's contribution. At every lag tested and every outcome,
 education explains 23\% or more of the variation; leftover income never
-exceeds 2.3\%. n=702 (131 countries) for LE and TFR; n=734 (138
+exceeds 1.9\%. n=822 (152 countries) for LE and TFR; n=787 (147
 countries) for U-5 mortality; n=856 (157 countries) for child education.}
 
 \refstepcounter{table}\label{tab:a3}\textbf{Table \thetable. Long-run panel countries (1900--2015, 28 countries).}
@@ -2820,9 +2820,9 @@ The data separates the two channels. Among 99 former colonies, education
 at independence (1950 lower secondary completion) explains 47\% of the
 variance in current GDP per capita. Polity5 institutional quality
 explains 11\%. Colonial-era education (1900 birth cohort, people
-schooled under colonial rule) explains 38\%. Coloniser religion alone
+schooled under colonial rule) explains 35\%. Coloniser religion alone
 explains 7\% --- but adding religion to a model that already contains
-education raises R$^2$ from 0.465 to 0.466. Religion predicts GDP only
+education raises R$^2$ from 0.462 to 0.462. Religion predicts GDP only
 because it predicts education. Once education is in the model, religion
 adds nothing. The channel is religion $\to$ schools $\to$ education $\to$
 development, not religion $\to$ institutions $\to$ development (Table~\ref{tab:a6}).
@@ -2833,9 +2833,9 @@ identifies --- not whether the instrument works, but whether its
 exogenous variation enters development through institutions or through
 schools.
 Two-stage least squares using coloniser religion as the excluded
-instrument produces a first-stage F-statistic of 12.2 for education at
+instrument produces a first-stage F-statistic of 10.8 for education at
 independence --- above the Stock \& Yogo (2005) threshold for instrument
-relevance --- but only 2.6 for Polity2 institutional quality, well below
+relevance --- but only 1.4 for Polity2 institutional quality, well below
 the threshold (Table~\ref{tab:a7}). The second stage for education is
 significant ($\hat\beta = +0.059$, $t = 3.21$, $p = 0.002$); the
 institutional 2SLS is unreliable because the instrument is weak. The
@@ -2865,8 +2865,8 @@ five years, education lagged one generation, polity2 contemporaneous,
 721 observations), education beats polity2 on every outcome the
 paper tracks: log under-5 mortality (edu R$^2$=0.632, polity
 R$^2$=0.245, $\Delta$=+0.387), child education ($\Delta$=+0.327),
-total fertility rate ($\Delta$=+0.109), and life expectancy
-($\Delta$=+0.061). The margin is largest precisely where the
+total fertility rate ($\Delta$=+0.163), and life expectancy
+($\Delta$=+0.125). The margin is largest precisely where the
 mechanism predicts --- child survival mediated by maternal
 education, not by colonial legal tradition.
 See \texttt{scripts/robustness/colonial\_all\_outcomes.py}.
@@ -3058,8 +3058,8 @@ residual is education.
 When life expectancy and under-5 mortality are matched on mean years of
 schooling (age 20--24, $\pm$0.5~years of schooling, any calendar year)
 rather than GNP, China's advantage reverses. China's LE was
-\emph{below} education-matched peers from 1965 to 1991 --- 6.3~years
-below at 1965, still 2.4 below at 1980, converging only in 1991 --- and
+\emph{below} education-matched peers from 1965 to 1991 --- 6.6~years
+below at 1965, still 2.7 below at 1980, converging only in 1991 --- and
 its U5MR was \emph{above} education-matched peers until 2000.\footnote{See
 \texttt{scripts/cases/china\_mean\_years.py}. Mean years of schooling
 computed from WCDE~v3 proportions (age 20--24, both sexes); LE and U5MR
@@ -3074,8 +3074,8 @@ drawn from the villages they served --- optimally delivered provision.
 When Deng dismantled the system after 1980, they left, because rational
 people freed from revolutionary ideology redirected their labour toward
 self-interest. The LE convergence rate was statistically unchanged:
-$+0.28$~years/year before 1981, $+0.29$ after ($\beta_3 = +0.007$, $p =
-0.78$). LE continued to rise --- from 64 to 69.8 by 1994 --- because
+$+0.31$~years/year before 1981, $+0.30$ after ($\beta_3 = -0.007$, $p =
+0.82$). LE continued to rise --- from 64 to 69.8 by 1994 --- because
 the educational baseline built into rural households did not leave with
 the doctors. Drèze \& Sen (1989, pp.~215--221) document the resulting
 health crises and rising rural medical costs (Gao 2008; Liu et
@@ -3377,7 +3377,7 @@ Deaton (2013) attributes the post-1950 mortality decline to global health techno
 
 The distribution of outcomes does not agree. Vaccines have been globally available since the 1960s; under-five mortality fell sharply in some populations and barely moved in others over the same decades. The technology diffused; the outcomes did not, uniformly. Between the existence of a vaccine and a vaccinated child sits a household decision --- to locate the clinic, to trust the schedule, to complete the series, to act on subsequent infection warning signs. Each of those is a small act of categorical reasoning on a medical claim. Educated mothers make those decisions reliably; uneducated mothers make them variably. Gakidou et al.\ (2010), decomposing the global mortality decline, attributed roughly half of the post-1970 reduction in under-five mortality to gains in women's education.
 
-The panel confirms the channel. Residualized GDP --- income stripped of education's contribution --- has never exceeded $R^2 = 0.023$ as a predictor of under-five mortality or life expectancy in the paper's sample (Section~\ref{gdp-has-no-independent-effect}). If technology were operating independently of education, residualized income should retain predictive power; it does not. What remains, when education is partialled out, is noise.
+The panel confirms the channel. Residualized GDP --- income stripped of education's contribution --- has never exceeded $R^2 = 0.019$ as a predictor of under-five mortality or life expectancy in the paper's sample (Section~\ref{gdp-has-no-independent-effect}). If technology were operating independently of education, residualized income should retain predictive power; it does not. What remains, when education is partialled out, is noise.
 
 The technology is necessary. It is not sufficient. The mechanism that converts the technology into outcomes is the educated household, one child at a time, and the community-level threshold at which that conversion becomes routine.
 
@@ -3397,7 +3397,7 @@ What autocracy produces is not speed but \emph{variance}: 76\% of autocratic cou
 
 Regime type is a variance amplifier, not a cause. The decision variable is education policy (Section~\ref{the-decision}), and it is orthogonal to regime type. See \texttt{scripts/robustness/regime\_education.py}.
 
-The colonial instrumental-variable contest (Section~\ref{the-colonial-test}) makes the same point from the institutional literature's own preferred instrument. Settler mortality --- the instrument that grounds the institutionalist identification strategy --- turns out to predict education at first-stage $F = 12.2$ and institutions at $F = 2.6$. The effect the instrument identifies is the educational one. Tables~\ref{tab:a6} and~\ref{tab:a7} give the full results.
+The colonial instrumental-variable contest (Section~\ref{the-colonial-test}) makes the same point from the institutional literature's own preferred instrument. Settler mortality --- the instrument that grounds the institutionalist identification strategy --- turns out to predict education at first-stage $F = 10.8$ and institutions at $F = 1.4$. The effect the instrument identifies is the educational one. Tables~\ref{tab:a6} and~\ref{tab:a7} give the full results.
 
 \refstepcounter{table}\label{tab:a5}\textbf{Table \thetable. Regime type and education gain rate.} Polity5
 time-varying regime scores (polity2, $-10$ to $+10$) merged with WCDE
@@ -3440,18 +3440,18 @@ Predictor & R$^2$ (log GDP 2020) \\
 \midrule
 \endhead
 Current education (2020 lower sec) & 0.696 \\
-Education at independence (1950 lower sec) & 0.465 \\
-Colonial-era education (1900 cohort primary) & 0.377 \\
-Polity2 2015 (institutional quality) & 0.114 \\
-Coloniser religion (Protestant = 1) & 0.069 \\
-Education 1950 + coloniser religion & 0.466 \\
+Education at independence (1950 lower sec) & 0.462 \\
+Colonial-era education (1900 cohort primary) & 0.348 \\
+Polity2 2015 (institutional quality) & 0.115 \\
+Coloniser religion (Protestant = 1) & 0.055 \\
+Education 1950 + coloniser religion & 0.462 \\
 \bottomrule
 \end{longtable}
 
 \emph{Each row is a separate bivariate OLS regression on log GDP per
 capita 2020, except the final row which includes both regressors.
-Adding coloniser religion to education raises R$^2$ from 0.465 to
-0.466: religion predicts GDP only through its effect on education.}
+Adding coloniser religion to education raises R$^2$ from 0.462 to
+0.462: religion predicts GDP only through its effect on education.}
 
 \refstepcounter{table}\label{tab:a7}\textbf{Table \thetable. 2SLS instrumental-variable contest: education vs.\ institutions.}
 Coloniser religion (Protestant = 1) as the excluded instrument.
@@ -3467,14 +3467,14 @@ First-stage F $> 10$: strong instrument (Stock \& Yogo 2005).
 Endogenous variable & F-stat & Strength & $\hat\beta$ & $t$ \\
 \midrule
 \endhead
-Education 1950 (lower sec) & 12.2 & Strong & $+$0.059 & 3.21 \\
-Polity2 (institutions) & 2.6 & Weak & $+$0.349 & 1.56$^{\dagger}$ \\
+Education 1950 (lower sec) & 10.8 & Strong & $+$0.059 & 3.21 \\
+Polity2 (institutions) & 1.4 & Weak & $+$0.349 & 1.56$^{\dagger}$ \\
 \bottomrule
 \end{longtable}
 }
 
 \emph{$^{\dagger}$Institutional coefficient is inflated by weak-instrument
-bias (F $= 2.6 < 10$); the 2SLS estimate is unreliable.
+bias (F $= 1.4 < 10$); the 2SLS estimate is unreliable.
 Wu-Hausman test for the education specification: $p = 0.85$ (OLS and 2SLS
 agree). The instrument predicts education, not institutions.}
 

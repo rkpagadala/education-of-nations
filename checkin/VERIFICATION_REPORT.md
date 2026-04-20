@@ -1,6 +1,6 @@
 # Verification Report
 
-Generated: 2026-04-20 03:20
+Generated: 2026-04-20 13:22
 
 ## Result: 395/395 PASS
 
@@ -10,7 +10,7 @@ Generated: 2026-04-20 03:20
 | Failed | 0 |
 | Missing | 0 |
 | Literature refs (manual) | 24 |
-| Unregistered numbers | 57 |
+| Unregistered numbers | 58 |
 | Section offset issues | 0 |
 
 ## By Source Type
@@ -58,7 +58,7 @@ Generated: 2026-04-20 03:20
 
 ## Unregistered Numbers
 
-57 lines contain numbers not mapped to any verification entry:
+58 lines contain numbers not mapped to any verification entry:
 
 - L506 [the-window-supports-a-continuous-dose]: 2020
 - L613 [the-tool-sequence]: 2009
@@ -68,6 +68,7 @@ Generated: 2026-04-20 03:20
 - L1146 [nine-year-measurement]: 185
 - L1163 [nine-year-measurement]: 2020
 - L1211 [invisible-from-inside]: 1800
+- L2276 [gdp-has-no-independent-effect]: 0.019
 - L2361 [robustness]: 0.739
 - L2362 [robustness]: 0.154
 - L2363 [robustness]: 1.032, 0.145
@@ -77,8 +78,7 @@ Generated: 2026-04-20 03:20
 - L2411 [robustness]: 6.6, 14.9
 - L2418 [robustness]: 0.85
 - L2426 [robustness]: 1.3
-- L2448 [robustness]: 0.572, 0.007, 0.725, 0.011
-- L2449 [robustness]: 0.508, 0.018, 0.617
-- L2450 [robustness]: 0.023, 0.524
-- ... and 37 more
+- L2448 [robustness]: 0.569, 0.005, 0.725
+- L2449 [robustness]: 0.509, 0.013, 0.617, 0.006
+- ... and 38 more
 

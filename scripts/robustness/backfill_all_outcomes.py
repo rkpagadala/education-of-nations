@@ -118,20 +118,31 @@ print(f"Education columns:      {min(edu.columns)}–{max(edu.columns)}")
 print(f"Subsistence backfill value: ${SUBSISTENCE_GDP}/capita (constant 2017 USD)\n")
 
 
-# ── within-country R² (identical to LE script) ────────────────────────────────
-def within_r2(predictor_col, outcome_col, rows):
-    if len(rows) < MIN_OBS:
+# ── within-country R² (vectorized: country-FE via demean, closed-form R²) ────
+# Uses pandas groupby + elementwise residual computation — matches the
+# floating-point path the original statsmodels-based within_r2 took,
+# so tiny near-zero R² values round with the same sign as the baseline.
+def _within_r2_arrays(pred, out, country_labels, n_countries):
+    valid = ~np.isnan(pred) & ~np.isnan(out)
+    if valid.sum() < MIN_OBS:
         return np.nan, 0, 0
-    p = pd.DataFrame(rows)
-    counts = p.groupby("country")[outcome_col].transform("count")
-    p = p[counts >= MIN_OBS_PER_C].copy()
-    if len(p) < MIN_OBS:
+    df = pd.DataFrame({
+        "country": country_labels[valid],
+        "p": pred[valid],
+        "o": out[valid],
+    })
+    cnt = df.groupby("country")["o"].transform("count")
+    df = df[cnt >= MIN_OBS_PER_C]
+    if len(df) < MIN_OBS:
         return np.nan, 0, 0
-    n_obs = len(p)
-    n_ctry = p["country"].nunique()
-    for col in [predictor_col, outcome_col]:
-        p[col] = p[col] - p.groupby("country")[col].transform("mean")
-    model = sm.OLS(p[outcome_col], p[[predictor_col]]).fit()
+    n_obs = int(len(df))
+    n_ctry = int(df["country"].nunique())
+    df["p"] = df["p"] - df.groupby("country")["p"].transform("mean")
+    df["o"] = df["o"] - df.groupby("country")["o"].transform("mean")
+    # sm.OLS here matches the baseline's exact floating-point R² values
+    # (including IEEE sign of near-zero results) that a pure numpy closed
+    # form can drift from by ±1 ulp when the predictor is near-constant.
+    model = sm.OLS(df["o"], df[["p"]]).fit()
     return model.rsquared, n_obs, n_ctry
 
 
@@ -145,25 +156,6 @@ OUTCOMES = [
 ]
 
 
-def get_outcome_value(key, outcome_df, log_outcome, use_edu_as_outcome, country, yr):
-    """Return outcome value for (country, yr), honouring log + edu-as-outcome flags."""
-    if use_edu_as_outcome:
-        if yr not in edu.columns:
-            return np.nan
-        v = edu.loc[country, yr]
-    else:
-        if yr not in outcome_df.columns:
-            return np.nan
-        v = outcome_df.loc[country, yr]
-    if pd.isna(v):
-        return np.nan
-    if log_outcome:
-        if v <= 0:
-            return np.nan
-        return float(np.log(v))
-    return float(v)
-
-
 # ── main sweep: for each outcome × lag, compute all 3 R² ──────────────────────
 lags = list(range(LAG_MIN, LAG_MAX + 1, LAG_STEP))
 
@@ -173,45 +165,47 @@ results = {key: {"edu": [], "gdp_orig": [], "gdp_back": []} for key, *_ in OUTCO
 print(f"Sweeping {len(lags)} lags × {len(OUTCOMES)} outcomes "
       f"× 3 predictors (edu, GDP-orig, GDP-backfill)...\n")
 
+# Vectorized: pre-extract country × year matrices once, then slice for each
+# (outcome, lag) via reindex. The old nested country/year loop rebuilt the
+# same row-of-dicts lists 84 times (21 lags × 4 outcomes); here we work in
+# aligned numpy arrays and avoid all Python-level appending.
+_outcome_yrs = list(range(PANEL_START, PANEL_END + 1))
+_n_countries = len(countries)
+_n_years = len(_outcome_yrs)
+_country_labels_flat = np.repeat(np.array(countries, dtype=object), _n_years)
+
+
+def _mat(df, cols):
+    """Reindex df to `countries × cols` and return a float matrix (NaN for gaps)."""
+    return df.reindex(index=countries, columns=cols).to_numpy(dtype=float, na_value=np.nan)
+
+
+def _log_nonpos_to_nan(mat):
+    """Elementwise log, mapping non-positive / NaN entries to NaN."""
+    with np.errstate(invalid="ignore", divide="ignore"):
+        return np.where(mat > 0, np.log(mat), np.nan)
+
+
 for key, label, outcome_df, logit, use_edu in OUTCOMES:
     print(f"\n### OUTCOME: {label}  (key='{key}')")
+    out_src = edu if use_edu else outcome_df
+    out_mat = _mat(out_src, _outcome_yrs)
+    if logit:
+        out_mat = _log_nonpos_to_nan(out_mat)
+    out_flat = out_mat.ravel()
+
     for lag in lags:
-        edu_rows, gdp_orig_rows, gdp_back_rows = [], [], []
+        pred_cols = [y - lag for y in _outcome_yrs]
+        edu_pred = _mat(edu, pred_cols).ravel()
+        gdp_back_pred = _log_nonpos_to_nan(_mat(gdp_back, pred_cols)).ravel()
+        if lag <= GDP_LAG_MAX:
+            gdp_orig_pred = _log_nonpos_to_nan(_mat(gdp_orig, pred_cols)).ravel()
+        else:
+            gdp_orig_pred = np.full_like(out_flat, np.nan)
 
-        for country in countries:
-            for yr in range(PANEL_START, PANEL_END + 1):
-                out_val = get_outcome_value(key, outcome_df, logit, use_edu,
-                                             country, yr)
-                if np.isnan(out_val):
-                    continue
-                yr_pred = yr - lag
-
-                # education predictor (WCDE, 1875–2015)
-                if yr_pred in edu.columns:
-                    ev = edu.loc[country, yr_pred]
-                    if not np.isnan(ev):
-                        edu_rows.append({"country": country, "edu": ev,
-                                         "y": out_val})
-
-                # original GDP (WDI, 1960+), capped at GDP_LAG_MAX
-                if lag <= GDP_LAG_MAX and yr_pred in gdp_orig.columns:
-                    gv = gdp_orig.loc[country, yr_pred]
-                    if not np.isnan(gv) and gv > 0:
-                        gdp_orig_rows.append({"country": country,
-                                              "log_gdp": np.log(gv),
-                                              "y": out_val})
-
-                # backfilled GDP (1870+), no lag cap
-                if yr_pred in gdp_back.columns:
-                    gv = gdp_back.loc[country, yr_pred]
-                    if not np.isnan(gv) and gv > 0:
-                        gdp_back_rows.append({"country": country,
-                                              "log_gdp": np.log(gv),
-                                              "y": out_val})
-
-        re, ne, nce = within_r2("edu",     "y", edu_rows)
-        ro, no, nco = within_r2("log_gdp", "y", gdp_orig_rows)
-        rb, nb, ncb = within_r2("log_gdp", "y", gdp_back_rows)
+        re, ne, nce = _within_r2_arrays(edu_pred,      out_flat, _country_labels_flat, _n_countries)
+        ro, no, nco = _within_r2_arrays(gdp_orig_pred, out_flat, _country_labels_flat, _n_countries)
+        rb, nb, ncb = _within_r2_arrays(gdp_back_pred, out_flat, _country_labels_flat, _n_countries)
 
         results[key]["edu"].append(re)
         results[key]["gdp_orig"].append(ro)

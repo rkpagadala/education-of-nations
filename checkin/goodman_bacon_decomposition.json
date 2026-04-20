@@ -38,5 +38,5 @@
   },
   "reference": "Goodman-Bacon (2021), Econometrica 89(5): 2261\u20132290",
   "script": "scripts/robustness/goodman_bacon_decomposition.py",
-  "produced": "2026-04-12"
+  "produced": "2026-04-20"
 }

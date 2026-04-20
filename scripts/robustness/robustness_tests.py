@@ -326,54 +326,63 @@ for ceiling in [60, 90]:
         out(f"\n  Ceiling = {ceiling}%: insufficient countries ({n_countries})")
         continue
 
+    # Precompute per-country sufficient statistics once. Bootstrap that
+    # resamples countries with replacement is equivalent to summing these
+    # with integer multiplicities — each replicate costs O(n_countries)
+    # ops instead of rebuilding a DataFrame + groupby demean.
+    edu_dm_full = (sub["edu_t"] - sub.groupby("country")["edu_t"].transform("mean")).values
+    gdp_dm_full = (sub["log_gdp_t"] - sub.groupby("country")["log_gdp_t"].transform("mean")).values
+    le_dm_full = (sub["le"] - sub.groupby("country")["le"].transform("mean")).values
+    country_to_idx = {c: i for i, c in enumerate(countries_list)}
+    row_idx = sub["country"].map(country_to_idx).values
+    len_c = np.bincount(row_idx, minlength=n_countries)
+    see_c = np.bincount(row_idx, weights=edu_dm_full * edu_dm_full, minlength=n_countries)
+    sgg_c = np.bincount(row_idx, weights=gdp_dm_full * gdp_dm_full, minlength=n_countries)
+    sll_c = np.bincount(row_idx, weights=le_dm_full * le_dm_full, minlength=n_countries)
+    seg_c = np.bincount(row_idx, weights=edu_dm_full * gdp_dm_full, minlength=n_countries)
+    sel_c = np.bincount(row_idx, weights=edu_dm_full * le_dm_full, minlength=n_countries)
+    sgl_c = np.bincount(row_idx, weights=gdp_dm_full * le_dm_full, minlength=n_countries)
+
     boot_edu_r2 = []
     boot_resid_r2 = []
     boot_diff = []
 
     for b in range(N_BOOT):
-        # Resample countries with replacement
+        # np.random.choice once per rep preserves the exact draw sequence
+        # the old loop produced, so replicates stay bit-identical.
         boot_countries = np.random.choice(countries_list, size=n_countries, replace=True)
+        idx = np.fromiter((country_to_idx[c] for c in boot_countries),
+                          dtype=np.intp, count=n_countries)
+        mult = np.bincount(idx, minlength=n_countries)
 
-        # Build bootstrap sample (handling duplicate country names by adding suffix)
-        boot_rows = []
-        for i, c in enumerate(boot_countries):
-            chunk = sub[sub["country"] == c].copy()
-            chunk["country"] = f"{c}__boot{i}"  # unique country ID for FE
-            boot_rows.append(chunk)
-        boot_df = pd.concat(boot_rows, ignore_index=True)
-
-        if len(boot_df) < 10 or boot_df["country"].nunique() < 3:
+        n_obs = int(mult @ len_c)
+        n_unique = int(np.count_nonzero(mult))
+        if n_obs < 10 or n_unique < 3:
             continue
 
-        # Education R² for LE
-        edu_dm = boot_df["edu_t"] - boot_df.groupby("country")["edu_t"].transform("mean")
-        le_dm = boot_df["le"] - boot_df.groupby("country")["le"].transform("mean")
-        gdp_dm = boot_df["log_gdp_t"] - boot_df.groupby("country")["log_gdp_t"].transform("mean")
+        see = float(mult @ see_c)
+        sgg = float(mult @ sgg_c)
+        sll = float(mult @ sll_c)
+        seg = float(mult @ seg_c)
+        sel = float(mult @ sel_c)
+        sgl = float(mult @ sgl_c)
 
-        ok = ~np.isnan(edu_dm.values) & ~np.isnan(le_dm.values) & ~np.isnan(gdp_dm.values)
-        if ok.sum() < 10:
+        if sll <= 0.0 or see <= 0.0:
             continue
 
-        edu_v = edu_dm.values[ok]
-        le_v = le_dm.values[ok]
-        gdp_v = gdp_dm.values[ok]
+        # Edu → LE R² without intercept: 1 - (sll - sel²/see)/sll = sel²/(see·sll)
+        r2_e = (sel * sel) / (see * sll)
 
-        # Edu → LE R²
-        ss_tot = np.sum(le_v ** 2)
-        if ss_tot == 0:
+        # Residualize GDP on edu: gdp_resid = gdp_dm - (seg/see)·edu_dm
+        # sum(gdp_resid²)      = sgg - seg²/see
+        # sum(gdp_resid · le)  = sgl - (seg·sel)/see
+        ssr_resid = sgg - (seg * seg) / see
+        cross_rg = sgl - (seg * sel) / see
+        if ssr_resid <= 0.0:
             continue
-        beta_e = np.sum(edu_v * le_v) / np.sum(edu_v ** 2) if np.sum(edu_v ** 2) > 0 else 0
-        resid_e = le_v - beta_e * edu_v
-        r2_e = 1 - np.sum(resid_e ** 2) / ss_tot
-
-        # Residualize GDP: regress GDP on education, take residuals
-        beta_eg = np.sum(edu_v * gdp_v) / np.sum(edu_v ** 2) if np.sum(edu_v ** 2) > 0 else 0
-        gdp_resid = gdp_v - beta_eg * edu_v
-
-        # Resid GDP → LE R²
-        beta_rg = np.sum(gdp_resid * le_v) / np.sum(gdp_resid ** 2) if np.sum(gdp_resid ** 2) > 0 else 0
-        resid_rg = le_v - beta_rg * gdp_resid
-        r2_rg = 1 - np.sum(resid_rg ** 2) / ss_tot
+        beta_rg = cross_rg / ssr_resid
+        # 1 - (sll - 2·β·cross + β²·ssr_resid)/sll
+        r2_rg = 1.0 - (sll - 2.0 * beta_rg * cross_rg + beta_rg * beta_rg * ssr_resid) / sll
 
         boot_edu_r2.append(r2_e)
         boot_resid_r2.append(r2_rg)

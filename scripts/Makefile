@@ -14,6 +14,12 @@ DATA = ../data
 WCDE = ../wcde/data/processed
 RESID_SHARED = residualization/_shared.py
 
+# Default to parallel builds when invoked directly (e.g. `cd scripts && make`).
+# If MAKEFLAGS already contains -j (e.g. top-level recurse passes it), leave alone.
+ifeq (,$(findstring -j,$(MAKEFLAGS)))
+MAKEFLAGS += -j$(shell nproc 2>/dev/null || echo 4)
+endif
+
 WB_DATA = $(wildcard $(DATA)/*.csv)
 WCDE_DATA = $(wildcard $(WCDE)/*.csv)
 ALL_DATA = $(WB_DATA) $(WCDE_DATA)
@@ -131,7 +137,12 @@ $(CHECKIN)/colonial_education_vs_institutions.json: robustness/colonial_vs_insti
 $(CHECKIN)/iv_2sls_colonial.json: robustness/iv_2sls_colonial.py robustness/colonial_vs_institutions.py $(ALL_DATA) $(DATA)/p5v2018.xls
 	$(PYTHON) $<
 
-$(CHECKIN)/the_case.json: verify_the_case.py _shared.py $(ALL_DATA)
+$(CHECKIN)/the_case.json: verify_the_case.py _shared.py $(ALL_DATA) \
+	$(CHECKIN)/outcomes_r2_by_lag.json \
+	$(CHECKIN)/edu_vs_gdp_residualized.json \
+	$(CHECKIN)/edu_vs_gdp_tfr_residualized.json \
+	$(CHECKIN)/edu_vs_gdp_child_edu_residualized.json \
+	$(CHECKIN)/table_1_main.json
 	$(PYTHON) $<
 
 $(CHECKIN)/china_mean_yrs_vs_peers.json: cases/china_mean_years.py _shared.py $(ALL_DATA) ../wcde/data/raw/prop_both.csv

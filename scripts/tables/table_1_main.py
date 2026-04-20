@@ -22,7 +22,8 @@ import numpy as np
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(SCRIPT_DIR))
-from _shared import PROC, DATA, CHECKIN, REGIONS as NON_SOVEREIGN, write_checkin, fe_regression
+from _shared import (PROC, DATA, CHECKIN, REGIONS as NON_SOVEREIGN,
+                     write_checkin, fe_regression, add_canonical_aliases)
 
 # ── Constants ─────────────────────────────────────────────────────
 PARENTAL_LAG = 25                    # one PTE generation
@@ -35,6 +36,7 @@ fem = pd.read_csv(os.path.join(PROC, "lower_sec_female.csv"), index_col="country
 gdp_raw = pd.read_csv(os.path.join(DATA, "gdppercapita_us_inflation_adjusted.csv"),
                        index_col="Country")
 gdp_raw.index = gdp_raw.index.str.lower()
+gdp_raw = add_canonical_aliases(gdp_raw)
 
 # ── Build panel ───────────────────────────────────────────────────
 rows = []
