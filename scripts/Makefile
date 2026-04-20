@@ -74,6 +74,7 @@ analysis: \
 	$(CHECKIN)/completion_vs_test_scores.json \
 	$(CHECKIN)/threshold_robustness.json \
 	$(CHECKIN)/happiness_education.json \
+	$(CHECKIN)/singapore_continuation.json \
 	$(CHECKIN)/grandparent_effect_all_outcomes.json \
 	$(CHECKIN)/backfill_all_outcomes.json \
 	$(CHECKIN)/colonial_all_outcomes.json \
@@ -198,6 +199,9 @@ $(CHECKIN)/threshold_robustness.json: robustness/threshold_robustness.py _shared
 	$(PYTHON) $<
 
 $(CHECKIN)/happiness_education.json: happiness_education.py $(DATA)/world_happiness_report.csv $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/singapore_continuation.json: singapore_continuation.py $(WCDE)/college_both.csv $(WCDE)/upper_sec_both.csv
 	$(PYTHON) $<
 
 $(CHECKIN)/grandparent_effect_all_outcomes.json: robustness/grandparent_effect_all_outcomes.py _shared.py $(ALL_DATA)

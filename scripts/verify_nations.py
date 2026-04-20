@@ -40,14 +40,16 @@ CHECKIN = os.path.join(REPO_ROOT, "checkin")
 # SECTION LABEL SHORTCUTS
 # ══════════════════════════════════════════════════════════════════════════
 ABSTRACT = "abstract"
-INTRO = "what-humans-are"
+INTRO = "the-convergence"
 DEF_DEV = "defining-development"
-EASTERLIN = "easterlin-and-the-protestant-reformation"
-LUTZ = "what-humans-are"
+EASTERLIN = "the-convergence"
+LUTZ = "longest-juvenile-dependency"
+DEPENDENCY = "longest-juvenile-dependency"
+DOSE_CONTINUOUS = "the-window-supports-a-continuous-dose"
 PT_AGENCY = "the-generational-transmission-mechanism"
 KIN = "from-action-to-talk-how-education-reaches-beyond-the-household"
 DEMOG = "demographic-structure-and-the-fertility-transition"
-HOW_EDU = "how-education-produces-development"
+HOW_EDU = "education-as-payload"
 CAUSAL = "causal-identification-the-bad-control-problem-and-natural-experiments"
 DATA_SEC = "data"
 COMPLETION = "completion-as-the-operative-variable"
@@ -58,7 +60,7 @@ GDP_INDEP = "gdp-has-no-independent-effect"
 OVERPERF = "policy-over-performers"
 SHOCK_TEST = "the-shock-test"
 FAMINE_TEST = "the-famine-test"
-CUMULATIVE = "the-evidence"
+CUMULATIVE = "the-panel"
 SEN_CASES = "the-cases"
 TAIWAN_KOREA = "taiwan-and-korea"
 KERALA = "kerala"
@@ -73,9 +75,9 @@ INSTIT = "the-institutional-challenge"
 POLICY = "the-decision"
 CONCL = "the-decision"
 REFS = "references"
-THE_EVIDENCE = "the-evidence"
-APPENDIX_ROBUST = "appendix-robustness"
-APPENDIX_FRAME = "appendix-frameworks"
+THE_EVIDENCE = "the-panel"
+APPENDIX_ROBUST = "robustness"
+APPENDIX_FRAME = "difficulties-on-the-theory"
 
 # ══════════════════════════════════════════════════════════════════════════
 # WDI COUNTRY NAME MAPPING
@@ -226,7 +228,7 @@ S_TFR   = os.path.join(REPO_ROOT, "scripts", "residualization", "education_vs_tf
 reg("T1-obs",        1665,   "checkin", ("table_1_main.json", "numbers.panel_obs"),
     [(DATA_SEC, None), (APPENDIX_ROBUST, None)], tol=0)
 reg("T1-countries",  185,    "checkin", ("table_1_main.json", "numbers.panel_countries"),
-    [(ABSTRACT, 132), (THE_EVIDENCE, None), (DATA_SEC, 3), (APPENDIX_ROBUST, 34)], tol=0)
+    [(ABSTRACT, 112), (THE_EVIDENCE, None), (DATA_SEC, 3), (APPENDIX_ROBUST, 38)], tol=0)
 # ══════════════════════════════════════════════════════════════════════════
 # TABLE A1 — Two-way FE (twfe_child_edu.py)
 # ══════════════════════════════════════════════════════════════════════════
@@ -550,7 +552,7 @@ reg("T2-LE-beta-sec",   0.109, "checkin", ("education_outcomes.json", "numbers.T
 # LONG-RUN PANEL (04b_long_run_generational.py)
 # ══════════════════════════════════════════════════════════════════════════
 reg("LR-countries", 28,     "checkin", ("long_run_generational.json", "numbers.LR-countries"),
-    [(DATA_SEC, 14), (EDU_VS_GDP, 74), (APPENDIX_ROBUST, 129)], tol=0)
+    [(DATA_SEC, 14), (EDU_VS_GDP, 74), (APPENDIX_ROBUST, 121)], tol=0)
 
 # ══════════════════════════════════════════════════════════════════════════
 # PARENTAL INCOME COLLAPSE — inline computation
@@ -603,6 +605,16 @@ reg("Singapore-1950-edu", 13.4, "wcde", ("cohort_lower_sec_both.csv", "Singapore
     [], tol=2.0)
 reg("Singapore-1995-edu", 94.0, "wcde", ("cohort_lower_sec_both.csv", "Singapore", 1995),
     [], tol=2.0)
+# Singapore agency-transfer continuation (Ch 2 subsection 2.4: dose is continuous)
+reg("Singapore-tertiary-2020", 73.0, "checkin",
+    ("singapore_continuation.json", "results.singapore_college_2020.actual"),
+    [(DOSE_CONTINUOUS, None)], tol=1.0)
+reg("Singapore-upper-sec-2020", 96.0, "checkin",
+    ("singapore_continuation.json", "results.singapore_upper_sec_2020.actual"),
+    [(DOSE_CONTINUOUS, None)], tol=1.0)
+reg("Singapore-lower-sec-2020", 99.0, "wcde",
+    ("lower_sec_both.csv", "Singapore", 2020),
+    [(DOSE_CONTINUOUS, None)], tol=1.0)
 
 # --- Myanmar ---
 
@@ -624,10 +636,10 @@ reg("GDP-CostaRica-1990", 6037,  "wdi", ("gdp", "Costa Rica", 1990), [], tol=5)
 
 # Philippines/Korea/Thailand/Indonesia/India/China GDP 1960 comparison (Taiwan & Korea section)
 reg("GDP-Philippines-1960", 1124, "wdi", ("gdp", "Philippines", 1960), [(TAIWAN_KOREA, None)], tol=5)
-reg("GDP-Thailand-1960",    592, "wdi", ("gdp", "Thailand", 1960), [(TAIWAN_KOREA, 16)], tol=5)
-reg("GDP-Indonesia-1960",   598, "wdi", ("gdp", "Indonesia", 1960), [(TAIWAN_KOREA, 17)], tol=5)
-reg("GDP-India-1960",       313, "wdi", ("gdp", "India", 1960), [(TAIWAN_KOREA, 17)], tol=5)
-reg("GDP-China-1960",       241, "wdi", ("gdp", "China", 1960), [(TAIWAN_KOREA, 17)], tol=5)
+reg("GDP-Thailand-1960",    592, "wdi", ("gdp", "Thailand", 1960), [(TAIWAN_KOREA, 18)], tol=5)
+reg("GDP-Indonesia-1960",   598, "wdi", ("gdp", "Indonesia", 1960), [(TAIWAN_KOREA, 19)], tol=5)
+reg("GDP-India-1960",       313, "wdi", ("gdp", "India", 1960), [(TAIWAN_KOREA, 19)], tol=5)
+reg("GDP-China-1960",       241, "wdi", ("gdp", "China", 1960), [(TAIWAN_KOREA, 19)], tol=5)
 # Note: Korea 1960 already registered above as GDP-Korea-1960
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -792,13 +804,13 @@ reg("China-LE-beta-break", 0.007, "checkin",
     [CHINA], tol=0.005)
 reg("China-LE-gap-1965",   6.3, "derived",
     "abs(le_gap_1965) from china_mean_yrs_vs_peers.json",
-    [(CHINA, 27)], tol=0.05)
+    [(CHINA, 31)], tol=0.05)
 reg("China-LE-gap-1980",   2.4, "derived",
     "abs(le_gap_1980) from china_mean_yrs_vs_peers.json",
-    [(CHINA, 28)], tol=0.05)
+    [(CHINA, 32)], tol=0.05)
 reg("China-MYS-1965",      5.9, "checkin",
     ("china_mean_yrs_vs_peers.json", "key_data_points.china_mys_1965"),
-    [(CHINA, 52)], tol=0.02)
+    [(CHINA, 56)], tol=0.02)
 
 # ══════════════════════════════════════════════════════════════════════════
 # CONSTANTS — definitional, just verify consistency
@@ -960,7 +972,7 @@ reg("Thresh-LE-abs",    69.8, "wdi", ("le", "USA", 1960),
 # Introduction & invisible: 185 countries
 reg("T1-countries-intro",  185, "checkin",
     ("table_1_main.json", "numbers.panel_countries"),
-    [("introduction", None)], tol=0)
+    [(INTRO, None)], tol=0)
 # Causal: 4.5 cross-reference
 # Table 2 footnotes: sample sizes
 reg("T2-n-GDP",          828, "checkin",
@@ -1040,6 +1052,17 @@ reg("TFR-threshold-defdev",  3.65,  "wdi", ("tfr", "USA", 1960), [DEF_DEV], tol=
 reg("LE-threshold-defdev",   69.8,  "wdi", ("le", "USA", 1960), [DEF_DEV], tol=0.05)
 reg("LE-Japan-1960-sec",     67.7,  "wdi", ("le", "Japan", 1960), [DEF_DEV], tol=1.0)
 
+# --- INTRO section: thresholds cited in opening convergence lede ---
+reg("TFR-threshold-intro",   3.65,  "wdi", ("tfr", "USA", 1960), [INTRO], tol=0.01)
+reg("LE-threshold-intro",    69.8,  "wdi", ("le", "USA", 1960), [INTRO], tol=0.05)
+# Cumulative-developed curve milestones: 1961 (baseline), 1993 (pre-China), 1994 (China crosses)
+reg("Cumulative-1961",       1961,  "const", "Cumulative-developed curve baseline year",
+    [(INTRO, None), (DEF_DEV, None)], tol=0)
+reg("Cumulative-1993",       1993,  "const", "Cumulative-developed curve pre-China jump year",
+    [(INTRO, None), (DEF_DEV, None)], tol=0)
+reg("Cumulative-1994",       1994,  "const", "Cumulative-developed curve year China crosses",
+    [(INTRO, None), (DEF_DEV, None)], tol=0)
+
 # --- LUTZ section: college completion analysis (L351-L354) ---
 reg("College-r-sec",         0.45,  "checkin", ("college_le_gradient.json", "results.correlation.actual"), [GDP_INDEP], tol=0.01)
 # REMOVED from paper
@@ -1047,7 +1070,7 @@ reg("College-r-sec",         0.45,  "checkin", ("college_le_gradient.json", "res
 reg("College-LE-gradient-sec", 5.7, "checkin", ("college_le_gradient.json", "results.gradient.actual"), [GDP_INDEP], tol=0.1)
 
 # --- INVISIBLE section: happiness country count ---
-reg("Happiness-n-countries",  147,  "checkin", ("happiness_education.json", "numbers.n_countries"), [INVISIBLE], tol=0)
+reg("Happiness-n-countries",  147,  "checkin", ("happiness_education.json", "numbers.n_countries"), [("invisible-from-inside", None)], tol=0)
 
 # --- HOW_EDU section: Nepal GDP + Myanmar data (L549, L581-L584) ---
 # REMOVED from paper
@@ -1171,7 +1194,7 @@ reg("T5-Korea-TFR",      1975, "checkin", ("table4_crossings.json", "results.Sou
 reg("T5-Cuba-dev",       1974, "checkin", ("table4_crossings.json", "results.Cuba.both_crossed"),
     [(SEN_CASES, 17), (CUBA, None)], tol=0)
 reg("T5-Cuba-TFR",       1972, "checkin", ("table4_crossings.json", "results.Cuba.tfr_crossing_best"),
-    [(SEN_CASES, 17), (DEF_DEV, 78)], tol=0)
+    [(SEN_CASES, 17), (DEF_DEV, 75)], tol=0)
 # Bangladesh
 reg("T5-Bangladesh-dev",  2014, "checkin", ("table4_crossings.json", "results.Bangladesh.both_crossed"),
     [(SEN_CASES, 18), (BANGLADESH, None)], tol=0)
@@ -1454,9 +1477,9 @@ reg("SA-2019-LE",       66.1,  "wdi",  ("le", "South Africa", 2019), [SHOCK_TEST
 # --- FAMINE TEST section ---
 # Numbers from scripts/famine_education_test.py output
 reg("Famine-count",        21,     "checkin", ("famine_education_test.json", "numbers.Famine-count"),
-    [FAMINE_TEST, INVISIBLE], tol=0)
+    [(FAMINE_TEST, None), ("the-dilution-mechanism", None)], tol=0)
 reg("Famine-below-50-ct",  19,     "checkin", ("famine_education_test.json", "numbers.Famine-below-50-ct"),
-    [FAMINE_TEST, INVISIBLE], tol=0)
+    [(FAMINE_TEST, None), ("the-dilution-mechanism", None)], tol=0)
 reg("Famine-median-edu",   19.6,   "checkin", ("famine_education_test.json", "numbers.Famine-median-edu"),
     [FAMINE_TEST], tol=0.1)
 reg("Famine-mean-edu",     25.4,   "checkin", ("famine_education_test.json", "numbers.Famine-mean-edu"),
