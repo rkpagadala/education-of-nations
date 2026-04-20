@@ -357,7 +357,7 @@ reg(name, value, source, detail, section, tol=0.001)
 ```
 ========================================================================
 PAPER NUMBER VERIFICATION
-Paper: paper/education_of_nations.tex
+Paper: paper/education_of_humanity.tex
 Registry: 351 entries
 ========================================================================
 
@@ -560,13 +560,13 @@ Uses clustered standard errors (by country).
 
 **Key finding:** Colonial-era education (1950) explains 46.5% of 2015 GDP. Adding religion or institutional variables adds nothing. Education is the channel.
 
-### verify_humanity.py
+### verify_the_case.py
 
-**Output:** `checkin/humanity.json`
+**Output:** `checkin/the_case.json`
 
 **Data:** Same as above + existing checkin JSONs.
 
-**What it does:** Verifies numbers in the companion paper "Education of Humanity" (shorter policy version). Cross-references values from existing checkin JSONs to ensure consistency between the two papers.
+**What it does:** Verifies numbers in the companion paper "Education of Humanity" (shorter policy version, `the_case.tex`). Cross-references values from existing checkin JSONs to ensure consistency between the two papers.
 
 ### china_mean_yrs_vs_peers.py
 
@@ -957,7 +957,7 @@ wcde/data/processed/*.csv  (185 countries, 1950–2015, 5-year intervals)
       ▼
   checkin/*.json  (42 JSON files with all computed values)
       │
-      │         paper/education_of_nations.tex
+      │         paper/education_of_humanity.tex
       │              │
       ▼              ▼
   ┌──────────────────────────────────┐

@@ -31,8 +31,8 @@ scripts/                 42 analysis scripts + master verifier
 data/                    World Bank WDI source CSVs
 wcde/data/processed/     WCDE v3 education data (1875-2020, 185 countries)
 checkin/                 42 JSON verification checkpoints
-paper/education_of_nations.tex   Paper source (read by verifier)
-paper/education_of_nations.pdf   Paper PDF
+paper/education_of_humanity.tex   Paper source (read by verifier)
+paper/education_of_humanity.pdf   Paper PDF
 SCRIPTS.md               Which scripts matter most and why
 VERIFICATION.md          How the verification pipeline works
 ```

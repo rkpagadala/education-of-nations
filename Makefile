@@ -7,7 +7,7 @@
 VENV   = .venv
 PYTHON = $(VENV)/bin/python
 PIP    = $(VENV)/bin/pip
-PAPER_TEX = paper/education_of_nations.tex
+PAPER_TEX = paper/education_of_humanity.tex
 VERIFY_STAMP = checkin/.verified
 
 .PHONY: all setup verify scripts clean

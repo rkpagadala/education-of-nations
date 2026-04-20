@@ -1,7 +1,7 @@
 """
 verify_nations.py
 
-Every empirical number in paper/education_of_nations.tex is registered
+Every empirical number in paper/education_of_humanity.tex is registered
 here with its source. The script verifies each one.
 
 Source types:
@@ -31,7 +31,7 @@ import pandas as pd
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(SCRIPT_DIR)
-PAPER = os.path.join(REPO_ROOT, "paper", "education_of_nations.tex")
+PAPER = os.path.join(REPO_ROOT, "paper", "education_of_humanity.tex")
 PROC = os.path.join(REPO_ROOT, "wcde", "data", "processed")
 DATA = os.path.join(REPO_ROOT, "data")
 CHECKIN = os.path.join(REPO_ROOT, "checkin")
@@ -1468,6 +1468,8 @@ reg("Russia-2019-LE",   73.1,  "wdi",  ("le", "Russia", 2019), [SHOCK_TEST], tol
 
 # --- SHOCK TEST section: South Africa ---
 reg("SA-1990-edu",      65,    "wcde", ("lower_sec_both.csv", "South Africa", 1990), [SHOCK_TEST], tol=1)
+reg("SA-1990-primary",  78,    "wcde", ("primary_both.csv", "South Africa", 1990), [SHOCK_TEST], tol=1)
+reg("SA-2005-primary",  91,    "wcde", ("primary_both.csv", "South Africa", 2005), [SHOCK_TEST], tol=1)
 reg("SA-1990-LE",       62.9,  "wdi",  ("le", "South Africa", 1990), [SHOCK_TEST], tol=0.1)
 reg("SA-2005-LE",       53.9,  "wdi",  ("le", "South Africa", 2005), [SHOCK_TEST], tol=0.1)
 reg("SA-1990-TFR",      3.72,  "wdi",  ("tfr", "South Africa", 1990), [SHOCK_TEST], tol=0.05)

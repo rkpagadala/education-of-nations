@@ -1,16 +1,16 @@
 # Verification Report
 
-Generated: 2026-04-19 17:21
+Generated: 2026-04-20 03:20
 
-## Result: 393/393 PASS
+## Result: 395/395 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 393 |
+| Verified claims | 395 |
 | Failed | 0 |
 | Missing | 0 |
 | Literature refs (manual) | 24 |
-| Unregistered numbers | 56 |
+| Unregistered numbers | 57 |
 | Section offset issues | 0 |
 
 ## By Source Type
@@ -21,7 +21,7 @@ Generated: 2026-04-19 17:21
 | const | 3 | 0 | 0 |
 | derived | 54 | 0 | 0 |
 | ref | 0 | 0 | 0 |
-| wcde | 24 | 0 | 0 |
+| wcde | 26 | 0 | 0 |
 | wdi | 52 | 0 | 0 |
 
 ## By Paper Section
@@ -53,32 +53,32 @@ Generated: 2026-04-19 17:21
 | the-famine-test | 6 | 6 | 0 |
 | the-institutional-challenge | 13 | 13 | 0 |
 | the-panel | 1 | 1 | 0 |
-| the-shock-test | 14 | 14 | 0 |
+| the-shock-test | 16 | 16 | 0 |
 | the-window-supports-a-continuous-dose | 3 | 3 | 0 |
 
 ## Unregistered Numbers
 
-56 lines contain numbers not mapped to any verification entry:
+57 lines contain numbers not mapped to any verification entry:
 
-- L504 [the-window-supports-a-continuous-dose]: 2020
-- L611 [the-tool-sequence]: 2009
-- L679 [specialisation-requires-loaded-labour]: 185
-- L769 [categorical-brain-reorganisation]: 2004, 2008
-- L850 [why-poorly-nourished-populations-learned-to-read]: 1872, 1961
-- L864 [why-poorly-nourished-populations-learned-to-read]: 2020
-- L1172 [nine-year-measurement]: 185
-- L1189 [nine-year-measurement]: 2020
-- L1236 [invisible-from-inside]: 1800
-- L2359 [robustness]: 0.739
-- L2360 [robustness]: 0.154
-- L2361 [robustness]: 1.032, 0.145
-- L2363 [robustness]: 1.019, 0.067, 358
-- L2371 [robustness]: 0.07
-- L2408 [robustness]: 1.3
-- L2409 [robustness]: 6.6, 14.9
-- L2416 [robustness]: 0.85
-- L2424 [robustness]: 1.3
-- L2446 [robustness]: 0.572, 0.007, 0.725, 0.011
-- L2447 [robustness]: 0.508, 0.018, 0.617
-- ... and 36 more
+- L506 [the-window-supports-a-continuous-dose]: 2020
+- L613 [the-tool-sequence]: 2009
+- L681 [specialisation-requires-loaded-labour]: 185
+- L771 [categorical-brain-reorganisation]: 2004, 2008
+- L825 [why-poorly-nourished-populations-learned-to-read]: 1872, 1961
+- L1146 [nine-year-measurement]: 185
+- L1163 [nine-year-measurement]: 2020
+- L1211 [invisible-from-inside]: 1800
+- L2361 [robustness]: 0.739
+- L2362 [robustness]: 0.154
+- L2363 [robustness]: 1.032, 0.145
+- L2365 [robustness]: 1.019, 0.067, 358
+- L2373 [robustness]: 0.07
+- L2410 [robustness]: 1.3
+- L2411 [robustness]: 6.6, 14.9
+- L2418 [robustness]: 0.85
+- L2426 [robustness]: 1.3
+- L2448 [robustness]: 0.572, 0.007, 0.725, 0.011
+- L2449 [robustness]: 0.508, 0.018, 0.617
+- L2450 [robustness]: 0.023, 0.524
+- ... and 37 more
 
