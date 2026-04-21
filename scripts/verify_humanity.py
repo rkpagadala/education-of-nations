@@ -348,56 +348,65 @@ reg("DVF-U5MR-test-r2",     0.028, "checkin",
     [COMPLETION], tol=0.005)
 
 # ══════════════════════════════════════════════════════════════════════════
-# FIGURE 3 — Lag decay, four outcomes (outcomes_r2_by_lag.py)
-# Table in §Evidence cites values at generational anchors (0, 25, 50, 75, 100)
-# for each of the four outcomes: LE, TFR, U-5 mortality (log), child edu.
+# Lag decay — four outcomes × five generational anchors (0, 25, 50, 75, 100).
+# Paper reports standardized |β| as the primary metric (causal quantity,
+# comparable across outcomes). Source: lag_coefficients.py. R² decay is
+# still computed (outcomes_r2_by_lag.py) and mentioned as a sidepoint, but
+# the paper body no longer cites specific R² values from the lag table.
 # ══════════════════════════════════════════════════════════════════════════
-# Life expectancy
-reg("OR-le-lag0",    0.552, "checkin", ("outcomes_r2_by_lag.json", "numbers.le_r2_lag0"),
+# Life expectancy (positive β; registered as-is)
+reg("LagBeta-le-lag0",    0.743, "checkin", ("lag_coefficients.json", "numbers.le_beta_lag0"),
     [(EDU_PRED, None)])
-reg("OR-le-lag25",   0.356, "checkin", ("outcomes_r2_by_lag.json", "numbers.le_r2_lag25"),
+reg("LagBeta-le-lag25",   0.597, "checkin", ("lag_coefficients.json", "numbers.le_beta_lag25"),
     [(EDU_PRED, None)])
-reg("OR-le-lag50",   0.169, "checkin", ("outcomes_r2_by_lag.json", "numbers.le_r2_lag50"),
+reg("LagBeta-le-lag50",   0.411, "checkin", ("lag_coefficients.json", "numbers.le_beta_lag50"),
     [(EDU_PRED, None)])
-reg("OR-le-lag75",   0.080, "checkin", ("outcomes_r2_by_lag.json", "numbers.le_r2_lag75"),
+reg("LagBeta-le-lag75",   0.284, "checkin", ("lag_coefficients.json", "numbers.le_beta_lag75"),
     [(EDU_PRED, None)])
-reg("OR-le-lag100",  0.050, "checkin", ("outcomes_r2_by_lag.json", "numbers.le_r2_lag100"),
+reg("LagBeta-le-lag100",  0.223, "checkin", ("lag_coefficients.json", "numbers.le_beta_lag100"),
     [(EDU_PRED, None)])
-# Total fertility rate
-reg("OR-tfr-lag0",   0.668, "checkin", ("outcomes_r2_by_lag.json", "numbers.tfr_r2_lag0"),
+# Total fertility rate (negative β; paper reports |β|, source is signed)
+reg("LagBeta-tfr-lag0",   0.817, "derived",
+    "abs(lag_coefficients.tfr_beta_lag0)", [(EDU_PRED, None)])
+reg("LagBeta-tfr-lag25",  0.693, "derived",
+    "abs(lag_coefficients.tfr_beta_lag25)", [(EDU_PRED, None)])
+reg("LagBeta-tfr-lag50",  0.452, "derived",
+    "abs(lag_coefficients.tfr_beta_lag50)", [(EDU_PRED, None)])
+reg("LagBeta-tfr-lag75",  0.258, "derived",
+    "abs(lag_coefficients.tfr_beta_lag75)", [(EDU_PRED, None)])
+reg("LagBeta-tfr-lag100", 0.134, "derived",
+    "abs(lag_coefficients.tfr_beta_lag100)", [(EDU_PRED, None)])
+# Under-5 mortality log (negative β; paper reports |β|)
+reg("LagBeta-u5-lag0",    0.814, "derived",
+    "abs(lag_coefficients.u5log_beta_lag0)", [(EDU_PRED, None)])
+reg("LagBeta-u5-lag25",   0.820, "derived",
+    "abs(lag_coefficients.u5log_beta_lag25)", [(EDU_PRED, None)])
+reg("LagBeta-u5-lag50",   0.664, "derived",
+    "abs(lag_coefficients.u5log_beta_lag50)", [(EDU_PRED, None)])
+reg("LagBeta-u5-lag75",   0.502, "derived",
+    "abs(lag_coefficients.u5log_beta_lag75)", [(EDU_PRED, None)])
+reg("LagBeta-u5-lag100",  0.395, "derived",
+    "abs(lag_coefficients.u5log_beta_lag100)", [(EDU_PRED, None)])
+# Child education (autoregression; positive β)
+reg("LagBeta-cedu-lag25", 0.722, "checkin", ("lag_coefficients.json", "numbers.cedu_beta_lag25"),
     [(EDU_PRED, None)])
-reg("OR-tfr-lag25",  0.480, "checkin", ("outcomes_r2_by_lag.json", "numbers.tfr_r2_lag25"),
+reg("LagBeta-cedu-lag50", 0.388, "checkin", ("lag_coefficients.json", "numbers.cedu_beta_lag50"),
     [(EDU_PRED, None)])
-reg("OR-tfr-lag50",  0.204, "checkin", ("outcomes_r2_by_lag.json", "numbers.tfr_r2_lag50"),
+reg("LagBeta-cedu-lag75", 0.227, "checkin", ("lag_coefficients.json", "numbers.cedu_beta_lag75"),
     [(EDU_PRED, None)])
-reg("OR-tfr-lag75",  0.066, "checkin", ("outcomes_r2_by_lag.json", "numbers.tfr_r2_lag75"),
+reg("LagBeta-cedu-lag100",0.152, "checkin", ("lag_coefficients.json", "numbers.cedu_beta_lag100"),
     [(EDU_PRED, None)])
-reg("OR-tfr-lag100", 0.018, "checkin", ("outcomes_r2_by_lag.json", "numbers.tfr_r2_lag100"),
-    [(EDU_PRED, None)])
-# Under-5 mortality (log)
-reg("OR-u5-lag0",    0.663, "checkin", ("outcomes_r2_by_lag.json", "numbers.u5log_r2_lag0"),
-    [(EDU_PRED, None)])
-reg("OR-u5-lag25",   0.673, "checkin", ("outcomes_r2_by_lag.json", "numbers.u5log_r2_lag25"),
-    [(EDU_PRED, None)])
-reg("OR-u5-lag50",   0.441, "checkin", ("outcomes_r2_by_lag.json", "numbers.u5log_r2_lag50"),
-    [(EDU_PRED, None)])
-reg("OR-u5-lag75",   0.252, "checkin", ("outcomes_r2_by_lag.json", "numbers.u5log_r2_lag75"),
-    [(EDU_PRED, None)])
-reg("OR-u5-lag100",  0.156, "checkin", ("outcomes_r2_by_lag.json", "numbers.u5log_r2_lag100"),
-    [(EDU_PRED, None)])
-reg("OR-u5-lag100-pct", 15.6, "derived",
-    "U-5 mortality R² at lag 100 × 100",
-    [(EDU_PRED, None)], tol=0.1)
-# Child education (autoregression)
-reg("OR-cedu-lag25", 0.521, "checkin", ("outcomes_r2_by_lag.json", "numbers.cedu_r2_lag25"),
-    [(EDU_PRED, None)])
-reg("OR-cedu-lag50", 0.150, "checkin", ("outcomes_r2_by_lag.json", "numbers.cedu_r2_lag50"),
-    [(EDU_PRED, None)])
-reg("OR-cedu-lag75", 0.051, "checkin", ("outcomes_r2_by_lag.json", "numbers.cedu_r2_lag75"),
-    [(EDU_PRED, None)])
-reg("OR-cedu-lag100",0.023, "checkin", ("outcomes_r2_by_lag.json", "numbers.cedu_r2_lag100"),
-    [(EDU_PRED, None)])
-reg("OR-n-countries", 142, "checkin", ("outcomes_r2_by_lag.json", "numbers.n_countries"),
+# Selected |t| statistics cited in the narrative / caption
+reg("LagT-u5-lag100",    34.8, "derived",
+    "abs(lag_coefficients.u5log_t_lag100)", [(EDU_PRED, None)], tol=0.15)
+reg("LagT-le-lag100",    18.4, "derived",
+    "abs(lag_coefficients.le_t_lag100)", [(EDU_PRED, None)], tol=0.15)
+reg("LagT-tfr-lag100",   10.9, "derived",
+    "abs(lag_coefficients.tfr_beta_lag100_t) -- minimum |t| in table",
+    [(EDU_PRED, None)], tol=0.15)
+reg("LagT-cedu-lag100",  12.4, "derived",
+    "abs(lag_coefficients.cedu_t_lag100)", [(EDU_PRED, None)], tol=0.15)
+reg("LagBeta-n-countries", 142, "checkin", ("lag_coefficients.json", "numbers.n_countries"),
     [(EDU_PRED, None)], tol=0)
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -3064,6 +3073,22 @@ DERIVED_DISPATCH = {
     # Abs of checkin values (paper reports absolute, JSON stores signed)
     "T3-Qatar-resid":         _abs_checkin("regression_tables.json", "country_residuals.T3-Qatar-resid"),
     "T2-TFR-beta-abs":        _abs_checkin("education_outcomes.json", "numbers.T2-TFR-beta"),
+    # Lag-decay β table (signed in source; paper reports |β|)
+    "LagBeta-tfr-lag0":       _abs_checkin("lag_coefficients.json", "numbers.tfr_beta_lag0"),
+    "LagBeta-tfr-lag25":      _abs_checkin("lag_coefficients.json", "numbers.tfr_beta_lag25"),
+    "LagBeta-tfr-lag50":      _abs_checkin("lag_coefficients.json", "numbers.tfr_beta_lag50"),
+    "LagBeta-tfr-lag75":      _abs_checkin("lag_coefficients.json", "numbers.tfr_beta_lag75"),
+    "LagBeta-tfr-lag100":     _abs_checkin("lag_coefficients.json", "numbers.tfr_beta_lag100"),
+    "LagBeta-u5-lag0":        _abs_checkin("lag_coefficients.json", "numbers.u5log_beta_lag0"),
+    "LagBeta-u5-lag25":       _abs_checkin("lag_coefficients.json", "numbers.u5log_beta_lag25"),
+    "LagBeta-u5-lag50":       _abs_checkin("lag_coefficients.json", "numbers.u5log_beta_lag50"),
+    "LagBeta-u5-lag75":       _abs_checkin("lag_coefficients.json", "numbers.u5log_beta_lag75"),
+    "LagBeta-u5-lag100":      _abs_checkin("lag_coefficients.json", "numbers.u5log_beta_lag100"),
+    # |t| statistics cited in narrative (signed t, paper reports |t|)
+    "LagT-u5-lag100":         _abs_checkin("lag_coefficients.json", "numbers.u5log_t_lag100"),
+    "LagT-le-lag100":         _abs_checkin("lag_coefficients.json", "numbers.le_t_lag100"),
+    "LagT-tfr-lag100":        _abs_checkin("lag_coefficients.json", "numbers.tfr_t_lag100"),
+    "LagT-cedu-lag100":       _abs_checkin("lag_coefficients.json", "numbers.cedu_t_lag100"),
     "GM-TFR-low-beta-gm":    _abs_checkin("grandparent_effect.json", "results.tfr_low_edu.parent_gp.beta_grandparent_edu"),
     "GM-TFR-low-beta-m":     _abs_checkin("grandparent_effect.json", "results.tfr_low_edu.parent_gp.beta_parent_edu"),
     "China-LE-gap-1965":      _abs_checkin("china_mean_yrs_vs_peers.json", "key_data_points.le_gap_1965"),
@@ -3079,7 +3104,6 @@ DERIVED_DISPATCH = {
     "U5MR-post2000-resid-pct": _pct_of("U5MR-post2000-resid-r2"),
     "U5MR-pre2000-resid-pct":  _pct_of("U5MR-pre2000-resid-r2"),
     "LE-lt10-edu-r2-pct":      _pct_of("LE-lt10-edu-r2"),
-    "OR-u5-lag100-pct":        _pct_of("OR-u5-lag100"),
     "Beta-cutoff-50-r2-pct":  _pct_checkin("beta_by_ceiling_cutoff.json", "numbers.panelA_cutoff_50_r2"),
     "Beta-cutoff-90-r2-pct":  _pct_checkin("beta_by_ceiling_cutoff.json", "numbers.panelA_cutoff_90_r2"),
     # Lag sensitivity max scans

@@ -2144,30 +2144,36 @@ holds for all four development outcomes the paper cares about:
 \toprule
 Lag & Gens & Relationship & LE & TFR & U-5 mort. & Child edu \\
 \midrule
-0   & ---  & contemporary                                 & 0.552 & 0.668 & 0.663 & --- \\
-25  & 1    & parent $\to$ child                           & 0.356 & 0.480 & 0.673 & 0.521 \\
-50  & 2    & grandparent $\to$ grandchild                 & 0.169 & 0.204 & 0.441 & 0.150 \\
-75  & 3    & great-grandparent $\to$ great-grandchild     & 0.080 & 0.066 & 0.252 & 0.051 \\
-100 & 4    & g-great-gp $\to$ g-great-grandchild          & 0.050 & 0.018 & 0.156 & 0.023 \\
+0   & ---  & contemporary                                 & 0.743 & 0.817 & 0.814 & --- \\
+25  & 1    & parent $\to$ child                           & 0.597 & 0.693 & 0.820 & 0.722 \\
+50  & 2    & grandparent $\to$ grandchild                 & 0.411 & 0.452 & 0.664 & 0.388 \\
+75  & 3    & great-grandparent $\to$ great-grandchild     & 0.284 & 0.258 & 0.502 & 0.227 \\
+100 & 4    & g-great-gp $\to$ g-great-grandchild          & 0.223 & 0.134 & 0.395 & 0.152 \\
 \bottomrule
 \end{tabular}\\
-\textit{$R^2$: within-country FE, outcome on lower secondary completion
-at T$-$lag. Under-5 mortality is logged; child education at lag 0 is
-identity and not shown. 142 countries.}
+\textit{Standardized within-country $|\beta|$: outcome on lower-secondary
+completion at T$-$lag. Each series demeaned by country mean and standardized
+by pooled within-country SD. Signs: $+$ for LE and child education, $-$
+for TFR and U-5. Under-5 mortality is logged; child education at lag 0 is
+identity and not shown. 142 countries, outcome panel 1960--2015. All
+coefficients significant at $p < 0.001$; minimum $|t|$ at lag 100 is
+10.9 (TFR).}
 \end{center}
 
-Each generation roughly halves the remaining signal, but it never
-reaches zero across any of the four outcomes. The strongest signature
-is on child survival: a great-great-grandparent's school completion
-explains 15.6\% of within-country variation in under-5 mortality four
-generations later --- three times larger than the life-expectancy
-signal at the same depth, and the only outcome where education still
-explains more than 15\% of within-country variance after a century of
-intervening households. Life expectancy, fertility, and child education
-show the same smooth monotonic decay, all still detectable at 100
-years. Roughly a century of PT running through three intermediate
-households leaves a measurable trace in every dimension of human
-development the paper defines.
+Every outcome's coefficient survives four generations. Under-5 mortality
+carries the deepest signature: $|\beta| = 0.395$ at century depth with
+$|t| = 34.8$, roughly twice the strength of any other outcome and the
+only one where $|\beta|$ exceeds 0.3 after four intervening households.
+Life expectancy, fertility, and child education show the same smooth
+monotonic decay, all still significant at 100 years ($|t|$ of 18.4,
+10.9, and 12.4 respectively). Roughly a century of PT running through
+three intermediate households leaves a statistically detectable trace
+in every dimension of human development the paper defines. ($R^2$
+values show the same monotonic decay pattern but are not directly
+comparable across outcomes because they conflate effect size with
+predictor variance and outcome noise; see
+\texttt{checkin/outcomes\_r2\_by\_lag.json} for the $R^2$ decay
+curves.)
 
 No other development input has comparable reach. Income's $R^2$ is
 already fading by lag 20--25, and it cannot be tested beyond that

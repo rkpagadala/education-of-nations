@@ -1,12 +1,12 @@
 # Verification Report
 
-Generated: 2026-04-20 23:21
+Generated: 2026-04-20 23:34
 
-## Result: 682/682 PASS
+## Result: 685/685 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 682 |
+| Verified claims | 685 |
 | Failed | 0 |
 | Missing | 0 |
 | Literature refs (manual) | 82 |
@@ -17,9 +17,9 @@ Generated: 2026-04-20 23:21
 
 | Source | Pass | Fail | Missing |
 |--------|------|------|---------|
-| checkin | 547 | 0 | 0 |
+| checkin | 537 | 0 | 0 |
 | const | 3 | 0 | 0 |
-| derived | 55 | 0 | 0 |
+| derived | 68 | 0 | 0 |
 | ref | 0 | 0 | 0 |
 | wcde | 25 | 0 | 0 |
 | wdi | 52 | 0 | 0 |
@@ -37,7 +37,7 @@ Generated: 2026-04-20 23:21
 | data | 3 | 3 | 0 |
 | defining-development | 13 | 13 | 0 |
 | descriptive-statistics | 25 | 25 | 0 |
-| education-predicts-development-outcomes-25-years-forward | 80 | 80 | 0 |
+| education-predicts-development-outcomes-25-years-forward | 83 | 83 | 0 |
 | education-vs-gdp-as-predictors-of-attainment | 91 | 91 | 0 |
 | empirical-strategy | 14 | 14 | 0 |
 | four-further-cases | 16 | 16 | 0 |
