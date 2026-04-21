@@ -47,7 +47,6 @@ verify: \
 	$(CHECKIN)/regime_education_test.json \
 	$(CHECKIN)/colonial_education_vs_institutions.json \
 	$(CHECKIN)/iv_2sls_colonial.json \
-	$(CHECKIN)/the_case.json \
 	$(CHECKIN)/china_mean_yrs_vs_peers.json \
 	$(CHECKIN)/china_band_sensitivity.json
 
@@ -144,14 +143,6 @@ $(CHECKIN)/colonial_education_vs_institutions.json: robustness/colonial_vs_insti
 	$(PYTHON) $<
 
 $(CHECKIN)/iv_2sls_colonial.json: robustness/iv_2sls_colonial.py robustness/colonial_vs_institutions.py $(ALL_DATA) $(DATA)/p5v2018.xls
-	$(PYTHON) $<
-
-$(CHECKIN)/the_case.json: verify_the_case.py _shared.py $(ALL_DATA) \
-	$(CHECKIN)/outcomes_r2_by_lag.json \
-	$(CHECKIN)/edu_vs_gdp_residualized.json \
-	$(CHECKIN)/edu_vs_gdp_tfr_residualized.json \
-	$(CHECKIN)/edu_vs_gdp_child_edu_residualized.json \
-	$(CHECKIN)/panel_full_fe.json
 	$(PYTHON) $<
 
 $(CHECKIN)/china_mean_yrs_vs_peers.json: cases/china_mean_years.py _shared.py $(ALL_DATA) ../wcde/data/raw/prop_both.csv

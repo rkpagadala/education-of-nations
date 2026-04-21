@@ -1,15 +1,15 @@
 # Verification Report
 
-Generated: 2026-04-20 18:11
+Generated: 2026-04-20 18:22
 
-## Result: 644/644 PASS
+## Result: 670/670 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 644 |
+| Verified claims | 670 |
 | Failed | 0 |
 | Missing | 0 |
-| Literature refs (manual) | 74 |
+| Literature refs (manual) | 77 |
 | Unregistered numbers | 0 |
 | Section offset issues | 0 |
 
@@ -17,7 +17,7 @@ Generated: 2026-04-20 18:11
 
 | Source | Pass | Fail | Missing |
 |--------|------|------|---------|
-| checkin | 509 | 0 | 0 |
+| checkin | 535 | 0 | 0 |
 | const | 3 | 0 | 0 |
 | derived | 55 | 0 | 0 |
 | ref | 0 | 0 | 0 |
@@ -35,6 +35,7 @@ Generated: 2026-04-20 18:11
 | completion-as-the-operative-variable | 19 | 19 | 0 |
 | data | 3 | 3 | 0 |
 | defining-development | 13 | 13 | 0 |
+| descriptive-statistics | 47 | 47 | 0 |
 | education-predicts-development-outcomes-25-years-forward | 79 | 79 | 0 |
 | education-vs-gdp-as-predictors-of-attainment | 74 | 74 | 0 |
 | empirical-strategy | 18 | 18 | 0 |
@@ -44,7 +45,7 @@ Generated: 2026-04-20 18:11
 | kerala | 0 | 0 | 0 |
 | nine-year-measurement | 1 | 1 | 0 |
 | policy-over-performers | 25 | 25 | 0 |
-| robustness | 246 | 246 | 0 |
+| robustness | 225 | 225 | 0 |
 | specialisation-requires-loaded-labour | 1 | 1 | 0 |
 | taiwan-and-korea | 6 | 6 | 0 |
 | the-cases | 26 | 26 | 0 |

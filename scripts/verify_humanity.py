@@ -52,6 +52,7 @@ DEMOG = "demographic-structure-and-the-fertility-transition"
 HOW_EDU = "education-as-payload"
 CAUSAL = "causal-identification-the-bad-control-problem-and-natural-experiments"
 DATA_SEC = "data"
+DESCRIPTIVE = "descriptive-statistics"
 COMPLETION = "completion-as-the-operative-variable"
 EMPIRICAL = "empirical-strategy"
 EDU_VS_GDP = "education-vs-gdp-as-predictors-of-attainment"
@@ -458,28 +459,19 @@ reg("CutOff-no-edu-r2",    0.533, "checkin",
     ("education_vs_gdp_by_cutoff.json", "numbers.no_cutoff_edu_r2"),
     [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)])
 
-# ── Summary statistics (Appendix Table \ref{tab:summary}) ───────────────
+# ── Summary statistics (§descriptive-statistics, Table \ref{tab:summary}) ─────
 reg("Sum-panel-obs",        1665, "checkin",
     ("summary_stats.json", "numbers.panel_obs"),
-    [(APPENDIX_ROBUST, None)], tol=0)
+    [(DESCRIPTIVE, None)], tol=0)
 reg("Sum-panel-countries",   185, "checkin",
     ("summary_stats.json", "numbers.panel_countries"),
-    [(APPENDIX_ROBUST, None)], tol=0)
+    [(DESCRIPTIVE, None)], tol=0)
 reg("Sum-gdp-countries",     178, "checkin",
     ("summary_stats.json", "numbers.gdp_panel_countries"),
-    [(APPENDIX_ROBUST, None)], tol=0)
+    [(DESCRIPTIVE, None)], tol=0)
 reg("Sum-gdp-obs",          1466, "checkin",
     ("summary_stats.json", "numbers.gdp_panel_obs"),
-    [(APPENDIX_ROBUST, None)], tol=0)
-reg("Sum-le-n",             1608, "checkin",
-    ("summary_stats.json", "descriptives.pooled.life_exp.n"),
-    [(APPENDIX_ROBUST, None)], tol=0)
-reg("Sum-tfr-n",            1608, "checkin",
-    ("summary_stats.json", "descriptives.pooled.tfr.n"),
-    [(APPENDIX_ROBUST, None)], tol=0)
-reg("Sum-u5mr-n",           1566, "checkin",
-    ("summary_stats.json", "descriptives.pooled.u5mr.n"),
-    [(APPENDIX_ROBUST, None)], tol=0)
+    [(DESCRIPTIVE, None)], tol=0)
 
 # ── Cutoff-sensitivity table (Appendix Table \ref{tab:cutoff}) ───────────
 # Explicit per-cell registrations for the new robustness-to-alternative-
@@ -2076,49 +2068,151 @@ reg("Primary-beta-pct",      0.489, "derived",
     "Primary completion β in TFR regression (coefficient-stability check)",
     [(GDP_INDEP, None)], tol=0.005)
 
-# §robustness: Summary-stats table cells
+# §descriptive-statistics: Summary-stats table cells (pooled)
+reg("Sum-parent-edu-n",      1665,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.parent_edu.n"),
+    [(DESCRIPTIVE, None)], tol=0)
+reg("Sum-parent-edu-sd",     33.3,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.parent_edu.sd"),
+    [(DESCRIPTIVE, None)], tol=0.1)
+reg("Sum-child-edu-n",       1665,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.child_edu.n"),
+    [(DESCRIPTIVE, None)], tol=0)
 reg("Sum-child-edu-mean",    61.9,  "checkin",
     ("summary_stats.json", "descriptives.pooled.child_edu.mean"),
-    [(APPENDIX_ROBUST, None)], tol=0.1)
+    [(DESCRIPTIVE, None)], tol=0.1)
 reg("Sum-child-edu-sd",      31.6,  "checkin",
     ("summary_stats.json", "descriptives.pooled.child_edu.sd"),
-    [(APPENDIX_ROBUST, None)], tol=0.1)
+    [(DESCRIPTIVE, None)], tol=0.1)
+reg("Sum-loggdp-n",          1466,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.log_gdp.n"),
+    [(DESCRIPTIVE, None)], tol=0)
 reg("Sum-loggdp-mean",       8.28,  "checkin",
     ("summary_stats.json", "descriptives.pooled.log_gdp.mean"),
-    [(APPENDIX_ROBUST, None)], tol=0.01)
+    [(DESCRIPTIVE, None)], tol=0.01)
+reg("Sum-loggdp-sd",         1.49,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.log_gdp.sd"),
+    [(DESCRIPTIVE, None)], tol=0.01)
 reg("Sum-loggdp-min",        4.98,  "checkin",
     ("summary_stats.json", "descriptives.pooled.log_gdp.min"),
-    [(APPENDIX_ROBUST, None)], tol=0.01)
+    [(DESCRIPTIVE, None)], tol=0.01)
 reg("Sum-loggdp-max",        11.67, "checkin",
     ("summary_stats.json", "descriptives.pooled.log_gdp.max"),
-    [(APPENDIX_ROBUST, None)], tol=0.01)
+    [(DESCRIPTIVE, None)], tol=0.01)
+reg("Sum-le-n",              1608,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.life_exp.n"),
+    [(DESCRIPTIVE, None)], tol=0)
 reg("Sum-le-mean",           65.7,  "checkin",
     ("summary_stats.json", "descriptives.pooled.life_exp.mean"),
-    [(APPENDIX_ROBUST, None)], tol=0.1)
+    [(DESCRIPTIVE, None)], tol=0.1)
 reg("Sum-le-sd",             10.6,  "checkin",
     ("summary_stats.json", "descriptives.pooled.life_exp.sd"),
-    [(APPENDIX_ROBUST, None)], tol=0.1)
+    [(DESCRIPTIVE, None)], tol=0.1)
 reg("Sum-le-min",            12.8,  "checkin",
     ("summary_stats.json", "descriptives.pooled.life_exp.min"),
-    [(APPENDIX_ROBUST, None)], tol=0.1)
+    [(DESCRIPTIVE, None)], tol=0.1)
 reg("Sum-le-max",            84.3,  "checkin",
     ("summary_stats.json", "descriptives.pooled.life_exp.max"),
-    [(APPENDIX_ROBUST, None)], tol=0.1)
+    [(DESCRIPTIVE, None)], tol=0.1)
+reg("Sum-tfr-n",             1608,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.tfr.n"),
+    [(DESCRIPTIVE, None)], tol=0)
 reg("Sum-tfr-mean",          3.7,   "checkin",
     ("summary_stats.json", "descriptives.pooled.tfr.mean"),
-    [(APPENDIX_ROBUST, None)], tol=0.05)
+    [(DESCRIPTIVE, None)], tol=0.05)
+reg("Sum-tfr-sd",            1.95,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.tfr.sd"),
+    [(DESCRIPTIVE, None)], tol=0.01)
+reg("Sum-tfr-min",           0.91,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.tfr.min"),
+    [(DESCRIPTIVE, None)], tol=0.01)
 reg("Sum-tfr-max",           8.86,  "checkin",
     ("summary_stats.json", "descriptives.pooled.tfr.max"),
-    [(APPENDIX_ROBUST, None)], tol=0.01)
+    [(DESCRIPTIVE, None)], tol=0.01)
+reg("Sum-u5-n",              1566,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.u5mr.n"),
+    [(DESCRIPTIVE, None)], tol=0)
 reg("Sum-u5-mean",           68.3,  "checkin",
     ("summary_stats.json", "descriptives.pooled.u5mr.mean"),
-    [(APPENDIX_ROBUST, None)], tol=0.1)
+    [(DESCRIPTIVE, None)], tol=0.1)
 reg("Sum-u5-sd",             69.9,  "checkin",
     ("summary_stats.json", "descriptives.pooled.u5mr.sd"),
-    [(APPENDIX_ROBUST, None)], tol=0.1)
+    [(DESCRIPTIVE, None)], tol=0.1)
+reg("Sum-u5-min",            2.2,   "checkin",
+    ("summary_stats.json", "descriptives.pooled.u5mr.min"),
+    [(DESCRIPTIVE, None)], tol=0.1)
 reg("Sum-u5-max",            338,   "checkin",
     ("summary_stats.json", "descriptives.pooled.u5mr.max"),
-    [(APPENDIX_ROBUST, None)], tol=1)
+    [(DESCRIPTIVE, None)], tol=1)
+
+# §descriptive-statistics: 178 countries with education+GDP
+reg("Sum-edu-gdp-n-countries", 178, "derived",
+    "Countries in education+GDP panel (185 total − 7 GDP-dropped)",
+    [(DESCRIPTIVE, None)], tol=0)
+
+# §descriptive-statistics: by-period means (summary_stats.json / descriptives.by_period)
+reg("SumP-parent-1975",      27.0,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.parent_edu.1975-1989.mean"),
+    [(DESCRIPTIVE, None)], tol=0.05)
+reg("SumP-parent-1990",      42.7,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.parent_edu.1990-2004.mean"),
+    [(DESCRIPTIVE, None)], tol=0.05)
+reg("SumP-parent-2005",      56.2,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.parent_edu.2005-2015.mean"),
+    [(DESCRIPTIVE, None)], tol=0.05)
+reg("SumP-child-1975",       52.3,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.child_edu.1975-1989.mean"),
+    [(DESCRIPTIVE, None)], tol=0.05)
+reg("SumP-child-1990",       62.2,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.child_edu.1990-2004.mean"),
+    [(DESCRIPTIVE, None)], tol=0.05)
+reg("SumP-child-2005",       71.1,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.child_edu.2005-2015.mean"),
+    [(DESCRIPTIVE, None)], tol=0.05)
+reg("SumP-loggdp-1975",      8.07,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.log_gdp.1975-1989.mean"),
+    [(DESCRIPTIVE, None)], tol=0.01)
+reg("SumP-loggdp-1990",      8.19,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.log_gdp.1990-2004.mean"),
+    [(DESCRIPTIVE, None)], tol=0.01)
+reg("SumP-loggdp-2005",      8.52,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.log_gdp.2005-2015.mean"),
+    [(DESCRIPTIVE, None)], tol=0.01)
+reg("SumP-le-1975",          61.4,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.life_exp.1975-1989.mean"),
+    [(DESCRIPTIVE, None)], tol=0.05)
+reg("SumP-le-1990",          65.5,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.life_exp.1990-2004.mean"),
+    [(DESCRIPTIVE, None)], tol=0.05)
+reg("SumP-le-2005",          70.1,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.life_exp.2005-2015.mean"),
+    [(DESCRIPTIVE, None)], tol=0.05)
+reg("SumP-tfr-1975",         4.53,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.tfr.1975-1989.mean"),
+    [(DESCRIPTIVE, None)], tol=0.01)
+reg("SumP-tfr-1990",         3.63,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.tfr.1990-2004.mean"),
+    [(DESCRIPTIVE, None)], tol=0.01)
+reg("SumP-tfr-2005",         2.95,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.tfr.2005-2015.mean"),
+    [(DESCRIPTIVE, None)], tol=0.01)
+reg("SumP-u5-1975",          98.8,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.u5mr.1975-1989.mean"),
+    [(DESCRIPTIVE, None)], tol=0.1)
+reg("SumP-u5-1990",          66.8,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.u5mr.1990-2004.mean"),
+    [(DESCRIPTIVE, None)], tol=0.1)
+reg("SumP-u5-2005",          39.2,  "checkin",
+    ("summary_stats.json", "descriptives.by_period.u5mr.2005-2015.mean"),
+    [(DESCRIPTIVE, None)], tol=0.1)
+
+# §descriptive-statistics: narrative shift summaries ("rises by 29 pp", "halves", "rises 8.6 years")
+reg("Sum-parent-shift",      29,    "derived",
+    "Parental completion rise (2005–2015 56.2% − 1975–1989 27.0% ≈ 29pp)",
+    [(DESCRIPTIVE, None)], tol=1)
+reg("Sum-le-shift",          8.6,   "derived",
+    "Life expectancy rise (2005–2015 70.1 − 1975–1989 61.4 ≈ 8.6y)",
+    [(DESCRIPTIVE, None)], tol=0.2)
 
 # §robustness: Table 1 subgroups — r² and countries-counts not yet registered
 reg("T1-SG-MENA-n",          61,    "checkin",

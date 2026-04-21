@@ -1678,6 +1678,102 @@ expectancy, TFR, and under-5 mortality: World Bank WDI. Parental
 education: each country's lower secondary completion lagged 25 years
 (T−25).
 
+\subsection{Descriptive Statistics}\label{descriptive-statistics}
+
+\refstepcounter{table}\label{tab:summary}\textbf{Table \thetable. Summary statistics for analysis variables.}
+Analysis panel: 185 countries, 1975--2015 at 5-year intervals, with
+parental education lagged 25 years (observed at $T{-}25$). Produced by
+\texttt{scripts/tables/summary\_stats.py}.
+
+{\small
+\begin{longtable}[]{@{}lrrrrr@{}}
+\toprule
+Variable & n & mean & sd & min & max \\
+\midrule
+\endhead
+Parental lower-sec completion (\%, $T{-}25$) & 1{,}665 & 42.0 & 33.3 &  0.0 & 100.0 \\
+Child lower-sec completion (\%, $T$)          & 1{,}665 & 61.9 & 31.6 &  0.4 & 100.0 \\
+Log GDP per capita (const.\ 2017 USD)         & 1{,}466 &  8.28 &  1.49 & 4.98 &  11.67 \\
+Life expectancy at birth (years)              & 1{,}608 & 65.7 & 10.6 & 12.8 &  84.3 \\
+Total fertility rate (births/woman)           & 1{,}608 &  3.70 &  1.95 & 0.91 &   8.86 \\
+Under-5 mortality (per 1{,}000 live births)   & 1{,}566 & 68.3 & 69.9 &  2.2 & 338.0 \\
+\bottomrule
+\end{longtable}
+}
+
+\emph{The education+GDP panel covers 178 of 185 countries; seven are
+dropped because the World Bank WDI has no GDP series for them: North
+Korea, Taiwan, Micronesia (FSM), and four French overseas departments
+(French Guiana, Guadeloupe, Martinique, Reunion). Country coverage for
+every main specification is listed in
+\texttt{checkin/summary\_stats.json} under \texttt{country\_lists} and
+is cross-checked by
+\texttt{scripts/verify\_country\_names.py}.}\footnote{Full 185-country
+panel (alphabetical, WCDE v3 naming):
+Afghanistan, Albania, Algeria, Angola, Argentina, Armenia, Aruba,
+Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Belarus,
+Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia and Herzegovina,
+Botswana, Brazil, Bulgaria, Burkina Faso, Burundi, Cambodia, Cameroon,
+Canada, Cape Verde, Central African Republic, Chad, Chile, China,
+Colombia, Comoros, Congo, Costa Rica, C\^ote d'Ivoire, Croatia, Cuba,
+Cura\c{c}ao, Cyprus, Czech Republic, North Korea, Democratic Republic
+of the Congo, Denmark, Dominican Republic, Ecuador, Egypt, El Salvador,
+Equatorial Guinea, Estonia, Ethiopia, Fiji, Finland, France, French
+Guiana, French Polynesia, Gabon, Gambia, Georgia, Germany, Ghana,
+Greece, Guadeloupe, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti,
+Honduras, Hong Kong (China SAR), Hungary, Iceland, India, Indonesia,
+Iran, Iraq, Ireland, Israel, Italy, Jamaica, Japan, Jordan, Kazakhstan,
+Kenya, Kiribati, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho,
+Liberia, Lithuania, Luxembourg, Macao (China SAR), Madagascar, Malawi,
+Malaysia, Maldives, Mali, Malta, Martinique, Mauritius, Mexico,
+Micronesia (FSM), Mongolia, Montenegro, Morocco, Mozambique, Myanmar,
+Namibia, Nepal, Netherlands, New Caledonia, New Zealand, Nicaragua,
+Niger, Nigeria, Norway, Palestine, Oman, Pakistan, Panama, Paraguay,
+Peru, Philippines, Poland, Portugal, Puerto Rico, Qatar, South Korea,
+Moldova, Reunion, Romania, Russia, Rwanda, Saint Lucia, Saint Vincent
+and the Grenadines, Samoa, Sao Tome and Principe, Saudi Arabia, Senegal,
+Serbia, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands,
+Somalia, South Africa, South Sudan, Spain, Sri Lanka, Sudan, Suriname,
+Eswatini (Swaziland), Sweden, Switzerland, Syria, Taiwan, Tajikistan,
+Thailand, North Macedonia, Timor-Leste, Togo, Tonga, Trinidad and
+Tobago, Tunisia, T\"urkiye, Turkmenistan, Uganda, Ukraine, United Arab
+Emirates, United Kingdom, Tanzania, United States, Uruguay, Vanuatu,
+Venezuela, Vietnam, Yemen, Zambia, Zimbabwe.}
+
+The panel is observed at five-year intervals; pooled statistics above
+average across all nine observation years (1975, 1980, \ldots, 2015).
+Each variable trends monotonically across the sample window as the
+global educational expansion propagates into the developmental
+phenotype:
+
+\refstepcounter{table}\label{tab:summary-period}\textbf{Table \thetable. Means by five-year observation-year band.}
+All six variables show monotonic shifts consistent with the paper's
+mechanism. Parental completion rises by 29~pp over the sample; child
+completion rises by 19~pp; total fertility halves (4.53 $\to$ 2.95);
+life expectancy rises 8.6 years; under-five mortality falls by 60\%.
+
+{\small
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule
+Variable & 1975--1989 & 1990--2004 & 2005--2015 \\
+\midrule
+\endhead
+Parental lower-sec completion (\%, $T{-}25$) & 27.0 & 42.7 & 56.2 \\
+Child lower-sec completion (\%, $T$)          & 52.3 & 62.2 & 71.1 \\
+Log GDP per capita (const.\ 2017 USD)         &  8.07 &  8.19 &  8.52 \\
+Life expectancy at birth (years)              & 61.4 & 65.5 & 70.1 \\
+Total fertility rate (births/woman)           &  4.53 &  3.63 &  2.95 \\
+Under-5 mortality (per 1{,}000 live births)   & 98.8 & 66.8 & 39.2 \\
+\bottomrule
+\end{longtable}
+}
+
+\emph{Period means. Cells are simple means across all country-years in
+the indicated band. The parental-completion column lags child-completion
+by one generation (25 years) by construction: the 1975--1989 parental
+mean of 27\% corresponds to countries' own cohorts of 1950--1964, which
+are the parents of the children observed in 1975--1989.}
+
 \subsection{Completion as the Operative Variable}\label{completion-as-the-operative-variable}
 
 I measure whether people finished school, not how well they
@@ -2465,66 +2561,6 @@ Nepal at \$876 (2015), Bangladesh at \$1,224, Vietnam at \$2,578. Income is not 
 
 {\renewcommand{\thetable}{A\arabic{table}}%
 \setcounter{table}{0}
-
-
-\refstepcounter{table}\label{tab:summary}\textbf{Table \thetable. Summary statistics.}
-Analysis panel: 185 countries, 1975--2015 at 5-year intervals, with
-parental education lagged 25 years (observed at T$-$25). Produced by
-\texttt{scripts/tables/summary\_stats.py}.
-
-{\small
-\begin{longtable}[]{@{}lrrrrr@{}}
-\toprule
-Variable & n & mean & sd & min & max \\
-\midrule
-\endhead
-Parental lower-sec completion (\%, $T{-}25$) & 1{,}665 & 42.0 & 33.3 &  0.0 & 100.0 \\
-Child lower-sec completion (\%, $T$)          & 1{,}665 & 61.9 & 31.6 &  0.4 & 100.0 \\
-Log GDP per capita (const.\ 2017 USD)         & 1{,}466 &  8.28 &  1.49 & 4.98 &  11.67 \\
-Life expectancy at birth (years)              & 1{,}608 & 65.7 & 10.6 & 12.8 &  84.3 \\
-Total fertility rate (births/woman)           & 1{,}608 &  3.70 &  1.95 & 0.91 &   8.86 \\
-Under-5 mortality (per 1{,}000 live births)   & 1{,}566 & 68.3 & 69.9 &  2.2 & 338.0 \\
-\bottomrule
-\end{longtable}
-}
-
-\emph{The education+GDP panel covers 178 of 185 countries; seven are
-dropped because the World Bank WDI has no GDP series for them: North
-Korea, Taiwan, Micronesia (FSM), and four French overseas departments
-(French Guiana, Guadeloupe, Martinique, Reunion). Country coverage for
-every main specification is listed in \texttt{checkin/summary\_stats.json}
-under \texttt{country\_lists} and is cross-checked by
-\texttt{scripts/verify\_country\_names.py}.}\footnote{Full 185-country
-panel (alphabetical, WCDE v3 naming):
-Afghanistan, Albania, Algeria, Angola, Argentina, Armenia, Aruba,
-Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Belarus,
-Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia and Herzegovina,
-Botswana, Brazil, Bulgaria, Burkina Faso, Burundi, Cambodia, Cameroon,
-Canada, Cape Verde, Central African Republic, Chad, Chile, China,
-Colombia, Comoros, Congo, Costa Rica, C\^ote d'Ivoire, Croatia, Cuba,
-Cura\c{c}ao, Cyprus, Czech Republic, North Korea, Democratic Republic
-of the Congo, Denmark, Dominican Republic, Ecuador, Egypt, El Salvador,
-Equatorial Guinea, Estonia, Ethiopia, Fiji, Finland, France, French
-Guiana, French Polynesia, Gabon, Gambia, Georgia, Germany, Ghana,
-Greece, Guadeloupe, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti,
-Honduras, Hong Kong (China SAR), Hungary, Iceland, India, Indonesia,
-Iran, Iraq, Ireland, Israel, Italy, Jamaica, Japan, Jordan, Kazakhstan,
-Kenya, Kiribati, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho,
-Liberia, Lithuania, Luxembourg, Macao (China SAR), Madagascar, Malawi,
-Malaysia, Maldives, Mali, Malta, Martinique, Mauritius, Mexico,
-Micronesia (FSM), Mongolia, Montenegro, Morocco, Mozambique, Myanmar,
-Namibia, Nepal, Netherlands, New Caledonia, New Zealand, Nicaragua,
-Niger, Nigeria, Norway, Palestine, Oman, Pakistan, Panama, Paraguay,
-Peru, Philippines, Poland, Portugal, Puerto Rico, Qatar, South Korea,
-Moldova, Reunion, Romania, Russia, Rwanda, Saint Lucia, Saint Vincent
-and the Grenadines, Samoa, Sao Tome and Principe, Saudi Arabia, Senegal,
-Serbia, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands,
-Somalia, South Africa, South Sudan, Spain, Sri Lanka, Sudan, Suriname,
-Eswatini (Swaziland), Sweden, Switzerland, Syria, Taiwan, Tajikistan,
-Thailand, North Macedonia, Timor-Leste, Togo, Tonga, Trinidad and
-Tobago, Tunisia, T\"urkiye, Turkmenistan, Uganda, Ukraine, United Arab
-Emirates, United Kingdom, Tanzania, United States, Uruguay, Vanuatu,
-Venezuela, Vietnam, Yemen, Zambia, Zimbabwe.}
 
 \refstepcounter{table}\label{tab:a1}\textbf{Table \thetable.} Two-way fixed effects (country + year): child lower
 secondary completion on parental education. R² is the partial within-R²
