@@ -24,8 +24,8 @@ $(VENV)/bin/activate: requirements.txt
 
 verify: setup $(VERIFY_STAMP)
 
-$(VERIFY_STAMP): checkin/*.json scripts/verify_nations.py $(PAPER_TEX)
-	$(PYTHON) scripts/verify_nations.py --fast
+$(VERIFY_STAMP): checkin/*.json scripts/verify_humanity.py $(PAPER_TEX)
+	$(PYTHON) scripts/verify_humanity.py --fast
 	@touch $@
 
 scripts: setup

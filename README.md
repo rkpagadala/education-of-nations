@@ -19,7 +19,7 @@ Requires Python 3.9+. All source data is included.
 
 ```
 scripts/                 42 analysis scripts + master verifier
-  verify_nations.py        Checks all 343 paper claims
+  verify_humanity.py       Checks all 343 paper claims
   _shared.py               Common data-loading utilities
   cases/                   Country case studies (12 scripts)
   residualization/         Core GDP-has-no-effect tests (10 scripts)
@@ -41,7 +41,7 @@ VERIFICATION.md          How the verification pipeline works
 
 ```bash
 make setup
-.venv/bin/python scripts/tables/table_1_main.py
+.venv/bin/python scripts/tables/panel_full_fe.py
 .venv/bin/python scripts/residualization/education_vs_gdp.py
 .venv/bin/python scripts/robustness/robustness_tests.py
 ```

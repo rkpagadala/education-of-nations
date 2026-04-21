@@ -1,4 +1,6 @@
 {
+  "band_lo": 0.25,
+  "band_hi": 1.0,
   "China-peers-band0.25-1965-LE-gap": -6.7,
   "China-peers-band0.25-1965-U5-gap": 15.7,
   "China-peers-band0.25-1980-LE-gap": -2.9,

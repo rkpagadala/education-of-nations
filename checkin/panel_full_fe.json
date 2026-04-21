@@ -34,6 +34,6 @@
     "PI-joint-R2": 0.495,
     "PI-cond-R2": 0.006
   },
-  "script": "scripts/tables/table_1_main.py",
+  "script": "scripts/tables/panel_full_fe.py",
   "produced": "2026-04-20"
 }

@@ -60,7 +60,10 @@ analysis: \
 	$(CHECKIN)/education_outcomes.json \
 	$(CHECKIN)/famine_education_test.json \
 	$(CHECKIN)/long_run_generational.json \
-	$(CHECKIN)/table_1_main.json \
+	$(CHECKIN)/panel_full_fe.json \
+	$(CHECKIN)/summary_stats.json \
+	$(CHECKIN)/table_1_stepwise.json \
+	$(CHECKIN)/table_1_subgroups.json \
 	$(CHECKIN)/twfe_child_edu.json \
 	$(CHECKIN)/education_vs_gdp_by_cutoff.json \
 	$(CHECKIN)/beta_by_ceiling_cutoff.json \
@@ -85,7 +88,13 @@ analysis: \
 	$(CHECKIN)/grandparent_effect_all_outcomes.json \
 	$(CHECKIN)/backfill_all_outcomes.json \
 	$(CHECKIN)/colonial_all_outcomes.json \
-	$(CHECKIN)/cutoff_all_outcomes.json
+	$(CHECKIN)/cutoff_all_outcomes.json \
+	$(CHECKIN)/wooldridge_exogeneity.json \
+	$(CHECKIN)/ppml_outcomes.json \
+	$(CHECKIN)/log_outcomes.json \
+	$(CHECKIN)/balanced_panel.json \
+	$(CHECKIN)/period_length.json \
+	$(CHECKIN)/cross_cohort_within_year.json
 
 # ── Rules ─────────────────────────────────────────────────────────────
 
@@ -142,7 +151,7 @@ $(CHECKIN)/the_case.json: verify_the_case.py _shared.py $(ALL_DATA) \
 	$(CHECKIN)/edu_vs_gdp_residualized.json \
 	$(CHECKIN)/edu_vs_gdp_tfr_residualized.json \
 	$(CHECKIN)/edu_vs_gdp_child_edu_residualized.json \
-	$(CHECKIN)/table_1_main.json
+	$(CHECKIN)/panel_full_fe.json
 	$(PYTHON) $<
 
 $(CHECKIN)/china_mean_yrs_vs_peers.json: cases/china_mean_years.py _shared.py $(ALL_DATA) ../wcde/data/raw/prop_both.csv
@@ -151,7 +160,16 @@ $(CHECKIN)/china_mean_yrs_vs_peers.json: cases/china_mean_years.py _shared.py $(
 $(CHECKIN)/china_band_sensitivity.json: cases/china_band_sensitivity.py _shared.py $(ALL_DATA) ../wcde/data/raw/prop_both.csv
 	$(PYTHON) $<
 
-$(CHECKIN)/table_1_main.json: tables/table_1_main.py _shared.py $(ALL_DATA)
+$(CHECKIN)/panel_full_fe.json: tables/panel_full_fe.py _shared.py $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/summary_stats.json: tables/summary_stats.py _shared.py $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/table_1_stepwise.json: tables/table_1_stepwise.py _shared.py $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/table_1_subgroups.json: tables/table_1_subgroups.py _shared.py $(ALL_DATA)
 	$(PYTHON) $<
 
 $(CHECKIN)/twfe_child_edu.json: robustness/twfe_child_edu.py _shared.py $(ALL_DATA)
@@ -230,6 +248,24 @@ $(CHECKIN)/cutoff_all_outcomes.json: residualization/cutoff_all_outcomes.py _sha
 	$(PYTHON) $<
 
 $(CHECKIN)/famine_education_test.json: famine_education_test.py _shared.py $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/wooldridge_exogeneity.json: robustness/wooldridge_exogeneity.py _shared.py $(WCDE)/cohort_completion_both_long.csv
+	$(PYTHON) $<
+
+$(CHECKIN)/ppml_outcomes.json: robustness/ppml_outcomes.py _shared.py $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/log_outcomes.json: robustness/log_outcomes.py _shared.py $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/balanced_panel.json: robustness/balanced_panel.py _shared.py $(WCDE)/cohort_completion_both_long.csv
+	$(PYTHON) $<
+
+$(CHECKIN)/period_length.json: robustness/period_length.py _shared.py $(WCDE)/cohort_completion_both_long.csv
+	$(PYTHON) $<
+
+$(CHECKIN)/cross_cohort_within_year.json: robustness/cross_cohort_within_year.py _shared.py ../wcde/data/raw/prop_both.csv
 	$(PYTHON) $<
 
 $(CHECKIN)/beta_vs_baseline.json: figures/beta_vs_baseline.py $(WCDE_DATA)

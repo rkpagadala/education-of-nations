@@ -49,7 +49,7 @@ The paper rounds numbers for readability. A "pass" means the script-computed val
 | TFR (children/woman) | ±0.1–0.2 | Paper rounds to 1 decimal |
 | Counts (N, countries) | ±0 | Exact match required |
 
-Each registered number carries its own tolerance. The master verifier (`verify_nations.py`) reports the tolerance alongside the expected and actual values, so you can judge whether a near-miss is rounding or a real discrepancy.
+Each registered number carries its own tolerance. The master verifier (`verify_humanity.py`) reports the tolerance alongside the expected and actual values, so you can judge whether a near-miss is rounding or a real discrepancy.
 
 ---
 
@@ -59,7 +59,7 @@ The system is designed so that no layer checks itself:
 
 1. **Layer 1 — Source data** (WCDE CSVs, World Bank CSVs). Raw inputs, never modified by scripts.
 2. **Layer 2 — Analysis scripts** (40 scripts). Each reads source data independently, runs its analysis, and writes results to a JSON file in `checkin/`. Scripts do not read the paper.
-3. **Layer 3 — Master verifier** (`verify_nations.py`). Reads the paper `.tex` file and the checkin JSONs. Compares every registered number in the paper against the independently computed value. Also scans the `.tex` for any numbers that are *not* registered (coverage audit).
+3. **Layer 3 — Master verifier** (`verify_humanity.py`). Reads the paper `.tex` file and the checkin JSONs. Compares every registered number in the paper against the independently computed value. Also scans the `.tex` for any numbers that are *not* registered (coverage audit).
 
 The key independence property: Layer 2 scripts produce values from data without knowing what the paper claims. Layer 3 compares those values against the paper. If a script were wrong, the verifier would catch the mismatch; if the paper were wrong, the verifier would catch that too.
 
@@ -72,7 +72,7 @@ The coverage scan (Phase 3) provides a second guarantee: it extracts every numbe
 1. [Architecture Overview](#1-architecture-overview)
 2. [Data Sources and Provenance](#2-data-sources-and-provenance)
 3. [Claim Trace Table](#3-claim-trace-table)
-4. [The Master Verifier (verify_nations.py)](#4-the-master-verifier)
+4. [The Master Verifier (verify_humanity.py)](#4-the-master-verifier)
 5. [Verification Scripts](#5-verification-scripts)
 6. [Analysis Scripts — Main Tables](#6-analysis-scripts--main-tables)
 7. [Analysis Scripts — Education vs GDP](#7-analysis-scripts--education-vs-gdp)
@@ -93,7 +93,7 @@ Layer 1: Source data (WCDE CSVs, World Bank WDI CSVs)
     |
 Layer 2: Analysis scripts (40 scripts → 46 checkin JSONs)
     |
-Layer 3: Master verifier (verify_nations.py → reads paper .tex, checks every number)
+Layer 3: Master verifier (verify_humanity.py → reads paper .tex, checks every number)
 ```
 
 **Layer 1** — Raw data lives in `data/` (World Bank) and `wcde/data/processed/` (WCDE education). These are never modified by scripts.
@@ -102,7 +102,7 @@ Layer 3: Master verifier (verify_nations.py → reads paper .tex, checks every n
 - **Verify scripts** (prefix `verify_`): Check specific factual claims (country education levels, GDP values, crossing dates).
 - **Analysis scripts**: Run regressions, sweeps, or robustness tests and store all computed coefficients.
 
-**Layer 3** — `verify_nations.py` maintains a registry of 351 numbers that appear in the paper. For each one, it looks up the actual value from a checkin JSON (or WCDE/WDI CSV directly), compares it to the expected value within a tolerance, and reports PASS/FAIL. It also scans the `.tex` file for any numbers that are *not* registered.
+**Layer 3** — `verify_humanity.py` maintains a registry of 351 numbers that appear in the paper. For each one, it looks up the actual value from a checkin JSON (or WCDE/WDI CSV directly), compares it to the expected value within a tolerance, and reports PASS/FAIL. It also scans the `.tex` file for any numbers that are *not* registered.
 
 Two Makefiles orchestrate everything:
 - **Top-level Makefile**: `make verify` runs the fast check; `make scripts` rebuilds all JSONs from source data.
@@ -174,17 +174,17 @@ Regression output (particularly standard errors and p-values) can vary across st
 
 ## 3. Claim Trace Table
 
-Every number in the paper can be traced from the text to a script and source data. The master verifier (`verify_nations.py`) maintains 351 registered claims. Below is a representative sample showing how to trace key results.
+Every number in the paper can be traced from the text to a script and source data. The master verifier (`verify_humanity.py`) maintains 351 registered claims. Below is a representative sample showing how to trace key results.
 
 ### Core Regressions (Table 1)
 
 | Paper Claim | Script | JSON → Key | Tolerance |
 |-------------|--------|------------|-----------|
-| N = 1,665 | `tables/table_1_main.py` | `table_1_main.json` → `numbers.panel_obs` | ±0 |
-| 185 countries | `tables/table_1_main.py` | `table_1_main.json` → `numbers.panel_countries` | ±0 |
-| GDP alone β = 15.4 | `tables/table_1_main.py` | `table_1_main.json` → `numbers.PI-alone-beta` | ±0.5 |
-| GDP alone R² = 0.293 | `tables/table_1_main.py` | `table_1_main.json` → `numbers.PI-alone-R2` | ±0.001 |
-| Education alone R² = 0.553 | `tables/table_1_main.py` | `table_1_main.json` → `numbers.PI-edu-alone` | ±0.001 |
+| N = 1,665 | `tables/panel_full_fe.py` | `panel_full_fe.json` → `numbers.panel_obs` | ±0 |
+| 185 countries | `tables/panel_full_fe.py` | `panel_full_fe.json` → `numbers.panel_countries` | ±0 |
+| GDP alone β = 15.4 | `tables/panel_full_fe.py` | `panel_full_fe.json` → `numbers.PI-alone-beta` | ±0.5 |
+| GDP alone R² = 0.293 | `tables/panel_full_fe.py` | `panel_full_fe.json` → `numbers.PI-alone-R2` | ±0.001 |
+| Education alone R² = 0.553 | `tables/panel_full_fe.py` | `panel_full_fe.json` → `numbers.PI-edu-alone` | ±0.001 |
 | GDP β drops 72% conditional on education | derived | `(1 - PI-cond-beta / PI-alone-beta) × 100` | ±5.0 |
 
 ### Two-Way FE (Table A1)
@@ -293,13 +293,13 @@ Every number in the paper can be traced from the text to a script and source dat
 | Low-GDP group R² = 0.706 | `robustness/beta_by_baseline_group.py` | `beta_by_baseline_group.json` → `numbers.Grp-low-R2` | ±0.02 |
 | High-GDP group β = 0.176 | `robustness/beta_by_baseline_group.py` | `beta_by_baseline_group.json` → `numbers.Grp-high-beta` | ±0.05 |
 
-The full registry (351 entries) is in `scripts/verify_nations.py`. Every `reg()` call documents the name, expected value, source, JSON key path, paper section, and tolerance.
+The full registry (351 entries) is in `scripts/verify_humanity.py`. Every `reg()` call documents the name, expected value, source, JSON key path, paper section, and tolerance.
 
 ---
 
 ## 4. The Master Verifier
 
-**File:** `scripts/verify_nations.py` (~1,990 lines)
+**File:** `scripts/verify_humanity.py` (~1,990 lines)
 
 ### Purpose
 
@@ -361,7 +361,7 @@ Paper: paper/education_of_humanity.tex
 Registry: 351 entries
 ========================================================================
 
-  [checkin:table_1_main.json]
+  [checkin:panel_full_fe.json]
     ✓ T1-obs                    exp=1665       act=1665.0000
     ✓ T1-countries              exp=185        act=185.0000
     ✓ PI-alone-beta             exp=15.4       act=15.3690
@@ -580,13 +580,13 @@ Uses clustered standard errors (by country).
 
 ## 6. Analysis Scripts — Main Tables
 
-### table_1_main.py
+### panel_full_fe.py
 
-**Output:** `checkin/table_1_main.json`
+**Output:** `checkin/panel_full_fe.json`
 
 **Data:** WCDE lower secondary (both + female), World Bank GDP.
 
-**What it does:** Produces Table 1 — the core regression of the paper.
+**What it does:** Full-panel one-way FE diagnostic. Cited in the paper's year-FE discussion and footnotes (β=0.483, N=1665, 185 countries). The headline Table 1 in the paper uses the <30% active-expansion subsample and is produced by `residualization/by_gdp_cutoff.py`.
 
 **Panel construction:**
 - Education measure: WCDE lower secondary completion, both sexes, age 20-24.
@@ -612,7 +612,7 @@ Uses clustered standard errors (by country).
 
 **Output:** `checkin/twfe_child_edu.json`
 
-**Data:** Same as table_1_main.py.
+**Data:** Same as panel_full_fe.py.
 
 **What it does:** Runs Table A1 — two-way fixed effects (country + time period). This absorbs global time trends, testing whether education's effect survives controlling for worldwide educational expansion.
 
@@ -935,7 +935,7 @@ wcde/data/processed/*.csv  (185 countries, 1950–2015, 5-year intervals)
   │    threshold_crossings.py  ...   │
   │                                  │
   │  tables/                         │
-  │    table_1_main.py               │
+  │    panel_full_fe.py               │
   │    twfe_child_edu.py        │
   │    regression_tables.py          │
   │                                  │
@@ -961,7 +961,7 @@ wcde/data/processed/*.csv  (185 countries, 1950–2015, 5-year intervals)
       │              │
       ▼              ▼
   ┌──────────────────────────────────┐
-  │  verify_nations.py               │
+  │  verify_humanity.py               │
   │  (351 registered claims)         │
   │                                  │
   │  Phase 1: Look up actual values  │

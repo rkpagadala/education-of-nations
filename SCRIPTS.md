@@ -10,7 +10,8 @@ The paper makes one central claim — education causes development, GDP doesn't 
 
 | Script | What it produces | Why it matters |
 |--------|-----------------|----------------|
-| `scripts/tables/table_1_main.py` | Table 1: core regression (β=0.483, N=1665, 185 countries). Parental income collapse test (GDP β drops 72% conditional on education). | If this breaks, there's no paper. |
+| `scripts/tables/panel_full_fe.py` | Full-panel one-way FE diagnostic (β=0.483, N=1665, 185 countries). Parental income collapse test (GDP β drops 72% conditional on education). Cited in year-FE discussion and footnotes. | If this breaks, there's no paper. |
+| `scripts/residualization/by_gdp_cutoff.py` | Headline Table 1 (β=1.376, N=629, 105 countries, <30% active-expansion subsample). Also R²-vs-cutoff curve 10%–90%. | This is what the paper's Table 1 actually shows. |
 | `scripts/tables/regression_tables.py` | Table 2b: residualized GDP R² never exceeds 0.023. LE resid R²=0.003 (p=0.56), TFR resid R²=0.000 (p=0.98). | The "GDP has no independent effect" result. The single most provocative claim. |
 | `scripts/wcde/education_outcomes.py` | Table 2: forward prediction. Education at T predicts GDP, LE, TFR at T+25. | Eliminates reverse causality by design. |
 
@@ -71,7 +72,7 @@ If a reviewer has 30 minutes, run Tier 1 (3 scripts) plus `robustness_tests.py`.
 
 ```bash
 make setup
-.venv/bin/python scripts/tables/table_1_main.py
+.venv/bin/python scripts/tables/panel_full_fe.py
 .venv/bin/python scripts/tables/regression_tables.py
 .venv/bin/python scripts/wcde/education_outcomes.py
 .venv/bin/python scripts/robustness/robustness_tests.py

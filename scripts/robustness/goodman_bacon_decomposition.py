@@ -375,10 +375,13 @@ write_checkin("goodman_bacon_decomposition.json", {
         "n_timing_groups": sum(len(v) for v in timing_groups.values()),
         "n_comparisons": len(comparisons),
         "clean_weight": round(clean_wt, 3),
+        "clean_weight_pct": round(clean_wt * 100, 1),
         "clean_weighted_beta": round(clean_beta, 1),
         "timing_timing_weight": round(tt_wt, 3),
+        "timing_timing_weight_pct": round(tt_wt * 100, 1),
         "timing_timing_weighted_beta": round(tt_beta, 1),
         "always_treated_weight": round(at_wt, 3),
+        "always_treated_weight_pct": round(at_wt * 100, 1),
         "always_treated_weighted_beta": round(at_beta, 1),
     },
     "comparison_types": {

@@ -108,16 +108,33 @@ def _demean_and_filter(data, cols):
     """Demean columns by country, drop NaN rows, require ≥2 obs per country.
 
     Returns (sub, demeaned_dict, n_countries) or None if insufficient data.
+
+    Vectorized: replaces pandas `groupby().transform('mean')` (which runs
+    the full group-machinery for every call) with numpy `bincount`. Matches
+    pandas numerically to within float64 summation roundoff (~1e-14).
     """
-    sub = data.dropna(subset=cols).copy()
-    counts = sub.groupby("country").size()
-    sub = sub[sub["country"].isin(counts[counts >= 2].index)]
-    n_countries = sub["country"].nunique()
-    if n_countries < 3 or len(sub) < 10:
+    sub = data.dropna(subset=cols)
+    country_col = sub["country"].to_numpy()
+    # Factorize country → integer codes; bincount-based demean
+    codes, uniq = pd.factorize(country_col, sort=False)
+    n_u = len(uniq)
+    counts = np.bincount(codes, minlength=n_u)
+    keep_c = counts >= 2
+    if keep_c.sum() < 3:
         return None
+    keep = keep_c[codes]
+    if keep.sum() < 10:
+        return None
+    sub = sub.iloc[keep].copy()
+    codes = codes[keep]
+    counts = np.bincount(codes, minlength=n_u).astype(float)
+    n_countries = int(keep_c.sum())
     dm = {}
     for col in cols:
-        dm[col] = sub[col] - sub.groupby("country")[col].transform("mean")
+        v = sub[col].to_numpy()
+        s = np.bincount(codes, weights=v, minlength=n_u)
+        means = s / counts
+        dm[col] = pd.Series(v - means[codes], index=sub.index)
     return sub, dm, n_countries
 
 

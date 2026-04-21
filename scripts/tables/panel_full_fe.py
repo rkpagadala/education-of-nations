@@ -1,18 +1,24 @@
 """
-Reproduce Table 1 from "Education of Nations."
+Full-panel one-way FE diagnostic (child lower secondary completion on
+parental education and log GDP per capita).
 
-Table 1: Country fixed effects regressions — child lower secondary completion
-on parental education and log GDP per capita.
-187 countries, 1975–2015, 5-year intervals (WCDE v3).
+Full WCDE panel: 1,665 country-years, 185 countries, 1975-2015, 5-year
+intervals. These are the coefficients cited in the paper's year-FE
+discussion and footnotes (β=0.483 education-only; Parental Income
+collapse test PI-alone/PI-cond). Also reports the female completion
+robustness check.
 
-Also reports the female completion robustness check (Table 1 footnote).
+NOTE: The headline Table 1 shown in the paper (β=1.376, GDP β=13.659,
+629 country-years, 105 countries) uses the <30% active-expansion
+subsample and is produced by scripts/residualization/by_gdp_cutoff.py,
+not this script.
 
 Data sources:
   - Education: wcde/data/processed/lower_sec_both.csv (WCDE v3, completion %)
   - Female education: wcde/data/processed/lower_sec_female.csv
   - GDP: data/gdppercapita_us_inflation_adjusted.csv (World Bank, constant 2017 USD)
 
-Output: Table 1 numbers and the female specification comparison.
+Output: checkin/panel_full_fe.json
 """
 
 import os
@@ -162,7 +168,7 @@ print(f"  Edu alone:  β={m_pi2.params.iloc[0]:.3f}, R²={m_pi2.rsquared:.3f}")
 print(f"  Both:       β_edu={m_pi3.params.iloc[0]:.3f}, β_gdp={m_pi3.params.iloc[1]:.1f} (p={m_pi3.pvalues.iloc[1]:.2f}), R²={m_pi3.rsquared:.3f}")
 
 # ── Write checkin JSON ───────────────────────────────────────────
-write_checkin("table_1_main.json", {
+write_checkin("panel_full_fe.json", {
     "numbers": {
         "panel_obs": n1,
         "panel_countries": nc1,
@@ -198,4 +204,4 @@ write_checkin("table_1_main.json", {
         "PI-joint-R2": round(m_pi3.rsquared, 3),
         "PI-cond-R2": round(m_pi3.rsquared - m_pi2.rsquared, 3),
     },
-}, script_path="scripts/tables/table_1_main.py")
+}, script_path="scripts/tables/panel_full_fe.py")

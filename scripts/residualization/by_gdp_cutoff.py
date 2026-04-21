@@ -42,7 +42,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(SCRIPT_DIR))
 
 from _shared import PROC, DATA, REGIONS, NAME_MAP, write_checkin
-from residualization._shared import fe_beta_r2
+from residualization._shared import fe_beta_r2, clustered_fe
 
 # ── Load education data ─────────────────────────────────────────────────────
 long = pd.read_csv(os.path.join(PROC, "cohort_completion_both_long.csv"))
@@ -157,6 +157,9 @@ for cutoff in CUTOFFS:
     if n == 0 or np.isnan(er2) or np.isnan(gr2) or gr2 == 0:
         continue
     ratio = er2 / gr2
+    # Clustered SEs (country) for both coefficients.
+    edu_cl = clustered_fe("parent_low", "child_low", sub)
+    gdp_cl = clustered_fe("log_gdp",    "child_low", sub)
     print(f"    <{cutoff:3d}%  {eb:8.3f} {er2:8.3f} "
           f"{gb:10.3f} {gr2:8.3f} {ratio:7.1f}x {n:6d} {nc:5d}")
     numbers[f"cutoff_{cutoff}_edu_beta"] = round(eb, 3)
@@ -166,6 +169,12 @@ for cutoff in CUTOFFS:
     numbers[f"cutoff_{cutoff}_ratio"] = round(ratio, 1)
     numbers[f"cutoff_{cutoff}_n"] = n
     numbers[f"cutoff_{cutoff}_countries"] = nc
+    if edu_cl is not None:
+        numbers[f"cutoff_{cutoff}_edu_se"] = round(edu_cl["se"], 3)
+        numbers[f"cutoff_{cutoff}_edu_t"]  = round(edu_cl["beta"] / edu_cl["se"], 2) if edu_cl["se"] > 0 else None
+    if gdp_cl is not None:
+        numbers[f"cutoff_{cutoff}_gdp_se"] = round(gdp_cl["se"], 3)
+        numbers[f"cutoff_{cutoff}_gdp_t"]  = round(gdp_cl["beta"] / gdp_cl["se"], 2) if gdp_cl["se"] > 0 else None
 
 eb, er2, n, nc = fe_beta_r2("parent_low", "child_low", panel_gdp)
 gb, gr2, _, _ = fe_beta_r2("log_gdp", "child_low", panel_gdp)

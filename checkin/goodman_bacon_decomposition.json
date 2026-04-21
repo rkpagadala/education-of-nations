@@ -13,10 +13,13 @@
     "n_timing_groups": 75,
     "n_comparisons": 44,
     "clean_weight": 0.072,
+    "clean_weight_pct": 7.2,
     "clean_weighted_beta": 11.3,
     "timing_timing_weight": 0.213,
+    "timing_timing_weight_pct": 21.3,
     "timing_timing_weighted_beta": 1.1,
     "always_treated_weight": 0.715,
+    "always_treated_weight_pct": 71.5,
     "always_treated_weighted_beta": 9.6
   },
   "comparison_types": {

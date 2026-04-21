@@ -150,7 +150,7 @@ for country_name, label, _, _, start_year in COUNTRIES:
 
 # ── Write checkin JSON ───────────────────────────────────────────────────────
 
-# Compute specific beta values needed by verify_nations.py
+# Compute specific beta values needed by verify_humanity.py
 def get_beta(country_name, child_start):
     child_end = child_start + WINDOW_SIZE
     beta, avg_parent = beta_for_window(country_name, child_start, child_end)

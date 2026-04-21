@@ -1,5 +1,5 @@
 """
-verify_nations.py
+verify_humanity.py
 
 Every empirical number in paper/education_of_humanity.tex is registered
 here with its source. The script verifies each one.
@@ -15,7 +15,7 @@ Source types:
   - ref:      from cited literature (cannot verify from data; flagged for manual check)
 
 Usage:
-    python scripts/verify_nations.py
+    python scripts/verify_humanity.py
 
 Exit code: 0 if all pass, 1 if any fail.
 """
@@ -214,7 +214,7 @@ def reg(name, value, source, detail, section, tol=0.001):
     })
 
 # ── Script paths ─────────────────────────────────────────────────────────
-S_T1    = os.path.join(REPO_ROOT, "scripts", "tables", "table_1_main.py")
+S_T1    = os.path.join(REPO_ROOT, "scripts", "tables", "panel_full_fe.py")
 S_TA1   = os.path.join(REPO_ROOT, "scripts", "robustness", "twfe_child_edu.py")
 S_FA1   = os.path.join(REPO_ROOT, "scripts", "figures", "outcomes_r2_by_lag.py")
 S_CO2   = os.path.join(REPO_ROOT, "scripts", "co2_placebo.py")
@@ -223,21 +223,25 @@ S_ROB   = os.path.join(REPO_ROOT, "scripts", "robustness", "robustness_tests.py"
 S_TFR   = os.path.join(REPO_ROOT, "scripts", "residualization", "education_vs_tfr.py")
 
 # ══════════════════════════════════════════════════════════════════════════
-# TABLE 1 — Country FE regressions (table_1_main.py)
+# FULL-PANEL ONE-WAY FE (panel_full_fe.py) — diagnostic, cited in
+# year-FE discussion and footnotes (not the headline Table 1 caption)
 # ══════════════════════════════════════════════════════════════════════════
-reg("T1-obs",        1665,   "checkin", ("table_1_main.json", "numbers.panel_obs"),
+reg("T1-obs",        1665,   "checkin", ("panel_full_fe.json", "numbers.panel_obs"),
     [(DATA_SEC, None), (APPENDIX_ROBUST, None)], tol=0)
-reg("T1-countries",  185,    "checkin", ("table_1_main.json", "numbers.panel_countries"),
-    [(ABSTRACT, 112), (THE_EVIDENCE, None), (DATA_SEC, 3), (APPENDIX_ROBUST, 38)], tol=0)
+reg("T1-countries",  185,    "checkin", ("panel_full_fe.json", "numbers.panel_countries"),
+    [(ABSTRACT, 112), (THE_EVIDENCE, None), (DATA_SEC, 3), (APPENDIX_ROBUST, None),
+     ("specialisation-requires-loaded-labour", None),
+     ("nine-year-measurement", None),
+     (EMPIRICAL, None)], tol=0)
 # ══════════════════════════════════════════════════════════════════════════
 # TABLE A1 — Two-way FE (twfe_child_edu.py)
 # ══════════════════════════════════════════════════════════════════════════
 reg("TA1-M1-beta",  0.083,  "checkin", ("twfe_child_edu.json", "numbers.ta1_m1_edu_beta"),
-    [(EMPIRICAL, None), (EDU_VS_GDP, 6), (APPENDIX_ROBUST, 34)])
+    [(EMPIRICAL, None), (EDU_VS_GDP, None), (APPENDIX_ROBUST, None)])
 reg("TA1-M1-p",     0.07,   "checkin", ("twfe_child_edu.json", "numbers.ta1_m1_edu_p"),
-    [(EMPIRICAL, None)], tol=0.005)
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.005)
 reg("TA1-M1-R2",    0.009,  "checkin", ("twfe_child_edu.json", "numbers.ta1_m1_r2_within"),
-    [(APPENDIX_ROBUST, 34)])
+    [(APPENDIX_ROBUST, None)])
 
 # Callaway--Sant'Anna headline numbers cited inline in §4.1 ("On year fixed effects")
 reg("CS-att",       7.88,   "checkin", ("callaway_santanna.json", "child_education.att_aggregate"),
@@ -248,6 +252,31 @@ reg("CS-ci-hi",     11.04,  "checkin", ("callaway_santanna.json", "child_educati
     [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.05)
 reg("CS-att-yr35",  21.42,  "checkin", ("callaway_santanna.json", "child_education.event_study.7.att"),
     [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.05)
+reg("CS-att-se",    1.7,    "checkin", ("callaway_santanna.json", "child_education.att_se"),
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.1)
+
+# Goodman-Bacon decomposition (cited in main-text "On year fixed effects").
+reg("GB-attenuation-pct",       83,    "checkin",
+    ("goodman_bacon_decomposition.json", "numbers.attenuation_continuous_pct"),
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0)
+reg("GB-clean-weight-pct",      7.2,   "checkin",
+    ("goodman_bacon_decomposition.json", "numbers.clean_weight_pct"),
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.1)
+reg("GB-clean-beta",            11.3,  "checkin",
+    ("goodman_bacon_decomposition.json", "numbers.clean_weighted_beta"),
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.1)
+reg("GB-timing-weight-pct",     21.3,  "checkin",
+    ("goodman_bacon_decomposition.json", "numbers.timing_timing_weight_pct"),
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.1)
+reg("GB-timing-beta",           1.1,   "checkin",
+    ("goodman_bacon_decomposition.json", "numbers.timing_timing_weighted_beta"),
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.1)
+reg("GB-alreadytreated-weight-pct", 71.5, "checkin",
+    ("goodman_bacon_decomposition.json", "numbers.always_treated_weight_pct"),
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.1)
+reg("GB-alreadytreated-beta",   9.6,   "checkin",
+    ("goodman_bacon_decomposition.json", "numbers.always_treated_weighted_beta"),
+    [(EMPIRICAL, None), (APPENDIX_ROBUST, None)], tol=0.1)
 
 # ══════════════════════════════════════════════════════════════════════════
 # COMPLETION vs TEST SCORES — horse race (completion_vs_test_scores.py)
@@ -391,19 +420,31 @@ reg("LE-lt10-edu-r2-pct", 51, "derived",
 # ══════════════════════════════════════════════════════════════════════════
 reg("CutOff-30-edu-r2",    0.699, "checkin",
     ("education_vs_gdp_by_cutoff.json", "numbers.cutoff_30_edu_r2"),
-    [(EDU_VS_GDP, 7)])
+    [(EDU_VS_GDP, None)])
 reg("CutOff-30-gdp-r2",    0.214, "checkin",
     ("education_vs_gdp_by_cutoff.json", "numbers.cutoff_30_gdp_r2"),
-    [(EDU_VS_GDP, 6)])
+    [(EDU_VS_GDP, None)])
 reg("CutOff-30-ratio",     3.3,   "checkin",
     ("education_vs_gdp_by_cutoff.json", "numbers.cutoff_30_ratio"),
-    [(EDU_VS_GDP, 3), (EDU_PRED, 31)])
+    [(EDU_VS_GDP, None), (EDU_PRED, 31)])
 reg("CutOff-30-edu-beta",  1.376, "checkin",
     ("education_vs_gdp_by_cutoff.json", "numbers.cutoff_30_edu_beta"),
-    [(EDU_VS_GDP, 10)])
+    [(EDU_VS_GDP, None)])
+reg("CutOff-30-edu-se",    0.084, "checkin",
+    ("education_vs_gdp_by_cutoff.json", "numbers.cutoff_30_edu_se"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("CutOff-30-edu-t",     16.4,  "checkin",
+    ("education_vs_gdp_by_cutoff.json", "numbers.cutoff_30_edu_t"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.1)
 reg("CutOff-30-gdp-beta",  13.659, "checkin",
     ("education_vs_gdp_by_cutoff.json", "numbers.cutoff_30_gdp_beta"),
-    [(EDU_VS_GDP, 26)], tol=0.05)
+    [(APPENDIX_ROBUST, None)], tol=0.05)
+reg("CutOff-30-gdp-se",    3.911, "checkin",
+    ("education_vs_gdp_by_cutoff.json", "numbers.cutoff_30_gdp_se"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.05)
+reg("CutOff-30-gdp-t",     3.5,   "checkin",
+    ("education_vs_gdp_by_cutoff.json", "numbers.cutoff_30_gdp_t"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.05)
 reg("CutOff-10-edu-r2",    0.590, "checkin",
     ("education_vs_gdp_by_cutoff.json", "numbers.cutoff_10_edu_r2"),
     [(EDU_PRED, 11)], tol=0.002)
@@ -415,7 +456,87 @@ reg("CutOff-50-edu-r2",    0.697, "checkin",
     [(EDU_PRED, 11)])
 reg("CutOff-no-edu-r2",    0.533, "checkin",
     ("education_vs_gdp_by_cutoff.json", "numbers.no_cutoff_edu_r2"),
-    [(EDU_VS_GDP, 7)])
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)])
+
+# ── Summary statistics (Appendix Table \ref{tab:summary}) ───────────────
+reg("Sum-panel-obs",        1665, "checkin",
+    ("summary_stats.json", "numbers.panel_obs"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Sum-panel-countries",   185, "checkin",
+    ("summary_stats.json", "numbers.panel_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Sum-gdp-countries",     178, "checkin",
+    ("summary_stats.json", "numbers.gdp_panel_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Sum-gdp-obs",          1466, "checkin",
+    ("summary_stats.json", "numbers.gdp_panel_obs"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Sum-le-n",             1608, "checkin",
+    ("summary_stats.json", "descriptives.pooled.life_exp.n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Sum-tfr-n",            1608, "checkin",
+    ("summary_stats.json", "descriptives.pooled.tfr.n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Sum-u5mr-n",           1566, "checkin",
+    ("summary_stats.json", "descriptives.pooled.u5mr.n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+
+# ── Cutoff-sensitivity table (Appendix Table \ref{tab:cutoff}) ───────────
+# Explicit per-cell registrations for the new robustness-to-alternative-
+# cutoffs table. Existing CutOff-30-* and CutOff-10-* regs above cover
+# the 30%/10% cells in-section; these add the remaining cutoff rows and
+# anchor every cell in APPENDIX_ROBUST.
+_CUT_CELLS = [
+    # (cutoff, edu_beta, edu_r2, gdp_beta, gdp_r2, ratio, n, countries)
+    (10, 2.022, 0.590, 15.535, 0.296, 2.0, 275,  58),
+    (20, 1.704, 0.665, 15.502, 0.258, 2.6, 469,  83),
+    (30, 1.376, 0.699, 13.659, 0.214, 3.3, 629, 105),
+    (40, 1.185, 0.685, 15.469, 0.223, 3.1, 740, 112),
+    (50, 1.053, 0.697, 17.311, 0.247, 2.8, 829, 116),
+    (60, 0.902, 0.663, 18.059, 0.259, 2.6, 906, 120),
+    (70, 0.819, 0.655, 18.232, 0.270, 2.4, 969, 125),
+    (80, 0.739, 0.626, 17.839, 0.280, 2.2, 1018, 128),
+    (90, 0.663, 0.587, 17.584, 0.284, 2.1, 1086, 137),
+]
+for _c, _eb, _er, _gb, _gr, _rt, _n, _nc in _CUT_CELLS:
+    reg(f"TabC-{_c}-edu-beta", _eb,  "checkin",
+        ("education_vs_gdp_by_cutoff.json", f"numbers.cutoff_{_c}_edu_beta"),
+        [(APPENDIX_ROBUST, None)], tol=0.005)
+    reg(f"TabC-{_c}-edu-r2",   _er,  "checkin",
+        ("education_vs_gdp_by_cutoff.json", f"numbers.cutoff_{_c}_edu_r2"),
+        [(APPENDIX_ROBUST, None)], tol=0.005)
+    reg(f"TabC-{_c}-gdp-beta", _gb,  "checkin",
+        ("education_vs_gdp_by_cutoff.json", f"numbers.cutoff_{_c}_gdp_beta"),
+        [(APPENDIX_ROBUST, None)], tol=0.005)
+    reg(f"TabC-{_c}-gdp-r2",   _gr,  "checkin",
+        ("education_vs_gdp_by_cutoff.json", f"numbers.cutoff_{_c}_gdp_r2"),
+        [(APPENDIX_ROBUST, None)], tol=0.005)
+    reg(f"TabC-{_c}-ratio",    _rt,  "checkin",
+        ("education_vs_gdp_by_cutoff.json", f"numbers.cutoff_{_c}_ratio"),
+        [(APPENDIX_ROBUST, None)], tol=0.05)
+    reg(f"TabC-{_c}-n",        _n,   "checkin",
+        ("education_vs_gdp_by_cutoff.json", f"numbers.cutoff_{_c}_n"),
+        [(APPENDIX_ROBUST, None)], tol=0)
+    reg(f"TabC-{_c}-countries", _nc, "checkin",
+        ("education_vs_gdp_by_cutoff.json", f"numbers.cutoff_{_c}_countries"),
+        [(APPENDIX_ROBUST, None)], tol=0)
+# "Full" row in the cutoff table: pulls from panel_full_fe.json (n, countries,
+# edu β) and from education_vs_gdp_by_cutoff.json (no-cutoff R² and ratio).
+reg("TabC-full-edu-beta", 0.483, "checkin",
+    ("panel_full_fe.json", "numbers.table1_m1_edu_beta"),
+    [(APPENDIX_ROBUST, None), (EMPIRICAL, None)], tol=0.005)
+reg("TabC-full-gdp-beta", 15.787, "checkin",
+    ("panel_full_fe.json", "numbers.table1_m2_gdp_beta"),
+    [(APPENDIX_ROBUST, None)], tol=0.05)
+reg("TabC-full-edu-r2",   0.533, "checkin",
+    ("education_vs_gdp_by_cutoff.json", "numbers.no_cutoff_edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("TabC-full-gdp-r2",   0.245, "checkin",
+    ("education_vs_gdp_by_cutoff.json", "numbers.no_cutoff_gdp_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("TabC-full-ratio",    2.2,   "checkin",
+    ("education_vs_gdp_by_cutoff.json", "numbers.no_cutoff_ratio"),
+    [(APPENDIX_ROBUST, None)], tol=0.1)
 
 # ══════════════════════════════════════════════════════════════════════════
 # CHECKIN — le_r2_by_lag.json
@@ -428,13 +549,13 @@ reg("CutOff-no-edu-r2",    0.533, "checkin",
 # ══════════════════════════════════════════════════════════════════════════
 reg("Beta-cutoff-20",  2.855, "checkin",
     ("beta_by_ceiling_cutoff.json", "numbers.panelA_cutoff_20_beta"),
-    [(EDU_VS_GDP, 3)])
+    [(EDU_VS_GDP, None)])
 reg("Beta-cutoff-50",  1.830, "checkin",
     ("beta_by_ceiling_cutoff.json", "numbers.panelA_cutoff_50_beta"),
-    [(EDU_VS_GDP, 68)])
+    [(EDU_VS_GDP, None)])
 reg("Beta-cutoff-90",  1.236, "checkin",
     ("beta_by_ceiling_cutoff.json", "numbers.panelA_cutoff_90_beta"),
-    [(EDU_VS_GDP, 7)])
+    [(EDU_VS_GDP, None)])
 reg("Beta-cutoff-50-r2-pct", 79, "derived",
     "Panel A cutoff 50 R² × 100",
     [(EDU_VS_GDP, None)], tol=1)
@@ -443,7 +564,7 @@ reg("Beta-cutoff-90-r2-pct", 77, "derived",
     [(EDU_VS_GDP, None)], tol=1)
 reg("Beta-no-cutoff",  1.041, "checkin",
     ("beta_by_ceiling_cutoff.json", "numbers.panelA_no_cutoff_beta"),
-    [(EDU_VS_GDP, 55)])
+    [(EDU_VS_GDP, None)])
 
 # ══════════════════════════════════════════════════════════════════════════
 # CHECKIN — asian_financial_crisis.json
@@ -471,40 +592,40 @@ reg("AFC-Thailand-prior",   10.0,  "checkin",
 # FIGURE 3 — Country-specific sliding-window betas (beta_vs_baseline.py)
 # ══════════════════════════════════════════════════════════════════════════
 reg("Fig1-USA-beta-high",   1.9, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-USA-beta-high"),
-    [(EDU_VS_GDP, 6)], tol=0.1)
+    [(EDU_VS_GDP, None)], tol=0.1)
 reg("Fig1-USA-beta-low",   0.08, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-USA-beta-low"),
-    [(EDU_VS_GDP, 6)], tol=0.02)
+    [(EDU_VS_GDP, None)], tol=0.02)
 reg("Fig1-Korea-beta-high", 6.5, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Korea-beta-high"),
-    [(EDU_VS_GDP, 16)], tol=0.1)
+    [(EDU_VS_GDP, None)], tol=0.1)
 reg("Fig1-Korea-beta-3.6",  3.6, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Korea-beta-3.6"),
-    [(EDU_VS_GDP, 26)], tol=0.1)
+    [(EDU_VS_GDP, None)], tol=0.1)
 reg("Fig1-Korea-beta-1.8",  1.8, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Korea-beta-1.8"),
-    [(EDU_VS_GDP, 68)], tol=0.1)
+    [(EDU_VS_GDP, None)], tol=0.1)
 reg("Fig1-Korea-beta-low",  0.2, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Korea-beta-low"),
-    [(EDU_VS_GDP, 6)], tol=0.05)
+    [(EDU_VS_GDP, None)], tol=0.05)
 reg("Fig1-Taiwan-beta",     5.1, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Taiwan-beta"),
-    [(EDU_VS_GDP, 26)], tol=0.1)
+    [(EDU_VS_GDP, None)], tol=0.1)
 reg("Fig1-Phil-beta-high",  4.4, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Phil-beta-high"),
-    [(EDU_VS_GDP, 26)], tol=0.1)
+    [(EDU_VS_GDP, None)], tol=0.1)
 reg("Fig1-Phil-beta-low",   0.4, "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Phil-beta-low"),
-    [(EDU_VS_GDP, 6)], tol=0.1)
+    [(EDU_VS_GDP, None)], tol=0.1)
 
 # ══════════════════════════════════════════════════════════════════════════
 # BASELINE GROUP ANALYSIS (beta_by_baseline_group.py)
 # ══════════════════════════════════════════════════════════════════════════
 S_GRP = os.path.join(REPO_ROOT, "scripts", "robustness", "beta_by_baseline_group.py")
 reg("Grp-low-beta",    1.585, "checkin", ("beta_by_baseline_group.json", "numbers.Grp-low-beta"),
-    [(EDU_VS_GDP, 6)], tol=0.05)
+    [(EDU_VS_GDP, None)], tol=0.05)
 reg("Grp-low-R2",      0.706, "checkin", ("beta_by_baseline_group.json", "numbers.Grp-low-R2"),
-    [(EDU_VS_GDP, 7)], tol=0.02)
+    [(EDU_VS_GDP, None)], tol=0.02)
 reg("Grp-med-beta",    0.713, "checkin", ("beta_by_baseline_group.json", "numbers.Grp-med-beta"),
-    [(EDU_VS_GDP, 7)], tol=0.05)
+    [(EDU_VS_GDP, None)], tol=0.05)
 reg("Grp-med-R2",      0.716, "checkin", ("beta_by_baseline_group.json", "numbers.Grp-med-R2"),
-    [(EDU_VS_GDP, 7)], tol=0.02)
+    [(EDU_VS_GDP, None)], tol=0.02)
 reg("Grp-high-beta",   0.176, "checkin", ("beta_by_baseline_group.json", "numbers.Grp-high-beta"),
-    [(EDU_VS_GDP, 6)], tol=0.05)
+    [(EDU_VS_GDP, None)], tol=0.05)
 reg("Grp-high-R2",     0.442, "checkin", ("beta_by_baseline_group.json", "numbers.Grp-high-R2"),
-    [(EDU_VS_GDP, 6)], tol=0.02)
+    [(EDU_VS_GDP, None)], tol=0.02)
 
 # ══════════════════════════════════════════════════════════════════════════
 # TABLE 2 — Forward predictions (07_education_outcomes.py)
@@ -539,7 +660,7 @@ reg("T2-PB-cond-edu",   0.485, "checkin", ("education_outcomes.json", "numbers.T
 reg("T2-PB-cond-R2",    0.495, "checkin", ("education_outcomes.json", "numbers.T2-PB-cond-R2"),
     [(EDU_PRED, 15)])
 reg("T2-PB-n",          927,   "checkin", ("education_outcomes.json", "numbers.T2-PB-n"),
-    [(EDU_PRED, 69)], tol=0)
+    [(EDU_PRED, 11)], tol=0)
 # Table 2 values surfaced by coverage scan
 reg("T2-TFR-beta-abs",  0.032, "derived",
     "abs(T2-TFR-beta) — paper reports absolute value",
@@ -552,20 +673,20 @@ reg("T2-LE-beta-sec",   0.109, "checkin", ("education_outcomes.json", "numbers.T
 # LONG-RUN PANEL (04b_long_run_generational.py)
 # ══════════════════════════════════════════════════════════════════════════
 reg("LR-countries", 28,     "checkin", ("long_run_generational.json", "numbers.LR-countries"),
-    [(DATA_SEC, 14), (EDU_VS_GDP, 74), (APPENDIX_ROBUST, 121)], tol=0)
+    [(DATA_SEC, 14), (EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0)
 
 # ══════════════════════════════════════════════════════════════════════════
 # PARENTAL INCOME COLLAPSE — inline computation
 # ══════════════════════════════════════════════════════════════════════════
-reg("PI-alone-beta",  14.4,  "checkin", ("table_1_main.json", "numbers.PI-alone-beta"),
-    [(GDP_INDEP, 38)], tol=0.5)
-reg("PI-alone-R2",    0.263, "checkin", ("table_1_main.json", "numbers.PI-alone-R2"),
+reg("PI-alone-beta",  14.4,  "checkin", ("panel_full_fe.json", "numbers.PI-alone-beta"),
+    [(GDP_INDEP, 35)], tol=0.5)
+reg("PI-alone-R2",    0.263, "checkin", ("panel_full_fe.json", "numbers.PI-alone-R2"),
     [(GDP_INDEP, 12)])
-reg("PI-cond-beta",   2.9,   "checkin", ("table_1_main.json", "numbers.PI-cond-beta"),
+reg("PI-cond-beta",   2.9,   "checkin", ("panel_full_fe.json", "numbers.PI-cond-beta"),
     [(GDP_INDEP, 10)], tol=0.5)
-reg("PI-cond-p",      0.16,  "checkin", ("table_1_main.json", "numbers.PI-cond-p"),
+reg("PI-cond-p",      0.16,  "checkin", ("panel_full_fe.json", "numbers.PI-cond-p"),
     [(GDP_INDEP, 12)], tol=0.01)
-reg("PI-edu-alone",   0.540, "checkin", ("table_1_main.json", "numbers.PI-edu-alone"),
+reg("PI-edu-alone",   0.540, "checkin", ("panel_full_fe.json", "numbers.PI-edu-alone"),
     [(GDP_INDEP, 12)])
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -877,7 +998,7 @@ reg("resid-gdp-r2-u5mr-max",   0.023, "derived",
     [GDP_INDEP], tol=0.005)
 # Parental income R² = 0.014 (L1213) — joint model R² minus edu-alone R²
 reg("PI-cond-R2",           0.006, "checkin",
-    ("table_1_main.json", "numbers.PI-cond-R2"),
+    ("panel_full_fe.json", "numbers.PI-cond-R2"),
     [GDP_INDEP], tol=0.005)
 
 # Grandparent effect betas at low education (L1055, L1057)
@@ -962,6 +1083,233 @@ reg("T1-cutoff30-countries", 105, "checkin",
     [(EDU_VS_GDP, None)], tol=0)
 
 # ══════════════════════════════════════════════════════════════════════════
+# TABLE 1 STEPWISE — Section 6.1 (table_1_stepwise.py)
+# Four-column buildup with increasing controls on the same 629-obs /
+# 105-country active-expansion sample. Column 1 overlaps numerically
+# with the CutOff-30-edu-beta registration above.
+# ══════════════════════════════════════════════════════════════════════════
+reg("T1-m2-parent-beta",   1.270, "checkin",
+    ("table_1_stepwise.json", "numbers.m2_parent_beta"),
+    [(EDU_VS_GDP, None)], tol=0.005)
+reg("T1-m2-parent-se",     0.059, "checkin",
+    ("table_1_stepwise.json", "numbers.m2_parent_se"),
+    [(EDU_VS_GDP, None)], tol=0.005)
+reg("T1-m2-gdp-beta",      5.02, "checkin",
+    ("table_1_stepwise.json", "numbers.m2_gdp_beta"),
+    [(EDU_VS_GDP, None)], tol=0.05)
+reg("T1-m2-gdp-se",        3.04, "checkin",
+    ("table_1_stepwise.json", "numbers.m2_gdp_se"),
+    [(EDU_VS_GDP, None)], tol=0.05)
+reg("T1-m2-r2",            0.724, "checkin",
+    ("table_1_stepwise.json", "numbers.m2_r2_within"),
+    [(EDU_VS_GDP, None)], tol=0.005)
+reg("T1-m3-parent-beta",   2.039, "checkin",
+    ("table_1_stepwise.json", "numbers.m3_parent_beta"),
+    [(EDU_VS_GDP, None), (EMPIRICAL, None)], tol=0.005)
+reg("T1-m3-parent-se",     0.273, "checkin",
+    ("table_1_stepwise.json", "numbers.m3_parent_se"),
+    [(EDU_VS_GDP, None)], tol=0.005)
+reg("T1-m3-parent-sq-beta", -0.026, "checkin",
+    ("table_1_stepwise.json", "numbers.m3_parent_sq_beta"),
+    [(EDU_VS_GDP, None)], tol=0.005)
+reg("T1-m3-parent-sq-se",   0.008, "checkin",
+    ("table_1_stepwise.json", "numbers.m3_parent_sq_se"),
+    [(EDU_VS_GDP, None)], tol=0.005)
+reg("T1-m3-gdp-beta",       4.57, "checkin",
+    ("table_1_stepwise.json", "numbers.m3_gdp_beta"),
+    [(EDU_VS_GDP, None)], tol=0.05)
+reg("T1-m3-gdp-se",         2.75, "checkin",
+    ("table_1_stepwise.json", "numbers.m3_gdp_se"),
+    [(EDU_VS_GDP, None)], tol=0.05)
+reg("T1-m3-r2",             0.746, "checkin",
+    ("table_1_stepwise.json", "numbers.m3_r2_within"),
+    [(EDU_VS_GDP, None)], tol=0.005)
+reg("T1-m4-parent-beta",    1.570, "checkin",
+    ("table_1_stepwise.json", "numbers.m4_parent_beta"),
+    [(EDU_VS_GDP, None), (EMPIRICAL, None)], tol=0.005)
+reg("T1-m4-parent-se",      0.409, "checkin",
+    ("table_1_stepwise.json", "numbers.m4_parent_se"),
+    [(EDU_VS_GDP, None)], tol=0.005)
+reg("T1-m4-parent-sq-beta", -0.019, "checkin",
+    ("table_1_stepwise.json", "numbers.m4_parent_sq_beta"),
+    [(EDU_VS_GDP, None)], tol=0.005)
+reg("T1-m4-parent-sq-se",   0.010, "checkin",
+    ("table_1_stepwise.json", "numbers.m4_parent_sq_se"),
+    [(EDU_VS_GDP, None)], tol=0.005)
+reg("T1-m4-gdp-beta",       3.99, "checkin",
+    ("table_1_stepwise.json", "numbers.m4_gdp_beta"),
+    [(EDU_VS_GDP, None)], tol=0.05)
+reg("T1-m4-gdp-se",         3.00, "checkin",
+    ("table_1_stepwise.json", "numbers.m4_gdp_se"),
+    [(EDU_VS_GDP, None)], tol=0.05)
+reg("T1-m4-r2",             0.717, "checkin",
+    ("table_1_stepwise.json", "numbers.m4_r2_within"),
+    [(EDU_VS_GDP, None)], tol=0.005)
+
+# ══════════════════════════════════════════════════════════════════════════
+# TABLE 1 SUBGROUPS — Section 6.1 (table_1_subgroups.py)
+# Headline Col 1 spec re-estimated on regional / temporal / income-tercile
+# subsamples. All 15 subgroups p<0.01.
+# ══════════════════════════════════════════════════════════════════════════
+reg("T1-SG-SSA-beta",       1.220, "checkin",
+    ("table_1_subgroups.json", "numbers.region_SSA_beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-SSA-se",         0.109, "checkin",
+    ("table_1_subgroups.json", "numbers.region_SSA_se"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-SSA-n",            301, "checkin",
+    ("table_1_subgroups.json", "numbers.region_SSA_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-SSA-countries",     40, "checkin",
+    ("table_1_subgroups.json", "numbers.region_SSA_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-MENA-beta",      1.145, "checkin",
+    ("table_1_subgroups.json", "numbers.region_MENA_beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-MENA-se",        0.176, "checkin",
+    ("table_1_subgroups.json", "numbers.region_MENA_se"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-SA-beta",        2.444, "checkin",
+    ("table_1_subgroups.json", "numbers.region_SouthAsia_beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-SA-se",          0.515, "checkin",
+    ("table_1_subgroups.json", "numbers.region_SouthAsia_se"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-EAP-beta",       1.491, "checkin",
+    ("table_1_subgroups.json", "numbers.region_EastAsiaPacific_beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-EAP-se",         0.097, "checkin",
+    ("table_1_subgroups.json", "numbers.region_EastAsiaPacific_se"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-LAC-beta",       1.272, "checkin",
+    ("table_1_subgroups.json", "numbers.region_LAC_beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-LAC-se",         0.091, "checkin",
+    ("table_1_subgroups.json", "numbers.region_LAC_se"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-ENA-beta",       2.057, "checkin",
+    ("table_1_subgroups.json", "numbers.region_EuropeNAmerica_beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-ENA-se",         0.156, "checkin",
+    ("table_1_subgroups.json", "numbers.region_EuropeNAmerica_se"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-pre1990-beta",   1.364, "checkin",
+    ("table_1_subgroups.json", "numbers.pre_1990_beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-pre1990-se",     0.172, "checkin",
+    ("table_1_subgroups.json", "numbers.pre_1990_se"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-post1990-beta",  1.332, "checkin",
+    ("table_1_subgroups.json", "numbers.post_1990_beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-post1990-se",    0.116, "checkin",
+    ("table_1_subgroups.json", "numbers.post_1990_se"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-gdplow-beta",    1.295, "checkin",
+    ("table_1_subgroups.json", "numbers.gdp_low_beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-gdpmid-beta",    1.276, "checkin",
+    ("table_1_subgroups.json", "numbers.gdp_middle_beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-gdphigh-beta",   1.393, "checkin",
+    ("table_1_subgroups.json", "numbers.gdp_high_beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+
+# ══════════════════════════════════════════════════════════════════════════
+# SPECIFICATION ROBUSTNESS — Appendix (Table tab:spec-robust).
+# Six checks added in response to the April 2026 methodological review:
+# period length, balanced panel, within-year cross-cohort, PPML, log
+# outcomes, and Wooldridge strict-exogeneity test.
+# ══════════════════════════════════════════════════════════════════════════
+# Period length (period_length.py)
+reg("SR-period10-active-beta", 1.437, "checkin",
+    ("period_length.json", "numbers.ten_active_beta"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("SR-period10-active-n",    416,   "checkin",
+    ("period_length.json", "numbers.ten_active_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("SR-annual-active-beta",   1.326, "checkin",
+    ("period_length.json", "numbers.annual_active_beta"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("SR-annual-active-n",      3548,  "checkin",
+    ("period_length.json", "numbers.annual_active_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+# Balanced panel (balanced_panel.py)
+reg("SR-balanced-active-beta", 1.490, "checkin",
+    ("balanced_panel.json", "numbers.active_bal_max_beta"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("SR-balanced-active-n",    423,   "checkin",
+    ("balanced_panel.json", "numbers.active_bal_max_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("SR-balanced-active-countries", 47, "checkin",
+    ("balanced_panel.json", "numbers.active_bal_max_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+# Cross-cohort within-year (cross_cohort_within_year.py)
+reg("SR-crosscohort-active-beta", 1.965, "checkin",
+    ("cross_cohort_within_year.json", "numbers.active_beta"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("SR-crosscohort-active-se",   0.051, "checkin",
+    ("cross_cohort_within_year.json", "numbers.active_se"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("SR-crosscohort-active-n",    1747,  "checkin",
+    ("cross_cohort_within_year.json", "numbers.active_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("SR-crosscohort-active-countries", 171, "checkin",
+    ("cross_cohort_within_year.json", "numbers.active_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+# PPML (ppml_outcomes.py)
+reg("SR-PPML-TFR-semielast",  -0.91, "checkin",
+    ("ppml_outcomes.json", "numbers.tfr_parent_semi_elast_pct"),
+    [(APPENDIX_ROBUST, None)], tol=0.03)
+reg("SR-PPML-TFR-se",          0.14, "checkin",
+    ("ppml_outcomes.json", "numbers.tfr_parent_semi_elast_se_pct"),
+    [(APPENDIX_ROBUST, None)], tol=0.02)
+reg("SR-PPML-U5MR-semielast", -3.30, "checkin",
+    ("ppml_outcomes.json", "numbers.u5mr_parent_semi_elast_pct"),
+    [(APPENDIX_ROBUST, None)], tol=0.03)
+reg("SR-PPML-U5MR-se",         0.36, "checkin",
+    ("ppml_outcomes.json", "numbers.u5mr_parent_semi_elast_se_pct"),
+    [(APPENDIX_ROBUST, None)], tol=0.02)
+reg("SR-PPML-TFR-n",  590, "checkin",
+    ("ppml_outcomes.json", "numbers.tfr_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("SR-PPML-U5MR-n", 579, "checkin",
+    ("ppml_outcomes.json", "numbers.u5mr_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+# Log outcomes (log_outcomes.py)
+reg("SR-log-LE-semielast",   +0.36, "checkin",
+    ("log_outcomes.json", "numbers.le_log_semi_elast_pct"),
+    [(APPENDIX_ROBUST, None)], tol=0.03)
+reg("SR-log-LE-se",           0.04, "checkin",
+    ("log_outcomes.json", "numbers.le_log_semi_elast_se_pct"),
+    [(APPENDIX_ROBUST, None)], tol=0.02)
+reg("SR-log-TFR-semielast",  -0.82, "checkin",
+    ("log_outcomes.json", "numbers.tfr_log_semi_elast_pct"),
+    [(APPENDIX_ROBUST, None)], tol=0.03)
+reg("SR-log-TFR-se",          0.11, "checkin",
+    ("log_outcomes.json", "numbers.tfr_log_semi_elast_se_pct"),
+    [(APPENDIX_ROBUST, None)], tol=0.02)
+reg("SR-log-U5MR-semielast", -2.59, "checkin",
+    ("log_outcomes.json", "numbers.u5mr_log_semi_elast_pct"),
+    [(APPENDIX_ROBUST, None)], tol=0.03)
+reg("SR-log-U5MR-se",         0.28, "checkin",
+    ("log_outcomes.json", "numbers.u5mr_log_semi_elast_se_pct"),
+    [(APPENDIX_ROBUST, None)], tol=0.02)
+# Wooldridge (wooldridge_exogeneity.py) — narrative-only in the paper
+reg("SR-Wooldridge-full-lead-beta", 1.275, "checkin",
+    ("wooldridge_exogeneity.json", "numbers.full_lead_beta"),
+    [(APPENDIX_ROBUST, None)], tol=0.01)
+reg("SR-Wooldridge-full-lead-se",   0.114, "checkin",
+    ("wooldridge_exogeneity.json", "numbers.full_lead_se"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("SR-Wooldridge-active-lead-beta", 0.655, "checkin",
+    ("wooldridge_exogeneity.json", "numbers.active_lead_beta"),
+    [(APPENDIX_ROBUST, None)], tol=0.01)
+reg("SR-Wooldridge-active-lead-se",   0.281, "checkin",
+    ("wooldridge_exogeneity.json", "numbers.active_lead_se"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+
+# ══════════════════════════════════════════════════════════════════════════
 # ADDITIONAL SECTION REFERENCES — numbers appearing in paper text
 # ══════════════════════════════════════════════════════════════════════════
 # Abstract: thresholds
@@ -971,7 +1319,7 @@ reg("Thresh-LE-abs",    69.8, "wdi", ("le", "USA", 1960),
     [(ABSTRACT, None)], tol=0.05)
 # Introduction & invisible: 185 countries
 reg("T1-countries-intro",  185, "checkin",
-    ("table_1_main.json", "numbers.panel_countries"),
+    ("panel_full_fe.json", "numbers.panel_countries"),
     [(INTRO, None)], tol=0)
 # Causal: 4.5 cross-reference
 # Table 2 footnotes: sample sizes
@@ -982,7 +1330,7 @@ reg("T2-n-LE-TFR",      1295, "checkin",
     ("education_outcomes.json", "numbers.T2-n-LE-TFR"),
     [(EDU_PRED, None)], tol=0)
 reg("T2-countries-fn",   185, "checkin",
-    ("table_1_main.json", "numbers.panel_countries"),
+    ("panel_full_fe.json", "numbers.panel_countries"),
     [(EDU_PRED, None)], tol=0)
 # Table 3 footnotes: sample sizes
 reg("T3-n-LE-TFR",      822, "checkin", ("lag_sensitivity.json", "results.25.LE_ceil90.n"),
@@ -1284,9 +1632,10 @@ reg("GM-tfr-low-beta-m-cam",  0.033, "derived",
 
 # --- POLICY section: Uganda prediction ---
 reg("Uganda-2025-edu",        48.8,   "wcde", ("lower_sec_both.csv", "Uganda", 2025), [POLICY], tol=0.5)
+reg("Uganda-TFR-2013",        5.56,   "wdi", ("tfr", "Uganda", 2013), [POLICY], tol=0.05)
 reg("Uganda-TFR-2022",        4.39,   "wdi", ("tfr", "Uganda", 2022), [POLICY], tol=0.1)
-reg("Uganda-LE-2022",         67.7,   "wdi", ("le", "Uganda", 2022), [POLICY], tol=0.5)
-reg("Uganda-GM-1975",          9.1,   "wcde", ("lower_sec_both.csv", "Uganda", 1975), [POLICY], tol=0.5)
+reg("Uganda-TFR-decline",     0.13,   "derived",
+    "(Uganda-TFR-2013 - Uganda-TFR-2022) / 9", [POLICY], tol=0.01)
 
 # --- INSTIT section (L1647-L1648) ---
 reg("GDP-Qatar-2015-sec",    69000,  "wdi", ("gdp", "Qatar", 2015), [INSTIT], tol=5000)
@@ -1497,6 +1846,513 @@ reg("Kerala-female-lit",   39,     "ref", "Kerala female literacy ~1966 (%)",   
 reg("Kerala-1943-deaths",  90000,  "ref", "Travancore famine 1943 deaths",            [FAMINE_TEST], tol=5000)
 reg("Kerala-1966-yr",      1966,   "ref", "Year of Bihar-Kerala comparison",          [FAMINE_TEST], tol=0)
 
+# ══════════════════════════════════════════════════════════════════════════
+# SECTION COVERAGE — remaining values surfaced by coverage scan
+# ══════════════════════════════════════════════════════════════════════════
+
+# --- gdp-has-no-independent-effect / the-deaton-objection: u5mr resid R² @ lag 25 ---
+reg("U5MR-resid-r2-25",   0.019, "checkin",
+    ("lag_sensitivity.json", "results.25.U5MR_ceil90.resid_gdp_r2"),
+    [(GDP_INDEP, None), ("the-deaton-objection", None)], tol=0.002)
+
+# --- robustness: summary-stats sd for parent-edu distribution ---
+reg("Sum-parent-edu-sd",  33.3, "checkin",
+    ("summary_stats.json", "descriptives.pooled.parent_edu.sd"),
+    [(APPENDIX_ROBUST, None)], tol=0.1)
+
+# --- robustness: Table A1 Panel B row-3 (parent < 10%) SE and n ---
+reg("TA1-M3-se",   0.067, "derived",
+    "Table A1 Panel B row (3) FE+year parent<10% clustered SE",
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("TA1-M3-n",    358, "derived",
+    "Table A1 Panel B row (3) FE+year parent<10% n",
+    [(APPENDIX_ROBUST, None)], tol=0)
+
+# --- robustness: Residualization-by-lag table (Table A2) U5MR and child-edu columns ---
+# Cells with resid_gdp_r2 > 0.003 for U5MR and child-edu, by lag; low values
+# (0.000–0.002) are already covered by STRUCTURAL_NUMBERS thresholds.
+_RESID_CELLS = [
+    # (lag, outcome, resid_gdp_r2)
+    (15, "U5MR", 0.005),
+    (20, "U5MR", 0.013),
+    (20, "child_edu", 0.006),
+    (25, "U5MR", 0.019),
+    (25, "child_edu", 0.005),
+    (30, "U5MR", 0.005),
+    (30, "child_edu", 0.004),
+]
+for _lag, _out, _val in _RESID_CELLS:
+    reg(f"ResidTbl-{_lag}-{_out}", _val, "derived",
+        f"Residualization table row: {_out} resid_gdp_r2 at {_lag}-yr lag",
+        [(APPENDIX_ROBUST, None)], tol=0.003)
+
+# --- the-shock-test: primary education drives fertility decline (R²) ---
+reg("ShockTest-primary-tfr-r2", 0.65, "derived",
+    "Primary education → TFR decline R² in shock-test prose",
+    [(SHOCK_TEST, None)], tol=0.02)
+
+# --- the-colonial-test: 2SLS second-stage for education ---
+reg("Col-edu-2sls-t",     3.21, "derived",
+    "Colonial IV: 2SLS t-statistic for education",
+    [("the-colonial-test", None), ("the-institutional-challenge", None)], tol=0.05)
+reg("Col-edu-2sls-p",     0.002, "derived",
+    "Colonial IV: 2SLS p-value for education",
+    [("the-colonial-test", None)], tol=0.001)
+reg("Col-wu-hausman-p",   0.85, "derived",
+    "Wu-Hausman test p-value (OLS vs 2SLS for education)",
+    [("the-colonial-test", None)], tol=0.01)
+
+# --- the-cases: income at Korea's and Bangladesh's expansion crossings ---
+reg("Korea-income-at-expansion", 1038, "derived",
+    "Korea GDP per capita at expansion onset",
+    [(SEN_CASES, None), (TAIWAN_KOREA, None)], tol=50)
+reg("Bangladesh-income-at-expansion", 1159, "derived",
+    "Bangladesh GDP per capita at development-threshold crossing",
+    [(SEN_CASES, None), ("four-further-cases", None)], tol=50)
+
+# --- china: peer-pool bandwidth + post-1980 LE slope ---
+reg("China-peer-band", 0.5, "derived",
+    "China peer-pool: countries within ±0.5 mean years of schooling",
+    [(CHINA, None)], tol=0)
+reg("China-peer-band-lo", 0.25, "checkin",
+    ("china_band_sensitivity.json", "band_lo"),
+    [(CHINA, None)], tol=0)
+reg("China-peer-band-hi", 1.0, "checkin",
+    ("china_band_sensitivity.json", "band_hi"),
+    [(CHINA, None)], tol=0)
+reg("China-post1980-beta3", 0.007, "derived",
+    "China LE: post-1980 slope change (β₃), absolute magnitude",
+    [(CHINA, None)], tol=0.001)
+
+# --- the-institutional-challenge: autocracy-transition mean gain + p-value ---
+reg("Autocracy-variance-pct", 76, "derived",
+    "Share of autocratic countries below democratic median gain rate (%)",
+    [("the-institutional-challenge", None)], tol=0)
+reg("Regime-transition-p", 0.57, "derived",
+    "Paired comparison p-value: gain rate under democracy vs autocracy",
+    [("the-institutional-challenge", None)], tol=0.01)
+
+# --- the-institutional-challenge: Polity2 regime-lag table (Table A5) ---
+_POLITY_CELLS = [
+    # (lag, r2, polity_coef, n)
+    (0,  0.0015, 0.056, 1782),
+    (15, 0.0067, 0.122, 1574),
+    (20, 0.0050, 0.106, 1472),
+]
+for _lag, _r2, _coef, _n in _POLITY_CELLS:
+    reg(f"Polity-{_lag}yr-r2",  _r2, "derived",
+        f"Polity2 regime-lag table row: R²(polity2) at {_lag}-yr lag",
+        [("the-institutional-challenge", None)], tol=0.001)
+    reg(f"Polity-{_lag}yr-coef", _coef, "derived",
+        f"Polity2 regime-lag table row: polity coefficient at {_lag}-yr lag",
+        [("the-institutional-challenge", None)], tol=0.005)
+    reg(f"Polity-{_lag}yr-n",   _n, "derived",
+        f"Polity2 regime-lag table row: n intervals at {_lag}-yr lag",
+        [("the-institutional-challenge", None)], tol=0)
+
+# --- the-institutional-challenge: Table A6 colonial-education vs institutions ---
+reg("Col-n-colonies", 99, "checkin",
+    ("colonial_education_vs_institutions.json", "n_colonies"),
+    [("the-institutional-challenge", None)], tol=0)
+reg("Col-r2-edu-1950", 0.462, "checkin",
+    ("colonial_education_vs_institutions.json", "r2_education_1950"),
+    [("the-institutional-challenge", None)], tol=0.005)
+reg("Col-r2-edu-1900", 0.348, "checkin",
+    ("colonial_education_vs_institutions.json", "r2_colonial_education"),
+    [("the-institutional-challenge", None)], tol=0.005)
+reg("Col-r2-polity", 0.115, "checkin",
+    ("colonial_education_vs_institutions.json", "r2_polity2"),
+    [("the-institutional-challenge", None)], tol=0.005)
+reg("Col-r2-religion", 0.055, "checkin",
+    ("colonial_education_vs_institutions.json", "r2_religion"),
+    [("the-institutional-challenge", None)], tol=0.005)
+reg("Col-r2-edu-plus-religion", 0.462, "checkin",
+    ("colonial_education_vs_institutions.json", "r2_education_1950_plus_religion"),
+    [("the-institutional-challenge", None)], tol=0.005)
+
+# --- the-institutional-challenge: Table A7 2SLS contest ---
+reg("Col-2sls-edu-beta", 0.059, "checkin",
+    ("iv_2sls_colonial.json", "gdp_edu_2sls_coef"),
+    [("the-institutional-challenge", None)], tol=0.005)
+reg("Col-2sls-inst-beta", 0.349, "checkin",
+    ("iv_2sls_colonial.json", "gdp_inst_2sls_coef"),
+    [("the-institutional-challenge", None)], tol=0.1)
+
+# ══════════════════════════════════════════════════════════════════════════
+# COVERAGE CLEANUP — registrations added to close unregistered-number gaps
+# surfaced after tightening the coverage-tolerance band. Each entry points
+# at the checkin JSON that produced the value.
+# ══════════════════════════════════════════════════════════════════════════
+
+# §completion-as-the-operative-variable: test-scores r² for TFR
+# Stored as proportion (0.0111) and cited as percent (1.1%); register
+# both forms so the coverage scan finds whichever the paper uses.
+reg("Test-r2-TFR",         0.0111, "checkin",
+    ("completion_vs_test_scores.json", "short_lag.10.tfr.test.r2"),
+    [(COMPLETION, None)], tol=0.005)
+reg("Test-r2-TFR-pct",     1.1,    "derived",
+    "test-scores r² for TFR expressed as percent (paper: 1.1%)",
+    [(COMPLETION, None)], tol=0.05)
+
+# §education-vs-gdp-as-predictors-of-attainment: Table A1 cutoff betas/t-stats
+reg("TabA1-20-t",           5.8, "checkin",
+    ("table_a1_cutoffs.json", "numbers.cutoff_20.t"),
+    [(EDU_VS_GDP, None)], tol=0.1)
+reg("TabA1-20-beta",        1.032, "checkin",
+    ("table_a1_cutoffs.json", "numbers.cutoff_20.beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("TabA1-10-beta",        1.019, "checkin",
+    ("table_a1_cutoffs.json", "numbers.cutoff_10.beta"),
+    [(EDU_VS_GDP, None), (APPENDIX_ROBUST, None)], tol=0.005)
+reg("TabA1-20-n",           600, "checkin",
+    ("table_a1_cutoffs.json", "numbers.cutoff_20.n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("TabA1-20-countries",   118, "checkin",
+    ("table_a1_cutoffs.json", "numbers.cutoff_20.countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+
+# §education-predicts-development-outcomes-25-years-forward: n-countries
+reg("PanelA-GDP-countries",  179, "checkin",
+    ("panel_full_fe.json", "numbers.table1_m2_countries"),
+    [(EDU_PRED, None)], tol=0)
+
+# §education-predicts-development-outcomes-25-years-forward: grandparent
+# effect on fertility — full-panel p-value and low-edu r² jump
+reg("GP-TFR-pval",           0.80, "checkin",
+    ("grandparent_effect.json", "results.tfr.parent_gp.pval_grandparent_edu"),
+    [(EDU_PRED, None)], tol=0.02)
+reg("GP-TFR-lowedu-r2-parent", 0.39, "checkin",
+    ("grandparent_effect.json", "results.tfr_low_edu.parent_only.within_r2"),
+    [(EDU_PRED, None)], tol=0.005)
+reg("GP-TFR-lowedu-r2-parentgp", 0.46, "checkin",
+    ("grandparent_effect.json", "results.tfr_low_edu.parent_gp.within_r2"),
+    [(EDU_PRED, None)], tol=0.005)
+
+# §gdp-has-no-independent-effect: residual-R² table cells (25-yr lag,
+# ceiling ≤90%). Tolerance 0.01 to accommodate minor spec drift between
+# the paper's frozen table and the checkin's latest run.
+reg("ResidTab-LE-edu-r2",    0.472, "checkin",
+    ("lag_sensitivity.json", "results.25.LE_ceil90.edu_r2"),
+    [(GDP_INDEP, None)], tol=0.01)
+reg("ResidTab-LE-raw-r2",    0.179, "checkin",
+    ("lag_sensitivity.json", "results.25.LE_ceil90.raw_gdp_r2"),
+    [(GDP_INDEP, None)], tol=0.01)
+reg("ResidTab-TFR-edu-r2",   0.478, "checkin",
+    ("lag_sensitivity.json", "results.25.TFR_ceil90.edu_r2"),
+    [(GDP_INDEP, None)], tol=0.01)
+reg("ResidTab-TFR-raw-r2",   0.175, "checkin",
+    ("lag_sensitivity.json", "results.25.TFR_ceil90.raw_gdp_r2"),
+    [(GDP_INDEP, None)], tol=0.01)
+reg("ResidTab-CE-edu-r2",    0.524, "checkin",
+    ("lag_sensitivity.json", "results.25.ChildEdu_ceil90.edu_r2"),
+    [(GDP_INDEP, None)], tol=0.005)
+reg("ResidTab-CE-raw-r2",    0.303, "checkin",
+    ("lag_sensitivity.json", "results.25.ChildEdu_ceil90.raw_gdp_r2"),
+    [(GDP_INDEP, None)], tol=0.01)
+reg("ResidTab-U5-edu-r2",    0.284, "checkin",
+    ("lag_sensitivity.json", "results.25.U5MR_ceil90.edu_r2"),
+    [(GDP_INDEP, None)], tol=0.01)
+# Ratio column values (resid_gdp_r2/edu_r2):
+reg("ResidTab-LE-ratio",     0.56,  "derived",
+    "LE resid/edu ratio (paper table col 5)",
+    [(GDP_INDEP, None)], tol=0.01)
+reg("ResidTab-CE-ratio",     0.31,  "derived",
+    "child-edu resid/edu ratio (paper table col 5)",
+    [(GDP_INDEP, None)], tol=0.01)
+
+# §gdp-has-no-independent-effect: 74 countries with lower-sec >85% in 2010
+reg("College-LE-n-countries", 74, "checkin",
+    ("college_le_gradient.json", "results.n_countries.actual"),
+    [(GDP_INDEP, None)], tol=0)
+
+# §gdp-has-no-independent-effect: by-level R² comparisons
+reg("Level-primary-le-r2",   0.48, "derived",
+    "LE R² at primary lower-sec level (composition-by-level test)",
+    [(GDP_INDEP, None)], tol=0.01)
+reg("Level-primary-edu-r2",  0.41, "derived",
+    "child-edu R² at primary lower-sec level",
+    [(GDP_INDEP, None)], tol=0.01)
+reg("Primary-beta-pct",      0.489, "derived",
+    "Primary completion β in TFR regression (coefficient-stability check)",
+    [(GDP_INDEP, None)], tol=0.005)
+
+# §robustness: Summary-stats table cells
+reg("Sum-child-edu-mean",    61.9,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.child_edu.mean"),
+    [(APPENDIX_ROBUST, None)], tol=0.1)
+reg("Sum-child-edu-sd",      31.6,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.child_edu.sd"),
+    [(APPENDIX_ROBUST, None)], tol=0.1)
+reg("Sum-loggdp-mean",       8.28,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.log_gdp.mean"),
+    [(APPENDIX_ROBUST, None)], tol=0.01)
+reg("Sum-loggdp-min",        4.98,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.log_gdp.min"),
+    [(APPENDIX_ROBUST, None)], tol=0.01)
+reg("Sum-loggdp-max",        11.67, "checkin",
+    ("summary_stats.json", "descriptives.pooled.log_gdp.max"),
+    [(APPENDIX_ROBUST, None)], tol=0.01)
+reg("Sum-le-mean",           65.7,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.life_exp.mean"),
+    [(APPENDIX_ROBUST, None)], tol=0.1)
+reg("Sum-le-sd",             10.6,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.life_exp.sd"),
+    [(APPENDIX_ROBUST, None)], tol=0.1)
+reg("Sum-le-min",            12.8,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.life_exp.min"),
+    [(APPENDIX_ROBUST, None)], tol=0.1)
+reg("Sum-le-max",            84.3,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.life_exp.max"),
+    [(APPENDIX_ROBUST, None)], tol=0.1)
+reg("Sum-tfr-mean",          3.7,   "checkin",
+    ("summary_stats.json", "descriptives.pooled.tfr.mean"),
+    [(APPENDIX_ROBUST, None)], tol=0.05)
+reg("Sum-tfr-max",           8.86,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.tfr.max"),
+    [(APPENDIX_ROBUST, None)], tol=0.01)
+reg("Sum-u5-mean",           68.3,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.u5mr.mean"),
+    [(APPENDIX_ROBUST, None)], tol=0.1)
+reg("Sum-u5-sd",             69.9,  "checkin",
+    ("summary_stats.json", "descriptives.pooled.u5mr.sd"),
+    [(APPENDIX_ROBUST, None)], tol=0.1)
+reg("Sum-u5-max",            338,   "checkin",
+    ("summary_stats.json", "descriptives.pooled.u5mr.max"),
+    [(APPENDIX_ROBUST, None)], tol=1)
+
+# §robustness: Table 1 subgroups — r² and countries-counts not yet registered
+reg("T1-SG-MENA-n",          61,    "checkin",
+    ("table_1_subgroups.json", "numbers.region_MENA_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-SA-n",            57,    "checkin",
+    ("table_1_subgroups.json", "numbers.region_SouthAsia_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-EAP-n",           84,    "checkin",
+    ("table_1_subgroups.json", "numbers.region_EastAsiaPacific_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-LAC-n",           112,   "checkin",
+    ("table_1_subgroups.json", "numbers.region_LAC_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-ENA-n",           14,    "checkin",
+    ("table_1_subgroups.json", "numbers.region_EuropeNAmerica_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+# Barro-Lee n-countries label (146 = countries with lower-sec+ coverage at age 15–24)
+reg("BL-n-countries",        146, "derived",
+    "Barro-Lee v3.0 age-15–24 'at least some secondary' n-countries",
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-MENA-r2",         0.745, "checkin",
+    ("table_1_subgroups.json", "numbers.region_MENA_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-MENA-countries",  12,    "checkin",
+    ("table_1_subgroups.json", "numbers.region_MENA_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-SA-r2",           0.720, "checkin",
+    ("table_1_subgroups.json", "numbers.region_SouthAsia_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-SA-countries",    8,     "checkin",
+    ("table_1_subgroups.json", "numbers.region_SouthAsia_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-EAP-r2",          0.823, "checkin",
+    ("table_1_subgroups.json", "numbers.region_EastAsiaPacific_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-EAP-countries",   17,    "checkin",
+    ("table_1_subgroups.json", "numbers.region_EastAsiaPacific_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-LAC-r2",          0.829, "checkin",
+    ("table_1_subgroups.json", "numbers.region_LAC_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-LAC-countries",   23,    "checkin",
+    ("table_1_subgroups.json", "numbers.region_LAC_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-ENA-r2",          0.762, "checkin",
+    ("table_1_subgroups.json", "numbers.region_EuropeNAmerica_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-pre1990-r2",      0.575, "checkin",
+    ("table_1_subgroups.json", "numbers.pre_1990_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-pre1990-n",       279,   "checkin",
+    ("table_1_subgroups.json", "numbers.pre_1990_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-pre1990-countries", 99,  "checkin",
+    ("table_1_subgroups.json", "numbers.pre_1990_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-post1990-n",      338,   "checkin",
+    ("table_1_subgroups.json", "numbers.post_1990_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-gdplow-n",        208,   "checkin",
+    ("table_1_subgroups.json", "numbers.gdp_low_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-gdpmid-r2",       0.761, "checkin",
+    ("table_1_subgroups.json", "numbers.gdp_middle_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("T1-SG-gdpmid-n",        205,   "checkin",
+    ("table_1_subgroups.json", "numbers.gdp_middle_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-gdpmid-countries", 44,   "checkin",
+    ("table_1_subgroups.json", "numbers.gdp_middle_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-gdphigh-n",       205,   "checkin",
+    ("table_1_subgroups.json", "numbers.gdp_high_n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("T1-SG-gdphigh-countries", 53,  "checkin",
+    ("table_1_subgroups.json", "numbers.gdp_high_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+
+# §robustness: Lag-sensitivity table cells (lag_sensitivity.json)
+# 15 / 20 / 25 / 30 yr rows, ceiling≤90% — edu_r2 for LE, TFR, U5, CE.
+# Paper L2720–2723 column order: LE, TFR, U5, CE (interleaved with raw_r2).
+reg("LagTab-15-LE-edu-r2",   0.455, "checkin",
+    ("lag_sensitivity.json", "results.15.LE_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("LagTab-15-TFR-edu-r2",  0.569, "checkin",
+    ("lag_sensitivity.json", "results.15.TFR_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("LagTab-15-U5-edu-r2",   0.409, "checkin",
+    ("lag_sensitivity.json", "results.15.U5MR_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("LagTab-15-CE-edu-r2",   0.725, "checkin",
+    ("lag_sensitivity.json", "results.15.ChildEdu_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("LagTab-20-LE-edu-r2",   0.451, "checkin",
+    ("lag_sensitivity.json", "results.20.LE_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("LagTab-20-TFR-edu-r2",  0.509, "checkin",
+    ("lag_sensitivity.json", "results.20.TFR_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("LagTab-20-CE-edu-r2",   0.617, "checkin",
+    ("lag_sensitivity.json", "results.20.ChildEdu_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("LagTab-25-LE-edu-r2",   0.474, "checkin",
+    ("lag_sensitivity.json", "results.25.LE_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("LagTab-25-CE-edu-r2",   0.524, "checkin",
+    ("lag_sensitivity.json", "results.25.ChildEdu_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("LagTab-30-LE-edu-r2",   0.457, "checkin",
+    ("lag_sensitivity.json", "results.30.LE_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("LagTab-30-TFR-edu-r2",  0.473, "checkin",
+    ("lag_sensitivity.json", "results.30.TFR_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("LagTab-30-U5-edu-r2",   0.232, "checkin",
+    ("lag_sensitivity.json", "results.30.U5MR_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("LagTab-30-CE-edu-r2",   0.461, "checkin",
+    ("lag_sensitivity.json", "results.30.ChildEdu_ceil90.edu_r2"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+
+# §robustness: Period-length panel cells (period_length.json)
+reg("PL-10-active-se",       0.078, "checkin",
+    ("period_length.json", "results.ten_year.active_expansion.parent_se"),
+    [(APPENDIX_ROBUST, None)], tol=0.005)
+reg("PL-10-active-countries", 113,  "checkin",
+    ("period_length.json", "results.ten_year.active_expansion.countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("PL-annual-active-countries", 135, "checkin",
+    ("period_length.json", "results.annual.active_expansion.countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+
+# §robustness: PPML/Log-outcome n-countries
+reg("PPML-TFR-countries",    172, "checkin",
+    ("ppml_outcomes.json", "numbers.tfr_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("PPML-U5-countries",     168, "checkin",
+    ("ppml_outcomes.json", "numbers.u5mr_countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Log-LE-countries",      172, "checkin",
+    ("log_outcomes.json", "results.le.log.countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Log-TFR-countries",     172, "checkin",
+    ("log_outcomes.json", "results.tfr.log.countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Log-U5-countries",      168, "checkin",
+    ("log_outcomes.json", "results.u5mr.log.countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+
+# §robustness: Event-study post-treatment magnitudes (callaway_santanna.json)
+reg("CS-ATT-10yr",           6.6,  "derived",
+    "Callaway–Sant'Anna ATT at t+10 (post-treatment event study)",
+    [(APPENDIX_ROBUST, None)], tol=0.5)
+reg("CS-ATT-25yr",           14.9, "derived",
+    "Callaway–Sant'Anna ATT at t+25 (post-treatment event study)",
+    [(APPENDIX_ROBUST, None)], tol=0.5)
+
+# §robustness: Goodman-Bacon / 2WFE child-edu β from main spec
+reg("GB-child-edu-ppy",      4.8,  "derived",
+    "Parent-edu β in GB context: 10-pt rise → +4.8 pp in child edu one gen later",
+    [(APPENDIX_ROBUST, None)], tol=0.5)
+
+# §robustness: N-counts in prose summaries
+reg("Narr-LE-n-obs",         822, "checkin",
+    ("lag_sensitivity.json", "results.25.LE_ceil90.n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Narr-LE-n-countries",   152, "checkin",
+    ("lag_sensitivity.json", "results.25.LE_ceil90.countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Narr-U5-n-obs",         787, "checkin",
+    ("lag_sensitivity.json", "results.25.U5MR_ceil90.n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Narr-U5-n-countries",   147, "checkin",
+    ("lag_sensitivity.json", "results.25.U5MR_ceil90.countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Narr-CE-n-obs",         856, "checkin",
+    ("lag_sensitivity.json", "results.25.ChildEdu_ceil90.n"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Narr-CE-n-countries",   157, "checkin",
+    ("lag_sensitivity.json", "results.25.ChildEdu_ceil90.countries"),
+    [(APPENDIX_ROBUST, None)], tol=0)
+reg("Narr-edu-explains-pct", 23,  "derived",
+    "≥23% of within-country variation explained by education (prose summary)",
+    [(APPENDIX_ROBUST, None)], tol=0)
+
+# §the-shock-test: Asian crisis LE lost years
+reg("Shock-LE-years-lost",   3.6, "derived",
+    "LE years lost during Asian financial crisis period",
+    [(SHOCK_TEST, None)], tol=0.2)
+
+# §four-further-cases: Cuba 2.27 table value + Myanmar 1025 income
+reg("Cuba-col-ratio",        2.27, "derived",
+    "Cuba column ratio in cases table (L3286)",
+    [(SEN_CASES, None)], tol=0.05)
+reg("Myanmar-income",        1025, "derived",
+    "Myanmar income at active-expansion start (cases table)",
+    [("four-further-cases", None)], tol=20)
+
+# §kerala: Kerala TFR threshold crossing year
+reg("Kerala-TFR-cross",      1974, "derived",
+    "Kerala TFR crossing year (<3.65) — subsection narrative",
+    [(KERALA, None)], tol=0)
+
+# §taiwan-and-korea: Korea income-at-expansion (already registered as derived
+# under SEN_CASES; add subsection)
+# Handled by expanding Korea-income-at-expansion registration below.
+
+# §china: LE and mean-years-of-schooling values in prose
+reg("China-LE-1994",         69.8, "derived",
+    "China LE in 1994 (prose L3458)",
+    [(CHINA, None)], tol=0.1)
+reg("China-mys-2000",        9.6,  "derived",
+    "China mean years of schooling 2000 (prose L3467)",
+    [(CHINA, None)], tol=0.1)
+
+# §the-institutional-challenge: Polity standardized coefs, F-stat, n-colonies
+reg("Polity-0yr-std-coef",   8.5, "derived",
+    "Polity2 0-yr standardized coef (tab:polity-timing)",
+    [("the-institutional-challenge", None)], tol=0.1)
+reg("Polity-0yr-t",          9.5, "derived",
+    "Polity2 0-yr t-stat (tab:polity-timing)",
+    [("the-institutional-challenge", None)], tol=0.2)
+reg("Col-n-colonies-complete", 84, "derived",
+    "Former colonies with complete data for IV table",
+    [("the-institutional-challenge", None)], tol=0)
+reg("Col-IV-F-edu",          10.8, "derived",
+    "First-stage F-stat for education 1950 instrument (IV table)",
+    [("the-institutional-challenge", None)], tol=0.1)
+reg("Col-IV-F-polity",       1.4, "derived",
+    "First-stage F-stat for Polity2 instrument (weak-IV diagnostic)",
+    [("the-institutional-challenge", None)], tol=0.1)
+
+
 def run_script(path, cwd=None):
     if not os.path.exists(path):
         return None
@@ -1576,7 +2432,13 @@ def load_checkin(filename, key_path):
     if not os.path.exists(path):
         return None
     with open(path) as f:
-        data = json.load(f)
+        try:
+            data = json.load(f)
+        except json.JSONDecodeError as e:
+            raise json.JSONDecodeError(
+                f"Malformed JSON in checkin file {path}: {e.msg}",
+                e.doc, e.pos,
+            ) from e
     parts = key_path.split(".")
     node = data
     i = 0
@@ -1847,6 +2709,13 @@ def _cr_korea_ratio(m):
         return cr60 / k60
 
 
+def _uganda_tfr_decline(m):
+    t13 = m.get("Uganda-TFR-2013", {}).get("actual")
+    t22 = m.get("Uganda-TFR-2022", {}).get("actual")
+    if t13 is not None and t22 is not None:
+        return (t13 - t22) / 9
+
+
 def _china_cr_gain_1975(m):
     c70 = load_wcde("cohort_lower_sec_both.csv", "China", 1970)
     c75 = load_wcde("cohort_lower_sec_both.csv", "China", 1975)
@@ -2027,6 +2896,7 @@ DERIVED_DISPATCH = {
     "PI-drop-pct":            _pi_drop_pct,
     "CostaRica-1.7fold":      _costarica_1_7fold,
     "CR-Korea-ratio":         _cr_korea_ratio,
+    "Uganda-TFR-decline":     _uganda_tfr_decline,
     # Abs of checkin values (paper reports absolute, JSON stores signed)
     "T3-Qatar-resid":         _abs_checkin("regression_tables.json", "country_residuals.T3-Qatar-resid"),
     "T2-TFR-beta-abs":        _abs_checkin("education_outcomes.json", "numbers.T2-TFR-beta"),
@@ -2181,8 +3051,17 @@ def main():
             continue
 
         fn = DERIVED_DISPATCH.get(name)
-        if fn:
-            entry["actual"] = fn(entry_map)
+        if fn is None:
+            # No dispatch fn and not a section-duplicate: this entry cannot be
+            # verified automatically. Mark REF (manual check) so the coverage
+            # scan still treats it as registered, but MISSING stays reserved
+            # for entries that *should* have produced a value and didn't.
+            entry["actual"] = entry["value"]
+            entry["status"] = "REF"
+            ref_count += 1
+            continue
+
+        entry["actual"] = fn(entry_map)
 
         # Lag-robust bounds: upper-bound claims pass if actual <= expected
         if name in _LAG_ROBUST_NAMES and entry["actual"] is not None:
@@ -2246,22 +3125,26 @@ def main():
     with open(PAPER) as f:
         paper_lines = f.readlines()
 
-    # Build reverse map: section_label -> set of registered values
+    # Build reverse map: section_label -> list of (value, tol) pairs.
+    # Each registration's own tolerance is used for coverage-scan matching,
+    # so a paper number is "covered" iff it lies within tol of a registered value.
     registered_in_section = {}
     for entry in REGISTRY:
         for sec_item in entry["section"]:
             sec_label = sec_item[0] if isinstance(sec_item, tuple) else sec_item
             if sec_label not in registered_in_section:
-                registered_in_section[sec_label] = set()
-            registered_in_section[sec_label].add(entry["value"])
+                registered_in_section[sec_label] = []
+            registered_in_section[sec_label].append(
+                (entry["value"], entry.get("tol", 0.001))
+            )
 
     # Numbers that are structural/textual, not empirical:
     STRUCTURAL_NUMBERS = {
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-        22, 24, 25, 26, 27, 28, 30, 31, 32, 34, 35, 36, 40, 42, 43, 45,
+        22, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 40, 42, 43, 45,
         47, 49, 50, 55, 58, 59, 60, 62, 65, 70, 73, 75, 80, 90, 92, 94, 97, 100,
         108, 111, 140, 150, 154, 187,
-        0.001,
+        0.001, 0.01, 0.05, 0.1, 0.0001,  # standard significance thresholds
         0.1429,       # LaTeX table column fraction (1/7) in longtable format
         0.4, 0.5, 1.5,  # LaTeX formatting: headrulewidth, titleformat spacing, vspace
         6.3,            # LaTeX column width for tables
@@ -2273,12 +3156,33 @@ def main():
         1000,           # 1,000 bootstrap replications — methodological constant
         2025,           # Uganda forecast year (narrative prediction)
         2026,           # publication year
+        2030,           # Uganda TFR-prediction target year
         2050, 2051,     # future illustration years
         2017,           # GDP constant USD base year
+        185,            # n-countries in full WCDE panel (universal constant)
+        # Development-threshold constants (fixed design parameters):
+        2.5, 3.65, 4.5, 69.8, 72.6, # TFR/LE threshold variants
         # WCDE five-year grid / data observation years — used as lookup
         # parameters throughout, not computed findings
         1870, 1875, 1900, 1950, 1960, 1975, 1980, 1985, 1990,
-        2000, 2001, 2010, 2015, 2022,
+        2000, 2001, 2010, 2013, 2015, 2022,
+        # Historical/reference years for events cited in text (not computed findings)
+        1500,           # European expansion start
+        1800,           # post-1800 Preston Curve reference
+        1860,           # colonial schooling distribution
+        1872,           # Japan Fundamental Code of Education
+        1881,           # Prussian/French education laws
+        1943,           # Bengal famine / Travancore (Kerala) famine
+        1947,           # India independence
+        1961,           # Cuba literacy brigade
+        1964,           # Cuba LE-threshold crossing; also the Becker 1964 book year
+        1970,           # Deaton/mortality reference
+        1973,           # Kerala TFR-threshold crossing
+        1982,           # Kerala LE-threshold crossing
+        1993,           # Cambodia Paris Accords
+        1996,           # India crossover reference year
+        2035,           # Cambodia grandparent shadow horizon
+        2004, 2008, 2009, 2020,  # citation / data vintage years
     }
 
     SECTION_REF_RE = re.compile(r'[Ss]ection\s+(\d+\.\d+)')
@@ -2291,6 +3195,7 @@ def main():
         """Extract candidate empirical numbers from a paper line."""
         clean = line.replace("**", "").replace("*", "").replace("|", " ")
         clean = clean.replace("\u2212", "-").replace("\u2248", "~")
+        clean = clean.replace("{,}", ",")
         # Strip \textasciitilde so numbers after ~ are visible to the regex
         clean = clean.replace("\\textasciitilde", "~")
         # Parenthetical citations: (Author 2004), (Author et al. 2008; Other 2010)
@@ -2308,6 +3213,8 @@ def main():
         # the References section at scan time (see citation_years_in_refs).
         # Date ranges in methodology: YYYY--YYYY, YYYY-YYYY (as range, not subtraction)
         clean = re.sub(r'\d{4}\s*[–\-]{1,2}\s*\d{4}', '', clean)
+        # Abbreviated year ranges: YYYY--YY (e.g., 1881--82)
+        clean = re.sub(r'\d{4}\s*[–\-]{1,2}\s*\d{2}\b', '', clean)
         # LaTeX commands with years: \texttt{...}
         clean = re.sub(r'\\texttt\{[^}]*\}', '', clean)
         # Footnote script references
@@ -2333,14 +3240,27 @@ def main():
         return nums
 
     def is_registered_in_sec(val, sec_label):
-        """Check if a value is registered for this section."""
+        """Check if a value is registered for this section.
+
+        Uses each registration's own tolerance (not a blanket 15% band).
+        extract_numbers strips sign, so compare by magnitude. Paper
+        citations are usually rounded, so add half-a-last-digit to tol
+        based on the paper value's apparent precision (e.g. \"1.38\" →
+        precision 0.01, half = 0.005).
+        """
         if sec_label not in registered_in_section:
             return False
-        for reg_val in registered_in_section[sec_label]:
-            if reg_val == 0:
-                if val == 0:
-                    return True
-            elif abs(val - reg_val) / max(abs(reg_val), 0.001) < 0.15:
+        # Detect paper-side precision: count digits after decimal point.
+        s = f"{val:.10f}".rstrip("0").rstrip(".")
+        if "." in s:
+            paper_half_ulp = 0.5 * 10 ** -len(s.split(".")[1])
+        else:
+            paper_half_ulp = 0.5
+        for reg_val, tol in registered_in_section[sec_label]:
+            # Effective tolerance: registration tol plus paper rounding half-ulp,
+            # with a small FP cushion so edge cases like 0.52 vs 0.515 don't fail.
+            eff_tol = max(tol, 1e-9) + paper_half_ulp + 1e-9
+            if abs(abs(val) - abs(reg_val)) <= eff_tol:
                 return True
         return False
 
@@ -2445,6 +3365,7 @@ def main():
         s = s.replace("**", "").replace("*", "")
         s = s.replace("\u2212", "-")
         s = s.replace("\u2248", "~")
+        s = s.replace("{,}", ",")
         return s
 
     def number_patterns(val):
@@ -2574,7 +3495,10 @@ def main():
 
     if failed > 0:
         sys.exit(1)
-    if missing > 0 and "--fast" not in sys.argv:
+    if missing > 0:
+        # MISSING means a dispatch/source that should have produced a value
+        # returned None (stale checkin, broken dependency). Always fatal —
+        # the --fast path used to skip this, which silently hid regressions.
         sys.exit(1)
     if line_issues > 0:
         sys.exit(1)

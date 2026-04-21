@@ -378,8 +378,8 @@ _TERRITORY_ALIASES = {
     "guam": ["Guam"],
     "holy see": ["Holy See", "Vatican", "Vatican City"],
     "hong kong": [
-        "Hong Kong", "Hong Kong SAR, China", "Hong Kong S.A.R., China",
-        "Hong Kong S.A.R. of China",
+        "Hong Kong", "Hong Kong SAR", "Hong Kong SAR, China",
+        "Hong Kong S.A.R., China", "Hong Kong S.A.R. of China",
         "Hong Kong Special Administrative Region of China",
         "Hong Kong, SAR China", "Hong Kong, China",
         "China, Hong Kong Special Administrative Region",

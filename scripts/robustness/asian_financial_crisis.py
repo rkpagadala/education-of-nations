@@ -154,7 +154,7 @@ for wcde_name, gdp_name in AFC_COUNTRIES.items():
     print()
 
 # ── Write checkin JSON ──────────────────────────────────────────────────────
-# JSON key names use short country names matching verify_nations expectations.
+# JSON key names use short country names matching verify_humanity expectations.
 JSON_KEY_MAP = {
     "South Korea": "korea",
     "Indonesia": "indonesia",

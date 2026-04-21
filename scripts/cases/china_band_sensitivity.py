@@ -153,8 +153,12 @@ def main():
         results[str(band)] = rows
         print()
 
-    # Flat checkin with one number per (band, year, metric)
-    checkin = {}
+    # Flat checkin with one number per (band, year, metric),
+    # plus the band bounds themselves so paper references are traceable.
+    checkin = {
+        "band_lo": min(BANDS),
+        "band_hi": max(BANDS),
+    }
     for band, rows in results.items():
         for r in rows:
             tag = f"China-peers-band{band}-{r['year']}"
