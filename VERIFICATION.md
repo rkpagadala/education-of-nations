@@ -14,7 +14,7 @@ Every empirical number in the paper is traceable to a script that produces it fr
 git clone https://github.com/rkpagadala/education-of-nations.git
 cd education-of-nations
 make setup          # Create venv + install dependencies
-make verify         # ~2 seconds: checks all 351 paper claims against source data
+make verify         # ~2 seconds: checks every paper claim against source data
 make scripts        # Rebuild all checkin JSONs from source data
 ```
 
@@ -24,7 +24,7 @@ A successful run prints:
 
 ```
 ========================================================================
-SUMMARY: 351/351 PASS, 0 FAIL, 0 MISSING, 6 REF (manual check)
+SUMMARY: N/N PASS, 0 FAIL, 0 MISSING, K REF (manual check)
 COVERAGE: 0 lines with unregistered numbers
 ========================================================================
 ```
@@ -102,7 +102,7 @@ Layer 3: Master verifier (verify_humanity.py → reads paper .tex, checks every 
 - **Verify scripts** (prefix `verify_`): Check specific factual claims (country education levels, GDP values, crossing dates).
 - **Analysis scripts**: Run regressions, sweeps, or robustness tests and store all computed coefficients.
 
-**Layer 3** — `verify_humanity.py` maintains a registry of 351 numbers that appear in the paper. For each one, it looks up the actual value from a checkin JSON (or WCDE/WDI CSV directly), compares it to the expected value within a tolerance, and reports PASS/FAIL. It also scans the `.tex` file for any numbers that are *not* registered.
+**Layer 3** — `verify_humanity.py` maintains a registry of every number that appears in the paper. For each one, it looks up the actual value from a checkin JSON (or WCDE/WDI CSV directly), compares it to the expected value within a tolerance, and reports PASS/FAIL. It also scans the `.tex` file for any numbers that are *not* registered.
 
 Two Makefiles orchestrate everything:
 - **Top-level Makefile**: `make verify` runs the fast check; `make scripts` rebuilds all JSONs from source data.
@@ -174,7 +174,7 @@ Regression output (particularly standard errors and p-values) can vary across st
 
 ## 3. Claim Trace Table
 
-Every number in the paper can be traced from the text to a script and source data. The master verifier (`verify_humanity.py`) maintains 351 registered claims. Below is a representative sample showing how to trace key results.
+Every number in the paper can be traced from the text to a script and source data. The master verifier (`verify_humanity.py`) registers every cited number. Below is a representative sample showing how to trace key results.
 
 ### Core Regressions (Table 1)
 
@@ -293,13 +293,13 @@ Every number in the paper can be traced from the text to a script and source dat
 | Low-GDP group R² = 0.706 | `robustness/beta_by_baseline_group.py` | `beta_by_baseline_group.json` → `numbers.Grp-low-R2` | ±0.02 |
 | High-GDP group β = 0.176 | `robustness/beta_by_baseline_group.py` | `beta_by_baseline_group.json` → `numbers.Grp-high-beta` | ±0.05 |
 
-The full registry (351 entries) is in `scripts/verify_humanity.py`. Every `reg()` call documents the name, expected value, source, JSON key path, paper section, and tolerance.
+The full registry is in `scripts/verify_humanity.py`. Every `reg()` call documents the name, expected value, source, JSON key path, paper section, and tolerance.
 
 ---
 
 ## 4. The Master Verifier
 
-**File:** `scripts/verify_humanity.py` (~1,990 lines)
+**File:** `scripts/verify_humanity.py`
 
 ### Purpose
 
@@ -324,15 +324,13 @@ reg(name, value, source, detail, section, tol=0.001)
 - **section**: Where in the paper this number appears. List of `(section_label, line_offset)` tuples.
 - **tol**: Tolerance for comparison. Default 0.001.
 
-### Registry Summary (351 entries)
+### Registry Source Types
 
-| Source Type | Count | What It Covers |
-|-------------|-------|----------------|
-| checkin | 176 | Regression output, test statistics, computed values from JSON files |
-| wdi | 82 | GDP, LE, TFR point values looked up from World Bank CSVs |
-| derived | 62 | Ratios, rates, percentages computed from other verified values |
-| wcde | 31 | Education levels looked up from WCDE CSVs |
-| ref | 6 | Literature references (manual check) |
+- `checkin` — regression output, test statistics, computed values from JSON files
+- `wdi` — GDP, LE, TFR point values looked up from World Bank CSVs
+- `wcde` — education levels looked up from WCDE CSVs
+- `derived` — ratios, rates, percentages computed from other verified values
+- `ref` — literature references (manual check)
 
 ### Verification Phases
 
@@ -358,7 +356,7 @@ reg(name, value, source, detail, section, tol=0.001)
 ========================================================================
 PAPER NUMBER VERIFICATION
 Paper: paper/education_of_humanity.tex
-Registry: 351 entries
+Registry: every cited number
 ========================================================================
 
   [checkin:panel_full_fe.json]
@@ -377,7 +375,7 @@ Registry: 351 entries
   ...
 
 ========================================================================
-SUMMARY: 351/351 PASS, 0 FAIL, 0 MISSING, 6 REF (manual check)
+SUMMARY: N/N PASS, 0 FAIL, 0 MISSING, K REF (manual check)
 COVERAGE: 0 lines with unregistered numbers
 ========================================================================
 ```
@@ -962,7 +960,7 @@ wcde/data/processed/*.csv  (185 countries, 1950–2015, 5-year intervals)
       ▼              ▼
   ┌──────────────────────────────────┐
   │  verify_humanity.py               │
-  │  (351 registered claims)         │
+  │  (every cited number registered) │
   │                                  │
   │  Phase 1: Look up actual values  │
   │  Phase 2: Compare exp vs actual  │

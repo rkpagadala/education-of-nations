@@ -10,7 +10,7 @@ Every empirical claim in the paper traces to a script that produces it from sour
 git clone https://github.com/rkpagadala/education-of-nations.git
 cd education-of-nations
 make setup     # Create venv + install dependencies
-make verify    # Check all 343 claims against source data (~2 sec)
+make verify    # Check every paper claim against source data (~2 sec)
 ```
 
 Requires Python 3.9+. All source data is included.
@@ -18,8 +18,8 @@ Requires Python 3.9+. All source data is included.
 ## What's here
 
 ```
-scripts/                 42 analysis scripts + master verifier
-  verify_humanity.py       Checks all 343 paper claims
+scripts/                 Analysis scripts + master verifier
+  verify_humanity.py       Checks every number cited in the paper
   _shared.py               Common data-loading utilities
   cases/                   Country case studies (12 scripts)
   residualization/         Core GDP-has-no-effect tests (10 scripts)
