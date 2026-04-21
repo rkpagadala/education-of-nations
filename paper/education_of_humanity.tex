@@ -491,7 +491,7 @@ in the window.
 Educational dose within the dependency window is continuous, not
 thresholded. The learner who enters at five and leaves at eighteen
 receives thirteen years of the cognitive architecture; the learner
-who leaves at nine receives nine. The biological substrate does not
+who leaves at nine receives four. The biological substrate does not
 switch on at nine years of schooling and off at twelve; the substrate
 is the window itself, and schooling loads into the window at whatever
 depth the population supports.
@@ -1553,20 +1553,15 @@ Chapter~\ref{the-panel} tests all seven in the panel; Chapter~\ref{natural-exper
 
 Education predicts every development outcome one generation forward; income, once education's contribution is removed, predicts none of them. These results are not found by searching for a pattern --- they are the seven predictions of the biological mechanism (Chapter~\ref{the-prediction}), tested against 185 countries over 65 years. All seven hold.
 
-The statistical tests below formalise what the cases in Section~\ref{the-cases} demonstrate historically.
-
-No single table in this section establishes causation on its own. Four
-tests rule out four alternative stories:
-
-\begin{itemize}
-\item \textbf{Forward lag} (Table~\ref{tab:2}) --- rules out reverse causality.
-\item \textbf{Residualization} (Table~\ref{tab:3}) --- rules out GDP-as-independent-cause.
-\item \textbf{Shock test} (Table~\ref{tab:shock}) --- rules out institutions/income as sufficient.
-\item \textbf{Famine test} (§\ref{the-famine-test}) --- rules out provision as necessary.
-\end{itemize}
-
-Each test admits an alternative story in isolation. The causal case is
-that no alternative explanation survives all of them simultaneously.
+Each subsection below shows where one of the seven biological
+predictions (Chapter~\ref{the-prediction}) appears in the 185-country
+panel. The predictions were deduced from the mechanism chain in
+Sections~\ref{longest-juvenile-dependency}--\ref{pt-and-state} before
+the data were examined; their empirical signatures appear in the
+ordering, decay structure, and subsample invariance the mechanism
+specifies, not in any identification strategy imposed on the
+regression. The statistical tests below formalise what the cases in
+Section~\ref{the-cases} demonstrate historically.
 
 \subsection{What This Section Adds}\label{what-this-section-adds}
 
@@ -1606,56 +1601,31 @@ every cutoff and every lag tested.
 
 \subsection{Temporal Structure and Mechanism Testing}\label{causal-identification-the-bad-control-problem-and-natural-experiments}
 
-Education predicts income one generation forward (Table~\ref{tab:2}). Because education produces income, GDP sits on the causal path (education → GDP → life expectancy, fertility). Controlling for GDP strips out part of education's effect and biases the result against the mechanism (Pearl 2009; Angrist \& Pischke 2009, ch.~3). The confusion arises from treating income as a cause when it is a product of education. Regressing outcomes on income compares education's product against the education that produced it. The proximity of income to the outcome gives it an unearned advantage in the comparison.
+Education predicts income one generation forward (Table~\ref{tab:2}).
+Because education produces income, GDP sits on the causal path
+(education $\to$ GDP $\to$ life expectancy, fertility). Controlling for
+GDP strips out part of education's effect and biases the result against
+the mechanism (Pearl 2009; Angrist \& Pischke 2009, ch.~3). Regressing
+outcomes on income compares education's product against the education
+that produced it; the proximity of income to the outcome gives it an
+unearned advantage in the comparison.
 
-The identification rests on three
-structures instead. First, temporal ordering: parental cohort precedes
-child cohort by biological necessity, ruling out reverse causality at
-the individual level. Second, the lag-decay shape (Figure~\ref{fig:3};
-Section~\ref{education-predicts-development-outcomes-25-years-forward}):
-education and income produce structurally different decay profiles that
-autocorrelation cannot explain. Third, and most directly, a set of
-natural experiments that test
-Prediction~\ref{pred:disruption} --- cases where parental education was
-exogenously disrupted or where other development inputs were removed
-while education persisted --- produce outcomes that pure autocorrelation
-cannot predict.
-
-The set includes: Cambodia (population destruction →
-generational shadow); Sri Lanka (civil war, PT unbroken, development on
-schedule); Myanmar (73 years of military rule, outcomes tracked
-education); China (barefoot doctors dismantled, LE continued rising);
-Korea vs Philippines (identical colonial base, divergent state
-commitment); and the Asian Financial Crisis (income wiped, education
-untouched). The cases are developed in Section~\ref{the-cases}.
-
-\textbf{The symmetry objection.} If GDP mediates education's effect,
-controlling for GDP biases against education --- but if education
-partially mediates GDP's effect, controlling for education biases against
-GDP. Three empirical results break the symmetry: (i) education's
-predictive advantage over GDP widens to 3.3× among countries still
-building their education systems
-(Section~\ref{education-vs-gdp-as-predictors-of-attainment}), while
-GDP's predictive power is flat across all cutoffs; (ii) education's
-predictive power persists across multiple generations while income's
-collapses within one (Figure~\ref{fig:3};
-Section~\ref{education-predicts-development-outcomes-25-years-forward});
-and (iii) natural experiments that remove income while preserving
-education show development continuing on schedule
-(Chapter~\ref{natural-experiments}). Autocorrelation and reverse causality cannot
-produce this pattern.
-
-Individual-level designs converge on the same direction.
-
-Duflo's (2001)
-analysis of Indonesia's INPRES school construction programme ---
-the cleanest exogenous education shock in the literature --- finds that
-treated cohorts completed more schooling and earned higher wages,
-with intergenerational follow-ups showing the effect carries to their
-children. These designs identify at a different level of analysis
-(individual cohorts rather than population generations) and cannot test
-multi-generational persistence or residualization against GDP, but they
-are consistent with the mechanism specified here.
+The temporal structure of the regressions provides the ordering.
+Parental cohort precedes child cohort by biological necessity, ruling
+out reverse causality at the individual level. The lag-decay shape
+(Figure~\ref{fig:3};
+Section~\ref{education-predicts-development-outcomes-25-years-forward})
+is the signature of the mechanism: education and income produce
+structurally different decay profiles that autocorrelation cannot
+explain. The natural experiments that test
+Prediction~\ref{pred:disruption} (Chapter~\ref{natural-experiments}) ---
+Cambodia (population destruction $\to$ generational shadow); Sri Lanka
+(civil war, PT unbroken, development on schedule); Myanmar (73 years of
+military rule, outcomes tracked education); China (barefoot doctors
+dismantled, LE continued rising); Korea vs Philippines (identical
+colonial base, divergent state commitment); and the Asian Financial
+Crisis (income wiped, education untouched) --- produce outcomes that
+pure autocorrelation cannot predict.
 
 \subsection{Data}\label{data}
 
@@ -1680,77 +1650,20 @@ education: each country's lower secondary completion lagged 25 years
 
 \subsection{Descriptive Statistics}\label{descriptive-statistics}
 
-\refstepcounter{table}\label{tab:summary}\textbf{Table \thetable. Summary statistics for analysis variables.}
-Analysis panel: 185 countries, 1975--2015 at 5-year intervals, with
-parental education lagged 25 years (observed at $T{-}25$). Produced by
+The analysis panel is 185 countries observed at 5-year intervals
+1975--2015 (1{,}665 country-years; 1{,}466 observations after merging
+the World Bank WDI GDP series, which covers 178 of 185 countries).
+Parental lower secondary completion is observed at $T{-}25$; child
+completion, log GDP per capita, life expectancy, TFR, and under-five
+mortality at $T$.
+
+\refstepcounter{table}\label{tab:summary}\textbf{Table \thetable. Period means, six core variables.}
+Five-year observation bands. Each variable shifts monotonically across
+the sample window as the global educational expansion propagates into
+the developmental phenotype. Full summary statistics (n, mean, sd, min,
+max) and the complete 185-country list are in
+Appendix~\ref{appendix-descriptive}. Produced by
 \texttt{scripts/tables/summary\_stats.py}.
-
-{\small
-\begin{longtable}[]{@{}lrrrrr@{}}
-\toprule
-Variable & n & mean & sd & min & max \\
-\midrule
-\endhead
-Parental lower-sec completion (\%, $T{-}25$) & 1{,}665 & 42.0 & 33.3 &  0.0 & 100.0 \\
-Child lower-sec completion (\%, $T$)          & 1{,}665 & 61.9 & 31.6 &  0.4 & 100.0 \\
-Log GDP per capita (const.\ 2017 USD)         & 1{,}466 &  8.28 &  1.49 & 4.98 &  11.67 \\
-Life expectancy at birth (years)              & 1{,}608 & 65.7 & 10.6 & 12.8 &  84.3 \\
-Total fertility rate (births/woman)           & 1{,}608 &  3.70 &  1.95 & 0.91 &   8.86 \\
-Under-5 mortality (per 1{,}000 live births)   & 1{,}566 & 68.3 & 69.9 &  2.2 & 338.0 \\
-\bottomrule
-\end{longtable}
-}
-
-\emph{The education+GDP panel covers 178 of 185 countries; seven are
-dropped because the World Bank WDI has no GDP series for them: North
-Korea, Taiwan, Micronesia (FSM), and four French overseas departments
-(French Guiana, Guadeloupe, Martinique, Reunion). Country coverage for
-every main specification is listed in
-\texttt{checkin/summary\_stats.json} under \texttt{country\_lists} and
-is cross-checked by
-\texttt{scripts/verify\_country\_names.py}.}\footnote{Full 185-country
-panel (alphabetical, WCDE v3 naming):
-Afghanistan, Albania, Algeria, Angola, Argentina, Armenia, Aruba,
-Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Belarus,
-Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia and Herzegovina,
-Botswana, Brazil, Bulgaria, Burkina Faso, Burundi, Cambodia, Cameroon,
-Canada, Cape Verde, Central African Republic, Chad, Chile, China,
-Colombia, Comoros, Congo, Costa Rica, C\^ote d'Ivoire, Croatia, Cuba,
-Cura\c{c}ao, Cyprus, Czech Republic, North Korea, Democratic Republic
-of the Congo, Denmark, Dominican Republic, Ecuador, Egypt, El Salvador,
-Equatorial Guinea, Estonia, Ethiopia, Fiji, Finland, France, French
-Guiana, French Polynesia, Gabon, Gambia, Georgia, Germany, Ghana,
-Greece, Guadeloupe, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti,
-Honduras, Hong Kong (China SAR), Hungary, Iceland, India, Indonesia,
-Iran, Iraq, Ireland, Israel, Italy, Jamaica, Japan, Jordan, Kazakhstan,
-Kenya, Kiribati, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho,
-Liberia, Lithuania, Luxembourg, Macao (China SAR), Madagascar, Malawi,
-Malaysia, Maldives, Mali, Malta, Martinique, Mauritius, Mexico,
-Micronesia (FSM), Mongolia, Montenegro, Morocco, Mozambique, Myanmar,
-Namibia, Nepal, Netherlands, New Caledonia, New Zealand, Nicaragua,
-Niger, Nigeria, Norway, Palestine, Oman, Pakistan, Panama, Paraguay,
-Peru, Philippines, Poland, Portugal, Puerto Rico, Qatar, South Korea,
-Moldova, Reunion, Romania, Russia, Rwanda, Saint Lucia, Saint Vincent
-and the Grenadines, Samoa, Sao Tome and Principe, Saudi Arabia, Senegal,
-Serbia, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands,
-Somalia, South Africa, South Sudan, Spain, Sri Lanka, Sudan, Suriname,
-Eswatini (Swaziland), Sweden, Switzerland, Syria, Taiwan, Tajikistan,
-Thailand, North Macedonia, Timor-Leste, Togo, Tonga, Trinidad and
-Tobago, Tunisia, T\"urkiye, Turkmenistan, Uganda, Ukraine, United Arab
-Emirates, United Kingdom, Tanzania, United States, Uruguay, Vanuatu,
-Venezuela, Vietnam, Yemen, Zambia, Zimbabwe.}
-
-The panel is observed at five-year intervals; pooled statistics above
-average across all nine observation years (1975, 1980, \ldots, 2015).
-Each variable trends monotonically across the sample window as the
-global educational expansion propagates into the developmental
-phenotype:
-
-\refstepcounter{table}\label{tab:summary-period}\textbf{Table \thetable. Means by five-year observation-year band.}
-All six variables show monotonic shifts consistent with the paper's
-mechanism. Parental completion rises by 29~pp over the sample; child
-completion rises by 19~pp; total fertility halves (4.53 $\to$ 2.95);
-life expectancy rises 8.6 years; under-five mortality falls by 60\%.
 
 {\small
 \begin{longtable}[]{@{}lrrr@{}}
@@ -1768,11 +1681,12 @@ Under-5 mortality (per 1{,}000 live births)   & 98.8 & 66.8 & 39.2 \\
 \end{longtable}
 }
 
-\emph{Period means. Cells are simple means across all country-years in
-the indicated band. The parental-completion column lags child-completion
-by one generation (25 years) by construction: the 1975--1989 parental
-mean of 27\% corresponds to countries' own cohorts of 1950--1964, which
-are the parents of the children observed in 1975--1989.}
+\emph{Parental completion rises 29 pp over the sample; child completion
+rises 19 pp; total fertility halves (4.53 $\to$ 2.95); life expectancy
+rises 8.6 years; under-five mortality falls by 60\%. The parental
+column lags child by one generation (25 years) by construction: the
+1975--1989 parental mean of 27\% corresponds to the 1950--1964 cohorts
+of those same countries.}
 
 \subsection{Completion as the Operative Variable}\label{completion-as-the-operative-variable}
 
@@ -1936,61 +1850,23 @@ design strips out the portion of income that education produced and
 uses only the remainder. Mechanics and results are in
 Section~\ref{gdp-has-no-independent-effect} (Table~\ref{tab:3}).\footnote{Applied across three education levels, four outcomes, and multiple sample definitions including an entry-cohort design (each country enters when it crosses a given threshold; sample closes at a ceiling). See \texttt{scripts/residualization/} (\texttt{education\_vs\_gdp.py}, \texttt{education\_vs\_tfr.py}, \texttt{child\_education.py}, \texttt{by\_entry\_ceiling.py}).}
 
-\textbf{On year fixed effects.} On the \emph{full} 185-country panel,
-adding country-and-year fixed effects collapses the parental
-coefficient from 0.483 to 0.083 ($p=0.07$): an 83 percent decline.
-(On the active-expansion subsample that defines Table~\ref{tab:1},
-the collapse is far milder --- 2.039 to 1.570, $p<0.01$ ---
-see column~4.) The standard econometric response to the full-panel
-number would treat it as evidence that the headline estimate was
-absorbing global time trends and that the true effect is near zero.
-That reading is wrong, for two specific reasons.
-
-First, the decline is the mechanical signature of a now well-documented
-two-way-FE pathology. When treatment is staggered --- different
-countries begin expanding education in different decades --- the 2WFE
-estimator is a weighted average of \emph{all} pairwise comparisons,
-including ``forbidden'' ones that compare newly-expanding countries
-to countries already at high completion. A Goodman-Bacon (2021)
-decomposition of the 2WFE coefficient on my panel
-(\texttt{scripts/robustness/goodman\_bacon\_decomposition.py}) gives
-the weights directly: 7.2 percent from clean not-yet-treated
-comparisons (weighted $\beta$ = 11.3), 21.3 percent from
-treatment-timing pairs (weighted $\beta$ = 1.1), and 71.5 percent
-from already-treated countries used as controls for newly-treated
-ones (weighted $\beta$ = 9.6 but attenuated toward zero by
-heterogeneous treatment effects). The 0.083 figure is a weighted
-average in which three-quarters of the weight sits on comparisons
-that make no causal sense; it is not an unbiased estimate of anything.
-
-Second, running the Callaway--Sant'Anna (2021) estimator --- designed
-explicitly for staggered adoption and limited to the clean comparisons
-only --- recovers the effect. Treating the 10 percent lower secondary
-completion threshold as the event (the crossing from ``no priority''
-to ``active expansion''), crossing the threshold raises child
-completion by 7.9 percentage points one generation later (clustered
-SE 1.7, 95 percent CI 4.4--11.0); the effect compounds to
-$+$21.4 pp by year 35. Pre-treatment event-study coefficients are
-indistinguishable from zero (Figure~\ref{fig:cs-event}).
-
-A caveat on method. CS and Goodman-Bacon were built for
-binary-staggered settings; the treatment variable here is continuous.
-I discretise at the 10 percent threshold because that is where the
-mechanism turns on: below 10 percent the state's education system is
-not yet reaching most households, and PT has no cohort of educated
-parents to propagate from. Robustness to thresholds at 5\% and 15\% is
-a natural next test; I do not claim the particular cutoff is the only
-defensible one.
-
-What I do claim is that the 83 percent 2WFE collapse is not evidence
-against education's effect. The pathology is visible in the weights,
-the clean comparisons give a positive estimate, and the staggered-
-adoption-appropriate estimator confirms it. I keep the one-way
-country-FE specification as the headline because it corresponds to
-the ``how much do educated countries transmit to their children'' test
-the paper sets up --- not because it happens to produce a larger
-number. Section~\ref{robustness} provides the full event study and
-the Goodman-Bacon decomposition.
+\textbf{On year fixed effects.} Adding country-and-year fixed effects
+on the full 185-country panel collapses the parental coefficient from
+0.483 to 0.083 --- the mechanical signature of the staggered-adoption
+pathology, not evidence against the mechanism. Three-quarters of the
+2WFE weight sits on comparisons between newly-expanding countries and
+already-high-completion controls (Goodman-Bacon decomposition,
+\texttt{scripts/robustness/goodman\_bacon\_decomposition.py}). The
+Callaway-Sant'Anna (2021) estimator, limited to clean treatment-timing
+comparisons, recovers the effect: $+$7.9 pp at the generational lag
+and $+$21.4 pp by year 35, with pre-treatment coefficients
+indistinguishable from zero (Figure~\ref{fig:cs-event}). Full
+decomposition weights, event-study pre-trend tests, and the
+continuous-treatment discretisation caveat are in
+Appendix~\ref{appendix-twfe}. I keep the one-way country-FE
+specification as the headline because it corresponds to the ``how much
+do educated countries transmit to their children'' test the paper sets
+up.
 
 \subsection{Education vs.\ GDP as Predictors of Attainment (Prediction~\ref{pred:persistence} and Prediction~\ref{pred:amplification})}\label{education-vs-gdp-as-predictors-of-attainment}
 
@@ -2063,20 +1939,31 @@ staggered-adoption pathology that drives it. GDP is excluded from
 the main regression as a bad control; Table~\ref{tab:3} residualises
 it before the comparison.}
 
-\textbf{Not driven by one region or one era.} Re-running Column~1 on
-every World-Bank-style regional subsample gives the same positive and
-highly significant parental coefficient: Sub-Saharan Africa
-$\beta=1.22$ (SE 0.11), MENA $\beta=1.15$ (0.18), South Asia
-$\beta=2.44$ (0.52), East Asia \& Pacific $\beta=1.49$ (0.10), Latin
-America \& Caribbean $\beta=1.27$ (0.09), Europe \& North America
-$\beta=2.06$ (0.16). Splitting the panel by child-cohort year gives
-$\beta=1.36$ pre-1990 and $\beta=1.33$ from 1990 onward. Splitting by
-GDP tercile within the active-expansion sample gives $\beta=1.30$
-(low), $\beta=1.28$ (middle), $\beta=1.39$ (high). All fifteen
-subsamples have $p<0.01$. The headline $\beta=1.376$ is not an
-artefact of East Asia, of the post-Cold-War period, or of any income
-band; PT operates in every sample we can cut
-(Table~\ref{tab:subgroups}).
+\refstepcounter{table}\label{tab:cutoff}\textbf{Table \thetable.} Education
+versus GDP as predictors of child lower secondary completion, across
+three representative cutoffs. Each row is a single-regressor within-country
+fit. The education/GDP $R^2$ ratio holds throughout the 10\%--90\% range
+(full 10-row sweep in Table~\ref{tab:cutoff-full}).
+Produced by \texttt{scripts/residualization/by\_gdp\_cutoff.py}.
+
+\begin{longtable}[]{@{}lrrrrr@{}}
+\toprule
+Cutoff & Edu $\beta$ & Edu $R^2$ & GDP $\beta$ & GDP $R^2$ & Edu/GDP $R^2$ \\
+\midrule
+\endhead
+$<$10\%  & 2.022 & 0.590 & 15.535 & 0.296 & 2.0$\times$ \\
+$<$50\%  & 1.053 & 0.697 & 17.311 & 0.247 & 2.8$\times$ \\
+Full     & 0.483 & 0.533 & 15.787 & 0.245 & 2.2$\times$ \\
+\bottomrule
+\end{longtable}
+
+\emph{Country fixed effects; clustered standard errors. ``Cutoff''
+restricts the sample to country-years with parental lower secondary
+completion below the threshold. The education/GDP $R^2$ ratio never
+reverses across the full 10\%--90\% sweep; the ordering confirms
+Prediction~\ref{pred:amplification}.}
+
+\textbf{Not driven by one region or one era.} Fifteen subsample re-estimations of Column~1 (six regions, two eras, three within-sample GDP terciles) all yield positive coefficients significant at $p<0.01$ (Section~\ref{policy-over-performers}, Table~\ref{tab:subgroups}); the headline is not an artefact of East Asia, the post-Cold-War period, or any income band.
 
 The decisive test is the shape across lags (Figure~\ref{fig:3}; Section~\ref{education-predicts-development-outcomes-25-years-forward}).
 
@@ -2137,7 +2024,12 @@ holds universally --- the Cambodia test (Section~\ref{cambodia-the-pt-shadow}).
 
 \subsection{Education Predicts Development Outcomes 25 Years Forward (Prediction~\ref{pred:timing})}\label{education-predicts-development-outcomes-25-years-forward}
 
-Knowing how educated a country's parents were predicts how long their children will live, how many children they will have, and how much they will earn --- one generation later.
+Prediction~\ref{pred:timing} says outcomes at $T{+}25$ follow
+education at $T$ with a one-generation lag. Knowing how educated a
+country's parents were predicts how long their children will live,
+how many children they will have, and how much they will earn one
+generation later --- the panel shows the signature the mechanism
+specifies.
 
 \refstepcounter{table}\label{tab:2}\textbf{Table \thetable.} Fixed effects regressions: development outcomes one
 generation forward on education, controlling
@@ -2311,6 +2203,40 @@ artefacts as poor-country GDP records thin. Generational horizons
 \label{fig:3}
 \end{figure}
 
+\subsubsection*{The compounding-generations signature (Prediction~\ref{pred:persistence})}\label{compounding-generations-signature}
+
+The mechanism in Section~\ref{pt-and-state} predicts that where a
+country first crosses the 10\% lower secondary completion threshold,
+the effect on child completion should grow with the generational
+window, not plateau at $T+25$. Parents who crossed raise children
+more likely to cross, who raise children still more likely to cross.
+The Callaway-Sant'Anna event study confirms this shape directly:
+$+$1.3 percentage points immediately, $+$6.6 at ten years, $+$14.9 at
+twenty-five years, $+$21.4 at thirty-five years. Pre-treatment
+coefficients are indistinguishable from zero --- countries that will
+expand and countries that will not follow identical trajectories
+before the crossing. The signature is the monotonic compounding
+through generations after the crossing, not the cross-sectional level
+at any single lag.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig_callaway_santanna.png}
+\caption{Generational compounding after the 10\% threshold crossing.
+Treatment: country crosses 10\% lower secondary completion.
+Outcome: child education at $T+25$. Control group: countries not yet
+treated at each comparison point. Shaded band: 95\% confidence
+interval (500-replication clustered bootstrap). Pre-treatment
+coefficients near zero; post-treatment effects grow monotonically from
+$+$1.3 to $+$21.4 percentage points over 35 years --- the
+compounding-generations signature the mechanism in
+Section~\ref{pt-and-state} predicts. Callaway-Sant'Anna (2021)
+estimator. Full decomposition and staggered-adoption diagnostics in
+Appendix~\ref{appendix-twfe}.
+\emph{(See \texttt{scripts/robustness/callaway\_santanna.py}.)}}
+\label{fig:cs-event}
+\end{figure}
+
 \subsubsection*{The grandparent channel}\label{the-grandparent-channel}
 
 The lag-decay results show that education predicts across multiple
@@ -2382,12 +2308,12 @@ prediction directly.
 
 \subsection{GDP Has No Independent Effect (Prediction~\ref{pred:income})}\label{gdp-has-no-independent-effect}
 
-Take each country's income and remove the part that education produced. Use only what remains to predict development outcomes. Income predicts nothing --- with one bounded exception in post-2000 child mortality, examined below.
-
-GDP(T) correlates with
-future outcomes partly because education(T) drives GDP growth.
-The test: remove education's contribution to GDP and see whether the remainder predicts
-anything.
+Prediction~\ref{pred:income} says income carries no independent
+predictive power once education's contribution is removed. Take each
+country's income and residualise out the part that education
+produced; use only what remains to predict development outcomes.
+The residual predicts nothing --- with one bounded exception in
+post-2000 child mortality, examined below.
 
 \refstepcounter{table}\label{tab:3}\textbf{Table \thetable.} Residualized GDP analysis: education vs.~raw GDP
 vs.~GDP after removing education's contribution. Entry-cohort design
@@ -2531,176 +2457,20 @@ Once education is included, initial fertility barely predicts
 subsequent fertility one generation forward (Table~\ref{tab:2}, Panel A, row 3: initial outcome β=0.039).
 Demographic momentum does not drive the transition --- educated women's decisions do.
 
-\subsection{Policy Over-Performers (Prediction~\ref{pred:universality})}\label{policy-over-performers}
+\subsection{Universality Across Subsamples (Prediction~\ref{pred:universality})}\label{policy-over-performers}
 
-Some countries are educating children far beyond what their parents' generation would predict. They are uniformly poor.
+Prediction~\ref{pred:universality} says the mechanism is universal: it
+appears in every region, every era, and every income band, not only in
+the East Asian cases on which much of the growth literature has
+concentrated. Two tests, panel and residual.
 
-\refstepcounter{table}\label{tab:4}\textbf{Table \thetable.} Countries delivering education above generational
-baseline, 2015 FE residuals. The residual measures how far a country
-exceeded its own historical trend.
-
-\begin{longtable}[]{@{}lll@{}}
-\toprule
-Country & FE residual above baseline & GDP per capita (2015) \\
-\midrule
-\endhead
-Maldives & +34.9 pp & \$9,645 \\
-Cape Verde & +26.3 pp & \$3,415 \\
-Bhutan & +26.1 pp & \$2,954 \\
-Tunisia & +25.5 pp & \$4,015 \\
-Nepal & +17.8 pp & \$876 \\
-Viet Nam & +16.0 pp & \$2,578 \\
-Bangladesh & +15.8 pp & \$1,224 \\
-India & +14.1 pp & \$1,584 \\
-\bottomrule
-\end{longtable}
-
-Nepal at \$876 (2015), Bangladesh at \$1,224, Vietnam at \$2,578. Income is not the prerequisite for educational over-performance.
-
-\subsection{Robustness}\label{robustness}
-
-{\renewcommand{\thetable}{A\arabic{table}}%
-\setcounter{table}{0}
-
-\noindent Adding year fixed effects to the headline specification
-collapses the full-panel parental coefficient from $0.483$ to
-$0.083$. The next table documents the collapse across four parental-
-completion subsamples; the paragraph following it explains why the
-collapse is a mechanical feature of two-way FE with staggered treatment,
-not evidence against the mechanism.
-
-\refstepcounter{table}\label{tab:a1}\textbf{Table \thetable.} Two-way fixed effects (country + year): child lower
-secondary completion on parental education. R² is the partial within-R²
-(incremental variance explained beyond country + year FEs). See
-\texttt{scripts/robustness/twfe\_child\_edu.py}.
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}@{}}
-\toprule
-\begin{minipage}[b]{\linewidth}\raggedright
-Model
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Parental edu β
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-R² (within)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-n
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Countries
-\end{minipage} \\
-\midrule
-\endhead
-(1) FE + year: parent (\textless{} 30\%) & \textbf{0.739***} &
-\textbf{0.154} & 783 & 137 \\
-(2) FE + year: parent (\textless{} 20\%) & 1.032*** & 0.145 & 600 &
-118 \\
-(3) FE + year: parent (\textless{} 10\%) & 1.019*** & 0.067 & 358 &
-85 \\
-(4) FE + year: parent (all) & 0.083 & 0.009 & 1,665 & 185 \\
-\bottomrule
-\end{longtable}
-
-\emph{Country-clustered standard errors. $^{*}\!p<0.10$,
-$^{**}\!p<0.05$, $^{***}\!p<0.01$. Model (4) does not reach
-conventional significance ($p=0.07$) --- see explanation below.}
-
-\textbf{Why Model 4 shows $\beta$=0.083 and why it does not matter.}
-When each country is compared only to its own past (one-way fixed
-effects), a 10-point increase in parental education predicts a 4.8-point
-increase in child education one generation later ($\beta$=0.483). Adding
-year fixed effects --- which also control for which \emph{decade} an
-observation falls in --- collapses this to $\beta$=0.083. The question
-is whether this collapse reflects a real weakness in the evidence or a
-flaw in the statistical method.
-
-Recent econometrics has shown it is the method. Goodman-Bacon (2021)
-proved that when you add year controls to a panel where countries adopted
-education at different times, the result is a weighted average of every
-possible before-and-after comparison between pairs of country groups.
-Some of these comparisons are clean: countries that expanded education
-compared against countries that had not yet started. Others are
-contaminated: countries just beginning their expansion compared against
-countries already in the middle of theirs --- as if measuring whether a
-runner accelerated by comparing her to someone already
-sprinting.\footnote{A formal decomposition of the education panel
-confirms this: the clean comparisons show large effects; the contaminated
-ones show near-zero effects; and the contaminated comparisons dominate
-the average. See
-\texttt{scripts/robustness/goodman\_bacon\_decomposition.py}.}
-
-Models 1--3 partly address this by restricting to countries still
-expanding education, where the effect is strong. The
-Callaway--Sant'Anna (2021) estimator addresses it directly: it compares
-each country only against countries that have not yet started expanding,
-eliminating the contaminated pairings altogether. The result: crossing
-the 10\% education threshold produces a gain of 7.9 percentage points in
-child education one generation later (95\% CI: 4.4--11.0).
-
-The event study (Figure~\ref{fig:cs-event}) makes the pattern visible.
-Before a country crosses the 10\% threshold, there is no effect ---
-countries that will expand and countries that will not are on identical
-trajectories. After crossing, the effect grows steadily: +1.3 percentage
-points immediately, +6.6 at ten years, +14.9 at twenty-five years,
-+21.4 at thirty-five years. Parents who cross the education threshold
-raise more educated children, who raise still more educated children.
-The effect compounds.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.85\textwidth]{figures/fig_callaway_santanna.png}
-\caption{Callaway--Sant'Anna (2021) event study.
-Treatment: country crosses 10\% lower secondary completion.
-Outcome: child education at T+25.
-Control group: countries not yet treated at each comparison point.
-Shaded band: 95\% confidence interval (500-replication clustered
-bootstrap).
-Pre-treatment effects near zero confirm parallel trends.
-Post-treatment effects grow monotonically from +1.3 to +21.4
-percentage points over 35 years --- consistent with compounding
-intergenerational transmission.
-\emph{(See \texttt{scripts/robustness/callaway\_santanna.py}.)}}
-\label{fig:cs-event}
-\end{figure}
-
-\refstepcounter{table}\label{tab:cutoff}\textbf{Table \thetable. Robustness to alternative cutoffs.}
-Fixed effects regressions of child lower secondary completion on parental
-education (or log GDP per capita) across all cutoffs from 10\% to 90\%.
-At every cutoff education leads GDP in within-country predictive power;
-the 30\% cutoff used in Table~\ref{tab:1} is not an optimum but one point
-along a smooth curve. Produced by
-\texttt{scripts/residualization/by\_gdp\_cutoff.py}.
-
-\begin{longtable}[]{@{}rrrrrrrr@{}}
-\toprule
-Cutoff & n & countries & Edu β & Edu R² & GDP β & GDP R² & Edu/GDP R² \\
-\midrule
-\endhead
-$<$10\% & 275  & 58  & 2.022 & 0.590 & 15.535 & 0.296 & 2.0× \\
-$<$20\% & 469  & 83  & 1.704 & 0.665 & 15.502 & 0.258 & 2.6× \\
-$<$30\% & 629  & 105 & 1.376 & 0.699 & 13.659 & 0.214 & 3.3× \\
-$<$40\% & 740  & 112 & 1.185 & 0.685 & 15.469 & 0.223 & 3.1× \\
-$<$50\% & 829  & 116 & 1.053 & 0.697 & 17.311 & 0.247 & 2.8× \\
-$<$60\% & 906  & 120 & 0.902 & 0.663 & 18.059 & 0.259 & 2.6× \\
-$<$70\% & 969  & 125 & 0.819 & 0.655 & 18.232 & 0.270 & 2.4× \\
-$<$80\% & 1018 & 128 & 0.739 & 0.626 & 17.839 & 0.280 & 2.2× \\
-$<$90\% & 1086 & 137 & 0.663 & 0.587 & 17.584 & 0.284 & 2.1× \\
-Full  & 1665 & 185 & 0.483 & 0.533 & 15.787 & 0.245 & 2.2× \\
-\bottomrule
-\end{longtable}
-
-\emph{Country fixed effects; clustered standard errors. ``Cutoff'' restricts
-the sample to country-years in which parental lower secondary completion
-is below the stated threshold (active-expansion subsample). ``Full'' is
-the unrestricted panel. The within-country education R² peaks at the
-30\% cutoff (0.699) and declines only mildly outside that band; the
-education/GDP R² ratio stays between 2.0× and 3.3× across the full 10\%--90\%
-range. No cutoff reverses the ordering. The 30\% choice in
-Table~\ref{tab:1} is where active expansion is most informative --- not
-an optimum for the coefficient.}
+\emph{Panel, fifteen subsamples.} Re-estimating Column~1 of
+Table~\ref{tab:1} on six regions, two eras, and three within-sample
+GDP terciles produces fifteen positive coefficients, every one
+significant at $p<0.01$ (Table~\ref{tab:subgroups}). Every $\beta$
+exceeds unity; Sub-Saharan Africa, where most of the remaining 20\%
+of humanity sits, tracks the full-sample headline. The era and
+tercile splits rule out post-Cold-War and income-band artefacts.
 
 \refstepcounter{table}\label{tab:subgroups}\textbf{Table \thetable. Subgroup robustness of the headline specification.}
 Column~1 of Table~\ref{tab:1} (child lower-sec $\sim$ parental, country
@@ -2736,250 +2506,45 @@ Subsample & $\beta$ & SE & $R^2$ & N & Countries \\
 
 \emph{Country-clustered standard errors. $^{*}\!p<0.10$,
 $^{**}\!p<0.05$, $^{***}\!p<0.01$. All fifteen subsamples reject the
-null at $p<0.01$; the narrowest $\beta$ (MENA, 1.145) and the widest
-(South Asia, 2.444) both comfortably exceed unity. Sub-Saharan Africa
---- where most of the remaining 20\% of humanity sits --- returns
-$\beta=1.22$, almost exactly the full-sample headline. The
-within-sample GDP terciles span just 1.28--1.39, ruling out the
-possibility that the headline is an income-band artefact. The
-pre-1990 and 1990-onward splits give nearly identical coefficients
-(1.36 vs 1.33), ruling out a post-Cold-War-specific effect.
-Headline row repeats Table~\ref{tab:1} Column~1 for reference.}
+null at $p<0.01$; every $\beta$ exceeds unity. Headline row repeats
+Table~\ref{tab:1} Column~1 for reference.}
 
-\refstepcounter{table}\label{tab:a2}\textbf{Table \thetable. Robustness to alternative lag lengths.} Education R²
-vs.\ residualized GDP R² across lags 15--30 years. Entry-cohort design
-(entry $\geq$ 10\%, ceiling $\leq$ 90\%), country fixed effects, lower
-secondary completion. The T+25 specification is the theoretically
-motivated anchor, not a cherry-picked optimum; the result holds at every
-lag tested. See \texttt{scripts/robustness/lag\_sensitivity.py}.
+\emph{Residuals, eight over-performers.} Some countries are educating
+children far beyond what their parents' generation would predict. The
+2015 country-FE residuals from the headline specification identify
+eight: they are uniformly poor.
 
-\begin{longtable}[]{@{}lrrrrrrrr@{}}
+\refstepcounter{table}\label{tab:4}\textbf{Table \thetable.} Countries delivering education above generational
+baseline, 2015 FE residuals. The residual measures how far a country
+exceeded its own historical trend.
+
+\begin{longtable}[]{@{}lll@{}}
 \toprule
-& \multicolumn{2}{c}{Life exp.} & \multicolumn{2}{c}{TFR}
-& \multicolumn{2}{c}{U-5 mort.} & \multicolumn{2}{c}{Child edu} \\
-\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
-Lag & Edu & Resid & Edu & Resid & Edu & Resid & Edu & Resid \\
+Country & FE residual above baseline & GDP per capita (2015) \\
 \midrule
 \endhead
-15 yr & 0.455 & 0.001 & 0.569 & 0.000 & 0.409 & 0.005 & 0.725 & 0.009 \\
-20 yr & 0.451 & 0.002 & 0.509 & 0.000 & 0.328 & 0.013 & 0.617 & 0.006 \\
-25 yr & 0.474 & 0.002 & 0.482 & 0.000 & 0.280 & 0.019 & 0.524 & 0.005 \\
-30 yr & 0.457 & 0.000 & 0.473 & 0.001 & 0.232 & 0.005 & 0.461 & 0.004 \\
+Maldives & +34.9 pp & \$9,645 \\
+Cape Verde & +26.3 pp & \$3,415 \\
+Bhutan & +26.1 pp & \$2,954 \\
+Tunisia & +25.5 pp & \$4,015 \\
+Nepal & +17.8 pp & \$876 \\
+Viet Nam & +16.0 pp & \$2,578 \\
+Bangladesh & +15.8 pp & \$1,224 \\
+India & +14.1 pp & \$1,584 \\
 \bottomrule
 \end{longtable}
 
-\emph{``Edu'' = how much of each country's outcome change is predicted by
-education. ``Resid'' = how much is predicted by income after stripping
-out education's contribution. At every lag tested and every outcome,
-education explains 23\% or more of the variation; leftover income never
-exceeds 1.9\%. n=822 (152 countries) for LE and TFR; n=787 (147
-countries) for U-5 mortality; n=856 (157 countries) for child education.}
+Nepal at \$876 (2015), Bangladesh at \$1,224, Vietnam at \$2,578. Income is not the prerequisite for educational over-performance.
 
-\refstepcounter{table}\label{tab:a3}\textbf{Table \thetable. Long-run panel countries (1900--2015, 28 countries).}
-Selected on the criterion of self-determined education policy and data
-quality; colonial-era data for colonised countries reflects colonial
-investment rather than domestic policy decisions and is excluded.\footnote{The
-28 countries: \emph{East Asia} --- Japan, Taiwan, South Korea.
-\emph{Western Europe} --- United Kingdom, France, Germany, Sweden,
-Norway, Denmark, Finland, Netherlands, Belgium, Switzerland, Austria,
-Italy, Spain, Portugal. \emph{New World} --- United States, Canada,
-Australia, New Zealand. \emph{Latin America} --- Argentina, Chile,
-Uruguay, Cuba, Costa Rica. \emph{Other} --- Sri Lanka (British Ceylon,
-active colonial education investment, known anomaly), Hong Kong.}
+A full robustness battery --- alternative cutoffs (full 10-row sweep),
+alternative lag lengths (15--30 years), specification robustness
+(PPML, log outcomes, period-length aggregation, balanced subpanel,
+within-year cross-cohort, Wooldridge strict-exogeneity), data-source
+robustness (Barro-Lee replication, post-1970 subset), and
+development-threshold robustness --- appears in Appendix~\ref{robustness}.
+None reverses the ordering, and no check reduces the education/GDP
+$R^2$ ratio below 2.0$\times$.
 
-\refstepcounter{table}\label{tab:a4}\textbf{Table \thetable. Development threshold robustness: crossing dates under
-three specifications (World Bank WDI data; Taiwan excluded --- not in
-WDI).} The loose spec uses generous thresholds; the main spec uses the
-1960 USA values; the strict spec tightens to TFR
-\textless{} 2.5 and LE \textgreater{} 72.6 (USA 1975).
-
-\begin{longtable}[]{@{}lllll@{}}
-\toprule
-Case & Loose & Main & Strict & Shift \\
-\midrule
-\endhead
-Cuba & 1964 & 1974 & 1980 & 16 yrs \\
-South Korea & 1978 & 1987 & 1993 & 15 yrs \\
-Sri Lanka & 1975 & 1993 & 2005 & 30 yrs \\
-China & 1982 & 1994 & 2001 & 19 yrs \\
-Bangladesh & 2005 & 2014 & 2019 & 14 yrs \\
-\bottomrule
-\end{longtable}
-
-\emph{Note: Every country crosses under every specification, and the
-ordering never changes. The threshold choice shifts dates by 14--19
-years for fast expanders (Korea 2.13 pp/yr, Cuba 2.27 pp/yr, China
-1.50 pp/yr) and 14--30 years overall, but no country that crosses the
-loose spec fails to cross the strict one. Sri Lanka's 30-year shift
-reflects the civil war holding life expectancy near the threshold while
-the educational base accumulated beneath it; the binding constraint was
-disruption, not the threshold definition. Taiwan (1970 loose, 1980
-strict; WCDE data) is consistent with Cuba under all specifications but
-cannot be computed from WDI data.
-See \texttt{scripts/robustness/threshold\_robustness.py}.}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{figures/cumulative_developed_thresholds.png}
-\caption{Cumulative share of world population crossing development
-thresholds under three specifications: loose (TFR \textless{} 4.5,
-LE \textgreater{} 65), main (TFR \textless{} 3.65,
-LE \textgreater{} 69.8), and strict (TFR \textless{} 2.5,
-LE \textgreater{} 72.6). The shape is identical across
-specifications --- the same China jump, the same steady rise. The
-threshold choice shifts the level; it does not change the story.
-\emph{(Source: World Bank WDI, WCDE v3. See
-\texttt{scripts/figures/cumulative\_developed\_thresholds.py})}}
-\label{fig:threshold-sensitivity}
-\end{figure}
-
-
-\subsubsection*{Data source robustness}
-
-The paper uses WCDE v3, which reconstructs historical education
-distributions from census microdata, DHS surveys, and demographic
-back-projection. Three tests verify that the main forward-prediction
-and residualization results are not artifacts of WCDE's reconstruction
-methodology: replication on the independent Barro-Lee v3.0 dataset
-(Lee \& Lee 2016) with different source surveys and interpolation;
-residualization on Barro-Lee; and restriction of WCDE to post-1970
-observations, where data quality is highest and reconstruction plays
-the least role.
-
-{\small
-\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{10cm}ll@{}}
-\toprule
-Specification & LE R² & TFR R² \\
-\midrule
-\endhead
-WCDE v3 (main) & 0.335 & 0.388 \\
-Barro-Lee v3.0 (``at least some secondary,'' age 15--24, 146 countries) & 0.320 & 0.287 \\
-Barro-Lee v3.0 (mean years of schooling) & 0.400 & 0.428 \\
-WCDE v3, post-1970 only & 0.313 & 0.281 \\
-Barro-Lee residualization (GDP with education's contribution removed) & $\leq$\,0.003 & $\leq$\,0.003 \\
-\bottomrule
-\end{longtable}
-}
-
-All specifications significant at $p < 0.0001$, same sign and
-direction. The finding that income has no independent predictive power
-is not specific to one dataset; the pre-1970 decades add statistical
-power but are not driving the result. The natural experiments
-(Cambodia, Bihar--Kerala, Asian financial crisis, Russia, South Africa)
-rest on WDI outcome data and documented historical events, not on WCDE
-reconstruction, and are unaffected by any data-source
-concern.\footnote{See
-\texttt{scripts/robustness/barro\_lee\_replication.py}. Barro-Lee v3.0
-source: \texttt{github.com/barrolee/BarroLeeDataSet}.}
-
-\subsubsection*{Specification robustness}\label{specification-robustness}
-
-Six additional checks address standard concerns about the Table~\ref{tab:1}
-headline. They are summarised in Table~\ref{tab:spec-robust} and described
-in turn below.
-
-\refstepcounter{table}\label{tab:spec-robust}\textbf{Table \thetable. Specification robustness.}
-Each row reports the parental-education coefficient (or its semi-elasticity
-in the PPML/log rows) under the noted check, with country FE and
-country-clustered SEs. ``Active expansion'' restricts parent
-$<30$\% to match the Table~\ref{tab:1} sample definition.
-
-{\small
-\begin{longtable}[]{@{}lrrrr@{}}
-\toprule
-Check & $\beta$ (or elast.) & SE & N & Countries \\
-\midrule
-\endhead
-5-year baseline (Table~\ref{tab:1} col 1) & 1.376 & 0.083 & 629 & 105 \\
-10-year aggregation, active expansion     & 1.437 & 0.078 & 416 & 113 \\
-Annual (interpolated), active expansion   & 1.326 & 0.078 & 3{,}548 & 135 \\
-Balanced subpanel (9/9 obs), active expansion & 1.490 & 0.124 & 423 & 47 \\
-Within-year cross-cohort (20--24 on 45--49), active expansion & 1.965 & 0.051 & 1{,}747 & 171 \\
-PPML, TFR$_{T+25}$ (semi-elast.\ per pp)   & $-0.91\%$ & $0.14\%$ & 590 & 172 \\
-PPML, U5MR$_{T+25}$ (semi-elast.\ per pp)  & $-3.30\%$ & $0.36\%$ & 579 & 168 \\
-Log LE$_{T+25}$ (semi-elast.\ per pp)      & $+0.36\%$ & $0.04\%$ & 590 & 172 \\
-Log TFR$_{T+25}$ (semi-elast.\ per pp)     & $-0.82\%$ & $0.11\%$ & 590 & 172 \\
-Log U5MR$_{T+25}$ (semi-elast.\ per pp)    & $-2.59\%$ & $0.28\%$ & 579 & 168 \\
-\bottomrule
-\end{longtable}
-}
-
-\emph{All rows significant at $p<0.01$. Produced by
-\texttt{scripts/robustness/period\_length.py},
-\texttt{balanced\_panel.py},
-\texttt{cross\_cohort\_within\_year.py},
-\texttt{ppml\_outcomes.py}, and
-\texttt{log\_outcomes.py}.}
-
-\textbf{Period length.} Aggregating child cohorts at 5-year (baseline),
-10-year, and annual (interpolated) resolution leaves the active-expansion
-coefficient in the 1.33--1.44 range. The annual grid mechanically
-multiplies the observation count roughly fivefold; the point estimate
-barely moves. Time-aggregation is not driving the headline.
-
-\textbf{Balanced panel.} The WCDE cohort grid is balanced by
-construction at the full-panel level (every country has 9 cohort years
-1975--2015), so the headline is not a composition artefact. Inside the
-active-expansion subset, forty-seven countries satisfy the $<30$\% cutoff
-in all nine cohort years; re-estimating on this deepest-observed subset
-gives $\beta=1.49$, slightly above the unbalanced headline of 1.36.
-Balance does not weaken the effect.
-
-\textbf{Within-year cross-cohort.} The headline regression uses a 25-year
-forward lag: child education at $t$ on parental education at $t-25$. A
-standard concern is that shocks occurring between $t-25$ and $t$
-(global MDGs, the Asian financial crisis, HIV) are absorbed by the
-forward-lag coefficient. The WCDE v3 microdata
-(\texttt{prop\_both.csv}) gives the lower-secondary-completion share
-for every 5-year age group in every country-year. In any given year,
-the age-20--24 share and the age-45--49 share are one generation apart
-but measured simultaneously: any shock in the intervening 25 years
-affects both cohorts, is absorbed by country FE if country-specific,
-and cannot drive the coefficient. The within-year cross-cohort
-coefficient is $\beta=1.97$ (SE 0.05) in the active-expansion sample,
-directionally stronger than the forward-lag headline. The transmission
-mechanism does not depend on the forward-lag design choice.
-
-\textbf{PPML.} TFR and under-5 mortality are non-negative and right-skewed;
-the standard log-linear regression drops zeros and is sensitive to
-heteroscedasticity in $E[\log y \mid x]$. Poisson PML (Santos Silva and
-Tenreyro 2006) is consistent under arbitrary heteroscedasticity provided
-the conditional mean is correctly specified. Under PPML with country FE,
-a one-percentage-point rise in parental lower secondary completion
-lowers TFR at $T+25$ by $-0.91\%$ (SE $0.14\%$, $p<0.001$) and under-5
-mortality by $-3.30\%$ (SE $0.36\%$, $p<0.001$). GDP's coefficient is
-insignificant in both equations ($p=0.24$ and $p=0.69$), consistent
-with the residualization result.
-
-\textbf{Log outcomes.} Putting LE, TFR, and U5MR in logs gives elasticities
-directly comparable to the PPML semi-elasticities. A one-percentage-point
-rise in parental completion predicts, one generation later: life expectancy
-$+0.36\%$, total fertility $-0.82\%$, under-5 mortality $-2.59\%$. All
-three are significant at $p<0.001$ with country FE and log GDP
-included. The levels specification reported in Table~\ref{tab:2} gives the
-same sign and ordering; the choice of functional form does not materially
-change the substance.
-
-\textbf{Wooldridge strict-exogeneity test.} The regression-based
-test from Wooldridge (2010, §10.5) adds the one-period lead of parental
-education (at $t-20$) to the FE regression and tests whether its
-coefficient is zero. On the full panel the lead enters with
-$\hat\gamma=1.275$ (SE 0.114, $t=11.1$); on the active-expansion sample
-$\hat\gamma=0.655$ (SE 0.281, $t=2.3$). In both samples strict exogeneity
-is formally rejected. This is expected rather than surprising: parental
-lower secondary completion is a highly persistent stock variable, so
-parent education at $t-20$ is near-perfectly correlated with parent
-education at $t-25$, and a test based on the lead has nearly zero
-power to distinguish mechanical persistence from a true exogeneity
-violation. Identification in this paper does not rely on strict
-exogeneity: the Callaway--Sant'Anna event study in
-Section~\ref{empirical-strategy} uses not-yet-treated countries as the
-comparison set, the forward-lag design rules out reverse causality by
-construction, and the within-year cross-cohort result above removes the
-lag altogether. The Wooldridge statistic is reported here for
-completeness and should be read as a diagnostic on the persistence of
-the regressor, not as evidence against the design.
-}
 
 \section{The Natural Experiments}\label{natural-experiments}
 
@@ -3161,63 +2726,34 @@ by 3.6 years. Education predicts the recovery trajectory, not immunity
 to state collapse.\footnote{See
 \texttt{scripts/verify\_russia\_south\_africa.py}.}
 
-\textbf{South Africa and the HIV epidemic.} South Africa's 65\% lower
-secondary completion in 1990 is an aggregate masking apartheid
-stratification: near-universal white completion and much lower Black
-completion produced a bimodal distribution invisible in national data.
-The population bearing the brunt of HIV had far lower education than the
-headline figure suggests. HIV crashed LE from 62.9 to 53.9
-(1990--2005) --- the largest peacetime LE reversal in modern history.
-Over the same period, TFR fell from 3.72 to 2.41, and aggregate primary
-completion rose from 78\% to 91\% --- a post-apartheid expansion that
-reached the Black majority for the first time at scale.
+\textbf{South Africa and the HIV epidemic.} South Africa tests
+Prediction~\ref{pred:disruption} under a health shock whose biology is
+exogenous to education. Between 1990 and 2005 LE fell from 62.9 to
+53.9 (the largest peacetime LE reversal in modern history) while TFR
+fell from 3.72 to 2.41 and primary completion rose from 78\% to
+91\% --- the post-apartheid expansion reaching the Black majority at
+scale. The 1990 lower-secondary headline of 65\% was an apartheid
+aggregate; the population bearing the shock sat below the behavioural-
+response depth.
 
-The TFR decline is the composition result of
-Section~\ref{gdp-has-no-independent-effect} operating as predicted.
-Primary education drives fertility decline hardest (R²=0.65 for TFR),
-and Black primary was expanding through the shock. The fall is not a
-frozen PT baseline surviving external disruption --- 1990 would be too
-early to carry that claim, with TFR still at 3.72, above the development
-threshold. It is the ordinary primary-to-fertility mechanism continuing
-to run while lower-secondary depth remained too shallow in the affected
-majority to deliver the other half of the composition: the behavioural
-response to a novel pathogen that deeper schooling carries.
-
-The LE collapse runs through that secondary deficit. The Southern
-African epidemic was driven at the acquisition stage by factors education
-could not have prevented: low traditional circumcision prevalence
-(8--11\% in the HIV belt vs 85--99\% in Muslim West Africa), which three
-randomised trials showed provides a 60\% biological reduction in male
-acquisition risk (Auvert et al.~2005); and circular mining migration
-that created connected sexual networks across the subcontinent. These
-are genuinely exogenous to education.
-
-Education was in the story on both sides of the behavioural response.
-Early in the epidemic, more educated Africans were \emph{more} likely to
-be HIV-positive: greater mobility, more partners, more agency exercised
-without information about a novel pathogen (Fortson 2008). Once
-information existed, the gradient reversed: educated populations changed
-behaviour first. In Botswana, a natural experiment exploiting a 1996
-school reform showed that each additional year of secondary schooling
-\emph{caused} an 8.1-percentage-point reduction in cumulative HIV risk
-(De~Neve et al.~2015). In rural Uganda, educated individuals responded
-more to prevention campaigns, and the education--HIV gradient reversed
-from positive to negative between 1990 and 2000 (De~Walque 2007). Baker
-et al.\ (2017) formalise this as the Population Education Transition
-curve: when a novel health risk enters a population, the educated are
-early adopters (positive gradient); once information exists, the
-educated change behaviour first (gradient reverses). The pattern
-replicates across cigarettes, processed food, and HIV --- education is
-the mechanism in both directions, at the secondary-completion depth the
-behavioural response requires.
-
-South Africa's 1990 lower-secondary figure, once stratified, sat below
-that depth for the majority who received the shock. Post-ARV, LE
-recovered to 66.1 by 2019, and aggregate lower secondary completion has
-continued to rise. The case does not show a PT baseline surviving a
-pandemic. It shows the primary-driven fertility transition running
-through a shock while the secondary-driven behavioural-response layer
-was still being built.\footnote{See
+The composition matters because primary and lower-secondary depth
+carry different halves of the response. Primary drove the fertility
+decline: it was expanding through the shock, and TFR fell on schedule
+(R²=0.65 for TFR-primary). Lower-secondary carries the behavioural
+response to novel pathogens; in the affected majority it remained too
+shallow. Acquisition-stage factors were genuinely biological ---
+low traditional circumcision prevalence (60\% biological reduction per
+three RCTs) and circular mining migration driving spread. Once
+information existed, the education--HIV gradient reversed: the
+Botswana 1996 school-reform natural experiment found each additional
+year of secondary schooling caused an 8.1-pp cumulative HIV reduction
+(De~Neve et al.~2015), and Baker et al.~(2017) formalise the pattern
+as the Population Education Transition curve --- educated populations
+change behaviour first once novel-risk information exists. Post-ARV,
+LE recovered to 66.1 by 2019. Full mechanism detail --- apartheid
+stratification, circumcision prevalence in the HIV belt, and the
+Population Education Transition curve --- is in
+Appendix~\ref{appendix-south-africa}.\footnote{See
 \texttt{scripts/verify\_russia\_south\_africa.py}.}
 
 Cambodia (Section~\ref{cambodia-the-pt-shadow}) is the exception that
@@ -3251,24 +2787,12 @@ because it predicts education. Once education is in the model, religion
 adds nothing. The channel is religion $\to$ schools $\to$ education $\to$
 development, not religion $\to$ institutions $\to$ development (Table~\ref{tab:a6}).
 
-A formal instrumental-variable test sharpens the result. The strategy
-uses AJR's own settler-mortality channel and asks what it actually
-identifies --- not whether the instrument works, but whether its
-exogenous variation enters development through institutions or through
-schools.
-Two-stage least squares using coloniser religion as the excluded
-instrument produces a first-stage F-statistic of 10.8 for education at
-independence --- above the Stock \& Yogo (2005) threshold for instrument
-relevance --- but only 1.4 for Polity2 institutional quality, well below
-the threshold (Table~\ref{tab:a7}). The second stage for education is
-significant ($\hat\beta = +0.059$, $t = 3.21$, $p = 0.002$); the
-institutional 2SLS is unreliable because the instrument is weak. The
-Wu-Hausman test is insignificant ($p = 0.85$), confirming that OLS and
-2SLS agree when the endogenous variable is education --- consistent with
-coloniser religion being exogenous to the education channel.
-AJR's instrument works, but it works \emph{because} it predicts
-education, not because it predicts institutions.
-See \texttt{scripts/robustness/iv\_2sls\_colonial.py}.
+The 2SLS first-stage diagnostics confirm this ordering: coloniser
+religion is a strong instrument for education at independence
+(first-stage $F=10.8$, above the Stock \& Yogo threshold) but a weak
+one for Polity2 institutional quality ($F=1.4$). Full IV machinery ---
+first-stage F-statistics, Wu-Hausman, second-stage coefficient
+($\hat\beta=+0.059$ for education) --- is in Appendix~\ref{appendix-colonial-iv}.
 
 Latin America is the critical case. Spanish and Portuguese colonies were
 settler colonial --- Europeans came and stayed in large numbers, built
@@ -3771,7 +3295,7 @@ This is the claim the mechanism supports.
 \setcounter{table}{4}
 
 
-The preceding chapters made the positive case. This chapter tests the bio-first account against the major rival frameworks in development. Each rival identifies something real; each stops one level short of the substrate that makes the thing it identifies possible. The engagements are on biological grounds, not only on data.
+The preceding chapters made the positive case. This chapter engages the major alternative accounts in development on biological grounds, not only on data. Each identifies something real; each stops one level short of the substrate that makes the thing it identifies possible. Sen and Drèze are the exception: the capabilities frame is this paper's frame, read one layer deeper, and Section~\ref{sen-and-dreze-two-routings} completes rather than displaces them.
 
 \subsection{Smith and the Loaded Labour}\label{smith-and-the-loaded-labour}
 
@@ -4099,6 +3623,545 @@ model's output; all scripts and data are published with the paper. The
 theoretical framework, analytical design, test specifications,
 arguments, conclusions, and all errors are my own.
 
+
+\appendix
+
+\section{Robustness}\label{appendix-robustness}
+
+{\renewcommand{\thetable}{A\arabic{table}}%
+\setcounter{table}{0}
+
+This appendix contains the econometric checks referenced in
+Sections~\ref{the-panel} and~\ref{natural-experiments}. The body
+reports the headline specifications; the checks below confirm that
+staggered adoption, alternative cutoffs, alternative lag lengths,
+alternative estimators, alternative data sources, and the Colonial
+Test first-stage diagnostics leave the ordering and the coefficient
+signs unchanged. None of these checks is required by the biological
+claim; they are placed here for readers who work in traditions that
+treat identification as the load-bearing element of an empirical
+argument.
+
+\subsection{Two-Way Fixed Effects and Staggered-Adoption Diagnostics}\label{appendix-twfe}
+
+\noindent Adding year fixed effects to the headline specification
+collapses the full-panel parental coefficient from $0.483$ to
+$0.083$. Table~\ref{tab:a1} documents the collapse across four
+parental-completion subsamples. The paragraphs below explain why the
+collapse is the mechanical signature of two-way FE under staggered
+treatment, not evidence against the mechanism, and present the
+Goodman-Bacon weight decomposition and the Callaway-Sant'Anna
+recovery.
+
+\refstepcounter{table}\label{tab:a1}\textbf{Table \thetable.} Two-way fixed effects (country + year): child lower
+secondary completion on parental education. R² is the partial within-R²
+(incremental variance explained beyond country + year FEs). See
+\texttt{scripts/robustness/twfe\_child\_edu.py}.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Parental edu β
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+R² (within)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+n
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Countries
+\end{minipage} \\
+\midrule
+\endhead
+(1) FE + year: parent (\textless{} 30\%) & \textbf{0.739***} &
+\textbf{0.154} & 783 & 137 \\
+(2) FE + year: parent (\textless{} 20\%) & 1.032*** & 0.145 & 600 &
+118 \\
+(3) FE + year: parent (\textless{} 10\%) & 1.019*** & 0.067 & 358 &
+85 \\
+(4) FE + year: parent (all) & 0.083 & 0.009 & 1,665 & 185 \\
+\bottomrule
+\end{longtable}
+
+\emph{Country-clustered standard errors. $^{*}\!p<0.10$,
+$^{**}\!p<0.05$, $^{***}\!p<0.01$. Model (4) does not reach
+conventional significance ($p=0.07$) --- see explanation below.}
+
+\textbf{Why Model 4 shows $\beta$=0.083 and why it does not matter.}
+When each country is compared only to its own past (one-way fixed
+effects), a 10-point increase in parental education predicts a
+4.8-point increase in child education one generation later
+($\beta$=0.483). Adding year fixed effects --- which also control for
+which \emph{decade} an observation falls in --- collapses this to
+$\beta$=0.083. The question is whether this collapse reflects a real
+weakness in the evidence or a flaw in the statistical method. On the
+active-expansion subsamples (Models 1--3 above), the collapse is far
+milder: $\beta$=0.739 to $\beta$=1.019, all $p<0.01$.
+
+The decline is the mechanical signature of a now well-documented
+two-way-FE pathology. When treatment is staggered --- different
+countries begin expanding education in different decades --- the 2WFE
+estimator is a weighted average of \emph{all} pairwise comparisons,
+including ``forbidden'' ones that compare newly-expanding countries
+to countries already at high completion (Goodman-Bacon 2021). A
+decomposition on my panel
+(\texttt{scripts/robustness/goodman\_bacon\_decomposition.py}) gives
+the weights directly: 7.2 percent from clean not-yet-treated
+comparisons (weighted $\beta$ = 11.3), 21.3 percent from
+treatment-timing pairs (weighted $\beta$ = 1.1), and 71.5 percent
+from already-treated countries used as controls for newly-treated
+ones (weighted $\beta$ = 9.6 but attenuated toward zero by
+heterogeneous treatment effects). The 0.083 figure is a weighted
+average in which three-quarters of the weight sits on comparisons
+that make no causal sense; it is not an unbiased estimate of anything.
+
+The Callaway--Sant'Anna (2021) estimator --- designed explicitly for
+staggered adoption and limited to the clean comparisons only ---
+recovers the effect. Treating the 10 percent lower secondary
+completion threshold as the event (the crossing from ``no priority''
+to ``active expansion''), crossing the threshold raises child
+completion by 7.9 percentage points one generation later (clustered
+SE 1.7, 95 percent CI 4.4--11.0); the effect compounds to
+$+$21.4 pp by year 35. Pre-treatment event-study coefficients are
+indistinguishable from zero (Figure~\ref{fig:cs-event}).
+
+A caveat on method. CS and Goodman-Bacon were built for
+binary-staggered settings; the treatment variable here is continuous.
+I discretise at the 10 percent threshold because that is where the
+mechanism turns on: below 10 percent the state's education system is
+not yet reaching most households, and PT has no cohort of educated
+parents to propagate from. Robustness to thresholds at 5\% and 15\% is
+a natural next test; I do not claim the particular cutoff is the only
+defensible one.
+
+What I do claim is that the 83 percent 2WFE collapse is not evidence
+against education's effect. The pathology is visible in the weights,
+the clean comparisons give a positive estimate, and the staggered-
+adoption-appropriate estimator confirms it. I keep the one-way
+country-FE specification as the headline because it corresponds to
+the ``how much do educated countries transmit to their children'' test
+the paper sets up --- not because it happens to produce a larger
+number.
+
+% subsections A.2 through A.9 populated by Pass A.3–A.6 relocations
+
+\subsection{Other Robustness Checks}\label{robustness}
+
+\subsubsection{Alternative Cutoffs}\label{appendix-cutoffs}
+
+\refstepcounter{table}\label{tab:cutoff-full}\textbf{Table \thetable. Robustness to alternative cutoffs.}
+Fixed effects regressions of child lower secondary completion on parental
+education (or log GDP per capita) across all cutoffs from 10\% to 90\%.
+At every cutoff education leads GDP in within-country predictive power;
+the 30\% cutoff used in Table~\ref{tab:1} is not an optimum but one point
+along a smooth curve. Produced by
+\texttt{scripts/residualization/by\_gdp\_cutoff.py}.
+
+\begin{longtable}[]{@{}rrrrrrrr@{}}
+\toprule
+Cutoff & n & countries & Edu β & Edu R² & GDP β & GDP R² & Edu/GDP R² \\
+\midrule
+\endhead
+$<$10\% & 275  & 58  & 2.022 & 0.590 & 15.535 & 0.296 & 2.0× \\
+$<$20\% & 469  & 83  & 1.704 & 0.665 & 15.502 & 0.258 & 2.6× \\
+$<$30\% & 629  & 105 & 1.376 & 0.699 & 13.659 & 0.214 & 3.3× \\
+$<$40\% & 740  & 112 & 1.185 & 0.685 & 15.469 & 0.223 & 3.1× \\
+$<$50\% & 829  & 116 & 1.053 & 0.697 & 17.311 & 0.247 & 2.8× \\
+$<$60\% & 906  & 120 & 0.902 & 0.663 & 18.059 & 0.259 & 2.6× \\
+$<$70\% & 969  & 125 & 0.819 & 0.655 & 18.232 & 0.270 & 2.4× \\
+$<$80\% & 1018 & 128 & 0.739 & 0.626 & 17.839 & 0.280 & 2.2× \\
+$<$90\% & 1086 & 137 & 0.663 & 0.587 & 17.584 & 0.284 & 2.1× \\
+Full  & 1665 & 185 & 0.483 & 0.533 & 15.787 & 0.245 & 2.2× \\
+\bottomrule
+\end{longtable}
+
+\emph{Country fixed effects; clustered standard errors. ``Cutoff'' restricts
+the sample to country-years in which parental lower secondary completion
+is below the stated threshold (active-expansion subsample). ``Full'' is
+the unrestricted panel. The within-country education R² peaks at the
+30\% cutoff (0.699) and declines only mildly outside that band; the
+education/GDP R² ratio stays between 2.0× and 3.3× across the full 10\%--90\%
+range. No cutoff reverses the ordering. The 30\% choice in
+Table~\ref{tab:1} is where active expansion is most informative --- not
+an optimum for the coefficient.}
+
+\subsubsection{Alternative Lag Lengths}\label{appendix-lag-sensitivity}
+
+\refstepcounter{table}\label{tab:a2}\textbf{Table \thetable. Robustness to alternative lag lengths.} Education R²
+vs.\ residualized GDP R² across lags 15--30 years. Entry-cohort design
+(entry $\geq$ 10\%, ceiling $\leq$ 90\%), country fixed effects, lower
+secondary completion. The T+25 specification is the theoretically
+motivated anchor, not a cherry-picked optimum; the result holds at every
+lag tested. See \texttt{scripts/robustness/lag\_sensitivity.py}.
+
+\begin{longtable}[]{@{}lrrrrrrrr@{}}
+\toprule
+& \multicolumn{2}{c}{Life exp.} & \multicolumn{2}{c}{TFR}
+& \multicolumn{2}{c}{U-5 mort.} & \multicolumn{2}{c}{Child edu} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+Lag & Edu & Resid & Edu & Resid & Edu & Resid & Edu & Resid \\
+\midrule
+\endhead
+15 yr & 0.455 & 0.001 & 0.569 & 0.000 & 0.409 & 0.005 & 0.725 & 0.009 \\
+20 yr & 0.451 & 0.002 & 0.509 & 0.000 & 0.328 & 0.013 & 0.617 & 0.006 \\
+25 yr & 0.474 & 0.002 & 0.482 & 0.000 & 0.280 & 0.019 & 0.524 & 0.005 \\
+30 yr & 0.457 & 0.000 & 0.473 & 0.001 & 0.232 & 0.005 & 0.461 & 0.004 \\
+\bottomrule
+\end{longtable}
+
+\emph{``Edu'' = how much of each country's outcome change is predicted by
+education. ``Resid'' = how much is predicted by income after stripping
+out education's contribution. At every lag tested and every outcome,
+education explains 23\% or more of the variation; leftover income never
+exceeds 1.9\%. n=822 (152 countries) for LE and TFR; n=787 (147
+countries) for U-5 mortality; n=856 (157 countries) for child education.}
+
+\subsubsection{Long-Run Panel and Threshold Robustness}\label{appendix-threshold-long-run}
+
+\refstepcounter{table}\label{tab:a3}\textbf{Table \thetable. Long-run panel countries (1900--2015, 28 countries).}
+Selected on the criterion of self-determined education policy and data
+quality; colonial-era data for colonised countries reflects colonial
+investment rather than domestic policy decisions and is excluded.\footnote{The
+28 countries: \emph{East Asia} --- Japan, Taiwan, South Korea.
+\emph{Western Europe} --- United Kingdom, France, Germany, Sweden,
+Norway, Denmark, Finland, Netherlands, Belgium, Switzerland, Austria,
+Italy, Spain, Portugal. \emph{New World} --- United States, Canada,
+Australia, New Zealand. \emph{Latin America} --- Argentina, Chile,
+Uruguay, Cuba, Costa Rica. \emph{Other} --- Sri Lanka (British Ceylon,
+active colonial education investment, known anomaly), Hong Kong.}
+
+\refstepcounter{table}\label{tab:a4}\textbf{Table \thetable. Development threshold robustness: crossing dates under
+three specifications (World Bank WDI data; Taiwan excluded --- not in
+WDI).} The loose spec uses generous thresholds; the main spec uses the
+1960 USA values; the strict spec tightens to TFR
+\textless{} 2.5 and LE \textgreater{} 72.6 (USA 1975).
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+Case & Loose & Main & Strict & Shift \\
+\midrule
+\endhead
+Cuba & 1964 & 1974 & 1980 & 16 yrs \\
+South Korea & 1978 & 1987 & 1993 & 15 yrs \\
+Sri Lanka & 1975 & 1993 & 2005 & 30 yrs \\
+China & 1982 & 1994 & 2001 & 19 yrs \\
+Bangladesh & 2005 & 2014 & 2019 & 14 yrs \\
+\bottomrule
+\end{longtable}
+
+\emph{Note: Every country crosses under every specification, and the
+ordering never changes. The threshold choice shifts dates by 14--19
+years for fast expanders (Korea 2.13 pp/yr, Cuba 2.27 pp/yr, China
+1.50 pp/yr) and 14--30 years overall, but no country that crosses the
+loose spec fails to cross the strict one. Sri Lanka's 30-year shift
+reflects the civil war holding life expectancy near the threshold while
+the educational base accumulated beneath it; the binding constraint was
+disruption, not the threshold definition. Taiwan (1970 loose, 1980
+strict; WCDE data) is consistent with Cuba under all specifications but
+cannot be computed from WDI data.
+See \texttt{scripts/robustness/threshold\_robustness.py}.}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/cumulative_developed_thresholds.png}
+\caption{Cumulative share of world population crossing development
+thresholds under three specifications: loose (TFR \textless{} 4.5,
+LE \textgreater{} 65), main (TFR \textless{} 3.65,
+LE \textgreater{} 69.8), and strict (TFR \textless{} 2.5,
+LE \textgreater{} 72.6). The shape is identical across
+specifications --- the same China jump, the same steady rise. The
+threshold choice shifts the level; it does not change the story.
+\emph{(Source: World Bank WDI, WCDE v3. See
+\texttt{scripts/figures/cumulative\_developed\_thresholds.py})}}
+\label{fig:threshold-sensitivity}
+\end{figure}
+
+\subsubsection{Data-Source Robustness}\label{appendix-data-source}
+
+The paper uses WCDE v3, which reconstructs historical education
+distributions from census microdata, DHS surveys, and demographic
+back-projection. Three tests verify that the main forward-prediction
+and residualization results are not artifacts of WCDE's reconstruction
+methodology: replication on the independent Barro-Lee v3.0 dataset
+(Lee \& Lee 2016) with different source surveys and interpolation;
+residualization on Barro-Lee; and restriction of WCDE to post-1970
+observations, where data quality is highest and reconstruction plays
+the least role.
+
+{\small
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{10cm}ll@{}}
+\toprule
+Specification & LE R² & TFR R² \\
+\midrule
+\endhead
+WCDE v3 (main) & 0.335 & 0.388 \\
+Barro-Lee v3.0 (``at least some secondary,'' age 15--24, 146 countries) & 0.320 & 0.287 \\
+Barro-Lee v3.0 (mean years of schooling) & 0.400 & 0.428 \\
+WCDE v3, post-1970 only & 0.313 & 0.281 \\
+Barro-Lee residualization (GDP with education's contribution removed) & $\leq$\,0.003 & $\leq$\,0.003 \\
+\bottomrule
+\end{longtable}
+}
+
+All specifications significant at $p < 0.0001$, same sign and
+direction. The finding that income has no independent predictive power
+is not specific to one dataset; the pre-1970 decades add statistical
+power but are not driving the result. The natural experiments
+(Cambodia, Bihar--Kerala, Asian financial crisis, Russia, South Africa)
+rest on WDI outcome data and documented historical events, not on WCDE
+reconstruction, and are unaffected by any data-source
+concern.\footnote{See
+\texttt{scripts/robustness/barro\_lee\_replication.py}. Barro-Lee v3.0
+source: \texttt{github.com/barrolee/BarroLeeDataSet}.}
+
+\subsubsection{Specification Robustness}\label{appendix-spec-robust}
+
+Six additional checks address standard concerns about the Table~\ref{tab:1}
+headline. They are summarised in Table~\ref{tab:spec-robust} and described
+in turn below.
+
+\refstepcounter{table}\label{tab:spec-robust}\textbf{Table \thetable. Specification robustness.}
+Each row reports the parental-education coefficient (or its semi-elasticity
+in the PPML/log rows) under the noted check, with country FE and
+country-clustered SEs. ``Active expansion'' restricts parent
+$<30$\% to match the Table~\ref{tab:1} sample definition.
+
+{\small
+\begin{longtable}[]{@{}lrrrr@{}}
+\toprule
+Check & $\beta$ (or elast.) & SE & N & Countries \\
+\midrule
+\endhead
+5-year baseline (Table~\ref{tab:1} col 1) & 1.376 & 0.083 & 629 & 105 \\
+10-year aggregation, active expansion     & 1.437 & 0.078 & 416 & 113 \\
+Annual (interpolated), active expansion   & 1.326 & 0.078 & 3{,}548 & 135 \\
+Balanced subpanel (9/9 obs), active expansion & 1.490 & 0.124 & 423 & 47 \\
+Within-year cross-cohort (20--24 on 45--49), active expansion & 1.965 & 0.051 & 1{,}747 & 171 \\
+PPML, TFR$_{T+25}$ (semi-elast.\ per pp)   & $-0.91\%$ & $0.14\%$ & 590 & 172 \\
+PPML, U5MR$_{T+25}$ (semi-elast.\ per pp)  & $-3.30\%$ & $0.36\%$ & 579 & 168 \\
+Log LE$_{T+25}$ (semi-elast.\ per pp)      & $+0.36\%$ & $0.04\%$ & 590 & 172 \\
+Log TFR$_{T+25}$ (semi-elast.\ per pp)     & $-0.82\%$ & $0.11\%$ & 590 & 172 \\
+Log U5MR$_{T+25}$ (semi-elast.\ per pp)    & $-2.59\%$ & $0.28\%$ & 579 & 168 \\
+\bottomrule
+\end{longtable}
+}
+
+\emph{All rows significant at $p<0.01$. Produced by
+\texttt{scripts/robustness/period\_length.py},
+\texttt{balanced\_panel.py},
+\texttt{cross\_cohort\_within\_year.py},
+\texttt{ppml\_outcomes.py}, and
+\texttt{log\_outcomes.py}.}
+
+\textbf{Period length.} Aggregating child cohorts at 5-year (baseline),
+10-year, and annual (interpolated) resolution leaves the active-expansion
+coefficient in the 1.33--1.44 range. The annual grid mechanically
+multiplies the observation count roughly fivefold; the point estimate
+barely moves. Time-aggregation is not driving the headline.
+
+\textbf{Balanced panel.} The WCDE cohort grid is balanced by
+construction at the full-panel level (every country has 9 cohort years
+1975--2015), so the headline is not a composition artefact. Inside the
+active-expansion subset, forty-seven countries satisfy the $<30$\% cutoff
+in all nine cohort years; re-estimating on this deepest-observed subset
+gives $\beta=1.49$, slightly above the unbalanced headline of 1.36.
+Balance does not weaken the effect.
+
+\textbf{Within-year cross-cohort.} The headline regression uses a 25-year
+forward lag: child education at $t$ on parental education at $t-25$. A
+standard concern is that shocks occurring between $t-25$ and $t$
+(global MDGs, the Asian financial crisis, HIV) are absorbed by the
+forward-lag coefficient. The WCDE v3 microdata
+(\texttt{prop\_both.csv}) gives the lower-secondary-completion share
+for every 5-year age group in every country-year. In any given year,
+the age-20--24 share and the age-45--49 share are one generation apart
+but measured simultaneously: any shock in the intervening 25 years
+affects both cohorts, is absorbed by country FE if country-specific,
+and cannot drive the coefficient. The within-year cross-cohort
+coefficient is $\beta=1.97$ (SE 0.05) in the active-expansion sample,
+directionally stronger than the forward-lag headline. The transmission
+mechanism does not depend on the forward-lag design choice.
+
+\textbf{PPML.} TFR and under-5 mortality are non-negative and right-skewed;
+the standard log-linear regression drops zeros and is sensitive to
+heteroscedasticity in $E[\log y \mid x]$. Poisson PML (Santos Silva and
+Tenreyro 2006) is consistent under arbitrary heteroscedasticity provided
+the conditional mean is correctly specified. Under PPML with country FE,
+a one-percentage-point rise in parental lower secondary completion
+lowers TFR at $T+25$ by $-0.91\%$ (SE $0.14\%$, $p<0.001$) and under-5
+mortality by $-3.30\%$ (SE $0.36\%$, $p<0.001$). GDP's coefficient is
+insignificant in both equations ($p=0.24$ and $p=0.69$), consistent
+with the residualization result.
+
+\textbf{Log outcomes.} Putting LE, TFR, and U5MR in logs gives elasticities
+directly comparable to the PPML semi-elasticities. A one-percentage-point
+rise in parental completion predicts, one generation later: life expectancy
+$+0.36\%$, total fertility $-0.82\%$, under-5 mortality $-2.59\%$. All
+three are significant at $p<0.001$ with country FE and log GDP
+included. The levels specification reported in Table~\ref{tab:2} gives the
+same sign and ordering; the choice of functional form does not materially
+change the substance.
+
+\textbf{Wooldridge strict-exogeneity test.} The regression-based
+test from Wooldridge (2010, §10.5) adds the one-period lead of parental
+education (at $t-20$) to the FE regression and tests whether its
+coefficient is zero. On the full panel the lead enters with
+$\hat\gamma=1.275$ (SE 0.114, $t=11.1$); on the active-expansion sample
+$\hat\gamma=0.655$ (SE 0.281, $t=2.3$). In both samples strict exogeneity
+is formally rejected. This is expected rather than surprising: parental
+lower secondary completion is a highly persistent stock variable, so
+parent education at $t-20$ is near-perfectly correlated with parent
+education at $t-25$, and a test based on the lead has nearly zero
+power to distinguish mechanical persistence from a true exogeneity
+violation. Identification in this paper does not rely on strict
+exogeneity: the Callaway--Sant'Anna event study in
+Section~\ref{empirical-strategy} uses not-yet-treated countries as the
+comparison set, the forward-lag design rules out reverse causality by
+construction, and the within-year cross-cohort result above removes the
+lag altogether. The Wooldridge statistic is reported here for
+completeness and should be read as a diagnostic on the persistence of
+the regressor, not as evidence against the design.
+
+\subsubsection{South Africa: Apartheid Stratification and the PET Curve}\label{appendix-south-africa}
+
+South Africa's 65\% lower-secondary completion in 1990 is an aggregate
+masking apartheid stratification: near-universal white completion and
+much lower Black completion produced a bimodal distribution invisible
+in national data. The population bearing the brunt of HIV had far
+lower education than the headline figure suggests. The fall in TFR
+from 3.72 (1990) to 2.41 (2005) is the composition result of
+Section~\ref{gdp-has-no-independent-effect} operating as predicted.
+Primary education drives fertility decline hardest ($R^2=0.65$ for
+TFR), and Black primary was expanding through the shock. The fall is
+not a frozen PT baseline surviving external disruption --- 1990 would
+be too early to carry that claim, with TFR still at 3.72, above the
+development threshold. It is the ordinary primary-to-fertility
+mechanism continuing to run while lower-secondary depth remained too
+shallow in the affected majority to deliver the other half of the
+composition: the behavioural response to a novel pathogen that deeper
+schooling carries.
+
+The LE collapse runs through that secondary deficit. The Southern
+African epidemic was driven at the acquisition stage by factors
+education could not have prevented: low traditional circumcision
+prevalence (8--11\% in the HIV belt vs 85--99\% in Muslim West
+Africa), which three randomised trials showed provides a 60\%
+biological reduction in male acquisition risk (Auvert et al.~2005);
+and circular mining migration that created connected sexual networks
+across the subcontinent. These are genuinely exogenous to education.
+
+Education was in the story on both sides of the behavioural response.
+Early in the epidemic, more educated Africans were \emph{more} likely
+to be HIV-positive: greater mobility, more partners, more agency
+exercised without information about a novel pathogen (Fortson 2008).
+Once information existed, the gradient reversed: educated populations
+changed behaviour first. In Botswana, a natural experiment exploiting
+a 1996 school reform showed that each additional year of secondary
+schooling \emph{caused} an 8.1-percentage-point reduction in
+cumulative HIV risk (De~Neve et al.~2015). In rural Uganda, educated
+individuals responded more to prevention campaigns, and the
+education--HIV gradient reversed from positive to negative between
+1990 and 2000 (De~Walque 2007). Baker et al.\ (2017) formalise this
+as the Population Education Transition curve: when a novel health risk
+enters a population, the educated are early adopters (positive
+gradient); once information exists, the educated change behaviour
+first (gradient reverses). The pattern replicates across cigarettes,
+processed food, and HIV --- education is the mechanism in both
+directions, at the secondary-completion depth the behavioural response
+requires.
+
+South Africa's 1990 lower-secondary figure, once stratified, sat
+below that depth for the majority who received the shock.
+
+\subsubsection{Colonial Test: IV First-Stage Diagnostics}\label{appendix-colonial-iv}
+
+A formal instrumental-variable test sharpens the Colonial-Test result
+(Section~\ref{the-colonial-test}). The strategy uses AJR's own
+settler-mortality channel and asks what it actually identifies --- not
+whether the instrument works, but whether its exogenous variation
+enters development through institutions or through schools.
+Two-stage least squares using coloniser religion as the excluded
+instrument produces a first-stage F-statistic of 10.8 for education at
+independence --- above the Stock \& Yogo (2005) threshold for
+instrument relevance --- but only 1.4 for Polity2 institutional
+quality, well below the threshold. The second stage for education is
+significant ($\hat\beta = +0.059$, $t = 3.21$, $p = 0.002$); the
+institutional 2SLS is unreliable because the instrument is weak. The
+Wu-Hausman test is insignificant ($p = 0.85$), confirming that OLS and
+2SLS agree when the endogenous variable is education --- consistent
+with coloniser religion being exogenous to the education channel.
+AJR's instrument works, but it works \emph{because} it predicts
+education, not because it predicts institutions.
+See \texttt{scripts/robustness/iv\_2sls\_colonial.py}.
+
+\subsubsection{Panel Summary Statistics and Country Coverage}\label{appendix-descriptive}
+
+\refstepcounter{table}\label{tab:summary-full}\textbf{Table \thetable. Summary statistics for analysis variables.}
+Analysis panel: 185 countries, 1975--2015 at 5-year intervals, with
+parental education lagged 25 years (observed at $T{-}25$). Produced by
+\texttt{scripts/tables/summary\_stats.py}.
+
+{\small
+\begin{longtable}[]{@{}lrrrrr@{}}
+\toprule
+Variable & n & mean & sd & min & max \\
+\midrule
+\endhead
+Parental lower-sec completion (\%, $T{-}25$) & 1{,}665 & 42.0 & 33.3 &  0.0 & 100.0 \\
+Child lower-sec completion (\%, $T$)          & 1{,}665 & 61.9 & 31.6 &  0.4 & 100.0 \\
+Log GDP per capita (const.\ 2017 USD)         & 1{,}466 &  8.28 &  1.49 & 4.98 &  11.67 \\
+Life expectancy at birth (years)              & 1{,}608 & 65.7 & 10.6 & 12.8 &  84.3 \\
+Total fertility rate (births/woman)           & 1{,}608 &  3.70 &  1.95 & 0.91 &   8.86 \\
+Under-5 mortality (per 1{,}000 live births)   & 1{,}566 & 68.3 & 69.9 &  2.2 & 338.0 \\
+\bottomrule
+\end{longtable}
+}
+
+\emph{The education+GDP panel covers 178 of 185 countries; seven are
+dropped because the World Bank WDI has no GDP series for them: North
+Korea, Taiwan, Micronesia (FSM), and four French overseas departments
+(French Guiana, Guadeloupe, Martinique, Reunion). Country coverage for
+every main specification is listed in
+\texttt{checkin/summary\_stats.json} under \texttt{country\_lists} and
+is cross-checked by
+\texttt{scripts/verify\_country\_names.py}.}\footnote{Full 185-country
+panel (alphabetical, WCDE v3 naming):
+Afghanistan, Albania, Algeria, Angola, Argentina, Armenia, Aruba,
+Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Belarus,
+Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia and Herzegovina,
+Botswana, Brazil, Bulgaria, Burkina Faso, Burundi, Cambodia, Cameroon,
+Canada, Cape Verde, Central African Republic, Chad, Chile, China,
+Colombia, Comoros, Congo, Costa Rica, C\^ote d'Ivoire, Croatia, Cuba,
+Cura\c{c}ao, Cyprus, Czech Republic, North Korea, Democratic Republic
+of the Congo, Denmark, Dominican Republic, Ecuador, Egypt, El Salvador,
+Equatorial Guinea, Estonia, Ethiopia, Fiji, Finland, France, French
+Guiana, French Polynesia, Gabon, Gambia, Georgia, Germany, Ghana,
+Greece, Guadeloupe, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti,
+Honduras, Hong Kong (China SAR), Hungary, Iceland, India, Indonesia,
+Iran, Iraq, Ireland, Israel, Italy, Jamaica, Japan, Jordan, Kazakhstan,
+Kenya, Kiribati, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho,
+Liberia, Lithuania, Luxembourg, Macao (China SAR), Madagascar, Malawi,
+Malaysia, Maldives, Mali, Malta, Martinique, Mauritius, Mexico,
+Micronesia (FSM), Mongolia, Montenegro, Morocco, Mozambique, Myanmar,
+Namibia, Nepal, Netherlands, New Caledonia, New Zealand, Nicaragua,
+Niger, Nigeria, Norway, Palestine, Oman, Pakistan, Panama, Paraguay,
+Peru, Philippines, Poland, Portugal, Puerto Rico, Qatar, South Korea,
+Moldova, Reunion, Romania, Russia, Rwanda, Saint Lucia, Saint Vincent
+and the Grenadines, Samoa, Sao Tome and Principe, Saudi Arabia, Senegal,
+Serbia, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands,
+Somalia, South Africa, South Sudan, Spain, Sri Lanka, Sudan, Suriname,
+Eswatini (Swaziland), Sweden, Switzerland, Syria, Taiwan, Tajikistan,
+Thailand, North Macedonia, Timor-Leste, Togo, Tonga, Trinidad and
+Tobago, Tunisia, T\"urkiye, Turkmenistan, Uganda, Ukraine, United Arab
+Emirates, United Kingdom, Tanzania, United States, Uruguay, Vanuatu,
+Venezuela, Vietnam, Yemen, Zambia, Zimbabwe.}
+
+}
 
 \section*{References}\label{references}
 
