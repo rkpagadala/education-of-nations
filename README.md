@@ -48,6 +48,18 @@ make setup
 
 Each script prints its results and writes a JSON checkpoint to `checkin/`. The master verifier reads those checkpoints and compares them to every number in the paper.
 
+## Rebuilding checkpoints from source
+
+`make scripts` rebuilds every checkin JSON from raw data. Five checkpoints are shipped precomputed and excluded from `make scripts` because their scripts depend on the full WCDE v3 microdata file (`wcde/data/raw/prop_both.csv`, 172 MB; `pop_both.csv`, 91 MB), which is too large to distribute here:
+
+- `china_mean_yrs_vs_peers.json` (`scripts/cases/china_mean_years.py`)
+- `china_band_sensitivity.json` (`scripts/cases/china_band_sensitivity.py`)
+- `development_threshold_count.json` (`scripts/cases/development_threshold_count.py`)
+- `cross_cohort_within_year.json` (`scripts/robustness/cross_cohort_within_year.py`)
+- `completion_vs_years_vs_tests.json` (`scripts/robustness/completion_vs_years_vs_tests.py`)
+
+The scripts are included so you can audit the method. To re-run them, download WCDE v3 "prop" and "pop" files via the [WCDE explorer](https://dataexplorer.wittgensteincentre.org/wcde-v3/) or the R `wcde` package, and place them under `wcde/data/raw/`. The verifier does not depend on rebuilding these — `make verify` reads the shipped JSONs.
+
 ## Data sources
 
 | Variable | Source | Indicator |

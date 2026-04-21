@@ -47,8 +47,6 @@ verify: \
 	$(CHECKIN)/regime_education_test.json \
 	$(CHECKIN)/colonial_education_vs_institutions.json \
 	$(CHECKIN)/iv_2sls_colonial.json \
-	$(CHECKIN)/china_mean_yrs_vs_peers.json \
-	$(CHECKIN)/china_band_sensitivity.json
 
 # ── Analysis scripts (produce checkin JSONs) ──────────────────────────
 
@@ -66,7 +64,6 @@ analysis: \
 	$(CHECKIN)/twfe_child_edu.json \
 	$(CHECKIN)/education_vs_gdp_by_cutoff.json \
 	$(CHECKIN)/beta_by_ceiling_cutoff.json \
-	$(CHECKIN)/development_threshold_count.json \
 	$(CHECKIN)/asian_financial_crisis.json \
 	$(CHECKIN)/outcomes_r2_by_lag.json \
 	$(CHECKIN)/edu_vs_gdp_residualized.json \
@@ -93,7 +90,6 @@ analysis: \
 	$(CHECKIN)/log_outcomes.json \
 	$(CHECKIN)/balanced_panel.json \
 	$(CHECKIN)/period_length.json \
-	$(CHECKIN)/cross_cohort_within_year.json
 
 # ── Rules ─────────────────────────────────────────────────────────────
 
@@ -145,12 +141,6 @@ $(CHECKIN)/colonial_education_vs_institutions.json: robustness/colonial_vs_insti
 $(CHECKIN)/iv_2sls_colonial.json: robustness/iv_2sls_colonial.py robustness/colonial_vs_institutions.py $(ALL_DATA) $(DATA)/p5v2018.xls
 	$(PYTHON) $<
 
-$(CHECKIN)/china_mean_yrs_vs_peers.json: cases/china_mean_years.py _shared.py $(ALL_DATA) ../wcde/data/raw/prop_both.csv
-	$(PYTHON) $<
-
-$(CHECKIN)/china_band_sensitivity.json: cases/china_band_sensitivity.py _shared.py $(ALL_DATA) ../wcde/data/raw/prop_both.csv
-	$(PYTHON) $<
-
 $(CHECKIN)/panel_full_fe.json: tables/panel_full_fe.py _shared.py $(ALL_DATA)
 	$(PYTHON) $<
 
@@ -170,9 +160,6 @@ $(CHECKIN)/education_vs_gdp_by_cutoff.json: residualization/by_gdp_cutoff.py _sh
 	$(PYTHON) $<
 
 $(CHECKIN)/beta_by_ceiling_cutoff.json: robustness/beta_by_ceiling_cutoff.py _shared.py $(RESID_SHARED) $(ALL_DATA)
-	$(PYTHON) $<
-
-$(CHECKIN)/development_threshold_count.json: cases/development_threshold_count.py $(ALL_DATA)
 	$(PYTHON) $<
 
 $(CHECKIN)/asian_financial_crisis.json: robustness/asian_financial_crisis.py $(ALL_DATA)
@@ -254,9 +241,6 @@ $(CHECKIN)/balanced_panel.json: robustness/balanced_panel.py _shared.py $(WCDE)/
 	$(PYTHON) $<
 
 $(CHECKIN)/period_length.json: robustness/period_length.py _shared.py $(WCDE)/cohort_completion_both_long.csv
-	$(PYTHON) $<
-
-$(CHECKIN)/cross_cohort_within_year.json: robustness/cross_cohort_within_year.py _shared.py ../wcde/data/raw/prop_both.csv
 	$(PYTHON) $<
 
 $(CHECKIN)/beta_vs_baseline.json: figures/beta_vs_baseline.py $(WCDE_DATA)

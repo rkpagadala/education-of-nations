@@ -2562,6 +2562,13 @@ Nepal at \$876 (2015), Bangladesh at \$1,224, Vietnam at \$2,578. Income is not 
 {\renewcommand{\thetable}{A\arabic{table}}%
 \setcounter{table}{0}
 
+\noindent Adding year fixed effects to the headline specification
+collapses the full-panel parental coefficient from $0.483$ to
+$0.083$. The next table documents the collapse across four parental-
+completion subsamples; the paragraph following it explains why the
+collapse is a mechanical feature of two-way FE with staggered treatment,
+not evidence against the mechanism.
+
 \refstepcounter{table}\label{tab:a1}\textbf{Table \thetable.} Two-way fixed effects (country + year): child lower
 secondary completion on parental education. R² is the partial within-R²
 (incremental variance explained beyond country + year FEs). See
@@ -3844,6 +3851,11 @@ democracy score alone --- less than 1\% at every lag. Auto = strong
 autocracies (polity2 $\leq -6$); Demo = strong democracies (polity2
 $\geq +6$). Both invest at roughly the same rate.}
 
+\noindent The colonial test puts education and institutional quality
+into a bivariate horse race on log GDP per capita across 99 former
+colonies. Education dominates at every measurement horizon; adding
+coloniser religion on top of education does not raise the fit.
+
 \refstepcounter{table}\label{tab:a6}\textbf{Table \thetable. Colonial education vs.\ institutions as predictors of
 current GDP.} 99 former colonies classified by coloniser identity and
 religion (Protestant: Britain, Netherlands; Catholic: Spain, Portugal,
@@ -3869,6 +3881,14 @@ Education 1950 + coloniser religion & 0.462 \\
 capita 2020, except the final row which includes both regressors.
 Adding coloniser religion to education raises R$^2$ from 0.462 to
 0.462: religion predicts GDP only through its effect on education.}
+
+\noindent The institutionalist literature identifies the effect of
+institutions on income using settler mortality or coloniser religion as
+instruments. Running the same instrumental-variable design with
+education as the alternative endogenous regressor reverses the usual
+reading: the instrument predicts education at first-stage $F=10.8$ and
+institutions at $F=1.4$. The effect the instrument identifies is the
+educational one.
 
 \refstepcounter{table}\label{tab:a7}\textbf{Table \thetable. 2SLS instrumental-variable contest: education vs.\ institutions.}
 Coloniser religion (Protestant = 1) as the excluded instrument.
