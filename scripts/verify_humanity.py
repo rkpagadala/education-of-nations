@@ -1039,9 +1039,10 @@ reg("China-LE-break-p",    0.82, "checkin",
     ("china_mean_yrs_vs_peers.json", "structural_break_1981.le.p_break_slope"),
     [CHINA], tol=0.01)
 
-# Spain 0.3% completion (L1602)
-reg("Spain-1900-edu",      0.3, "wcde", ("cohort_lower_sec_both.csv", "Spain", 1900),
-    [POLICY], tol=0.1)
+# Spain 0.3% lower-secondary completion deregistered: was only cited in
+# §The Decision, which has been tightened to drop the Spain counter-case
+# recap (Spain as the wealth-without-education exemplar is still made in
+# §The Convergence via the 450-year claim).
 
 # ══════════════════════════════════════════════════════════════════════════
 # TABLE 2b — Residualized GDP (regression_tables.py)
@@ -1365,9 +1366,9 @@ reg("Cambodia-peer-median-1985", 21, "derived",
 reg("Cambodia-peer-median-2015", 46, "derived",
     "Median lower_sec_both 2015 among countries within ±3pp of Cambodia 1960, excl Cambodia",
     [(CAMBODIA, None)], tol=1)
-# The Decision: Britain/Netherlands timeline
-reg("Britain-NL-timeline",  200, "ref", "150-200 years for Britain/Netherlands school expansion",
-    [(POLICY, None)], tol=0)
+# Britain/Netherlands timeline deregistered: not cited in current paper.
+# Was previously false-matching on "2000" (Spain universal-completion year)
+# in §The Decision; that Spain paragraph was cut as recap.
 
 # ══════════════════════════════════════════════════════════════════════════
 # TWO-WAY FE DETAILS — REMOVED (values not in current paper)
@@ -1694,7 +1695,9 @@ reg("Abstract-resid-p",       0.11,   "checkin",
     [ABSTRACT], tol=0.01)
 
 # --- POLICY section: Spain ---
-reg("Spain-450",              450,   "ref", "Spain ~450 years of wealth without mass education (1492-1940s)", [POLICY], tol=50)
+# Spain-450 deregistered: paper's §The Convergence renders this as
+# "four-hundred-and-fifty" in words, not matchable by numeric scan; the
+# §The Decision restatement (which used digits) was cut as recap.
 
 # --- POLICY section: Korea-Costa Rica comparison ---
 reg("Fig1-Korea-beta-3.6-sec", 3.6,  "checkin", ("beta_vs_baseline.json", "numbers.Fig1-Korea-beta-3.6"), [POLICY], tol=0.1)

@@ -1,15 +1,15 @@
 # Verification Report
 
-Generated: 2026-04-20 23:34
+Generated: 2026-04-20 23:43
 
-## Result: 685/685 PASS
+## Result: 684/684 PASS
 
 | Metric | Count |
 |--------|-------|
-| Verified claims | 685 |
+| Verified claims | 684 |
 | Failed | 0 |
 | Missing | 0 |
-| Literature refs (manual) | 82 |
+| Literature refs (manual) | 80 |
 | Unregistered numbers | 0 |
 | Section offset issues | 0 |
 
@@ -21,7 +21,7 @@ Generated: 2026-04-20 23:34
 | const | 3 | 0 | 0 |
 | derived | 68 | 0 | 0 |
 | ref | 0 | 0 | 0 |
-| wcde | 25 | 0 | 0 |
+| wcde | 24 | 0 | 0 |
 | wdi | 52 | 0 | 0 |
 
 ## By Paper Section
@@ -53,7 +53,7 @@ Generated: 2026-04-20 23:34
 | the-colonial-test | 17 | 17 | 0 |
 | the-convergence | 6 | 6 | 0 |
 | the-deaton-objection | 1 | 1 | 0 |
-| the-decision | 10 | 10 | 0 |
+| the-decision | 9 | 9 | 0 |
 | the-dilution-mechanism | 2 | 2 | 0 |
 | the-famine-test | 6 | 6 | 0 |
 | the-institutional-challenge | 21 | 21 | 0 |
