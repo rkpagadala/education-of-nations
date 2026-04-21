@@ -2197,16 +2197,16 @@ education's coefficient remains significantly signed through lag
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/outcomes_r2_by_lag.png}
-\caption{Education vs.\ GDP predictive power across lag lengths
-(within-country FE). Solid: within-country $R^2$ for lower secondary
+\includegraphics[width=\textwidth]{figures/outcomes_beta_by_lag.png}
+\caption{Education vs.\ GDP effect size across lag lengths
+(within-country FE). Solid: standardized $|\beta|$ for lower secondary
 completion predicting four development outcomes at lags 0--100 years.
 Dashed: log GDP predicting the same outcomes. Education beats GDP at
-every outcome and every lag. GDP curves terminate at lag ${\sim}55$
-(WDI coverage); apparent rises beyond lag 10--15 are sample-selection
-artefacts as poor-country GDP records thin. Generational horizons
-(1--3) marked. \emph{(WB WDI and WCDE v3; see
-\texttt{scripts/figures/outcomes\_r2\_by\_lag.py}.)}}
+every outcome and every lag. GDP curves terminate at lag~25 (raw WDI
+coverage; backfilled GDP loses significance by lag 55--60, see
+\S\ref{robustness}). Generational horizons (1--3) marked.
+\emph{(WB WDI and WCDE v3; see
+\texttt{scripts/robustness/lag\_coefficients.py}.)}}
 \label{fig:3}
 \end{figure}
 
