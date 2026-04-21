@@ -83,6 +83,7 @@ analysis: \
 	$(CHECKIN)/singapore_continuation.json \
 	$(CHECKIN)/grandparent_effect_all_outcomes.json \
 	$(CHECKIN)/backfill_all_outcomes.json \
+	$(CHECKIN)/lag_coefficients.json \
 	$(CHECKIN)/colonial_all_outcomes.json \
 	$(CHECKIN)/cutoff_all_outcomes.json \
 	$(CHECKIN)/wooldridge_exogeneity.json \
@@ -217,6 +218,9 @@ $(CHECKIN)/grandparent_effect_all_outcomes.json: robustness/grandparent_effect_a
 	$(PYTHON) $<
 
 $(CHECKIN)/backfill_all_outcomes.json: robustness/backfill_all_outcomes.py _shared.py $(ALL_DATA)
+	$(PYTHON) $<
+
+$(CHECKIN)/lag_coefficients.json: robustness/lag_coefficients.py _shared.py $(ALL_DATA)
 	$(PYTHON) $<
 
 $(CHECKIN)/colonial_all_outcomes.json: robustness/colonial_all_outcomes.py _shared.py $(ALL_DATA)
