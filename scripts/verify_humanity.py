@@ -1549,7 +1549,7 @@ reg("T5-Korea-TFR",      1975, "checkin", ("table4_crossings.json", "results.Sou
 reg("T5-Cuba-dev",       1974, "checkin", ("table4_crossings.json", "results.Cuba.both_crossed"),
     [(SEN_CASES, 17), (CUBA, None)], tol=0)
 reg("T5-Cuba-TFR",       1972, "checkin", ("table4_crossings.json", "results.Cuba.tfr_crossing_best"),
-    [(SEN_CASES, 17), (DEF_DEV, 75)], tol=0)
+    [(SEN_CASES, 17), (DEF_DEV, 84)], tol=0)
 # Bangladesh
 reg("T5-Bangladesh-dev",  2014, "checkin", ("table4_crossings.json", "results.Bangladesh.both_crossed"),
     [(SEN_CASES, 18), (BANGLADESH, None)], tol=0)
@@ -2772,10 +2772,10 @@ reg("G-HR-TFR-quant-t",   -7.4, "checkin",
     [(GOSK_HANUSHEK, None), (COMPLETION, None)], tol=0.2)
 reg("G-HR-TFR-qual-beta", -0.25, "checkin",
     ("hanushek_horse_race.json", "numbers.tfr.D_qual_beta"),
-    [(GOSK_HANUSHEK, None), (COMPLETION, None)], tol=0.02)
+    [(COMPLETION, None)], tol=0.02)
 reg("G-HR-TFR-qual-t",    -2.9, "checkin",
     ("hanushek_horse_race.json", "numbers.tfr.D_qual_t"),
-    [(GOSK_HANUSHEK, None), (COMPLETION, None)], tol=0.2)
+    [(COMPLETION, None)], tol=0.2)
 reg("G-HR-TFR-R2-quant",   0.70, "checkin",
     ("hanushek_horse_race.json", "numbers.tfr.A_quant_only_r2"),
     [(GOSK_HANUSHEK, None), (COMPLETION, None)], tol=0.01)
